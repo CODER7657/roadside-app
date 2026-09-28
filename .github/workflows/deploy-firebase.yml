@@ -1,6 +1,7 @@
 # Deploys Functions, Firestore/Storage rules, indexes and Hosting.
 #   push to main (firebase/** changed) → roadside-dev
-#   tag vX.Y.Z                         → roadside-prod (GitHub environment "production": needs P3 approval)
+#   tag vX.Y.Z                         → roadside-prod. Only repo admins can create v* tags (tag ruleset), which is the
+#                                        production gate. Required-reviewer environments need GitHub Enterprise for private repos.
 # Auth uses Workload Identity Federation (no long-lived service-account keys in GitHub).
 # Setup (P3): repo variables GCP_WIF_PROVIDER_DEV/PROD, GCP_DEPLOY_SA_DEV/PROD, FIREBASE_PROJECT_DEV/PROD.
 name: Deploy Firebase

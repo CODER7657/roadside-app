@@ -1,6 +1,7 @@
 # Builds signed, obfuscated release AABs for both apps on a version tag and attaches them to a draft
 # GitHub Release. Upload to Play Console stays manual (P3) so a human checks every production release.
 # Secrets (environment "production"): ANDROID_UPLOAD_KEYSTORE_BASE64, ANDROID_KEY_PROPERTIES
+# Runs only from v* tags, which only repo admins can create (tag ruleset).
 name: Release Android
 
 on:

@@ -1,5 +1,5 @@
 ## What & why
-<!-- One feature per PR. Link the issue: Closes #__ -->
+Closes #<!-- exactly ONE issue number: one issue = one PR (CI checks this) -->
 
 ## Screenshots / recording (required for UI)
 

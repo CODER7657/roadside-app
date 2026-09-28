@@ -32,5 +32,6 @@
   - `flutter analyze` shows 0 warnings
   - tests and golden tests pass
   - new UI has a Widgetbook use-case and a golden test
-- Commit style: `feat:`, `fix:`, `ui:`, `lane:`, `sec:`, `docs:`, `chore:`. Branches: `p1/…`, `p2/…`, `p3/…`, `lane/…`. Put `Closes #<issue>` in PRs.
+- **One issue = one branch = one PR.** Branch name: `<owner>/<issue>-<short-name>` (e.g. `p1/12-confirm-location`). The PR description has exactly one `Closes #<issue>`. Never open a second PR for an issue that already has one: push to the existing branch instead. If the work is too big, stop and ask for the issue to be split.
+- Commit style: `feat:`, `fix:`, `ui:`, `lane:`, `sec:`, `docs:`, `chore:`, `test:`, `ci:`.
 - When unsure about design, pick the calmer, bigger, simpler option (§6.3).

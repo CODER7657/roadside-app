@@ -75,10 +75,13 @@ Rules of thumb:
 - Use `/clear` between features.
 
 ## 5. The daily loop (every issue)
+
+**One issue = one branch = one PR.** Put exactly one `Closes #<issue>` in the PR; CI's **Linked issue** check fails otherwise, or if that issue already has a PR. Review fixes go to the same branch/PR. If an issue turns out too big, ask Ayush (P3) to split it before you start.
+
 ```bash
 git switch main
 git pull
-git switch -c p2/<short-name>
+git switch -c p2/<issue-number>-<short-name>
 # Functions
 cd firebase/functions
 npm run lint
@@ -128,7 +131,7 @@ Merged Functions deploy to **dev** automatically.
 ## 8. Final PRs and release (days 19–20)
 1. All your issues closed; functions tests green; `npm audit` clean at high severity.
 2. `chore: release v1.0.0` PR bumping `mechanic_app/pubspec.yaml`.
-3. Ayush tags `v1.0.0`:
-   - **Deploy Firebase** (after `production` approval) ships your Functions to prod.
+3. A repo admin tags `v1.0.0`:
+   - **Deploy Firebase** ships your Functions to prod.
    - **Release Android** builds the mechanic AAB.
 4. Write the dispatch notes (radius, timeouts, cross-city match) into `HANDOFF.md`.

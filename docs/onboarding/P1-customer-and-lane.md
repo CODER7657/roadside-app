@@ -81,10 +81,13 @@ Rules of thumb:
 - Use `/clear` between features so each session starts clean.
 
 ## 5. The daily loop (every issue)
+
+**One issue = one branch = one PR.** Put exactly one `Closes #<issue>` in the PR; CI's **Linked issue** check fails otherwise, or if that issue already has a PR. Review fixes go to the same branch/PR. If an issue turns out too big, ask Ayush (P3) to split it before you start.
+
 ```bash
 git switch main
 git pull
-git switch -c p1/<short-name>           # or lane/<component> for lane_ui work
+git switch -c p1/<issue-number>-<short-name>           # or lane/<component> for lane_ui work
 # … build with Claude Code …
 cd customer_app
 dart format .
@@ -129,5 +132,10 @@ Merge something every day.
 ## 8. Final PRs and release (days 19–20)
 1. All your issues closed; `main` green.
 2. Bump versions in `customer_app/pubspec.yaml` and open `chore: release v1.0.0`.
-3. After merge, Ayush tags `v1.0.0`. **Release Android** builds the signed, obfuscated AAB and **Deploy Firebase** ships to prod (approved in the `production` environment).
+3. After merge, a repo admin (you, or Ayush if you gave him admin) tags `v1.0.0`:
+   ```bash
+   git tag v1.0.0
+   git push origin v1.0.0
+   ```
+   **Release Android** builds the signed, obfuscated AAB and **Deploy Firebase** ships to prod. Only admins can push `v*` tags, and that is the production gate.
 4. Upload the store graphics with Ayush. Update `HANDOFF.md` with anything the client needs to know.

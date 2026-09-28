@@ -64,9 +64,9 @@ Then:
 5. **Play Console:** register it in the **client's name** (US$25 from the platform package). The client does Google's ID verification with you on day 1. Decide on a personal account (12 testers × 14 days) or an organisation account (D-U-N-S).
 6. **GitHub:**
    - Put real usernames in `.github/CODEOWNERS`.
-   - Create environments `development` and `production`, with `production` requiring your approval.
+   - Environments `development` and `production` already exist. Put the deploy variables and signing secrets on them. Required reviewers need GitHub Enterprise for private repos, so the production gate is the **tag ruleset**: only repo admins can push `v*` tags. Ask the repo owner for the admin role if you'll cut releases.
    - Set the repo variables for deploys (step 7).
-   - Apply the `main` ruleset (already created: PR + 1 approval + code owners + **CI result** check + squash only).
+   - Check the `main` ruleset (already active: PR + 1 approval + code owners + resolved threads + required **CI result** check + squash only; admins may bypass only through a PR).
    - After the folders exist, uncomment pub/npm in `dependabot.yml`.
 7. **Deploy auth, no keys:** create a Workload Identity pool + provider for GitHub and a deploy service account per project (roles: Firebase Admin, Cloud Functions Admin, Service Account User). Then set these variables in *Settings → Secrets and variables → Actions → Variables*:
    - `GCP_WIF_PROVIDER_DEV`, `GCP_DEPLOY_SA_DEV`, `FIREBASE_PROJECT_DEV`
@@ -102,10 +102,13 @@ Rules of thumb:
 - Use `/clear` between features.
 
 ## 5. The daily loop (every issue)
+
+**One issue = one branch = one PR.** Put exactly one `Closes #<issue>` in the PR; CI's **Linked issue** check fails otherwise, or if that issue already has a PR. Review fixes go to the same branch/PR. If an issue turns out too big, ask Ayush (P3) to split it before you start.
+
 ```bash
 git switch main
 git pull
-git switch -c p3/<short-name>
+git switch -c p3/<issue-number>-<short-name>
 # rules
 npm ci --prefix firebase/rules_tests
 cd firebase
@@ -142,7 +145,7 @@ Rules merged to `main` deploy to **dev** automatically.
 | 11–14 | A5 + A6 (service areas on/off), privacy policy, terms, deletion page, glossary review, retention jobs (TTL, cleanup, deletion, PITR) | Day 14 |
 | 15–16 | **Security review** (PLAN §12.14, §17), App Check enforced in prod | Day 20 |
 | 17–18 | Field test in all 3 cities; store listing en/hi/gu, Data safety, FGS + full-screen-intent declarations | Day 20 |
-| 19–20 | Tag `v1.0.0` → approve prod deploy → upload AABs → **production submission**; handover pack | Day 20 |
+| 19–20 | Tag `v1.0.0` (admin) → prod deploy + AABs → upload → **production submission**; handover pack | Day 20 |
 
 ## 7. Things that are easy to get wrong
 - The Firestore location can't be changed after creation. Double-check `asia-south1`.
@@ -158,7 +161,7 @@ Rules merged to `main` deploy to **dev** automatically.
    git tag v1.0.0
    git push origin v1.0.0
    ```
-3. Approve the **production** environment. Then:
+3. The tag (admins only) starts both release workflows:
    - **Deploy Firebase** ships Functions, rules, indexes and Hosting to prod.
    - **Release Android** attaches both AABs to a draft GitHub Release.
 4. Upload the AABs to Play Console, complete the listing, and submit for production.
