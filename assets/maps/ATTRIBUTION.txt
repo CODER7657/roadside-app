@@ -1,0 +1,1 @@
+Map data and tiles © OpenStreetMap contributors (https://www.openstreetmap.org/copyright), ODbL. Styled (desaturated / inverted) for design mockups only. Route geometry: OSRM demo server. In the real apps, maps come from Ola Maps (see PLAN.md).

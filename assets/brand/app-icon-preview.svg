@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108" width="432" height="432">
+  <!-- Android adaptive icon preview: background layer = Asphalt, foreground = symbol inside the 66dp safe zone. -->
+  <rect width="108" height="108" fill="#0E1014"/>
+  <path d="M0 78 L108 78" stroke="#FFB81C" stroke-width="3" stroke-dasharray="9 7" opacity=".35"/>
+  <g transform="translate(26 20) scale(.875)">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FDE68A"/><stop offset=".45" stop-color="#FCD34D"/><stop offset="1" stop-color="#F59E0B"/></linearGradient></defs>
+    <path d="M32 6c-10 0-18 7.8-18 17.6C14 36 32 58 32 58s18-22 18-34.4C50 13.8 42 6 32 6z" fill="url(#g)"/>
+    <circle cx="32" cy="23.5" r="6.5" fill="#0E1014"/>
+  </g>
+</svg>

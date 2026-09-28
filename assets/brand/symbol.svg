@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Lane symbol: a lane dash turning into a location pin. Beacon #FFB81C on Asphalt #0E1014. -->
+  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FDE68A"/><stop offset=".45" stop-color="#FCD34D"/><stop offset="1" stop-color="#F59E0B"/></linearGradient></defs>
+  <path d="M32 6c-10 0-18 7.8-18 17.6C14 36 32 58 32 58s18-22 18-34.4C50 13.8 42 6 32 6z" fill="url(#g)"/>
+  <circle cx="32" cy="23.5" r="6.5" fill="#0E1014"/>
+  <rect x="30" y="44" width="4" height="4" rx="1" fill="#0E1014" opacity=".85"/>
+</svg>

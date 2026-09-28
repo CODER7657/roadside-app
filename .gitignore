@@ -1,0 +1,21 @@
+# Secrets & signing: never commit (PLAN.md §12.8)
+.env*
+env/*.json
+!env/example.json
+*.jks
+*.keystore
+key.properties
+service-account*.json
+
+# Build & tooling
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+node_modules/
+firebase/functions/lib/
+*.log
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json

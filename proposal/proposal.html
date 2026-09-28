@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Roadside Mechanic App — Project Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Onest:wght@300..800&family=JetBrains+Mono:wght@400;500;700&family=Anek+Devanagari:wght@400;600&family=Anek+Gujarati:wght@400;600&display=block" rel="stylesheet">
+<style>
+  /* Type, backgrounds and button styles follow ThreeUI Community (MIT): Instrument Serif + Onest + JetBrains Mono. */
+  :root{
+    --bg:#07080A; --bg2:#0E1014; --card:rgba(255,255,255,.035); --card2:rgba(255,255,255,.06);
+    --line:rgba(255,255,255,.09); --line2:rgba(255,255,255,.16);
+    --ink:#F2F0EA; --muted:#A3A7B2; --subtle:#8A8F9B;
+    --beacon:#FFB81C; --amber2:#FFC438; --amber-lt:#FFEBB1;
+    --wait:#FFC247; --route:#7EA2FF; --go:#4BD28A; --work:#A594FF; --stop:#FF6B6E;
+    --serif:"Instrument Serif",Georgia,serif;
+    --sans:"Onest","Anek Devanagari","Anek Gujarati",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  @page{size:A4;margin:0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#333;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{font-family:var(--sans);color:var(--ink);font-size:10pt;line-height:1.5;font-weight:400}
+  .page{width:210mm;height:297mm;background:var(--bg);position:relative;overflow:hidden;page-break-after:always;padding:17mm 16mm 20mm}
+  .page:last-child{page-break-after:auto}
+  @media screen{.page{margin:10mm auto;box-shadow:0 4px 30px rgba(0,0,0,.5)}}
+  .glow-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.9;pointer-events:none}
+  .page > *:not(.glow-bg){position:relative}
+
+  .run{position:absolute!important;left:16mm;right:16mm;bottom:9mm;display:flex;justify-content:space-between;font:500 7pt/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--subtle)}
+  .kicker{display:inline-flex;align-items:center;gap:2mm;font:500 7.5pt/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--beacon);margin-bottom:4mm}
+  .kicker::before{content:"";width:6mm;height:1.5px;background:repeating-linear-gradient(90deg,var(--beacon) 0 4px,transparent 4px 7px)}
+  h1,h2{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:.98}
+  h1 em,h2 em{font-style:italic;color:var(--beacon)}
+  h2{font-size:34pt;margin-bottom:4mm}
+  h3{font-size:11.5pt;font-weight:600;line-height:1.25;margin-bottom:1.4mm;letter-spacing:-.005em}
+  p{margin-bottom:2.4mm}
+  .lede{font-size:11.5pt;line-height:1.5;color:var(--muted);max-width:152mm;margin-bottom:7mm;font-weight:350}
+  .lede b{color:var(--ink);font-weight:600}
+  .mono{font-family:var(--mono)}
+  .caps{font:500 7pt/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--subtle)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:4.5mm}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:4.5mm;padding:5mm;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+  .card p:last-child{margin-bottom:0}
+  ul.tick{list-style:none}
+  ul.tick li{position:relative;padding-left:5mm;margin-bottom:1.5mm;color:var(--muted)}
+  ul.tick li b{color:var(--ink);font-weight:600}
+  ul.tick li::before{content:"";position:absolute;left:0;top:1.7mm;width:2.2mm;height:2.2mm;border-radius:50%;background:var(--beacon);box-shadow:0 0 2.5mm rgba(255,184,28,.6)}
+  .pill{display:inline-block;font:500 6.8pt/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:1.6mm 2.6mm;border-radius:99px;border:1px solid var(--line2);color:var(--muted)}
+
+  /* ---- ThreeUI buttons (static print versions) ---- */
+  .tu-launch{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:2mm;padding:3.4mm 7mm;border-radius:3mm;color:#451a03;font:600 10pt/1 var(--sans);letter-spacing:-.01em;
+    background:linear-gradient(180deg,#fde68a,#fcd34d 45%,#f59e0b);
+    box-shadow:0 0 0 1px rgba(251,191,36,.5),0 1.1mm 0 #b45309,0 3mm 5mm -1mm rgba(0,0,0,.5),0 0 8mm rgba(245,158,11,.35)}
+  .tu-cta{display:inline-flex;align-items:center;gap:2mm;padding:3.4mm 7mm;border-radius:99px;color:#7c2d12;font:600 10pt/1 var(--sans);
+    background:linear-gradient(90deg,#FFEBB1,#FFC438);
+    box-shadow:0 5mm 10mm -4mm rgba(255,162,42,.9),inset 0 1.2mm 2mm #FCDC86,inset 0 -1.4mm 2mm #FFA226}
+  .tu-glass{display:inline-flex;align-items:center;gap:2mm;padding:3mm 5.5mm;border-radius:99px;color:#fff;font:500 9.5pt/1 var(--sans);
+    background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.22);box-shadow:0 3mm 12mm rgba(255,184,28,.18),inset 0 1px 0 rgba(255,255,255,.18)}
+  .tu-quiet{display:inline-flex;padding:1px;border-radius:99px;background:conic-gradient(from 200deg,#3f3f46 0 70%,#fff 90%,#3f3f46 100%)}
+  .tu-quiet span{display:flex;align-items:center;gap:2mm;padding:2.6mm 6mm;border-radius:99px;background:linear-gradient(180deg,#27272a,#09090b);color:#a1a1aa;font:500 7.5pt/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
+  .tu-beam{position:relative;display:inline-flex;padding:1.2px;border-radius:99px;background:conic-gradient(from 0deg,transparent 0 290deg,#ea580c 360deg)}
+  .tu-beam span{display:flex;align-items:center;gap:2mm;padding:3mm 7mm;border-radius:99px;background:#0a0a0b radial-gradient(rgba(255,255,255,.25) .6px,transparent .7px) 0 0/3mm 3mm;color:#fff;font:500 7.5pt/1 var(--mono);letter-spacing:.16em;text-transform:uppercase}
+
+  /* ---- COVER ---- */
+  .cover{padding:0}
+  .cover .glow-bg{background-image:url(img/horizon-cover.jpg);opacity:1}
+  .cover .inner{position:absolute;inset:0;padding:19mm 17mm}
+  .brand{display:flex;align-items:center;gap:3mm;font:500 8pt/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .brand i{width:6.5mm;height:6.5mm;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:linear-gradient(135deg,#FFEBB1,#FFB81C);display:grid;place-items:center;box-shadow:0 0 6mm rgba(255,184,28,.6)}
+  .brand i::after{content:"";width:2.2mm;height:2.2mm;border-radius:50%;background:#07080A}
+  .cover h1{font-size:74pt;margin:42mm 0 7mm;max-width:178mm}
+  .cover .sub{font-size:13pt;color:var(--muted);max-width:138mm;line-height:1.45;font-weight:350}
+  .cover .ctas{display:flex;gap:4mm;margin-top:10mm;align-items:center}
+  .cover .meta{position:absolute;left:17mm;right:17mm;bottom:19mm;display:grid;grid-template-columns:1fr 1fr 1fr 1.15fr;gap:4mm;align-items:center;
+    background:rgba(7,8,10,.55);border:1px solid rgba(255,255,255,.14);border-radius:5mm;padding:5mm;backdrop-filter:blur(8px)}
+  .cover .meta .caps{margin-bottom:1.8mm}
+  .cover .meta .v{font-size:11pt;font-weight:500}
+  .cover .meta .total{justify-self:stretch;text-align:left;padding:3.6mm 4.5mm;border-radius:3.5mm;background:linear-gradient(180deg,#fde68a,#fcd34d 45%,#f59e0b);color:#451a03;box-shadow:0 0 0 1px rgba(251,191,36,.5),0 1mm 0 #b45309,0 0 10mm rgba(245,158,11,.4)}
+  .cover .meta .total .caps{color:rgba(69,26,3,.7)}
+  .cover .meta .total .mono{font-size:19pt;font-weight:700;line-height:1}
+
+  /* ---- JOURNEY ---- */
+  .journey{display:grid;grid-template-columns:repeat(6,1fr);position:relative;margin:3mm 0 8mm}
+  .journey::before{content:"";position:absolute;left:8%;right:8%;top:5.8mm;height:2px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.4) 0 7px,transparent 7px 13px)}
+  .stop{text-align:center;padding:0 1.4mm}
+  .stop .dot{width:11.6mm;height:11.6mm;border-radius:50%;margin:0 auto 3mm;display:grid;place-items:center;color:#07080A;font:700 9.5pt/1 var(--mono);border:3px solid var(--bg);position:relative}
+  .stop b{display:block;font-size:9.6pt;font-weight:600;line-height:1.2;margin-bottom:1mm}
+  .stop span{display:block;font-size:8pt;color:var(--muted);line-height:1.35}
+  .deliver{display:grid;grid-template-columns:repeat(3,1fr);gap:4.5mm}
+  .deliver .n{font:400 34pt/1 var(--serif);margin:1mm 0 1.5mm}
+  .deliver .n small{font:500 7.5pt var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--subtle);margin-left:1.5mm}
+  .deliver p{font-size:8.8pt;color:var(--muted)}
+  .icon{width:9mm;height:9mm;border-radius:2.6mm;background:linear-gradient(180deg,rgba(255,184,28,.22),rgba(255,184,28,.06));border:1px solid rgba(255,184,28,.35);display:grid;place-items:center;margin-bottom:3mm}
+  .icon svg{width:4.8mm;height:4.8mm;stroke:var(--beacon);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .lang{font-family:"Anek Devanagari","Anek Gujarati",var(--sans)}
+
+  /* ---- PHONES ---- */
+  .stage{margin:0 -16mm 5mm;padding:8mm 16mm 6mm;background:url(img/streams-band.jpg) center 45%/cover no-repeat;position:relative}
+  .stage::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(7,8,10,.25) 18%,rgba(7,8,10,.25) 75%,var(--bg) 100%)}
+  .stage > *{position:relative}
+  .phones{display:grid;grid-template-columns:repeat(3,1fr);gap:6mm}
+  .phone{border-radius:7mm;background:#1b1d22;padding:2.1mm;box-shadow:0 6mm 16mm rgba(0,0,0,.6),0 0 0 .3mm rgba(255,255,255,.14)}
+  .scr{border-radius:5.2mm;overflow:hidden;height:108mm;position:relative;background:#E6E3DA;color:#14161B}
+  .map{position:absolute;inset:0;background:#E6E3DA url(img/map-day-pickup.png) center/cover no-repeat}
+  .map.night{background:#15181D url(img/map-night-route.png) center/cover no-repeat}
+  .osm{position:absolute;left:2mm;top:1.5mm;font:500 3.6pt/1 var(--sans);color:rgba(20,22,27,.55);z-index:1}
+  .night + .osm,.map.night ~ .osm{color:rgba(238,240,243,.5)}
+  .you{position:absolute;left:50%;top:31.4%;transform:translate(-50%,-50%);width:5mm;height:5mm;border-radius:50%;background:#1E5BFF;border:1.2mm solid #fff;box-shadow:0 0 0 5mm rgba(30,91,255,.14)}
+  .fab{position:absolute;right:3mm;width:8mm;height:8mm;border-radius:50%;background:#fff;display:grid;place-items:center;font:700 5.5pt/1 var(--sans);box-shadow:0 1mm 3mm rgba(0,0,0,.15);color:#14161B}
+  .fab.sos{background:#C4262C;color:#fff;top:13mm}
+  .fab.sun{top:3mm;font-size:9pt}
+  .dock{position:absolute;left:0;right:0;bottom:0;background:#fff;color:#14161B;border-radius:5mm 5mm 0 0;padding:3.4mm;box-shadow:0 -1mm 4mm rgba(0,0,0,.1)}
+  .dock.dark{background:#181B21;color:#EEF0F3}
+  .grab{width:9mm;height:1mm;border-radius:1mm;background:#D9D6CC;margin:0 auto 2.6mm}
+  .dk-caps{font:500 5pt/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#5F6676;margin-bottom:.9mm}
+  .dk-t{font-size:8pt;font-weight:600;line-height:1.2;margin-bottom:2mm}
+  .plate{display:inline-flex;align-items:stretch;border:.35mm solid #14161B;border-radius:1mm;overflow:hidden;font:700 6.2pt/1 var(--mono);background:#fff;color:#14161B;margin-bottom:2.6mm}
+  .plate i{font-style:normal;background:#1E5BFF;color:#fff;font:700 4pt/1 var(--sans);padding:.9mm .8mm;display:flex;align-items:center}
+  .plate span{padding:.9mm 1.4mm}
+  .mini-launch{height:10mm;border-radius:2.4mm;display:flex;align-items:center;justify-content:center;font:650 7.4pt/1 var(--sans);color:#451a03;
+    background:linear-gradient(180deg,#fde68a,#fcd34d 45%,#f59e0b);box-shadow:0 0 0 .6px rgba(251,191,36,.6),0 .8mm 0 #b45309,0 2mm 4mm rgba(245,158,11,.35)}
+  .rail{display:flex;align-items:center;margin:1mm 0 2.6mm}
+  .rail .s{width:3.2mm;height:3.2mm;border-radius:50%;flex:none}
+  .rail .l{flex:1;height:.6mm;margin:0 .5mm}
+  .rail .l.done{background:#7EA2FF}
+  .rail .l.todo{background:repeating-linear-gradient(90deg,#2A2F38 0 1.4mm,transparent 1.4mm 2.4mm)}
+  .eta{display:flex;align-items:baseline;gap:1.5mm;margin-bottom:2.4mm}
+  .eta b{font:700 16pt/1 var(--mono)}
+  .eta span{font:500 5.5pt var(--mono);color:#A9B0BD;letter-spacing:.12em;text-transform:uppercase}
+  .pass{border:1px solid #2A2F38;border-radius:2.4mm;padding:2.4mm;display:grid;grid-template-columns:8mm 1fr;gap:2mm;align-items:center;margin-bottom:2.4mm}
+  .ava{width:8mm;height:8mm;border-radius:2mm;background:linear-gradient(135deg,#6B7282,#343A48)}
+  .pass .nm{font-size:7pt;font-weight:600;line-height:1.2}
+  .pass .nm small{display:block;color:#A9B0BD;font-weight:400;font-size:5.6pt}
+  .otp{grid-column:1/-1;border-top:1px solid #2A2F38;padding-top:1.8mm;display:flex;justify-content:space-between;align-items:center}
+  .otp b{font:700 12pt/1 var(--mono);letter-spacing:2.2mm}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:1.6mm}
+  .ghost{height:7.5mm;border-radius:99px;border:1px solid #2A2F38;display:grid;place-items:center;font:500 6.4pt var(--sans);background:linear-gradient(180deg,#27272a,#09090b);box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
+  .route{position:absolute;left:18%;top:20%;width:30%;height:22%;border-left:1.3mm solid #7EA2FF;border-bottom:1.3mm solid #7EA2FF;border-radius:0 0 0 4mm}
+  .mech{position:absolute;left:14.5%;top:17%;width:5mm;height:5mm;border-radius:50%;background:#fff;display:grid;place-items:center}
+  .mech::after{content:"";border-left:1.3mm solid transparent;border-right:1.3mm solid transparent;border-bottom:2.4mm solid #1E5BFF}
+  .pin{position:absolute;left:44%;top:37%;width:5mm;height:5mm;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#EEF0F3;display:grid;place-items:center}
+  .pin::after{content:"";width:1.6mm;height:1.6mm;border-radius:50%;background:#FFB81C}
+  .offer{position:absolute;inset:0;background:#0E1014;color:#EEF0F3;padding:5mm 3.8mm 3.8mm;display:flex;flex-direction:column}
+  .offer .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:5mm}
+  .ring{width:12mm;height:12mm;border-radius:50%;background:conic-gradient(#FFC247 0 290deg,#2A2F38 290deg);display:grid;place-items:center}
+  .ring b{width:9.4mm;height:9.4mm;border-radius:50%;background:#0E1014;display:grid;place-items:center;font:700 7pt/1 var(--mono)}
+  .offer h4{font-family:var(--serif);font-weight:400;font-size:17pt;line-height:1;margin-bottom:2.4mm}
+  .offer .row{display:flex;justify-content:space-between;border-top:1px solid #2A2F38;padding:2mm 0;font-size:6.8pt}
+  .offer .row span{color:#A9B0BD}
+  .offer .row b{font-weight:600}
+  .slide{margin-top:auto;height:11mm;border-radius:99px;background:#181B21;border:1px solid #2A2F38;display:flex;align-items:center;padding:1mm;gap:3mm;font:600 7pt var(--sans);color:#A9B0BD}
+  .slide i{width:9mm;height:9mm;border-radius:50%;display:grid;place-items:center;font:800 8pt/1 var(--sans);color:#451a03;font-style:normal;background:linear-gradient(180deg,#fde68a,#f59e0b);box-shadow:0 0 4mm rgba(245,158,11,.5)}
+  .decline{text-align:center;font:500 6.5pt var(--sans);color:#A9B0BD;margin-top:2.4mm}
+  .phone-cap{text-align:center;margin-top:3.2mm}
+  .phone-cap b{display:block;font-size:9.5pt;font-weight:600}
+  .phone-cap span{font-size:8pt;color:var(--muted)}
+  .modes{display:grid;grid-template-columns:repeat(4,1fr);gap:3mm}
+  .mode{border-radius:3.5mm;padding:3.6mm;border:1px solid var(--line)}
+  .mode b{display:block;font-size:9.5pt;font-weight:650;margin-bottom:.8mm}
+  .mode span{font-size:8pt;line-height:1.35;display:block}
+  .m-day{background:#F4F3EE;color:#14161B}.m-day span{color:#4A5160}
+  .m-night{background:#181B21}.m-night span{color:var(--muted)}
+  .m-glare{background:#fff;color:#000;border:2px solid #fff}.m-glare b{font-weight:800}
+  .m-saver{background:#000;border-color:#2A2F38}.m-saver span{color:var(--muted)}
+  .btnrow{display:flex;gap:5mm;align-items:center;flex-wrap:wrap}
+  .btnrow figure{display:flex;flex-direction:column;align-items:flex-start;gap:2mm}
+  .btnrow figcaption{font:500 6.5pt var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--subtle)}
+
+  /* ---- FEATURES ---- */
+  .feat-col h3{display:flex;align-items:center;justify-content:space-between;gap:2.4mm;margin-bottom:2.6mm;font-family:var(--serif);font-weight:400;font-size:19pt}
+  .feat{border-top:1px solid var(--line);padding:2mm 0}
+  .feat b{display:block;font-size:9.3pt;font-weight:600;line-height:1.25}
+  .feat span{display:block;font-size:8.3pt;color:var(--muted);line-height:1.38}
+  .hl{background:linear-gradient(180deg,rgba(255,184,28,.1),rgba(255,184,28,.02));border-color:rgba(255,184,28,.28)}
+
+  /* ---- SECURITY ---- */
+  .sec{display:grid;grid-template-columns:repeat(2,1fr);gap:4mm}
+  .sec .card{display:grid;grid-template-columns:10mm 1fr;gap:3.5mm;padding:4.5mm}
+  .sec .card .icon{margin:0}
+  .sec h3{font-size:10.5pt;margin-bottom:1mm}
+  .sec p{font-size:8.7pt;color:var(--muted);line-height:1.42;margin:0}
+  .comply{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4mm;margin-top:5mm}
+  .comply b{display:block;font-size:9.8pt;margin-bottom:1mm;font-weight:600}
+  .comply span{font-size:8.4pt;color:var(--muted);display:block;line-height:1.4}
+
+  /* ---- TIMELINE ---- */
+  .tl-row{display:grid;grid-template-columns:22mm 1fr;gap:5mm;position:relative;padding-bottom:3.4mm}
+  .tl-row::before{content:"";position:absolute;left:24.6mm;top:4mm;bottom:-.5mm;width:2px;background:repeating-linear-gradient(180deg,rgba(255,255,255,.35) 0 5px,transparent 5px 10px)}
+  .tl-row:last-child::before{display:none}
+  .tl-wk{font:500 8.8pt/1.3 var(--mono);text-align:right;padding-top:.5mm;color:var(--muted)}
+  .tl-body{position:relative;padding-left:6mm}
+  .tl-body::before{content:"";position:absolute;left:-.4mm;top:1.2mm;width:3.2mm;height:3.2mm;border-radius:50%;background:var(--bg);border:2px solid rgba(255,255,255,.55)}
+  .tl-row.ms .tl-wk{color:var(--beacon)}
+  .tl-row.ms .tl-body::before{background:linear-gradient(180deg,#fde68a,#f59e0b);border-color:#fcd34d;width:4.4mm;height:4.4mm;left:-1mm;top:.6mm;box-shadow:0 0 4mm rgba(245,158,11,.7)}
+  .tl-body b{font-size:10pt;font-weight:600;display:block;line-height:1.3}
+  .tl-body span{font-size:8.5pt;color:var(--muted);display:block;line-height:1.4}
+  .tl-body .pill{margin-top:1.4mm;border-color:rgba(255,184,28,.45);color:var(--beacon)}
+
+  /* ---- PRICING ---- */
+  table{width:100%;border-collapse:collapse}
+  .price td{padding:2mm 0;border-top:1px solid var(--line);vertical-align:top}
+  .price td:first-child{width:64%}
+  .price td b{display:block;font-size:9.8pt;font-weight:600}
+  .price td span{font-size:8.3pt;color:var(--muted);display:block;line-height:1.38}
+  .price td.amt{text-align:right;font:500 10.5pt/1.3 var(--mono);white-space:nowrap}
+  .price tr.sub td{padding:2.2mm 0}
+  .price tr.sub td b{font-size:9pt;color:var(--muted);font-weight:500}
+  .price tr.sub td.amt{font-size:9.5pt;color:var(--muted)}
+  .price tr.total td{border-top:1px solid rgba(255,184,28,.6);padding-top:3.6mm}
+  .price tr.total td b{font-family:var(--serif);font-weight:400;font-size:20pt}
+  .price tr.total td.amt{font-size:18pt;font-weight:700;color:var(--beacon)}
+  .pay{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;margin:4mm 0}
+  .pay .card{padding:4mm 4.5mm}
+  .pay .mono{font-size:15pt;font-weight:700;display:block;margin:1.4mm 0 .6mm}
+  .pay span{font-size:8.2pt;color:var(--muted)}
+  .pay .first{background:linear-gradient(180deg,#fde68a,#fcd34d 45%,#f59e0b);color:#451a03;border-color:transparent;box-shadow:0 0 0 1px rgba(251,191,36,.5),0 1mm 0 #b45309}
+  .pay .first .caps,.pay .first span{color:rgba(69,26,3,.75)}
+  .cost td{padding:2.4mm 0;border-top:1px solid var(--line);vertical-align:top;font-size:8.8pt}
+  .cost td b{font-weight:600;display:block;font-size:9.4pt}
+  .cost td span{color:var(--muted);font-size:8pt;display:block;line-height:1.38}
+  .cost td.w{color:var(--muted);white-space:nowrap;padding:2.4mm 4mm;font:500 7.6pt/1.4 var(--mono);letter-spacing:.04em}
+  .cost td.amt{text-align:right;white-space:nowrap;font:500 9.4pt/1.35 var(--mono)}
+  .cost tr.sum td{border-top:1px solid rgba(255,184,28,.6);padding-top:3.4mm}
+  .cost tr.sum td.amt{color:var(--beacon);font-weight:700;font-size:12pt}
+  .big{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:3mm;align-items:center;margin-top:6mm}
+  .big .card{text-align:center;padding:4.5mm}
+  .big .card .mono{display:block;font-size:13pt;white-space:nowrap;font-weight:700;margin-top:1.4mm}
+  .big .op{font:400 22pt/1 var(--serif);color:var(--subtle)}
+  .big .final{background:linear-gradient(180deg,rgba(255,184,28,.16),rgba(255,184,28,.04));border-color:rgba(255,184,28,.45)}
+  .big .final .mono{color:var(--beacon)}
+
+  .sign{display:grid;grid-template-columns:1fr 1fr;gap:10mm;margin-top:9mm}
+  .sign div{border-top:1px solid rgba(255,255,255,.5);padding-top:2mm;font-size:8.8pt;color:var(--muted)}
+  .sign div b{color:var(--ink);display:block;font-size:10pt;font-weight:600}
+  ol.terms{padding-left:5mm}
+  ol.terms li{margin-bottom:2mm;font-size:9.1pt;line-height:1.45;padding-left:1mm;color:var(--muted)}
+  ol.terms li b{font-weight:600;color:var(--ink)}
+  .cta{position:relative;overflow:hidden;border-radius:5mm;border:1px solid rgba(255,184,28,.3);margin-top:7mm;padding:28mm 6mm 6mm;background:url(img/horizon-feature.jpg) center 70%/cover no-repeat}
+  .cta::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,8,10,.1) 0%,rgba(7,8,10,.85) 70%)}
+  .cta > *{position:relative}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+  .steps .caps{color:var(--beacon);margin-bottom:1.4mm}
+  .steps b{font-size:10.2pt;font-weight:600;display:block}
+  .steps p{font-size:8.5pt;color:var(--muted);margin:0}
+  .credit{font:400 6.8pt/1.4 var(--mono);color:var(--subtle);margin-top:5mm;letter-spacing:.02em}
+</style>
+</head>
+<body>
+
+<!-- 1 · COVER -->
+<section class="page cover">
+  <div class="glow-bg"></div>
+  <div class="inner">
+    <div class="brand"><i></i>Project proposal · Roadside Mechanic App</div>
+    <h1>Help on the road, <em>in minutes.</em></h1>
+    <p class="sub">An on-demand roadside mechanic service for Ahmedabad, Ankleshwar and Bharuch: a customer app, a mechanic app and an admin panel. The full scope is delivered in 20 working days, with Google Play and Firebase covered for the first year. One price, no extra bills.</p>
+    <div class="ctas">
+      <span class="tu-launch">Get help now <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="tu-quiet"><span>3 apps · 3 languages</span></span>
+    </div>
+  </div>
+  <div class="meta">
+    <div><div class="caps">Prepared for</div><div class="v">Client</div></div>
+    <div><div class="caps">Date</div><div class="v">28 Sep 2026</div></div>
+    <div><div class="caps">Delivery</div><div class="v">20 working days</div></div>
+    <div class="total"><div class="caps">Year 1 · all-in</div><div class="mono">₹30,000</div></div>
+  </div>
+</section>
+
+<!-- 2 · PRODUCT -->
+<section class="page">
+  <div class="kicker">01 · The product</div>
+  <h2>Book a verified mechanic <em>like you book a cab.</em></h2>
+  <p class="lede">When a car, bike, scooter or EV breaks down, the customer opens the app, says what's wrong, sees the price upfront, and the nearest verified mechanic comes to them. They track the mechanic live and pay directly by UPI.</p>
+
+  <div class="caps" style="margin-bottom:2mm">How one booking works</div>
+  <div class="journey">
+    <div class="stop"><div class="dot" style="background:var(--wait)">1</div><b>Ask for help</b><span>Pick the problem, confirm the exact spot on the map</span></div>
+    <div class="stop"><div class="dot" style="background:var(--wait)">2</div><b>See the price</b><span>A fair price range before booking</span></div>
+    <div class="stop"><div class="dot" style="background:var(--route)">3</div><b>Mechanic accepts</b><span>Nearest free, verified mechanic gets the job</span></div>
+    <div class="stop"><div class="dot" style="background:var(--route)">4</div><b>Live tracking</b><span>Watch them arrive; call or chat anytime</span></div>
+    <div class="stop"><div class="dot" style="background:var(--work)">5</div><b>Start code</b><span>Work starts only after the customer shares a 4-digit code</span></div>
+    <div class="stop"><div class="dot" style="background:var(--go)">6</div><b>Pay &amp; rate</b><span>Pay the mechanic by UPI, then rate the service</span></div>
+  </div>
+
+  <div class="caps" style="margin-bottom:3mm">What you receive</div>
+  <div class="deliver">
+    <div class="card">
+      <div class="icon"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div>
+      <h3>Customer app</h3>
+      <div class="n">18<small>screens</small></div>
+      <p>Android app for people who need help: booking, live tracking, SOS, chat, UPI payment, history.</p>
+    </div>
+    <div class="card">
+      <div class="icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></div>
+      <h3>Mechanic app</h3>
+      <div class="n">9<small>screens</small></div>
+      <p>Android app for mechanics: registration, go online, accept jobs, navigate, start code, earnings.</p>
+    </div>
+    <div class="card">
+      <div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 13l3-3 2 2 4-4"/></svg></div>
+      <h3>Admin panel</h3>
+      <div class="n">6<small>screens</small></div>
+      <p>Web dashboard for your team: approve mechanics, watch live bookings, set prices, handle complaints.</p>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-top:5mm">
+    <div class="card">
+      <div class="caps" style="margin-bottom:2.4mm">Included everywhere</div>
+      <ul class="tick" style="font-size:9.2pt">
+        <li><b>3 languages:</b> English, <span class="lang">हिन्दी</span>, <span class="lang">ગુજરાતી</span></li>
+        <li>Car, bike, scooter and EV support</li>
+        <li>Login with mobile number and OTP</li>
+        <li>Push notifications at every step</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="caps" style="margin-bottom:2.4mm">Launch scope</div>
+      <ul class="tick" style="font-size:9.2pt">
+        <li>Launch cities: Ahmedabad, Ankleshwar, Bharuch (more can be added from the admin panel)</li>
+        <li>Platforms: Android + web admin</li>
+        <li>Published on Google Play, in your name</li>
+        <li>1 month of free bug fixes after launch</li>
+      </ul>
+    </div>
+  </div>
+  <div class="run"><span>Roadside Mechanic App · Proposal</span><span>02</span></div>
+</section>
+
+<!-- 3 · DESIGN -->
+<section class="page">
+  <div class="kicker">02 · Design</div>
+  <h2>Designed for a <em>stressful moment</em> on the road.</h2>
+  <p class="lede" style="margin-bottom:3mm">Most apps are designed for someone relaxing on a sofa. Ours is designed for someone standing next to a broken vehicle, maybe at night, maybe in harsh sun, with low battery and one free hand. The design system is called <b>Lane</b>: calm, clear and readable at a glance, like a highway sign.</p>
+
+  <div class="stage"><div class="phones">
+    <div>
+      <div class="phone"><div class="scr">
+        <div class="map"></div><span class="osm">© OpenStreetMap</span><div class="you"></div>
+        <div class="fab sun">☀</div><div class="fab sos">SOS</div>
+        <div class="dock">
+          <div class="grab"></div>
+          <div class="dk-caps">Pickup</div>
+          <div class="dk-t">Near SG Highway, Thaltej</div>
+          <div class="plate"><i>IND</i><span>GJ 01 AB 1234</span></div>
+          <div class="mini-launch">GET HELP →</div>
+        </div>
+      </div></div>
+      <div class="phone-cap"><b>One big button</b><span>Everything important sits under your thumb</span></div>
+    </div>
+    <div>
+      <div class="phone"><div class="scr">
+        <div class="map night"></div><span class="osm" style="color:rgba(238,240,243,.5)">© OpenStreetMap</span><div class="mech" style="left:63.3%;top:41.4%;transform:translate(-50%,-50%)"></div><div class="pin" style="left:36.7%;top:21.5%;transform:translate(-50%,-100%) rotate(-45deg)"></div>
+        <div class="dock dark">
+          <div class="rail">
+            <i class="s" style="background:#FFC247"></i><i class="l done"></i>
+            <i class="s" style="background:#7EA2FF"></i><i class="l done"></i>
+            <i class="s" style="background:#7EA2FF;box-shadow:0 0 0 1mm rgba(126,162,255,.25)"></i><i class="l todo"></i>
+            <i class="s" style="border:1px solid #2A2F38"></i><i class="l todo"></i>
+            <i class="s" style="border:1px solid #2A2F38"></i><i class="l todo"></i>
+            <i class="s" style="border:1px solid #2A2F38"></i>
+          </div>
+          <div class="eta"><span>Arriving in</span><b>7 min</b></div>
+          <div class="pass"><i class="ava"></i><div class="nm">Ramesh P. ✓ <span style="color:#FFC247">★ 4.8</span><small>Patel Auto Works · 213 jobs</small></div>
+            <div class="otp"><span class="dk-caps" style="color:#A9B0BD;margin:0">Start code</span><b>4827</b></div></div>
+          <div class="two"><div class="ghost">Call</div><div class="ghost">Chat</div></div>
+        </div>
+      </div></div>
+      <div class="phone-cap"><b>Always know what's next</b><span>Live status line, ETA, verified ID card</span></div>
+    </div>
+    <div>
+      <div class="phone"><div class="scr">
+        <div class="offer">
+          <div class="top"><span class="dk-caps" style="color:#FFC247;margin:0">New request</span><div class="ring"><b>0:24</b></div></div>
+          <h4>Flat tyre<br>Car</h4>
+          <div class="plate" style="align-self:flex-start"><i>IND</i><span>GJ 01 AB 1234</span></div>
+          <div class="row"><span>Distance</span><b>2.4 km</b></div>
+          <div class="row"><span>Area</span><b>Thaltej</b></div>
+          <div class="row"><span>Price</span><b class="mono">₹350–₹600</b></div>
+          <div class="slide"><i>≫</i>Slide to accept</div>
+          <div class="decline">Decline</div>
+        </div>
+      </div></div>
+      <div class="phone-cap"><b>Works with greasy hands</b><span>Mechanics slide to accept; no mis-taps</span></div>
+    </div>
+  </div></div>
+
+  <div class="grid2" style="grid-template-columns:1.25fr 1fr;gap:5mm">
+    <div>
+      <div class="caps" style="margin-bottom:2.4mm">Adapts to the road automatically</div>
+      <div class="modes">
+        <div class="mode m-day"><b>Day</b><span>Soft warm white</span></div>
+        <div class="mode m-night"><b>Night</b><span>Dark at sunset</span></div>
+        <div class="mode m-glare"><b>Sunlight</b><span>Max contrast</span></div>
+        <div class="mode m-saver"><b>Saver</b><span>Under 15% battery</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="caps" style="margin-bottom:2.4mm">Button system</div>
+      <div class="btnrow">
+        <figure><span class="tu-launch" style="font-size:8.5pt;padding:2.6mm 5mm">Get help</span><figcaption>Primary</figcaption></figure>
+        <figure><span class="tu-quiet"><span style="padding:2.2mm 4.5mm">Call</span></span><figcaption>Quiet</figcaption></figure>
+        <figure><span class="tu-beam"><span style="padding:2.4mm 4.5mm">Hold SOS</span></span><figcaption>Hold</figcaption></figure>
+      </div>
+    </div>
+  </div>
+  <div class="grid2" style="margin-top:4mm;gap:5mm">
+    <ul class="tick" style="font-size:8.8pt">
+      <li><b>Status colours with meaning:</b> amber = searching, blue = on the way, violet = working, green = done. <b>Red only means danger.</b></li>
+    </ul>
+    <ul class="tick" style="font-size:8.8pt">
+      <li><b>Big, clear numbers</b> for ETA, start code and price, readable from arm's length, in all 3 languages.</li>
+    </ul>
+  </div>
+  <div class="run"><span>Roadside Mechanic App · Proposal</span><span>03</span></div>
+</section>
+
+<!-- 4 · FEATURES -->
+<section class="page">
+  <div class="kicker">03 · Features</div>
+  <h2>Everything included <em>in the price.</em></h2>
+  <div class="grid2" style="grid-template-columns:1.08fr 1fr;gap:5mm;margin-top:5mm">
+    <div class="card feat-col hl">
+      <h3>Customer app <span class="pill">18 screens</span></h3>
+      <div class="feat"><b>Get Help in 3 taps</b><span>Pick vehicle → pick problem (picture tiles) → confirm location</span></div>
+      <div class="feat"><b>Accurate pickup point</b><span>GPS accuracy badge, drag-the-map pin, landmark field, Plus Code for roads without addresses</span></div>
+      <div class="feat"><b>Upfront price range</b><span>Shown before booking, set by you from the admin panel</span></div>
+      <div class="feat"><b>Live tracking</b><span>Moving mechanic marker, live ETA, status line, call and in-app chat with photos</span></div>
+      <div class="feat"><b>Verified mechanic card</b><span>Photo, name, rating and a 4-digit start code, so no fake mechanics</span></div>
+      <div class="feat"><b>Emergency SOS</b><span>Hold 1.5 s to alert saved emergency contacts with a live location link, and call 112</span></div>
+      <div class="feat"><b>Share trip with family</b><span>A private live link that expires when the job ends</span></div>
+      <div class="feat"><b>Works when internet fails</b><span>Sends your location by SMS with a map link</span></div>
+      <div class="feat"><b>UPI payment</b><span>Opens any UPI app with the right amount, or scan the QR</span></div>
+      <div class="feat"><b>Ratings, history, vehicles, profile</b><span>Receipts, saved vehicles, up to 3 emergency contacts</span></div>
+    </div>
+    <div>
+      <div class="card feat-col" style="margin-bottom:5mm">
+        <h3>Mechanic app <span class="pill">9 screens</span></h3>
+        <div class="feat"><b>Registration &amp; verification</b><span>Shop details, photos, ID proof, services and UPI ID, approved by your team</span></div>
+        <div class="feat"><b>Online / offline in one tap</b><span>Today's jobs and earnings on the dashboard</span></div>
+        <div class="feat"><b>Job offers with a 30 s timer</b><span>Problem, distance, area and price; slide to accept</span></div>
+        <div class="feat"><b>Navigate, arrive, start</b><span>Route to the customer, GPS-checked arrival, start code to begin</span></div>
+        <div class="feat"><b>Finish &amp; get paid</b><span>Before/after photos, final amount, confirm UPI payment</span></div>
+        <div class="feat"><b>Earnings &amp; history</b></div>
+      </div>
+      <div class="card feat-col">
+        <h3>Admin panel <span class="pill">6 screens</span></h3>
+        <div class="feat"><b>Live dashboard</b><span>Bookings today, active mechanics, completion rate, arrival times</span></div>
+        <div class="feat"><b>Mechanic approvals</b><span>View documents, approve or block, per city</span></div>
+        <div class="feat"><b>Live bookings map</b><span>Every active job, with filters</span></div>
+        <div class="feat"><b>Cities &amp; price chart</b><span>Turn service areas on or off; price ranges per vehicle, problem and city</span></div>
+        <div class="feat"><b>Complaints, reviews, settings</b><span>Force-update and pause-service switches</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:5mm;display:grid;grid-template-columns:auto 1fr;gap:4mm;align-items:center;padding:4mm 5mm">
+    <span class="tu-cta" style="font-size:8.5pt;padding:2.6mm 5mm">Smart dispatch</span>
+    <span style="font-size:9pt;color:var(--muted)">Each request goes to the nearest free, verified mechanic within 3 km. If nobody accepts in 30 seconds it moves to the next one, then widens the search to 5 km and 10 km automatically.</span>
+  </div>
+  <div class="run"><span>Roadside Mechanic App · Proposal</span><span>04</span></div>
+</section>
+
+<!-- 5 · SECURITY -->
+<section class="page">
+  <div class="glow-bg" style="background-image:url(img/liquid-gold.jpg);background-size:120mm;background-position:112% 100%;background-repeat:no-repeat;opacity:.3;filter:saturate(1.2);-webkit-mask-image:radial-gradient(circle at 88% 86%,#000 0,transparent 42mm);mask-image:radial-gradient(circle at 88% 86%,#000 0,transparent 42mm)"></div>
+  <div class="kicker">04 · Safety, security &amp; privacy</div>
+  <h2>Built safe from day one, <em>not patched later.</em></h2>
+  <p class="lede">Customers share their location and phone number while stranded, so trust is the product. Every protection below is part of the fixed price.</p>
+  <div class="sec">
+    <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <div><h3>Only genuine apps can connect</h3><p>Google Play Integrity checks block fake apps and bots from reaching your data or sending OTP spam.</p></div></div>
+    <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+      <div><h3>Everyone sees only their own data</h3><p>Customers can't see other bookings. Mechanics see the exact address only after accepting a job.</p></div></div>
+    <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
+      <div><h3>No cheating on job status</h3><p>Arrival checked by GPS, work starts only with the customer's code, prices calculated by the server.</p></div></div>
+    <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/></svg></div>
+      <div><h3>Location privacy</h3><p>Live location is visible only during the job and auto-deleted within 24 hours; shared trip links expire.</p></div></div>
+    <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h7"/><circle cx="18" cy="16" r="3"/></svg></div>
+      <div><h3>Mechanic ID proofs protected</h3><p>Stored privately, visible only to your admins. Every admin action is logged.</p></div></div>
+    <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div>
+      <div><h3>Abuse &amp; cost protection</h3><p>OTP SMS limited to Indian numbers, booking limits per user, budget alerts on your cloud bill.</p></div></div>
+  </div>
+  <div class="comply">
+    <div class="card"><b>India DPDP Act 2023</b><span>Consent screen in 3 languages, right to delete, grievance contact and a data-breach plan.</span></div>
+    <div class="card"><b>Google Play policies</b><span>Targets Android 16, Data Safety form, in-app + web account deletion, permission disclosures.</span></div>
+    <div class="card"><b>Reliability</b><span>Crash reporting, error alerts, backups and an emergency "pause service" switch.</span></div>
+  </div>
+  <p style="font-size:8.4pt;color:var(--subtle);margin-top:5mm">Money never passes through the app: customers pay mechanics directly by UPI, so no bank or card details are ever stored.</p>
+  <div class="run"><span>Roadside Mechanic App · Proposal</span><span>05</span></div>
+</section>
+
+<!-- 6 · TIMELINE -->
+<section class="page">
+  <div class="glow-bg" style="background-image:url(img/warp-amber.jpg);background-size:cover;background-position:center top;opacity:.22;-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 45%);mask-image:linear-gradient(180deg,#000 0%,transparent 45%)"></div>
+  <div class="kicker">05 · Timeline</div>
+  <h2>20 working days. <em>Full scope.</em></h2>
+  <p class="lede" style="margin-bottom:5mm">Three developers work in parallel from day 1, so nothing is cut. You see working builds on real phones throughout, and each payment is tied to something you can test yourself.</p>
+  <div class="tl">
+    <div class="tl-row ms"><div class="tl-wk">Day 1</div><div class="tl-body"><b>Kick-off &amp; setup</b><span>Cloud project in India (Mumbai region), maps locked in, design system started. <b style="display:inline;color:var(--ink);font-weight:600">We register your Play Console account; you just verify your ID with Google.</b></span><span class="pill">Payment 1 · 40%</span></div></div>
+    <div class="tl-row"><div class="tl-wk">Day 2</div><div class="tl-body"><b>Wireframes signed off</b><span>You review every screen of all three apps before we build them</span></div></div>
+    <div class="tl-row"><div class="tl-wk">Days 3–6</div><div class="tl-body"><b>Foundations + first screens</b><span>Login, language, consent, home, vehicles, problem picker, location; mechanic registration; admin approvals; dispatch v1. First test build goes to Google Play closed testing.</span></div></div>
+    <div class="tl-row"><div class="tl-wk">Days 7–9</div><div class="tl-body"><b>Live flow</b><span>Searching, verified mechanic card, live tracking, chat; mechanic offers, navigation, arrival check and start code; admin live map</span></div></div>
+    <div class="tl-row ms"><div class="tl-wk">Day 10</div><div class="tl-body"><b>Live demo on two phones</b><span>Book → accept → track → complete → pay, end to end, in day and night modes</span><span class="pill">Payment 2 · 30%</span></div></div>
+    <div class="tl-row"><div class="tl-wk">Days 11–14</div><div class="tl-body"><b>Everything else</b><span>Payment, ratings, history, SOS, trip sharing, SMS fallback, sunlight and battery modes, all 3 languages, earnings, account deletion, privacy policy</span></div></div>
+    <div class="tl-row"><div class="tl-wk">Days 15–16</div><div class="tl-body"><b>Quality + security review</b><span>Full flow testing, accessibility, low-end phone speed, security checks</span></div></div>
+    <div class="tl-row"><div class="tl-wk">Days 17–18</div><div class="tl-body"><b>Field test in all 3 cities</b><span>Real mechanics in Ahmedabad, Ankleshwar and Bharuch, on real roads and highways: sunlight, night, low battery and weak network; fixes</span></div></div>
+    <div class="tl-row ms"><div class="tl-wk">Days 19–20</div><div class="tl-body"><b>Submitted to Play Store + handover</b><span>Final builds, store listing in 3 languages, production submission, source code and accounts handed over</span><span class="pill">Payment 3 · 30%</span></div></div>
+  </div>
+  <div class="card" style="font-size:8.4pt;color:var(--muted);padding:4mm 5mm">
+    <b style="color:var(--ink)">Google Play timing (Google's rule, not ours):</b> a <i>new personal</i> Play Console account must run a closed test with 12 testers for 14 days before public release. We start it on day 6, so production can be requested on day 20, and Google's review usually takes a few more days. A <i>business</i> account skips this test but needs a D-U-N-S number, so please choose on day 1.
+  </div>
+  <div class="run"><span>Roadside Mechanic App · Proposal</span><span>06</span></div>
+</section>
+
+<!-- 7 · INVESTMENT -->
+<section class="page">
+  <div class="kicker">06 · Investment</div>
+  <h2>One price for year one: <em>₹30,000.</em></h2>
+  <p class="lede" style="margin-bottom:4mm">Development of everything in this proposal, <b>plus</b> Google Play and Firebase for the first 12 months, set up, paid and managed by us. You pay one amount and get no separate cloud bills in year one.</p>
+  <table class="price">
+    <tr><td><b>Customer app</b><span>18 screens: booking, live tracking, SOS, trip sharing, chat, UPI payment, history, 3 languages</span></td><td class="amt">₹8,500</td></tr>
+    <tr><td><b>Mechanic app</b><span>9 screens: registration, job offers, navigation, start code, job completion, earnings</span></td><td class="amt">₹5,000</td></tr>
+    <tr><td><b>Admin panel</b><span>6 screens: dashboard, approvals, live bookings map, prices, complaints, settings</span></td><td class="amt">₹3,000</td></tr>
+    <tr><td><b>Backend &amp; smart dispatch</b><span>Nearest-mechanic matching, 30 s offers, radius widening, notifications, GPS arrival check, start code</span></td><td class="amt">₹4,000</td></tr>
+    <tr><td><b>Lane design system &amp; languages</b><span>Custom look, day / night / sunlight / battery modes, English, Hindi and Gujarati</span></td><td class="amt">₹2,000</td></tr>
+    <tr><td><b>Security, privacy &amp; Play Store submission</b><span>Security rules and checks, DPDP consent and deletion, store listing, closed testing, submission</span></td><td class="amt">₹2,500</td></tr>
+    <tr class="sub"><td><b>Development subtotal</b></td><td class="amt">₹25,000</td></tr>
+    <tr><td><b>Year-1 platform package</b><span>Google Play Console registration + Firebase (database, login OTPs, functions, hosting, storage, notifications) for 12 months, paid and managed by us</span></td><td class="amt">₹5,000</td></tr>
+    <tr class="total"><td><b>Total for year one</b><span>All-inclusive: development + platform for 12 months</span></td><td class="amt">₹30,000</td></tr>
+  </table>
+  <div class="pay">
+    <div class="card first"><div class="caps">40% · Day 1</div><span class="mono">₹12,000</span><span>On signing, at kick-off</span></div>
+    <div class="card"><div class="caps">30% · Day 10</div><span class="mono">₹9,000</span><span>After the two-phone live demo</span></div>
+    <div class="card"><div class="caps">30% · Day 20</div><span class="mono">₹9,000</span><span>Play Store submission + handover</span></div>
+  </div>
+  <div class="grid2" style="gap:5mm">
+    <div class="card">
+      <div class="caps" style="margin-bottom:2.4mm">Included in year one</div>
+      <ul class="tick" style="font-size:8.8pt">
+        <li><b>1 month</b> of free bug fixes after launch</li>
+        <li>Google Play + Firebase running for 12 months, no bills to you</li><li>Source code and accounts in your name</li>
+        
+      </ul>
+    </div>
+    <div class="card">
+      <div class="caps" style="margin-bottom:2.4mm">Phase 2 (quoted separately)</div>
+      <ul class="tick" style="font-size:8.8pt">
+        <li>iPhone apps · in-app payments with commission</li>
+        <li>WhatsApp booking · AI diagnosis from photos</li>
+        <li>Server SOS SMS · masked calling · towing, insurance</li>
+      </ul>
+    </div>
+  </div>
+  <div class="run"><span>Roadside Mechanic App · Proposal</span><span>07</span></div>
+</section>
+
+<!-- 8 · YEAR-1 PLATFORM -->
+<section class="page">
+  <div class="kicker">07 · Year-1 platform package</div>
+  <h2>Your first year of running costs, <em>handled.</em></h2>
+  <p class="lede" style="margin-bottom:4mm">The ₹5,000 package covers the Google services the apps need to run for 12 months from launch. We set them up in your name, pay the bills and watch usage, so you get no separate invoices from Google in year one.</p>
+  <table class="cost">
+    <tr><td><b>Google Play Console account</b><span>Registered in your name; needed to publish both Android apps.</span></td><td class="w">One time</td><td class="amt">US$25 ≈ ₹2,100<br><span style="font-size:7.4pt;color:var(--go)">✓ Covered</span></td></tr>
+    <tr><td><b>Firebase: database, functions, hosting, file storage, notifications</b><span>Pay-as-you-go plan in the Mumbai region. At launch scale most usage fits Google's free daily quotas (50,000 reads and 20,000 writes a day, 2 M function calls a month).</span></td><td class="w">12 months</td><td class="amt">≈ ₹125 – ₹250/mo<br><span style="font-size:7.4pt;color:var(--go)">✓ Covered</span></td></tr>
+    <tr><td><b>Login OTP SMS</b><span>Google charges about ₹6 per OTP sent to India. Logins are remembered on each phone, so most users need only one or two.</span></td><td class="w">Per SMS</td><td class="amt">≈ ₹6 each<br><span style="font-size:7.4pt;color:var(--go)">✓ Covered*</span></td></tr>
+    <tr><td><b>Push notifications, crash reports, app security checks, remote settings</b><span>Firebase Cloud Messaging, Crashlytics, App Check and Remote Config.</span></td><td class="w">—</td><td class="amt">Free<br><span style="font-size:7.4pt;color:var(--go)">✓ Included</span></td></tr>
+    <tr><td><b>Maps (Ola Maps)</b><span>The free tier of 100,000 map events a month covers launch-year traffic.</span></td><td class="w">Monthly</td><td class="amt">₹0<br><span style="font-size:7.4pt;color:var(--go)">✓ Included</span></td></tr>
+    <tr><td><b>Web pages: privacy policy, account deletion, trip-share links</b><span>Hosted free on Firebase (yourapp.web.app). A custom domain such as a .in name (≈ ₹800–1,200 a year) is optional.</span></td><td class="w">—</td><td class="amt">₹0<br><span style="font-size:7.4pt;color:var(--go)">✓ Included</span></td></tr>
+    <tr class="sum"><td><b style="font-family:var(--serif);font-weight:400;font-size:17pt">Year-1 platform package</b><span>Paid once as part of the ₹30,000. No cloud bills to you for 12 months.</span></td><td class="w"></td><td class="amt">₹5,000</td></tr>
+  </table>
+
+  <div class="big">
+    <div class="card"><div class="caps">Development</div><span class="mono">₹25,000</span></div>
+    <div class="op">+</div>
+    <div class="card"><div class="caps">Platform · 12 months</div><span class="mono">₹5,000</span></div>
+    <div class="op">=</div>
+    <div class="card final"><div class="caps">You pay for year one</div><span class="mono">₹30,000</span></div>
+  </div>
+  <div class="grid2" style="margin-top:5mm;gap:4mm">
+    <div class="card" style="font-size:8.3pt;color:var(--muted);padding:4mm 5mm">
+      <b style="color:var(--ink)">*Fair use.</b> The package is sized for launch-year traffic across the three cities: roughly 300 bookings and a few hundred new logins a month. We check usage every week. If the app grows well beyond that (great news!), we'll tell you first, and nothing extra is ever charged without your written OK.
+    </div>
+    <div class="card" style="font-size:8.3pt;color:var(--muted);padding:4mm 5mm">
+      <b style="color:var(--ink)">From year two.</b> Running costs at the same scale are typically ₹7,500–₹15,000 a year, depending mostly on OTP SMS. You can take over the Google billing yourself or renew a yearly package with us; we'll quote it one month before year one ends.
+    </div>
+  </div>
+  <p style="font-size:7.4pt;color:var(--subtle);margin-top:4mm">Google and Ola published prices as of September 2026 at $1 ≈ ₹85. Taxes (GST) extra where applicable.</p>
+  <div class="run"><span>Roadside Mechanic App · Proposal</span><span>08</span></div>
+</section>
+
+<!-- 9 · TERMS -->
+<section class="page">
+  <div class="kicker">08 · Terms &amp; next steps</div>
+  <h2>Simple terms.</h2>
+  <ol class="terms" style="margin-top:4mm">
+    <li><b>Scope.</b> The features in this proposal, for Android phones and a web admin panel, in English, Hindi and Gujarati, launching in Ahmedabad, Ankleshwar and Bharuch.</li>
+    <li><b>Price.</b> ₹30,000 in total for year one: ₹25,000 development + ₹5,000 platform package, paid 40% / 30% / 30% as on page 7.</li>
+    <li><b>Timeline.</b> 20 working days from the kick-off payment and access to the accounts. Delays in feedback or account access move the dates by the same amount.</li>
+    <li><b>Changes.</b> Small adjustments during development are included. New features or changes after screens are approved are quoted separately before any work starts.</li>
+    <li><b>Your inputs.</b> Feedback within 1 working day during the sprint, the app name and logo approval, a review of the Hindi and Gujarati text, ID verification for the Play Console account (day 1), a grievance contact for the privacy policy, 12 testers for Google's closed test, and 5–10 mechanics per city for the field test.</li>
+    <li><b>Accounts &amp; year-1 platform.</b> The Play Console, Firebase and map accounts are created in your name, so you own them from day one. For the first 12 months we pay and manage their running costs under the ₹5,000 platform package (page 8, fair use applies).</li>
+    <li><b>Ownership.</b> On receipt of the final payment, you own the source code and the app listings.</li>
+    <li><b>Support.</b> One month of free bug fixes after launch. Maintenance and new features are quoted on request.</li>
+    <li><b>Validity.</b> This proposal is valid for 30 days from the date on the cover.</li>
+  </ol>
+
+  <div class="cta">
+    <div class="steps">
+      <div><div class="caps">Step 1</div><b>Approve this proposal</b><p>Sign below and send the first 40%</p></div>
+      <div><div class="caps">Step 2</div><b>Kick-off call</b><p>App name, logo, prices, accounts</p></div>
+      <div><div class="caps">Step 3</div><b>Wireframes on day 2</b><p>You review every screen before we build</p></div>
+    </div>
+    <div style="margin-top:6mm;display:flex;gap:4mm;align-items:center">
+      <span class="tu-cta">Approve &amp; start <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="tu-glass">20 days to Play Store submission</span>
+    </div>
+  </div>
+
+  <div class="sign">
+    <div><b>Client</b>Name, signature &amp; date</div>
+    <div><b>Development team</b>Name, signature &amp; date</div>
+  </div>
+  <p class="credit">Visual backgrounds, button styles and typography (Instrument Serif, Onest, JetBrains Mono) are adapted from ThreeUI Community by Meng To, MIT License. Fonts under SIL OFL 1.1.</p>
+  <div class="run"><span>Roadside Mechanic App · Proposal</span><span>09</span></div>
+</section>
+
+</body>
+</html>

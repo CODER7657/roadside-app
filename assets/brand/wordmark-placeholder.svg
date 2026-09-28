@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 72" width="360" height="72">
+  <!-- Placeholder wordmark until the app name is final. Instrument Serif, italic accent in Beacon. -->
+  <style>.t{font-family:'Instrument Serif',Georgia,serif;font-size:52px;fill:#F2F0EA}.a{font-style:italic;fill:#FFB81C}</style>
+  <g transform="translate(0 6) scale(.9)"><path d="M32 6c-10 0-18 7.8-18 17.6C14 36 32 58 32 58s18-22 18-34.4C50 13.8 42 6 32 6z" fill="#FFB81C"/><circle cx="32" cy="23.5" r="6.5" fill="#0E1014"/></g>
+  <text x="66" y="52" class="t">App<tspan class="a">Name</tspan></text>
+</svg>
