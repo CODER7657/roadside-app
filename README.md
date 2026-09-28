@@ -29,13 +29,13 @@ Your work is in the GitHub issues labelled `P1`, `P2` or `P3`, grouped by milest
 | [proposal/](proposal/) | Client proposal `Proposal.pdf` (₹30,000 all-in year 1) + source |
 | [design/tokens.json](design/tokens.json) | Lane design tokens (colours, type, space, motion, service areas) |
 | [design/lane_tokens.dart](design/lane_tokens.dart) | Dart starter for `packages/lane_ui` tokens |
-| [design/make_maps.py](design/make_maps.py) | Renders the real-map mockup backdrops (OSM) |
+| [design/map-render/](design/map-render/) | Renders the Uber-style mockup maps from real OpenStreetMap vector data (`npm i && npm run render`) |
 | [design/threeui-capture/](design/threeui-capture/) | How to render more ThreeUI backgrounds |
 | [assets/fonts/](assets/fonts/) | Onest, Instrument Serif, JetBrains Mono, Anek Devanagari, Anek Gujarati (+ OFL licenses) |
 | [assets/pictograms/](assets/pictograms/) | Phosphor icons: problems, vehicles, UI. `lane/` = tinted, `duotone/`, `regular/`, `preview.png` |
 | [assets/threeui/](assets/threeui/) | Pre-rendered ThreeUI backgrounds (splash, onboarding, store graphics) + button reference renders |
 | [assets/brand/](assets/brand/) | Symbol, app-icon preview, placeholder wordmark |
-| [assets/maps/](assets/maps/) | Real Ahmedabad map backdrops for mockups (day/night, with a real route) |
+| [assets/maps/](assets/maps/) | Uber-style Ahmedabad maps for mockups: day/night pickup, route (real OSRM route, mechanic scooter, pickup pin), admin wide map |
 | [tool/lint_design.sh](tool/lint_design.sh) | CI check that app code uses Lane (no raw colours, strings, magic numbers) |
 | [docs/](docs/) | Licenses and the en/hi/gu glossary |
 

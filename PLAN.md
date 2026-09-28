@@ -250,7 +250,8 @@ Priority: **user's manual choice > Saver > Glare > Night > Day.** Switching mode
 
 **⑧ Trust Pass: the mechanic card as an ID.** When a mechanic accepts, the customer sees a `TrustPass`, laid out like an access card:
 - the mechanic's photo, name, verified badge (only for `approved` + KYC-checked mechanics), and rating with job count
-- shop name and the vehicle types they handle
+- **workshop mechanics:** shop name. **Independent mechanics** (no workshop): "Verified independent mechanic · N yrs" plus their travel vehicle's plate, so the customer knows what's arriving
+- the vehicle types they handle
 - the start code, with the line "Share this code only when the mechanic is standing with you"
 
 It reassures the customer and prevents fake-mechanic fraud at the same time.
@@ -314,10 +315,23 @@ Contrast ratios below were calculated with the WCAG 2 formula. The CI golden tes
 
 **Glare mode** overrides everything with: `bg #FFFFFF`, `ink #000000`, `line #000000`, and signal colours as the Day values at weight +100. Tints are replaced by 2 px outlines.
 
-**Map:** use the provider's muted light or dark vector style (never the colourful default) so our route (`signal.route`, 6 dp) and markers stand out. Markers:
-- the customer pickup is an `ink` pin with a Beacon dot
-- the mechanic is a direction arrow in `signal.route` inside a white ring
-- the accuracy halo is `signal.route` at 10%
+**Map (Uber / Rapido style):** P1 builds the Lane map style as a MapLibre style JSON applied to the Ola Maps SDK, which is MapLibre-based, as far as the SDK allows. Reference renders: `assets/maps/`. Source colours: `design/map-render/render.html`.
+
+| Element | Day | Night |
+|---|---|---|
+| Land | `#EEF0F2` | `#1B1E23` |
+| Minor / major roads | `#FFFFFF`, casing `#DCDFE3` / `#C9CDD3` | `#2E333B` / `#3A4049` |
+| Water / parks | `#B9D8F0` / `#D9EDD3` | `#15222D` / `#1E2A22` |
+| Labels | `#5F6676` with white halo; **POIs, house numbers and shields hidden** | `#8A92A0` |
+| Route | **Black** `#111`, 6 dp, with a white 11 dp casing | **White** with a black casing |
+
+Markers:
+- **customer:** a blue location dot `#1E5BFF` with a white ring and an accuracy halo
+- **pickup:** a black square pin with a pill showing the ETA in a Beacon chip plus "Pickup"
+- **mechanic:** a **top-down amber two-wheeler (or car) icon, rotated to its GPS heading**, gliding between fixes (6.5 ⑥)
+- **admin:** booking dots in signal colours
+
+The camera fits the whole route above the dock (bottom padding ≈ 52% of the screen).
 
 ### 6.8 Typography
 
@@ -619,7 +633,10 @@ General rules for every document:
 - `type` (`car` | `bike` | `scooter` | `ev`), `brand`, `model`, `regNo` (validated: Indian format or BH series), `fuel` (`petrol` | `diesel` | `cng` | `electric`), `isDefault`
 
 ### `mechanics/{uid}`: public-ish profile (readable by the mechanic themself and admins)
-- `name`, `shopName`, `shopAddress`, `shopPhotoUrl`
+- `name`, `profilePhotoUrl`
+- `mechanicType`: `workshop` | `independent`. Many good mechanics work from home or on a bike without a shop, and both types get jobs the same way.
+  - `workshop` requires `shopName`, `shopAddress`, `shopPhotoUrl`.
+  - `independent` requires `baseArea` (`{ locality, geopoint }`, where they usually start from), `experienceYears`, `toolkitPhotoUrls` (≥ 2 photos of their tools) and `travelVehicle` (`{ type, regNo }`, shown to the customer).
 - `cityId` (`ahmedabad` | `ankleshwar` | `bharuch`; chosen at registration, changed only by admin)
 - `vehicleTypes`: list, `services`: list of problem types
 - `status` 🔒 (`pending` | `approved` | `blocked`), `rating` 🔒, `ratingCount` 🔒, `jobsCompleted` 🔒
@@ -627,6 +644,7 @@ General rules for every document:
 
 ### `mechanics/{uid}/private/kyc`: self (write once while `pending`) and admin read
 - `phone` (🔒 from Auth), `idProofPath` (Storage path, not URL), `upiId`, `upiName`, `kycCheckedBy` 🔒, `kycCheckedAt` 🔒
+- **Independent mechanics also:** `selfieWithIdPath` (holding the ID proof), `addressProofPath`, optional `referenceContact` (`{ name, phone }`, e.g. a workshop they trained at), and `verificationCall` 🔒 (`{ doneBy, at, notes }`, set by the admin after a video or phone call). There's no shop to visit, so these replace the shop check.
 
 ### `presence/{uid}`: mechanic availability (self writes; Functions read)
 - `isOnline`, `location`: `{ geopoint, geohash }`, `updatedAt`, `cityId` 🔒 (copied from the profile by Functions)
@@ -645,7 +663,7 @@ General rules for every document:
 - `status` (section 9), `statusHistory`: list of `{ status, at, by }`
 - `currentOfferId`, `triedMechanicIds`, `searchRadiusKm` (3 → 5 → 10)
 - `priceEstimate`: `{ min, max }` (computed by the server from `prices`, never sent by the client), `finalAmount`
-- `mechanicCard`: snapshot set at accept `{ name, photoUrl, shopName, rating, jobsCompleted, phone, upiId, upiName }`
+- `mechanicCard`: snapshot set at accept `{ name, photoUrl, mechanicType, shopName | null, experienceYears | null, travelVehicleRegNo | null, rating, jobsCompleted, phone, upiId, upiName }`
 - `customerCard`: snapshot set at accept `{ name, phone }`
 - `paymentStatus` (`pending` | `customer_marked_paid` | `confirmed` | `disputed`)
 - `beforePhotoUrls`, `afterPhotoUrls`
@@ -731,6 +749,26 @@ UI colour per status: see the signal table in 6.7. The Journey Rail stops are Re
 
 ## 10. Features & Screens
 
+### 10.0 Two kinds of mechanics: what each part of the product does (read before building M1, U9–U10, A2)
+
+Mechanics join as either a **Workshop mechanic** (has a shop or garage) or an **Independent mechanic** (knows the work, no shop; works from home or on a bike or scooter). Both get jobs from the **same dispatch** and follow the same booking flow and status rules (§9). What differs is how they register, how they're verified, and what the customer sees.
+
+| Part | Workshop mechanic | Independent mechanic |
+|---|---|---|
+| **Customer app (P1)** | TrustPass shows **shop name** + "Verified workshop" | TrustPass shows **"Verified independent mechanic · N yrs"** + travel-vehicle **PlateChip**, so the customer knows which bike or scooter is arriving |
+| | Same price range, tracking, start code and payment | Same. No separate price list, and **no "choose type" option for customers**; the nearest free mechanic of either type is sent |
+| **Mechanic app (P2)** | M1 path: shop name, address, shop photo | M1·Ind path: profile photo, base area, years of experience, ≥ 2 toolkit photos, travel vehicle + plate, optional reference |
+| | KYC: ID proof, UPI | KYC: ID proof, **selfie holding the ID**, **address proof**, UPI |
+| | M2 pending: "We're checking your shop" | M2 pending: "We'll call you for a short verification", plus the verification-call status |
+| | Offers, navigation, start code, completion, earnings: identical | Identical. Presence and dispatch start from the live location, not a shop address |
+| **Admin dashboard (P3)** | A2 approvals: type filter **Workshop**; checklist = shop photo + ID + services | A2: type filter **Independent**; checklist = selfie ↔ ID match, address proof, toolkit photos, **verification call logged** (the Approve button stays disabled until done) |
+| | A1 dashboard + A3 live map: counts and markers by type (for supply planning per city) | Same, with a different marker outline. Complaints and reviews (A5) can be filtered by type |
+| **Backend (P2 / P3)** | `mechanicType: workshop` + shop fields | `mechanicType: independent` + independent fields; `verificationCall` 🔒 set only by the admin callable |
+| | Dispatch ignores type (same `cityId`, services, distance) | Same. Rules allow each type to write only its own required fields while `pending` |
+
+Why both types: in Ankleshwar and Bharuch many skilled mechanics work without a shop, and on highways they're often the nearest help. The extra KYC and verification call make up for the missing physical shop.
+
+
 Template names from 6.13 are in brackets.
 
 ### Common (built separately in each app from the same Lane templates)
@@ -773,7 +811,10 @@ Template names from 6.13 are in brackets.
 - **Cancel protection:** a confirm sheet with a reason and a live "mechanic is N min away" line.
 
 ### Mechanic app: P2 (≈9 screens)
-1. Registration [Flow]: city (Ahmedabad / Ankleshwar / Bharuch), shop details, shop photo, ID proof (private), services, UPI ID + name
+1. Registration [Flow]: first question **"Do you have a workshop?"**, then city (Ahmedabad / Ankleshwar / Bharuch).
+   - **Workshop path:** shop name, address and photo.
+   - **Independent path (M1·Ind):** profile photo, base area, years of experience, toolkit photos (≥ 2), travel vehicle + plate, optional reference.
+   - Both paths: ID proof (private), services, vehicle types, UPI ID + name. Independent mechanics also add a selfie holding the ID and an address proof.
 2. Approval pending [Status]
 3. Dashboard [List]: a big online/offline toggle (64 dp), today's jobs and earnings with `LaneRollingNumber`
 4. Incoming request [Status, full screen]:
@@ -786,8 +827,18 @@ Template names from 6.13 are in brackets.
 9. Earnings & job history [List]
 
 ### Admin panel: P3 (≈6 screens, `ConsoleShell`, Night by default)
+
+**Only admins can use the dashboard. Nobody else, ever** (details in §12.11):
+- Customers and mechanics have **no way in**. The dashboard has no phone-OTP login.
+- If a customer or mechanic account somehow opens the URL, it gets "Not authorised" and is signed out.
+- The admin role can't be requested, self-granted or created from any app. It is granted only by a server-side script run by the repo owner or P3.
+- Mechanics manage their own profile only in the mechanic app; customers only in the customer app.
+
+0. Admin sign-in (A0): "Sign in with Google" only, for allow-listed emails; everyone else gets "Not authorised".
 1. Dashboard: `StatCard`s for bookings today, active mechanics, completion rate, median arrival time, SMS success rate
-2. Mechanic approvals: view documents through short-lived signed URLs; approve / block with a reason; every action is written to `auditLogs`
+2. Mechanic approvals: view documents through short-lived signed URLs; filter by **type** (Workshop / Independent) and city.
+   - The checklist is per type. For **independent** mechanics, approval stays disabled until the selfie matches the ID and a verification call is logged.
+   - Approve / block with a reason; every action is written to `auditLogs`.
 3. Live bookings map + booking list with filters and a vertical `JourneyRail` per booking
 4. Price chart editor (validates min < max, preview)
 5. Complaints & reviews
@@ -840,7 +891,7 @@ Template names from 6.13 are in brackets.
 | Mechanic edits own `status`/`rating`, or fakes arrival or completion | Sensitive fields 🔒; all status changes go through Functions with server checks (section 9) |
 | Two mechanics accept the same job | Firestore transaction in `respondToOffer` |
 | Mechanic guesses the start code | 5 attempts, then lock + customer alert; the code is never readable by the mechanic |
-| Fake mechanic shows up | Only approved and KYC-checked mechanics; `TrustPass` with photo; start code handed over in person |
+| Fake mechanic shows up | Only approved and KYC-checked mechanics; independent mechanics also need a selfie with ID, address proof and an admin verification call; `TrustPass` with photo (and the travel-vehicle plate for independents); start code handed over in person |
 | Stalking via live location | Location readable only by the booking's customer while it's active; TTL deletion after 24 h; share links expire; customers can never query mechanics or presence |
 | Leaked ID documents | Storage path private to admin + owner; admins view via short-lived signed URLs; no public URLs |
 | Stolen keys in the repo | Nothing secret in git; gitleaks + GitHub secret scanning with push protection; API keys restricted |
@@ -946,7 +997,13 @@ match /presence/{uid} {
 | Crash logs | Crashlytics default retention, no PII |
 
 ### 12.11 Admin panel security
-- Google sign-in; access only with the `admin` claim (set by the P3 script). Admins must have 2-step verification on their Google account.
+- **Admin-only access, enforced at four layers:**
+  1. **Sign-in gate:** the dashboard offers Google sign-in only. An Identity Platform **blocking function `beforeSignIn`** rejects any Google account whose email is not in the server-only allow-list `adminAllowlist/{email}`, before a session is created.
+  2. **Role claim:** the app shows nothing until the ID token has `role: admin`. That claim is set only by `tool/grant_admin` (Admin SDK script, run by the repo owner or P3 with prod credentials). No callable or app screen can grant it.
+  3. **Rules and callables:** every admin read or write checks `request.auth.token.role == 'admin'` (rules) or the claim inside `secureCall` (functions). Customers and mechanics can't call admin callables even with a valid session.
+  4. **Accounts:** admins must have Google 2-step verification. Removing an admin means deleting the allow-list entry, removing the claim and revoking refresh tokens (`tool/revoke_admin`). Every grant or revoke is written to `auditLogs`.
+- Phone-OTP accounts (customers and mechanics) are never admins. The customer and mechanic apps contain no admin screens or admin code.
+- The dashboard is served with `X-Robots-Tag: noindex` and isn't linked from the store listings or apps.
 - Hosting headers in `firebase.json`:
   - a strict `Content-Security-Policy` (self + Firebase + map domains)
   - `X-Content-Type-Options: nosniff`
@@ -1104,6 +1161,7 @@ The whole plan ships in **20 working days**. That's only possible because the th
 
 **Security**
 - [ ] Rules: a customer can't read another customer's booking, OTP, or any mechanic or presence doc
+- [ ] Register one **workshop** and one **independent** mechanic; the independent one can't be approved without the selfie and a logged verification call; both then receive offers, and the TrustPass shows the right card
 - [ ] Rules: a mechanic can't read a booking before accepting, can't write status, rating, or `activeBookingId`
 - [ ] Callables reject calls without App Check, without auth, with the wrong role, or with extra or invalid fields
 - [ ] Storage rejects non-images, files > 5 MB, and writes to other users' paths; KYC isn't readable by customers

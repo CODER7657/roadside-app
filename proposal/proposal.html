@@ -170,7 +170,7 @@
 
   /* ---- FEATURES ---- */
   .feat-col h3{display:flex;align-items:center;justify-content:space-between;gap:2.4mm;margin-bottom:2.6mm;font-family:var(--serif);font-weight:400;font-size:19pt}
-  .feat{border-top:1px solid var(--line);padding:2mm 0}
+  .feat{border-top:1px solid var(--line);padding:1.55mm 0}
   .feat b{display:block;font-size:9.3pt;font-weight:600;line-height:1.25}
   .feat span{display:block;font-size:8.3pt;color:var(--muted);line-height:1.38}
   .hl{background:linear-gradient(180deg,rgba(255,184,28,.1),rgba(255,184,28,.02));border-color:rgba(255,184,28,.28)}
@@ -303,7 +303,7 @@
       <div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 13l3-3 2 2 4-4"/></svg></div>
       <h3>Admin panel</h3>
       <div class="n">6<small>screens</small></div>
-      <p>Web dashboard for your team: approve mechanics, watch live bookings, set prices, handle complaints.</p>
+      <p>Web dashboard for your approved staff only: approve mechanics, watch live bookings, set prices, handle complaints.</p>
     </div>
   </div>
 
@@ -339,7 +339,7 @@
   <div class="stage"><div class="phones">
     <div>
       <div class="phone"><div class="scr">
-        <div class="map"></div><span class="osm">© OpenStreetMap</span><div class="you"></div>
+        <div class="map"></div>
         <div class="fab sun">☀</div><div class="fab sos">SOS</div>
         <div class="dock">
           <div class="grab"></div>
@@ -353,7 +353,7 @@
     </div>
     <div>
       <div class="phone"><div class="scr">
-        <div class="map night"></div><span class="osm" style="color:rgba(238,240,243,.5)">© OpenStreetMap</span><div class="mech" style="left:63.3%;top:41.4%;transform:translate(-50%,-50%)"></div><div class="pin" style="left:36.7%;top:21.5%;transform:translate(-50%,-100%) rotate(-45deg)"></div>
+        <div class="map night"></div>
         <div class="dock dark">
           <div class="rail">
             <i class="s" style="background:#FFC247"></i><i class="l done"></i>
@@ -439,7 +439,7 @@
     <div>
       <div class="card feat-col" style="margin-bottom:5mm">
         <h3>Mechanic app <span class="pill">9 screens</span></h3>
-        <div class="feat"><b>Registration &amp; verification</b><span>Shop details, photos, ID proof, services and UPI ID, approved by your team</span></div>
+        <div class="feat"><b>Workshop or independent</b><span>Mechanics with a shop, and skilled mechanics without one. Independents add toolkit photos, a selfie with ID and a verification call</span></div>
         <div class="feat"><b>Online / offline in one tap</b><span>Today's jobs and earnings on the dashboard</span></div>
         <div class="feat"><b>Job offers with a 30 s timer</b><span>Problem, distance, area and price; slide to accept</span></div>
         <div class="feat"><b>Navigate, arrive, start</b><span>Route to the customer, GPS-checked arrival, start code to begin</span></div>
@@ -449,7 +449,8 @@
       <div class="card feat-col">
         <h3>Admin panel <span class="pill">6 screens</span></h3>
         <div class="feat"><b>Live dashboard</b><span>Bookings today, active mechanics, completion rate, arrival times</span></div>
-        <div class="feat"><b>Mechanic approvals</b><span>View documents, approve or block, per city</span></div>
+        <div class="feat"><b>Admins only</b><span>Google sign-in for your approved staff; customers and mechanics can never open it</span></div>
+        <div class="feat"><b>Mechanic approvals</b><span>Workshop and independent checklists, per city</span></div>
         <div class="feat"><b>Live bookings map</b><span>Every active job, with filters</span></div>
         <div class="feat"><b>Cities &amp; price chart</b><span>Turn service areas on or off; price ranges per vehicle, problem and city</span></div>
         <div class="feat"><b>Complaints, reviews, settings</b><span>Force-update and pause-service switches</span></div>
@@ -479,7 +480,7 @@
     <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/></svg></div>
       <div><h3>Location privacy</h3><p>Live location is visible only during the job and auto-deleted within 24 hours; shared trip links expire.</p></div></div>
     <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h7"/><circle cx="18" cy="16" r="3"/></svg></div>
-      <div><h3>Mechanic ID proofs protected</h3><p>Stored privately, visible only to your admins. Every admin action is logged.</p></div></div>
+      <div><h3>Admin dashboard locked down</h3><p>Only your allow-listed staff can sign in; ID proofs are visible only to them, and every admin action is logged.</p></div></div>
     <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div>
       <div><h3>Abuse &amp; cost protection</h3><p>OTP SMS limited to Indian numbers, booking limits per user, budget alerts on your cloud bill.</p></div></div>
   </div>

@@ -32,7 +32,7 @@ Read this first if you're picking the project up in a new session. The source of
   - Buttons: Launch → primary, Spinning Border → secondary, Gradient CTA → pill, Gradient Beam → SOS ring.
   - Backgrounds are pre-rendered stills; the apps never run WebGL.
 - **Icons:** Phosphor duotone via `phosphor_flutter` (the earlier hand-drawn pictograms were replaced).
-- **Maps:** Ola Maps in the apps. The mockups use real OSM tiles with a real OSRM route (2.47 km, Bodakdev → Thaltej).
+- **Maps:** Ola Maps SDK in the apps, styled Uber/Rapido-like (PLAN §6.7 map table). The mockups are rendered from real OpenStreetMap vector data (OpenFreeMap + MapLibre) with a real OSRM route (2.47 km, Bodakdev → Thaltej).
 - **Launch cities:** Ahmedabad, Ankleshwar and Bharuch, as `serviceAreas/{cityId}`. There's a `cityId` on bookings, mechanics and presence; pickups outside an area get the "not in your area yet" screen. Ankleshwar and Bharuch may cross-match at 10 km.
 - **Security model:**
   - All status changes go through callables.
@@ -85,11 +85,13 @@ Useful commands:
   gh issue list --milestone "Day 2 · Setup + wireframes signed off"
   ```
 - Regenerate the wireframe PDF: open `wireframes/wireframes.html` in Chrome and print to A3 landscape, or use headless Chrome `--print-to-pdf`.
-- Regenerate the mockup maps:
+- Regenerate the Uber-style mockup maps (needs local Chrome):
   ```bash
-  python design/make_maps.py
+  cd design/map-render
+  npm i
+  npm run render
   ```
-  This uses OSM tiles: one-off, low volume, with attribution.
+  This uses OpenFreeMap vector tiles (free, keyless) + MapLibre.
 - More ThreeUI backgrounds: see `design/threeui-capture/README.md`.
 
 ## 6. Earlier work in the same workspace (unrelated to this app)

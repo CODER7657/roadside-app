@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>map render</title>
+<!-- Renders Uber/Rapido-style mockup maps from real OpenStreetMap vector tiles (OpenFreeMap, OpenMapTiles schema)
+     with MapLibre GL, the same engine family as the Ola Maps SDK. Real OSRM route + markers are drawn in.
+     URL: render.html?view=pickup|route|wide&theme=day|night   (window size = output size) -->
+<link href="https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.js"></script>
+<style>
+  html,body,#map{margin:0;width:100vw;height:100vh;overflow:hidden;background:#EEF0F2}
+  .maplibregl-ctrl-attrib,.maplibregl-ctrl-logo{display:none!important}
+  .attr{position:absolute;left:6px;bottom:4px;font:500 10px system-ui;color:rgba(0,0,0,.45);z-index:5}
+  .night .attr{color:rgba(255,255,255,.45)}
+  .you{width:18px;height:18px;border-radius:50%;background:#1E5BFF;border:3.5px solid #fff;box-shadow:0 0 0 22px rgba(30,91,255,.13),0 1px 4px rgba(0,0,0,.35)}
+  .pickup{display:flex;flex-direction:column;align-items:center}
+  .pickup .tag{background:#111;color:#fff;font:600 13px system-ui;padding:6px 10px;border-radius:8px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.3);display:flex;gap:6px;align-items:center}
+  .pickup .tag b{background:#FFB81C;color:#111;border-radius:5px;padding:2px 6px;font-size:12px}
+  .pickup .stem{width:3px;height:12px;background:#111}
+  .pickup .dot{width:14px;height:14px;background:#111;border:3px solid #fff;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,.4)}
+  .night .pickup .tag{background:#fff;color:#111}.night .pickup .stem{background:#fff}.night .pickup .dot{background:#fff;border-color:#111}
+  .veh{width:40px;height:40px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.45))}
+  .bk{width:16px;height:16px;border-radius:50%;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.5)}
+</style>
+</head>
+<body>
+<div id="map"></div><div class="attr">© OpenStreetMap contributors · OpenMapTiles · OpenFreeMap</div>
+<script>
+const q = new URLSearchParams(location.search);
+const view = q.get('view') || 'pickup';
+const theme = q.get('theme') || 'day';
+if (theme === 'night') document.body.classList.add('night');
+
+// Real driving route Bodakdev → Thaltej (OSRM), mechanic start → customer pickup
+const MECH = [72.5190, 23.0385], PICK = [72.5117, 23.0495];
+
+const T = theme === 'day' ? {
+  bg:'#EEF0F2', park:'#D9EDD3', water:'#B9D8F0', building:'#E4E6E9', buildingLine:'#DADDE1',
+  minor:'#FFFFFF', minorCase:'#DCDFE3', major:'#FFFFFF', majorCase:'#C9CDD3', motorway:'#FFFFFF', motorwayCase:'#B9BEC6',
+  rail:'#C4C8CE', label:'#5F6676', labelHalo:'#FFFFFF', place:'#4A5160', route:'#111111', routeCase:'#FFFFFF'
+} : {
+  bg:'#1B1E23', park:'#1E2A22', water:'#15222D', building:'#23272E', buildingLine:'#2A2F37',
+  minor:'#2E333B', minorCase:'#24282F', major:'#3A4049', majorCase:'#2A2F37', motorway:'#454C57', motorwayCase:'#30353D',
+  rail:'#343A43', label:'#8A92A0', labelHalo:'#1B1E23', place:'#A9B0BD', route:'#FFFFFF', routeCase:'#111111'
+};
+
+function restyle(style) {
+  for (const l of style.layers) {
+    const id = l.id, p = l.paint || (l.paint = {});
+    const set = (k, v) => { p[k] = v; };
+    if (l.type === 'background') set('background-color', T.bg);
+    else if (/water/.test(id) && l.type === 'fill') set('fill-color', T.water);
+    else if (/waterway/.test(id) && l.type === 'line') set('line-color', T.water);
+    else if (/park|landcover|landuse/.test(id) && l.type === 'fill') {
+      if (/park|grass|wood|landcover/.test(id)) set('fill-color', T.park); else set('fill-color', T.bg);
+      set('fill-opacity', 1);
+    }
+    else if (/building/.test(id) && l.type === 'fill') { set('fill-color', T.building); set('fill-outline-color', T.buildingLine); set('fill-opacity', 1); }
+    else if (/rail/.test(id) && l.type === 'line') set('line-color', T.rail);
+    else if (/(highway|road|tunnel|bridge|aeroway)/.test(id) && l.type === 'line') {
+      const casing = /casing/.test(id);
+      const motor = /motorway|trunk/.test(id), major = /major|primary|secondary|tertiary/.test(id);
+      set('line-color', casing ? (motor ? T.motorwayCase : major ? T.majorCase : T.minorCase) : (motor ? T.motorway : major ? T.major : T.minor));
+      set('line-opacity', 1);
+    }
+    else if (l.type === 'symbol') {
+      if (/poi|housenumber|aerodrome|airport|shield|oneway/.test(id)) { l.layout = l.layout || {}; l.layout.visibility = 'none'; continue; }
+      set('text-color', /place|city|town|village|suburb/.test(id) ? T.place : T.label);
+      set('text-halo-color', T.labelHalo); set('text-halo-width', 1.4);
+    }
+  }
+  return style;
+}
+
+const vehicleSvg = `<svg class="veh" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <!-- top-down two-wheeler (mechanic), nose points up (north) before rotation -->
+  <ellipse cx="20" cy="6.5" rx="3.2" ry="5" fill="#111"/><ellipse cx="20" cy="33.5" rx="3.4" ry="5" fill="#111"/>
+  <rect x="13.5" y="9" width="13" height="22" rx="6.5" fill="#FFB81C" stroke="#fff" stroke-width="2"/>
+  <rect x="11" y="11" width="18" height="2.6" rx="1.3" fill="#111"/>
+  <circle cx="20" cy="21" r="5" fill="#111" stroke="#fff" stroke-width="1.5"/>
+</svg>`;
+
+function bearing(a, b) {
+  const [l1, p1] = a.map(x => x * Math.PI / 180), [l2, p2] = b.map(x => x * Math.PI / 180);
+  const y = Math.sin(l2 - l1) * Math.cos(p2), x = Math.cos(p1) * Math.sin(p2) - Math.sin(p1) * Math.cos(p2) * Math.cos(l2 - l1);
+  return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+}
+
+(async () => {
+  const style = restyle(await (await fetch('https://tiles.openfreemap.org/styles/positron')).json());
+  delete style.sources.ne2_shaded; style.layers = style.layers.filter(l => l.source !== 'ne2_shaded');
+  const W = innerWidth, H = innerHeight;
+  const map = new maplibregl.Map({ container: 'map', style, center: PICK, zoom: 15.6, attributionControl: false, interactive: false, fadeDuration: 0, pixelRatio: 1 });
+  await new Promise(r => map.on('load', r));
+
+  let route = null;
+  if (view !== 'pickup') {
+    const j = await (await fetch(`https://router.project-osrm.org/route/v1/driving/${MECH};${PICK}?overview=full&geometries=geojson`)).json();
+    route = j.routes[0].geometry;
+    map.addSource('route', { type: 'geojson', data: route });
+    map.addLayer({ id: 'route-case', type: 'line', source: 'route', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': T.routeCase, 'line-width': 11 } });
+    map.addLayer({ id: 'route', type: 'line', source: 'route', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': T.route, 'line-width': 6 } });
+  }
+
+  if (view === 'pickup') {
+    map.jumpTo({ center: PICK, zoom: 16.2, padding: { top: 0, bottom: Math.round(H * 0.372), left: 0, right: 0 } });
+    const el = document.createElement('div'); el.className = 'you';
+    new maplibregl.Marker({ element: el }).setLngLat(PICK).addTo(map);
+  } else if (view === 'route') {
+    const c = route.coordinates, b = c.reduce((bb, p) => bb.extend(p), new maplibregl.LngLatBounds(c[0], c[0]));
+    map.fitBounds(b, { padding: { top: Math.round(H * 0.16), bottom: Math.round(H * 0.52), left: Math.round(W * 0.16), right: Math.round(W * 0.16) }, duration: 0, maxZoom: 16.5 });
+    const pk = document.createElement('div'); pk.className = 'pickup'; pk.innerHTML = '<div class="tag"><b>7 min</b>Pickup</div><div class="stem"></div><div class="dot"></div>';
+    new maplibregl.Marker({ element: pk, anchor: 'bottom' }).setLngLat(c[c.length - 1]).addTo(map);
+    const vh = document.createElement('div'); vh.innerHTML = vehicleSvg;
+    new maplibregl.Marker({ element: vh, rotation: bearing(c[0], c[Math.min(4, c.length - 1)]), rotationAlignment: 'map' }).setLngLat(c[0]).addTo(map);
+  } else { // wide: admin live map with several active bookings coloured by status
+    const c = route.coordinates;
+    map.jumpTo({ center: [72.525, 23.045], zoom: 13.4 });
+    const pts = [[[72.5117, 23.0495], '#7EA2FF'], [[72.5480, 23.0310], '#A594FF'], [[72.4990, 23.0660], '#FFC247'], [[72.5620, 23.0720], '#7EA2FF'], [[72.5300, 23.0180], '#4BD28A']];
+    for (const [ll, col] of pts) { const e = document.createElement('div'); e.className = 'bk'; e.style.background = col; new maplibregl.Marker({ element: e }).setLngLat(ll).addTo(map); }
+    const vh = document.createElement('div'); vh.innerHTML = vehicleSvg;
+    new maplibregl.Marker({ element: vh, rotation: bearing(c[0], c[4]), rotationAlignment: 'map' }).setLngLat(c[0]).addTo(map);
+  }
+
+  await new Promise(r => map.once('idle', r));
+  setTimeout(() => { document.title = 'done'; window.__done = true; }, 400);
+})();
+</script>
+</body>
+</html>
