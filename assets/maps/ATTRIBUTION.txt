@@ -1,1 +1,4 @@
-Map data and tiles � OpenStreetMap contributors (https://www.openstreetmap.org/copyright), ODbL. Styled (desaturated / inverted) for design mockups only. Route geometry: OSRM demo server. In the real apps, maps come from Ola Maps (see PLAN.md).
+Mockup maps (design documents only, not the apps).
+Map data © OpenStreetMap contributors (ODbL) · vector tiles © OpenMapTiles · served by OpenFreeMap (openfreemap.org).
+Rendered with MapLibre GL in the Lane "Uber-style" map theme by design/map-render (npm run render).
+Route geometry: OSRM demo server (one-off). In the real apps, maps are the live Ola Maps SDK.

@@ -19,3 +19,5 @@ firebase/functions/lib/
 .idea/
 .vscode/*
 !.vscode/extensions.json
+design/.cache/
+design/map-render/node_modules/
