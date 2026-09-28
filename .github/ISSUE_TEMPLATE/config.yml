@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Read PLAN.md first
+    url: https://github.com/CODER7657/roadside-app/blob/main/PLAN.md
+    about: Scope, design system, data model, security and the 20-day timeline.

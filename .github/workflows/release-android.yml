@@ -1,0 +1,94 @@
+# Builds signed, obfuscated release AABs for both apps on a version tag and attaches them to a draft
+# GitHub Release. Upload to Play Console stays manual (P3) so a human checks every production release.
+# Secrets (environment "production"): ANDROID_UPLOAD_KEYSTORE_BASE64, ANDROID_KEY_PROPERTIES
+name: Release Android
+
+on:
+  push:
+    tags: ['v*.*.*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-android-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: ${{ matrix.app }} AAB
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment: production
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [customer_app, mechanic_app]
+    env:
+      KEYSTORE_B64: ${{ secrets.ANDROID_UPLOAD_KEYSTORE_BASE64 }}
+      KEY_PROPERTIES: ${{ secrets.ANDROID_KEY_PROPERTIES }}
+    steps:
+      - uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Ready?
+        id: ready
+        shell: bash
+        run: |
+          if [ -f "${{ matrix.app }}/pubspec.yaml" ] && [ -n "$KEYSTORE_B64" ]; then echo "ok=true" >> "$GITHUB_OUTPUT";
+          else echo "ok=false" >> "$GITHUB_OUTPUT"; echo "::notice::App or signing secrets not set up yet, skipped."; fi
+      - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        if: steps.ready.outputs.ok == 'true'
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
+        if: steps.ready.outputs.ok == 'true'
+        with:
+          channel: stable
+          cache: true
+      - name: Restore signing config (never committed)
+        if: steps.ready.outputs.ok == 'true'
+        shell: bash
+        working-directory: ${{ matrix.app }}/android
+        run: |
+          echo "$KEYSTORE_B64" | base64 --decode > app/upload-keystore.jks
+          printf '%s\n' "$KEY_PROPERTIES" > key.properties
+      - name: Build release AAB (prod flavour, obfuscated)
+        if: steps.ready.outputs.ok == 'true'
+        working-directory: ${{ matrix.app }}
+        run: |
+          flutter pub get
+          flutter build appbundle --release --flavor prod -t lib/main_prod.dart \
+            --obfuscate --split-debug-info=build/symbols \
+            --build-name="${GITHUB_REF_NAME#v}" --build-number="${{ github.run_number }}"
+      - name: Remove signing files
+        if: always() && steps.ready.outputs.ok == 'true'
+        shell: bash
+        run: rm -f "${{ matrix.app }}/android/app/upload-keystore.jks" "${{ matrix.app }}/android/key.properties"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: steps.ready.outputs.ok == 'true'
+        with:
+          name: ${{ matrix.app }}-${{ github.ref_name }}
+          path: |
+            ${{ matrix.app }}/build/app/outputs/bundle/prodRelease/*.aab
+            ${{ matrix.app }}/build/symbols/**
+          retention-days: 30
+
+  draft-release:
+    name: Draft GitHub release
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - name: Create draft release with generated notes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create "${{ github.ref_name }}" --repo "${{ github.repository }}" --draft --generate-notes --title "${{ github.ref_name }}"

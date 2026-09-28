@@ -1,0 +1,111 @@
+# Reusable: format, analyze, test (+ goldens), Lane design lint, ARB completeness and an optional build
+# for one Flutter app or package. Called by ci.yml. Skips cleanly while the folder doesn't exist yet.
+name: flutter-check
+
+on:
+  workflow_call:
+    inputs:
+      path:
+        description: Folder that holds pubspec.yaml
+        required: true
+        type: string
+      design-lint:
+        description: Run tool/lint_design.sh on <path>/lib (apps only)
+        type: boolean
+        default: false
+      strings-check:
+        description: Fail if any ARB key is missing in hi/gu
+        type: boolean
+        default: false
+      build:
+        description: none | apk | web
+        type: string
+        default: none
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: ${{ inputs.path }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Does the project exist yet?
+        id: exists
+        env:
+          PROJECT_PATH: ${{ inputs.path }}
+        run: |
+          echo "slug=${PROJECT_PATH//\//-}" >> "$GITHUB_OUTPUT"
+          if [ -f "${{ inputs.path }}/pubspec.yaml" ]; then echo "yes=true" >> "$GITHUB_OUTPUT";
+          else echo "yes=false" >> "$GITHUB_OUTPUT"; echo "::notice::${{ inputs.path }}/pubspec.yaml not found, skipping (created on day 1)."; fi
+
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
+        if: steps.exists.outputs.yes == 'true'
+        with:
+          channel: stable
+          cache: true
+
+      - name: pub get
+        if: steps.exists.outputs.yes == 'true'
+        working-directory: ${{ inputs.path }}
+        run: flutter pub get
+
+      - name: Format
+        if: steps.exists.outputs.yes == 'true'
+        working-directory: ${{ inputs.path }}
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze (0 warnings)
+        if: steps.exists.outputs.yes == 'true'
+        working-directory: ${{ inputs.path }}
+        run: flutter analyze --fatal-infos --fatal-warnings
+
+      - name: Lane design lint
+        if: steps.exists.outputs.yes == 'true' && inputs.design-lint
+        run: bash tool/lint_design.sh "${{ inputs.path }}/lib"
+
+      - name: ARB completeness (en/hi/gu)
+        if: steps.exists.outputs.yes == 'true' && inputs.strings-check && hashFiles('tool/check_strings.dart') != ''
+        run: dart run tool/check_strings.dart "${{ inputs.path }}"
+
+      - name: Tests + golden tests
+        if: steps.exists.outputs.yes == 'true' && hashFiles(format('{0}/test/**/*.dart', inputs.path)) != ''
+        working-directory: ${{ inputs.path }}
+        run: flutter test --coverage --reporter expanded
+
+      - name: Upload golden failures
+        if: failure() && steps.exists.outputs.yes == 'true'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: golden-failures-${{ steps.exists.outputs.slug }}-${{ github.run_attempt }}
+          path: ${{ inputs.path }}/test/**/failures/
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        if: steps.exists.outputs.yes == 'true' && inputs.build == 'apk'
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Build debug APK (dev flavour)
+        if: steps.exists.outputs.yes == 'true' && inputs.build == 'apk' && hashFiles(format('{0}/lib/main_dev.dart', inputs.path)) != ''
+        working-directory: ${{ inputs.path }}
+        run: flutter build apk --debug --flavor dev -t lib/main_dev.dart
+
+      - name: Build web
+        if: steps.exists.outputs.yes == 'true' && inputs.build == 'web'
+        working-directory: ${{ inputs.path }}
+        run: flutter build web --release

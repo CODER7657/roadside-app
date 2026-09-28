@@ -21,6 +21,10 @@ Your work is in the GitHub issues labelled `P1`, `P2` or `P3`, grouped by milest
 | [PLAN.md](PLAN.md) | The full plan. Read §0 first |
 | [CLAUDE.md](CLAUDE.md) | Rules every Claude Code session follows |
 | [HANDOFF.md](HANDOFF.md) | Where things stand, decisions made, and what each member does first |
+| [docs/onboarding/](docs/onboarding/) | **Personal guides, setup → final PR:** [P1](docs/onboarding/P1-customer-and-lane.md) · [P2 Hem](docs/onboarding/P2-mechanic-and-functions.md) · [P3 Ayush](docs/onboarding/P3-admin-firebase-security.md) |
+| [CONTRIBUTING.md](CONTRIBUTING.md) · [SECURITY.md](SECURITY.md) | Branch → PR → review → squash-merge; how to report security issues |
+| [.github/workflows/](.github/workflows/) | **CI** (path-filtered Flutter/Functions/rules checks, gitleaks, actionlint → one required "CI result"), **PR hygiene** (title + auto-labels), **Deploy Firebase** (dev on merge, prod on tag with approval, keyless), **Release Android** (signed, obfuscated AABs) |
+| `*/CLAUDE.md` | Folder-level Claude Code rules for each owner's area |
 | [wireframes/](wireframes/) | `Wireframes.pdf` (44 frames, every screen) + `png/` + the source `wireframes.html` |
 | [proposal/](proposal/) | Client proposal `Proposal.pdf` (₹30,000 all-in year 1) + source |
 | [design/tokens.json](design/tokens.json) | Lane design tokens (colours, type, space, motion, service areas) |
@@ -42,7 +46,7 @@ The Flutter apps, packages and Firebase folders are created on day 1 (see the is
 1. Install everything in PLAN.md §4 and run `flutter doctor` until it's green.
 2. Accept the GitHub invite and turn on 2FA.
 3. Read PLAN.md §0, §2, §5, §6, §7, then your own sections.
-4. Open your `Day 1` issues and start.
+4. Open your **"Start here"** issue (it contains your personal guide), then your `Day 2` milestone issues.
 
 ## Licenses
 

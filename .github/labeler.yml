@@ -1,0 +1,37 @@
+# actions/labeler v5+ format: label PRs by the paths they touch (pr-hygiene.yml)
+P1:
+  - changed-files:
+      - any-glob-to-any-file: ['customer_app/**', 'packages/lane_ui/**', 'design/**']
+P2:
+  - changed-files:
+      - any-glob-to-any-file: ['mechanic_app/**', 'firebase/functions/**']
+P3:
+  - changed-files:
+      - any-glob-to-any-file: ['admin_panel/**', 'packages/roadside_core/**', 'firebase/*.rules', 'firebase/*.json', 'firebase/rules_tests/**', '.github/**', 'docs/**', 'tool/**']
+customer:
+  - changed-files:
+      - any-glob-to-any-file: ['customer_app/**']
+mechanic:
+  - changed-files:
+      - any-glob-to-any-file: ['mechanic_app/**']
+admin:
+  - changed-files:
+      - any-glob-to-any-file: ['admin_panel/**']
+lane:
+  - changed-files:
+      - any-glob-to-any-file: ['packages/lane_ui/**', 'design/**']
+backend:
+  - changed-files:
+      - any-glob-to-any-file: ['firebase/functions/**']
+firebase:
+  - changed-files:
+      - any-glob-to-any-file: ['firebase/**']
+security:
+  - changed-files:
+      - any-glob-to-any-file: ['firebase/*.rules', 'firebase/rules_tests/**']
+ci:
+  - changed-files:
+      - any-glob-to-any-file: ['.github/**', 'tool/**']
+docs:
+  - changed-files:
+      - any-glob-to-any-file: ['docs/**', '*.md']

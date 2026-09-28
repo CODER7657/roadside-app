@@ -1,0 +1,27 @@
+# Weekly dependency updates, grouped so they arrive as one PR per ecosystem.
+# TODO (P3 · Ayush): uncomment the pub/npm entries once those folders exist (day 1–2);
+# Dependabot reports an error for directories that don't exist yet.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      actions:
+        patterns: ['*']
+    commit-message:
+      prefix: ci
+
+  # - package-ecosystem: pub
+  #   directories: ['/customer_app', '/mechanic_app', '/admin_panel', '/packages/lane_ui', '/packages/roadside_core']
+  #   schedule: { interval: weekly, day: monday }
+  #   groups: { pub: { patterns: ['*'], update-types: ['minor', 'patch'] } }
+  #   commit-message: { prefix: chore }
+
+  # - package-ecosystem: npm
+  #   directories: ['/firebase/functions', '/firebase/rules_tests']
+  #   schedule: { interval: weekly, day: monday }
+  #   groups: { npm: { patterns: ['*'], update-types: ['minor', 'patch'] } }
+  #   commit-message: { prefix: chore }

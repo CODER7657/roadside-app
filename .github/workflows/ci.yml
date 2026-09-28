@@ -1,0 +1,215 @@
+# Main CI. Only the parts of the monorepo that changed are checked (path filters).
+# Branch protection requires ONE check: "CI result", which fails if any job failed.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  changes:
+    name: Detect changes
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      lane_ui: ${{ steps.filter.outputs.lane_ui }}
+      core: ${{ steps.filter.outputs.core }}
+      customer: ${{ steps.filter.outputs.customer }}
+      mechanic: ${{ steps.filter.outputs.mechanic }}
+      admin: ${{ steps.filter.outputs.admin }}
+      functions: ${{ steps.filter.outputs.functions }}
+      rules: ${{ steps.filter.outputs.rules }}
+      workflows: ${{ steps.filter.outputs.workflows }}
+    steps:
+      - uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d # v4.0.3
+        id: filter
+        with:
+          filters: |
+            lane_ui:   ['packages/lane_ui/**', 'tool/**']
+            core:      ['packages/roadside_core/**']
+            customer:  ['customer_app/**', 'packages/**', 'tool/**']
+            mechanic:  ['mechanic_app/**', 'packages/**', 'tool/**']
+            admin:     ['admin_panel/**', 'packages/**', 'tool/**']
+            functions: ['firebase/functions/**']
+            rules:     ['firebase/*.rules', 'firebase/rules_tests/**', 'firebase/firestore.indexes.json']
+            workflows: ['.github/workflows/**']
+
+  lane_ui:
+    needs: changes
+    if: needs.changes.outputs.lane_ui == 'true'
+    uses: ./.github/workflows/_flutter-check.yml
+    with:
+      path: packages/lane_ui
+
+  roadside_core:
+    needs: changes
+    if: needs.changes.outputs.core == 'true'
+    uses: ./.github/workflows/_flutter-check.yml
+    with:
+      path: packages/roadside_core
+
+  customer_app:
+    needs: changes
+    if: needs.changes.outputs.customer == 'true'
+    uses: ./.github/workflows/_flutter-check.yml
+    with:
+      path: customer_app
+      design-lint: true
+      strings-check: true
+      build: apk
+
+  mechanic_app:
+    needs: changes
+    if: needs.changes.outputs.mechanic == 'true'
+    uses: ./.github/workflows/_flutter-check.yml
+    with:
+      path: mechanic_app
+      design-lint: true
+      strings-check: true
+      build: apk
+
+  admin_panel:
+    needs: changes
+    if: needs.changes.outputs.admin == 'true'
+    uses: ./.github/workflows/_flutter-check.yml
+    with:
+      path: admin_panel
+      design-lint: true
+      strings-check: true
+      build: web
+
+  functions:
+    name: Cloud Functions (lint, build, test)
+    needs: changes
+    if: needs.changes.outputs.functions == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+        working-directory: firebase/functions
+    steps:
+      - uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - id: exists
+        working-directory: .
+        run: echo "yes=$([ -f firebase/functions/package.json ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        if: steps.exists.outputs.yes == 'true'
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: firebase/functions/package-lock.json
+      - if: steps.exists.outputs.yes == 'true'
+        run: npm ci
+      - if: steps.exists.outputs.yes == 'true'
+        run: npm run lint --if-present
+      - if: steps.exists.outputs.yes == 'true'
+        run: npm run build --if-present
+      - if: steps.exists.outputs.yes == 'true'
+        run: npm audit --omit=dev --audit-level=high
+      - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        if: steps.exists.outputs.yes == 'true'
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Tests on the Firebase emulator
+        if: steps.exists.outputs.yes == 'true'
+        run: npx --yes firebase-tools@latest emulators:exec --project demo-roadside --only firestore,auth,functions "npm test --if-present"
+
+  rules:
+    name: Security rules tests (emulator)
+    needs: changes
+    if: needs.changes.outputs.rules == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - id: exists
+        run: echo "yes=$([ -f firebase/rules_tests/package.json ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        if: steps.exists.outputs.yes == 'true'
+        with:
+          node-version: '22'
+      - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        if: steps.exists.outputs.yes == 'true'
+        with:
+          distribution: temurin
+          java-version: '21'
+      - if: steps.exists.outputs.yes == 'true'
+        run: npm ci --prefix firebase/rules_tests
+      - if: steps.exists.outputs.yes == 'true'
+        working-directory: firebase
+        run: npx --yes firebase-tools@latest emulators:exec --project demo-roadside --only firestore,storage "npm --prefix rules_tests test"
+
+  secrets:
+    name: Secret scan (gitleaks)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_ENABLE_COMMENTS: false
+
+  actionlint:
+    name: Workflow lint (actionlint)
+    needs: changes
+    if: needs.changes.outputs.workflows == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: actionlint
+        shell: bash
+        run: |
+          bash <(curl -sSfL https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+          ./actionlint -color
+
+  ci-result:
+    name: CI result
+    if: always()
+    needs: [changes, lane_ui, roadside_core, customer_app, mechanic_app, admin_panel, functions, rules, secrets, actionlint]
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Fail if any job failed or was cancelled
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
+        run: exit 1
+      - run: echo "All required checks passed (skipped jobs = nothing changed there)."

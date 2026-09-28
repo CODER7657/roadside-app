@@ -1,0 +1,36 @@
+name: Bug report
+description: Something is broken in an app, the admin panel or the backend
+labels: [bug]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where
+      options: [Customer app (P1), Mechanic app (P2), Admin panel (P3), Cloud Functions (P2), Rules / Firebase (P3), lane_ui (P1)]
+    validations:
+      required: true
+  - type: input
+    id: screen
+    attributes:
+      label: Screen ID (from wireframes, e.g. U10)
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. …\n2. …"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs actual
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device, Android version, app build, city
+      placeholder: Redmi Note 12, Android 14, build 12 (dev), Bharuch
+  - type: markdown
+    attributes:
+      value: "⚠ Never paste phone numbers, OTPs, addresses or keys here. Use test accounts."
