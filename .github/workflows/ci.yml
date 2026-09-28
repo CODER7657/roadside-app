@@ -174,6 +174,9 @@ jobs:
     name: Secret scan (gitleaks)
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: read   # gitleaks-action lists the PR's commits to scan them
     steps:
       - uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
