@@ -1,5 +1,7 @@
-# PR hygiene: Conventional-Commit style titles (they become the squash-merge commit)
-# and automatic labels from the paths a PR touches.
+# PR hygiene:
+#  - Conventional-Commit style titles (they become the squash-merge commit)
+#  - ONE ISSUE = ONE PR: the PR must close exactly one open issue, and no other open/merged PR may close it
+#  - automatic labels from the paths a PR touches
 name: PR hygiene
 
 on:
@@ -40,6 +42,47 @@ jobs:
           requireScope: false
           subjectPattern: ^(?![A-Z]).+$
           subjectPatternError: 'Start the subject with a lowercase letter, e.g. "feat: add draggable pin to confirm location".'
+
+  linked-issue:
+    name: Linked issue (one issue = one PR)
+    if: github.event.pull_request.user.login != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      contents: read
+      issues: read
+      pull-requests: read
+    steps:
+      - name: Exactly one closing reference, to an open issue with no other PR
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          OWNER: ${{ github.repository_owner }}
+          REPO_NAME: ${{ github.event.repository.name }}
+        run: |
+          nums=$(printf '%s' "$PR_BODY" | grep -oiE '(close[sd]?|fix(e[sd])?|resolve[sd]?)[[:space:]]+#[0-9]+' | grep -oE '[0-9]+' | sort -u || true)
+          count=$(printf '%s\n' "$nums" | grep -c '[0-9]' || true)
+          if [ "$count" -ne 1 ]; then
+            echo "::error::The PR description must contain exactly ONE 'Closes #<issue>' (found $count). One issue = one PR; split the issue first if it's too big."
+            exit 1
+          fi
+          issue="$nums"
+          state=$(gh issue view "$issue" --repo "$OWNER/$REPO_NAME" --json state --jq .state 2>/dev/null || echo MISSING)
+          if [ "$state" != "OPEN" ]; then
+            echo "::error::Issue #$issue is $state. Link an open issue."
+            exit 1
+          fi
+          # shellcheck disable=SC2016
+          query='query($o:String!,$r:String!,$n:Int!){repository(owner:$o,name:$r){issue(number:$n){closedByPullRequestsReferences(first:50,includeClosedPrs:true){nodes{number state}}}}}'
+          others=$(gh api graphql -f query="$query" -f o="$OWNER" -f r="$REPO_NAME" -F n="$issue" \
+            --jq "[.data.repository.issue.closedByPullRequestsReferences.nodes[] | select(.number != $PR_NUMBER and .state != \"CLOSED\") | .number | tostring] | join(\", \")")
+          if [ -n "$others" ]; then
+            echo "::error::Issue #$issue already has PR(s) #$others. Each issue gets exactly one PR: continue on that PR, or close it first."
+            exit 1
+          fi
+          echo "✓ Closes #$issue, and it's the only PR for that issue."
 
   label:
     name: Auto-label

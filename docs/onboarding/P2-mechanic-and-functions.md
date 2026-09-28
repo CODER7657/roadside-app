@@ -1,4 +1,4 @@
-# P2 guide: mechanic app + Cloud Functions (Hem)
+# P2 guide: mechanic app + Cloud Functions (Hem, @Hem60)
 
 This guide goes from a fresh laptop to your final PR on day 20. Keep it open all sprint.
 
@@ -43,7 +43,7 @@ Then:
 5. **Two real Android phones** if you can: one as customer, one as mechanic. Background location and full-screen offers can only be tested on real devices.
 
 ## 2. Accounts & access (day 1)
-- Accept the GitHub invite to `CODER7657/roadside-app`, turn on 2FA, and **comment your GitHub username on your "Start here" issue** so Ayush can add you to CODEOWNERS.
+- Accept the GitHub invite to `CODER7657/roadside-app` (sent to @Hem60) and turn on 2FA. Once you accept, the repo owner runs `tool/assign_issues.sh` and your issues get assigned to you.
 - Ayush adds you to the Firebase **dev** project. Register your App Check debug token (dev only, never commit it).
 - Functions secrets go in Secret Manager via `defineSecret()`, never in `.env` files in git.
 
@@ -75,10 +75,13 @@ Rules of thumb:
 - Use `/clear` between features.
 
 ## 5. The daily loop (every issue)
+
+**One issue = one branch = one PR.** Put exactly one `Closes #<issue>` in the PR; CI's **Linked issue** check fails otherwise, or if that issue already has a PR. Review fixes go to the same branch/PR. If an issue turns out too big, ask Ayush (P3) to split it before you start.
+
 ```bash
 git switch main
 git pull
-git switch -c p2/<short-name>
+git switch -c p2/<issue-number>-<short-name>
 # Functions
 cd firebase/functions
 npm run lint
@@ -128,7 +131,7 @@ Merged Functions deploy to **dev** automatically.
 ## 8. Final PRs and release (days 19–20)
 1. All your issues closed; functions tests green; `npm audit` clean at high severity.
 2. `chore: release v1.0.0` PR bumping `mechanic_app/pubspec.yaml`.
-3. Ayush tags `v1.0.0`:
-   - **Deploy Firebase** (after `production` approval) ships your Functions to prod.
+3. A repo admin tags `v1.0.0`:
+   - **Deploy Firebase** ships your Functions to prod.
    - **Release Android** builds the mechanic AAB.
 4. Write the dispatch notes (radius, timeouts, cross-city match) into `HANDOFF.md`.

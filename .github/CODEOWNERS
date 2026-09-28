@@ -1,20 +1,19 @@
 # PLAN.md §2 / §14.
-# TODO (P3 · Ayush): replace @HEM_GITHUB and @AYUSH_GITHUB with real usernames once they accept the invite.
 
 # Owned folders
 /customer_app/              @CODER7657
 /design/                    @CODER7657
-/mechanic_app/              @HEM_GITHUB
-/firebase/functions/        @HEM_GITHUB
-/admin_panel/               @AYUSH_GITHUB
-/firebase/                  @AYUSH_GITHUB
-/.github/                   @AYUSH_GITHUB
-/docs/                      @AYUSH_GITHUB
-/tool/                      @AYUSH_GITHUB
+/mechanic_app/              @Hem60
+/firebase/functions/        @Hem60
+/admin_panel/               @Ayush3422
+/firebase/                  @Ayush3422
+/.github/                   @Ayush3422
+/docs/                      @Ayush3422
+/tool/                      @Ayush3422
 
 # Shared contract + shared packages: need approval from BOTH other members (later rules win)
-/PLAN.md                    @CODER7657 @HEM_GITHUB @AYUSH_GITHUB
-/packages/lane_ui/          @CODER7657 @HEM_GITHUB @AYUSH_GITHUB
-/packages/roadside_core/    @AYUSH_GITHUB @CODER7657 @HEM_GITHUB
-/firebase/firestore.rules   @AYUSH_GITHUB @HEM_GITHUB
-/firebase/storage.rules     @AYUSH_GITHUB @HEM_GITHUB
+/PLAN.md                    @CODER7657 @Hem60 @Ayush3422
+/packages/lane_ui/          @CODER7657 @Hem60 @Ayush3422
+/packages/roadside_core/    @Ayush3422 @CODER7657 @Hem60
+/firebase/firestore.rules   @Ayush3422 @Hem60
+/firebase/storage.rules     @Ayush3422 @Hem60

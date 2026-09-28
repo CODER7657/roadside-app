@@ -40,8 +40,8 @@ An Uber-style app where a person whose vehicle breaks down on the road can book 
 | Person | Owns | Folder |
 |---|---|---|
 | **P1 — repo owner (@CODER7657)** | Customer app, **Lane design system** | `customer_app/`, `packages/lane_ui/`, `design/` |
-| **P2 — Hem** | Mechanic app, Cloud Functions (dispatch, notifications, all status changes) | `mechanic_app/`, `firebase/functions/` |
-| **P3 — Ayush** | Admin panel, Firebase setup, security rules, shared data models, CI, docs, Play Store listing | `admin_panel/`, `packages/roadside_core/`, `firebase/*.rules`, `firebase/*.json`, `.github/`, `docs/` |
+| **P2 — Hem (@Hem60)** | Mechanic app, Cloud Functions (dispatch, notifications, all status changes) | `mechanic_app/`, `firebase/functions/` |
+| **P3 — Ayush (@Ayush3422)** | Admin panel, Firebase setup, security rules, shared data models, CI, docs, Play Store listing | `admin_panel/`, `packages/roadside_core/`, `firebase/*.rules`, `firebase/*.json`, `.github/`, `docs/` |
 
 **Rules**
 - You only edit your own folders. Need something from another folder? Open an issue and tag the owner.
@@ -1008,7 +1008,8 @@ The Rules were notified on 13 Nov 2025, and most obligations apply from **13 May
   - PR + 1 approval (shared packages, `firebase/*.rules`, `PLAN.md`: **2 approvals via CODEOWNERS**)
   - CI must pass
   - linear history (squash merge)
-- Branch names: `p1/confirm-location`, `p2/dispatch-function`, `p3/price-editor`, `lane/journey-rail`.
+- **One issue = one branch = one PR.** Every PR closes exactly one issue (`Closes #N`), and no issue gets a second PR. The `Linked issue` check in `pr-hygiene.yml` enforces this; Dependabot PRs are exempt. Split oversized issues before starting instead of opening extra PRs.
+- Branch names: `<owner>/<issue>-<short-name>`, e.g. `p1/12-confirm-location`, `p2/27-dispatch-v1`, `p3/49-price-editor`.
 - Commit messages: `feat:`, `fix:`, `ui:`, `lane:`, `sec:`, `docs:`, `chore:` (e.g. `feat: add draggable pin to confirm location`).
 - Small PRs (one feature each), merge **every day** (the 20-day plan needs a green `main` daily). Screenshots or a short screen recording are required for any UI PR.
 - **Never commit:** `.env`, env JSON, service-account keys, keystores, API secrets, debug App Check tokens.
@@ -1029,7 +1030,8 @@ The Rules were notified on 13 Nov 2025, and most obligations apply from **13 May
 - **Breaking changes:** a component is marked `@Deprecated('Use X; removal in 0.N+1')` for one sprint before it's removed, so no app breaks overnight.
 - **Deploys:**
   - Functions and rules go to **dev** automatically on merge.
-  - Deploys to **prod** are done by P3 from a tagged release (`vX.Y.Z`) after the test checklist passes.
+  - Deploys to **prod** run only from a release tag (`vX.Y.Z`), created after the test checklist passes. A tag ruleset lets only repo admins create `v*` tags; this is the production gate, since required-reviewer environments need GitHub Enterprise for private repos. Deploy auth is keyless (Workload Identity Federation).
+  - Workflows: `ci.yml` (path-filtered checks → one required **CI result**), `pr-hygiene.yml`, `deploy-firebase.yml`, `release-android.yml`. All Actions are pinned to commit SHAs with least-privilege permissions.
   - App releases go through Play staged rollout (10% → 50% → 100%).
 
 ---
