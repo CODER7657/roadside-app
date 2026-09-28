@@ -1,4 +1,4 @@
-# P2 guide: mechanic app + Cloud Functions (Hem)
+# P2 guide: mechanic app + Cloud Functions (Hem, @Hem60)
 
 This guide goes from a fresh laptop to your final PR on day 20. Keep it open all sprint.
 
@@ -43,7 +43,7 @@ Then:
 5. **Two real Android phones** if you can: one as customer, one as mechanic. Background location and full-screen offers can only be tested on real devices.
 
 ## 2. Accounts & access (day 1)
-- Accept the GitHub invite to `CODER7657/roadside-app`, turn on 2FA, and **comment your GitHub username on your "Start here" issue** so Ayush can add you to CODEOWNERS.
+- Accept the GitHub invite to `CODER7657/roadside-app` (sent to @Hem60) and turn on 2FA. Once you accept, the repo owner runs `tool/assign_issues.sh` and your issues get assigned to you.
 - Ayush adds you to the Firebase **dev** project. Register your App Check debug token (dev only, never commit it).
 - Functions secrets go in Secret Manager via `defineSecret()`, never in `.env` files in git.
 

@@ -40,8 +40,8 @@ An Uber-style app where a person whose vehicle breaks down on the road can book 
 | Person | Owns | Folder |
 |---|---|---|
 | **P1 — repo owner (@CODER7657)** | Customer app, **Lane design system** | `customer_app/`, `packages/lane_ui/`, `design/` |
-| **P2 — Hem** | Mechanic app, Cloud Functions (dispatch, notifications, all status changes) | `mechanic_app/`, `firebase/functions/` |
-| **P3 — Ayush** | Admin panel, Firebase setup, security rules, shared data models, CI, docs, Play Store listing | `admin_panel/`, `packages/roadside_core/`, `firebase/*.rules`, `firebase/*.json`, `.github/`, `docs/` |
+| **P2 — Hem (@Hem60)** | Mechanic app, Cloud Functions (dispatch, notifications, all status changes) | `mechanic_app/`, `firebase/functions/` |
+| **P3 — Ayush (@Ayush3422)** | Admin panel, Firebase setup, security rules, shared data models, CI, docs, Play Store listing | `admin_panel/`, `packages/roadside_core/`, `firebase/*.rules`, `firebase/*.json`, `.github/`, `docs/` |
 
 **Rules**
 - You only edit your own folders. Need something from another folder? Open an issue and tag the owner.

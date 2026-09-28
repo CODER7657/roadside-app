@@ -1,4 +1,4 @@
-# P3 guide: admin panel, Firebase, security, CI and release (Ayush)
+# P3 guide: admin panel, Firebase, security, CI and release (Ayush, @Ayush3422)
 
 This guide goes from a fresh laptop to your final PR on day 20. Keep it open all sprint.
 
@@ -49,7 +49,7 @@ Then:
 4. **Claude Cowork** for docs, sheets and reports (privacy policy, store listing, field-test report). A password manager shared with the client for keys.
 
 ## 2. Accounts & access (day 1). You set these up for everyone
-1. Accept the GitHub invite, turn on 2FA, and comment your username on your "Start here" issue.
+1. Accept the GitHub invite (sent to @Ayush3422) and turn on 2FA. The repo owner then runs `tool/assign_issues.sh` to assign your issues.
 2. **Firebase:** create `roadside-dev` and `roadside-prod`:
    - Location **asia-south1** for Firestore, Storage and Functions. This can't be changed later.
    - Blaze plan on the team's card (year-1 platform package).
@@ -63,7 +63,7 @@ Then:
 4. **API keys:** restrict to package + SHA-1 (dev and prod) and to only the APIs each key needs.
 5. **Play Console:** register it in the **client's name** (US$25 from the platform package). The client does Google's ID verification with you on day 1. Decide on a personal account (12 testers × 14 days) or an organisation account (D-U-N-S).
 6. **GitHub:**
-   - Put real usernames in `.github/CODEOWNERS`.
+   - `.github/CODEOWNERS` already uses @Hem60 and @Ayush3422.
    - Environments `development` and `production` already exist. Put the deploy variables and signing secrets on them. Required reviewers need GitHub Enterprise for private repos, so the production gate is the **tag ruleset**: only repo admins can push `v*` tags. Ask the repo owner for the admin role if you'll cut releases.
    - Set the repo variables for deploys (step 7).
    - Check the `main` ruleset (already active: PR + 1 approval + code owners + resolved threads + required **CI result** check + squash only; admins may bypass only through a PR).

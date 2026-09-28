@@ -9,8 +9,8 @@ An Uber-style app for booking the nearest verified mechanic when a car, bike, sc
 | Member | Role | Owns |
 |---|---|---|
 | **P1: repo owner (@CODER7657)** | Customer app + Lane design system | `customer_app/`, `packages/lane_ui/`, `design/` |
-| **P2: Hem** | Mechanic app + Cloud Functions | `mechanic_app/`, `firebase/functions/` |
-| **P3: Ayush** | Admin panel, Firebase, security rules, shared models, CI, docs | `admin_panel/`, `packages/roadside_core/`, `firebase/*`, `.github/`, `docs/`, `tool/` |
+| **P2: Hem (@Hem60)** | Mechanic app + Cloud Functions | `mechanic_app/`, `firebase/functions/` |
+| **P3: Ayush (@Ayush3422)** | Admin panel, Firebase, security rules, shared models, CI, docs | `admin_panel/`, `packages/roadside_core/`, `firebase/*`, `.github/`, `docs/`, `tool/` |
 
 Your work is in the GitHub issues labelled `P1`, `P2` or `P3`, grouped by milestone (Day 2, Day 6, Day 10, Day 14, Day 20).
 

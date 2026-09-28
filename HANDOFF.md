@@ -11,7 +11,7 @@ Read this first if you're picking the project up in a new session. The source of
 | Wireframes (44 frames: C1–C10, U1–U18 + U1·SOS + U1·Area, M1–M9, A1–A6) | `wireframes/Wireframes.pdf`, `png/`, source `wireframes.html` | ✅ Needs client sign-off (issue for P1, Day 2) |
 | Design tokens | `design/tokens.json`, `design/lane_tokens.dart` | ✅ Starter; P1 moves them into `packages/lane_ui` on day 1 |
 | Assets | `assets/`: fonts (OFL), Phosphor icons (MIT), ThreeUI renders (MIT), brand marks, real OSM maps | ✅ |
-| Repo process | CODEOWNERS, PR template, issue forms, CONTRIBUTING, SECURITY, `.gitattributes`, `.editorconfig`, design lint | ✅ CODEOWNERS still has `@HEM_GITHUB` / `@AYUSH_GITHUB` placeholders |
+| Repo process | CODEOWNERS, PR template, issue forms, CONTRIBUTING, SECURITY, `.gitattributes`, `.editorconfig`, design lint | ✅ CODEOWNERS uses @Hem60 / @Ayush3422 |
 | CI/CD | `.github/workflows/`: CI (one required check **CI result**), PR hygiene, Deploy Firebase (keyless), Release Android | ✅ CI green on `main`; deploy/release skip until Firebase and signing are configured |
 | Protection | Ruleset on `main` (PR, 1 approval, code owners, resolved threads, required checks **CI result**, **PR title**, **Linked issue**, squash only); **one issue = one PR** enforced by `pr-hygiene.yml`; tag ruleset (`v*` admins only); squash-only + auto-delete branches | ✅ Active |
 | Backlog | 72 issues: #1–#3 "Start here" guides, then P1 = 23, P2 = 22, P3 = 27 (incl. the Start issues) across milestones Day 2 / 6 / 10 / 14 / 20 and **Launch · Live for users** (production access, staged rollout, monitoring, runbooks, supply onboarding, handover, 1-month support) | ✅ |
@@ -22,8 +22,8 @@ Read this first if you're picking the project up in a new session. The source of
 | | Who | Owns | Start issue |
 |---|---|---|---|
 | P1 | Repo owner (@CODER7657) | customer_app, lane_ui, design | #1 |
-| P2 | Hem | mechanic_app, Cloud Functions | #2 |
-| P3 | Ayush | admin_panel, roadside_core, Firebase, rules, CI, docs, store | #3 |
+| P2 | Hem (@Hem60) | mechanic_app, Cloud Functions | #2 |
+| P3 | Ayush (@Ayush3422) | admin_panel, roadside_core, Firebase, rules, CI, docs, store | #3 |
 
 ## 3. Decisions made (don't reopen them without the team)
 - **Design system "Lane":** Swiss base, highway-signage legibility, Beacon amber `#FFB81C`, and signal colours with red reserved for danger. It has four ambient modes (Day / Night / Glare / Saver), the Journey Rail, the Trust Pass and the thumb dock.
@@ -55,11 +55,12 @@ Read this first if you're picking the project up in a new session. The source of
    - After the Play fee, about ₹2,900 is left for 12 months of Firebase, which covers roughly 200–250 OTP SMS at about ₹6 each.
    - Watch it weekly, and use the proposal's fair-use clause if growth passes launch scale.
 2. **GitHub plan limits:** required reviewers on environments aren't available for private repos on this plan, so production is gated by the admin-only `v*` tag ruleset. If Ayush cuts releases, give him the admin role.
-3. **CODEOWNERS placeholders (P3):** swap in real usernames after Hem and Ayush accept their invites. Until then their folders have no code owner.
-4. **Collaborators (P1):** invite Hem and Ayush:
+3. **Invites pending:** Hem60 and Ayush3422 must accept the repo invite. GitHub can't assign issues or request code-owner reviews until they do. Their issues already @mention them.
+4. **Assign issues after they accept (P1):**
    ```bash
-   gh api -X PUT repos/CODER7657/roadside-app/collaborators/<username> -f permission=push
+   bash tool/assign_issues.sh
    ```
+   This assigns every open issue by label: P1 → you, P2 → Hem60, P3 → Ayush3422.
 5. **Dependabot (P3):** uncomment the pub/npm entries once the Flutter/Node folders exist.
 6. **Client details:** name on the proposal cover, app name + logo (placeholder wordmark in `assets/brand/`), and personal vs organisation Play account.
 7. **Translations:** `docs/glossary.md` is a draft and needs a native Hindi/Gujarati review (P3).

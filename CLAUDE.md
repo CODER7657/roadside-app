@@ -5,8 +5,8 @@
 - Read `PLAN.md` before starting any task. For UI work, re-read §6 (Lane) and §7 (recipe) every session. Check the matching frame in `wireframes/Wireframes.pdf` (screen IDs C1–C10, U1–U18, M1–M9, A1–A6).
 - Only edit files inside your own folders (PLAN.md §2):
   - P1 (@CODER7657): `customer_app/`, `packages/lane_ui/`, `design/`
-  - P2 (Hem): `mechanic_app/`, `firebase/functions/`
-  - P3 (Ayush): `admin_panel/`, `packages/roadside_core/`, `firebase/*`, `.github/`, `docs/`, `tool/`
+  - P2 (Hem, @Hem60): `mechanic_app/`, `firebase/functions/`
+  - P3 (Ayush, @Ayush3422): `admin_panel/`, `packages/roadside_core/`, `firebase/*`, `.github/`, `docs/`, `tool/`
 - Never edit `packages/lane_ui` or `packages/roadside_core` unless you own them; propose changes through an issue.
 - Build every screen from one Lane template (§6.13) and Lane components (§6.12). Use `context.lane` tokens. No raw colours, `TextStyle`, magic numbers, durations or hard-coded strings (§7.3). Run `tool/lint_design.sh` before finishing.
 - Buttons follow the ThreeUI styles in §6.12:
