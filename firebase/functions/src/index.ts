@@ -9,3 +9,5 @@ setGlobalOptions({ region: REGION, maxInstances: 10 });
 
 export { assignDefaultRole } from './auth/beforeUserCreated.js';
 export { createBooking } from './callables/createBooking.js';
+export { respondToOffer } from './callables/respondToOffer.js';
+export { dispatchOnBookingCreated, dispatchSweep, offerTimeout } from './dispatch/functions.js';
