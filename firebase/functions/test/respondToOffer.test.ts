@@ -14,7 +14,7 @@ import {
   seedMechanic,
 } from './dispatchFixtures.js';
 
-setDispatchDeps({ notifyOffer: async () => {}, scheduleTimeout: async () => {} });
+setDispatchDeps({ notifyOffer: async () => {}, scheduleTimeout: async () => {}, notifyOfferWithdrawn: async () => {} });
 
 const asMechanic = (uid: string, data: unknown) =>
   fakeRequest({ uid, claims: { role: 'mechanic', mechanicStatus: 'approved' }, data });

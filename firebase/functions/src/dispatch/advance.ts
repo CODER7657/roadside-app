@@ -32,11 +32,17 @@ const MAX_ATTEMPTS = 5;
 export interface DispatchDeps {
   notifyOffer(mechanicId: string, offerId: string, bookingId: string): Promise<void>;
   scheduleTimeout(bookingId: string, delaySeconds: number): Promise<void>;
+  /** Tells a mechanic their open offer is gone (the customer cancelled), so the app closes it. */
+  notifyOfferWithdrawn(mechanicId: string, offerId: string, bookingId: string): Promise<void>;
+}
+
+async function mechanicToken(mechanicId: string): Promise<string | null> {
+  return ((await db().doc(`mechanics/${mechanicId}`).get()).get('fcmToken') as string | null | undefined) ?? null;
 }
 
 export const defaultDeps: DispatchDeps = {
   async notifyOffer(mechanicId, offerId, bookingId) {
-    const token = (await db().doc(`mechanics/${mechanicId}`).get()).get('fcmToken') as string | null;
+    const token = await mechanicToken(mechanicId);
     if (!token) return;
     // Data-only, high priority: the app shows the full-screen offer on its `offers` channel.
     // No address, phone or coordinates in the payload.
@@ -53,12 +59,25 @@ export const defaultDeps: DispatchDeps = {
       .taskQueue(`locations/${REGION}/functions/offerTimeout`)
       .enqueue({ bookingId }, { scheduleDelaySeconds: delaySeconds });
   },
+  async notifyOfferWithdrawn(mechanicId, offerId, bookingId) {
+    const token = await mechanicToken(mechanicId);
+    if (!token) return;
+    ensureAdminApp();
+    await getMessaging().send({
+      token,
+      data: { type: 'offer_withdrawn', offerId, bookingId },
+      android: { priority: 'high', ttl: OFFER_TTL_SECONDS * 1000 },
+    });
+  },
 };
 
 let deps: DispatchDeps = defaultDeps;
 /** Test hook. */
 export function setDispatchDeps(d: DispatchDeps): void {
   deps = d;
+}
+export function dispatchDeps(): DispatchDeps {
+  return deps;
 }
 
 export type AdvanceResult =
