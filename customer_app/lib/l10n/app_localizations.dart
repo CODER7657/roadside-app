@@ -512,6 +512,204 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ahmedabad, Ankleshwar and Bharuch for now, including highway stretches nearby. More cities are coming.'**
   String get help_faq_area_a;
+
+  /// Temporary home: opens U3.
+  ///
+  /// In en, this message translates to:
+  /// **'My vehicles'**
+  String get home_my_vehicles;
+
+  /// U3: title.
+  ///
+  /// In en, this message translates to:
+  /// **'My vehicles'**
+  String get vehicles_title;
+
+  /// U3: add button.
+  ///
+  /// In en, this message translates to:
+  /// **'Add vehicle'**
+  String get vehicles_add;
+
+  /// U3: empty state title.
+  ///
+  /// In en, this message translates to:
+  /// **'No vehicles yet'**
+  String get vehicles_empty_title;
+
+  /// U3: empty state body.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your vehicle once, and booking help takes one tap.'**
+  String get vehicles_empty_body;
+
+  /// U3: marks the default vehicle.
+  ///
+  /// In en, this message translates to:
+  /// **'Default'**
+  String get vehicles_default_label;
+
+  /// U3: swipe background and screen-reader action.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get vehicles_delete;
+
+  /// U3: toast after delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle removed'**
+  String get vehicles_removed;
+
+  /// U3: toast action.
+  ///
+  /// In en, this message translates to:
+  /// **'Undo'**
+  String get vehicles_undo;
+
+  /// U2: step label above the lane.
+  ///
+  /// In en, this message translates to:
+  /// **'New vehicle'**
+  String get vehicle_add_step;
+
+  /// U2: title.
+  ///
+  /// In en, this message translates to:
+  /// **'Your vehicle'**
+  String get vehicle_add_title;
+
+  /// U2: vehicle type tiles label.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get vehicle_type_label;
+
+  /// Vehicle type.
+  ///
+  /// In en, this message translates to:
+  /// **'Car'**
+  String get vehicle_type_car;
+
+  /// Vehicle type (motorcycle).
+  ///
+  /// In en, this message translates to:
+  /// **'Bike'**
+  String get vehicle_type_bike;
+
+  /// Vehicle type.
+  ///
+  /// In en, this message translates to:
+  /// **'Scooter'**
+  String get vehicle_type_scooter;
+
+  /// Vehicle type (electric vehicle).
+  ///
+  /// In en, this message translates to:
+  /// **'EV'**
+  String get vehicle_type_ev;
+
+  /// U2: field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Brand'**
+  String get vehicle_brand_label;
+
+  /// U2: field hint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Maruti Suzuki'**
+  String get vehicle_brand_hint;
+
+  /// U2: field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Model'**
+  String get vehicle_model_label;
+
+  /// U2: field hint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Swift'**
+  String get vehicle_model_hint;
+
+  /// U2: field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration number'**
+  String get vehicle_reg_label;
+
+  /// U2: field hint (a plate, not translated).
+  ///
+  /// In en, this message translates to:
+  /// **'GJ 01 AB 1234'**
+  String get vehicle_reg_hint;
+
+  /// U2: fuel chips label.
+  ///
+  /// In en, this message translates to:
+  /// **'Fuel'**
+  String get vehicle_fuel_label;
+
+  /// Fuel.
+  ///
+  /// In en, this message translates to:
+  /// **'Petrol'**
+  String get fuel_petrol;
+
+  /// Fuel.
+  ///
+  /// In en, this message translates to:
+  /// **'Diesel'**
+  String get fuel_diesel;
+
+  /// Fuel.
+  ///
+  /// In en, this message translates to:
+  /// **'CNG'**
+  String get fuel_cng;
+
+  /// Fuel.
+  ///
+  /// In en, this message translates to:
+  /// **'Electric'**
+  String get fuel_electric;
+
+  /// U2: switch, shown when other vehicles exist.
+  ///
+  /// In en, this message translates to:
+  /// **'Make this my default'**
+  String get vehicle_make_default;
+
+  /// U2: primary button.
+  ///
+  /// In en, this message translates to:
+  /// **'Save vehicle'**
+  String get vehicle_save;
+
+  /// Validation: empty required field.
+  ///
+  /// In en, this message translates to:
+  /// **'Please fill this in'**
+  String get error_field_required;
+
+  /// Validation: text over the limit.
+  ///
+  /// In en, this message translates to:
+  /// **'That is too long'**
+  String get error_field_too_long;
+
+  /// Validation: any other problem.
+  ///
+  /// In en, this message translates to:
+  /// **'Please check this'**
+  String get error_field_invalid;
+
+  /// Validation: registration number (Indian or BH series).
+  ///
+  /// In en, this message translates to:
+  /// **'Check the number, e.g. GJ 01 AB 1234 or 22 BH 1234 AA'**
+  String get error_reg_no_invalid;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -237,4 +237,103 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get help_faq_area_a =>
       'अभी अहमदाबाद, अंकलेश्वर और भरूच में, आसपास के हाईवे सहित। और शहर जल्द आ रहे हैं।';
+
+  @override
+  String get home_my_vehicles => 'मेरी गाड़ियाँ';
+
+  @override
+  String get vehicles_title => 'मेरी गाड़ियाँ';
+
+  @override
+  String get vehicles_add => 'गाड़ी जोड़ें';
+
+  @override
+  String get vehicles_empty_title => 'अभी कोई गाड़ी नहीं';
+
+  @override
+  String get vehicles_empty_body => 'अपनी गाड़ी एक बार जोड़ें, फिर मदद बुक करना एक टैप में।';
+
+  @override
+  String get vehicles_default_label => 'डिफ़ॉल्ट';
+
+  @override
+  String get vehicles_delete => 'हटाएँ';
+
+  @override
+  String get vehicles_removed => 'गाड़ी हटा दी गई';
+
+  @override
+  String get vehicles_undo => 'वापस लाएँ';
+
+  @override
+  String get vehicle_add_step => 'नई गाड़ी';
+
+  @override
+  String get vehicle_add_title => 'आपकी गाड़ी';
+
+  @override
+  String get vehicle_type_label => 'प्रकार';
+
+  @override
+  String get vehicle_type_car => 'कार';
+
+  @override
+  String get vehicle_type_bike => 'बाइक';
+
+  @override
+  String get vehicle_type_scooter => 'स्कूटर';
+
+  @override
+  String get vehicle_type_ev => 'EV';
+
+  @override
+  String get vehicle_brand_label => 'ब्रांड';
+
+  @override
+  String get vehicle_brand_hint => 'जैसे मारुति सुज़ुकी';
+
+  @override
+  String get vehicle_model_label => 'मॉडल';
+
+  @override
+  String get vehicle_model_hint => 'जैसे स्विफ़्ट';
+
+  @override
+  String get vehicle_reg_label => 'रजिस्ट्रेशन नंबर';
+
+  @override
+  String get vehicle_reg_hint => 'GJ 01 AB 1234';
+
+  @override
+  String get vehicle_fuel_label => 'ईंधन';
+
+  @override
+  String get fuel_petrol => 'पेट्रोल';
+
+  @override
+  String get fuel_diesel => 'डीज़ल';
+
+  @override
+  String get fuel_cng => 'CNG';
+
+  @override
+  String get fuel_electric => 'इलेक्ट्रिक';
+
+  @override
+  String get vehicle_make_default => 'इसे मेरी डिफ़ॉल्ट गाड़ी बनाएँ';
+
+  @override
+  String get vehicle_save => 'गाड़ी सहेजें';
+
+  @override
+  String get error_field_required => 'कृपया इसे भरें';
+
+  @override
+  String get error_field_too_long => 'यह बहुत लंबा है';
+
+  @override
+  String get error_field_invalid => 'कृपया इसे जाँचें';
+
+  @override
+  String get error_reg_no_invalid => 'नंबर जाँचें, जैसे GJ 01 AB 1234 या 22 BH 1234 AA';
 }

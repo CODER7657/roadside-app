@@ -237,4 +237,103 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get help_faq_area_a =>
       'Ahmedabad, Ankleshwar and Bharuch for now, including highway stretches nearby. More cities are coming.';
+
+  @override
+  String get home_my_vehicles => 'My vehicles';
+
+  @override
+  String get vehicles_title => 'My vehicles';
+
+  @override
+  String get vehicles_add => 'Add vehicle';
+
+  @override
+  String get vehicles_empty_title => 'No vehicles yet';
+
+  @override
+  String get vehicles_empty_body => 'Add your vehicle once, and booking help takes one tap.';
+
+  @override
+  String get vehicles_default_label => 'Default';
+
+  @override
+  String get vehicles_delete => 'Delete';
+
+  @override
+  String get vehicles_removed => 'Vehicle removed';
+
+  @override
+  String get vehicles_undo => 'Undo';
+
+  @override
+  String get vehicle_add_step => 'New vehicle';
+
+  @override
+  String get vehicle_add_title => 'Your vehicle';
+
+  @override
+  String get vehicle_type_label => 'Type';
+
+  @override
+  String get vehicle_type_car => 'Car';
+
+  @override
+  String get vehicle_type_bike => 'Bike';
+
+  @override
+  String get vehicle_type_scooter => 'Scooter';
+
+  @override
+  String get vehicle_type_ev => 'EV';
+
+  @override
+  String get vehicle_brand_label => 'Brand';
+
+  @override
+  String get vehicle_brand_hint => 'e.g. Maruti Suzuki';
+
+  @override
+  String get vehicle_model_label => 'Model';
+
+  @override
+  String get vehicle_model_hint => 'e.g. Swift';
+
+  @override
+  String get vehicle_reg_label => 'Registration number';
+
+  @override
+  String get vehicle_reg_hint => 'GJ 01 AB 1234';
+
+  @override
+  String get vehicle_fuel_label => 'Fuel';
+
+  @override
+  String get fuel_petrol => 'Petrol';
+
+  @override
+  String get fuel_diesel => 'Diesel';
+
+  @override
+  String get fuel_cng => 'CNG';
+
+  @override
+  String get fuel_electric => 'Electric';
+
+  @override
+  String get vehicle_make_default => 'Make this my default';
+
+  @override
+  String get vehicle_save => 'Save vehicle';
+
+  @override
+  String get error_field_required => 'Please fill this in';
+
+  @override
+  String get error_field_too_long => 'That is too long';
+
+  @override
+  String get error_field_invalid => 'Please check this';
+
+  @override
+  String get error_reg_no_invalid => 'Check the number, e.g. GJ 01 AB 1234 or 22 BH 1234 AA';
 }
