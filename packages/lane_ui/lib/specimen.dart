@@ -313,3 +313,61 @@ class LanePreview extends StatelessWidget {
     );
   }
 }
+
+/// Every button and gesture component in its states, for goldens and Widgetbook (#7).
+class LaneButtonsSample extends StatelessWidget {
+  const LaneButtonsSample({super.key, this.label = 'Get help'});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final lane = context.lane;
+    void noop() {}
+    Widget gap() => SizedBox(height: lane.space.s12);
+    return Scaffold(
+      body: ListView(
+        padding: EdgeInsets.all(lane.space.s16),
+        children: [
+          LaneButton.primary(label: label, onPressed: noop, critical: true),
+          gap(),
+          LaneButton.primary(label: label, onPressed: noop, loading: true),
+          gap(),
+          Row(
+            children: [
+              Expanded(
+                child: LaneButton.secondary(label: 'Call', onPressed: noop, icon: const Icon(Icons.call)),
+              ),
+              SizedBox(width: lane.space.s8),
+              Expanded(
+                child: LaneButton.secondary(label: 'Chat', onPressed: noop, loading: true),
+              ),
+            ],
+          ),
+          gap(),
+          LaneButton.pill(label: label, onPressed: noop),
+          gap(),
+          Row(
+            children: [
+              Expanded(
+                child: LaneButton.danger(label: 'Cancel booking', onPressed: noop),
+              ),
+              SizedBox(width: lane.space.s8),
+              Expanded(
+                child: LaneButton.ghost(label: 'Skip', onPressed: noop),
+              ),
+            ],
+          ),
+          gap(),
+          LaneButton.primary(label: label, onPressed: null),
+          gap(),
+          LaneSlideToConfirm(label: 'Slide to accept', onConfirmed: noop),
+          gap(),
+          Center(
+            child: LaneHoldButton(label: 'SOS', semanticsHint: 'Hold to send SOS', onConfirmed: noop),
+          ),
+        ],
+      ),
+    );
+  }
+}

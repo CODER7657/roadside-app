@@ -24,6 +24,8 @@ export 'src/ambient/battery.dart' show LaneBatterySource, LaneBatteryStatus, Plu
 export 'src/ambient/solar.dart' show LanePosition, PolarDay, SolarDay, isNightAt;
 export 'src/app/lane_app.dart' show LaneApp;
 export 'src/app/lane_licenses.dart' show LaneLicenses;
+export 'src/components/lane_button.dart' show LaneButton;
+export 'src/components/lane_gestures.dart' show LaneHoldButton, LaneSlideToConfirm;
 export 'src/templates/lane_action_bar.dart' show LaneActionBar, LaneBackButton;
 export 'src/templates/lane_map_scaffold.dart' show LaneDock, LaneDockSnap, LaneMapScaffold;
 export 'src/templates/lane_page_scaffolds.dart'

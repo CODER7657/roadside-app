@@ -60,6 +60,26 @@ class LaneWidgetbook extends StatelessWidget {
         ],
       ),
       WidgetbookCategory(
+        name: 'Components',
+        children: [
+          WidgetbookComponent(
+            name: 'LaneButton, LaneHoldButton, LaneSlideToConfirm',
+            useCases: [
+              WidgetbookUseCase(
+                name: 'All variants and states',
+                builder: (context) => LaneButtonsSample(
+                  label: switch (Localizations.localeOf(context).languageCode) {
+                    'hi' => 'मदद लें',
+                    'gu' => 'મદદ મેળવો',
+                    _ => 'Get help',
+                  },
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+      WidgetbookCategory(
         name: 'Templates',
         children: [
           for (final (name, template) in [
