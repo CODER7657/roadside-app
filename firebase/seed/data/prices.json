@@ -1,0 +1,208 @@
+{
+  "car_flat_tyre": {
+    "vehicleType": "car",
+    "problemType": "flat_tyre",
+    "min": 350,
+    "max": 600,
+    "includes": "Puncture repair or spare fitting",
+    "cityOverrides": {
+      "ankleshwar": {
+        "min": 400,
+        "max": 700
+      },
+      "bharuch": {
+        "min": 400,
+        "max": 700
+      }
+    }
+  },
+  "car_battery": {
+    "vehicleType": "car",
+    "problemType": "battery",
+    "min": 400,
+    "max": 900,
+    "includes": "Jump start and battery check"
+  },
+  "car_wont_start": {
+    "vehicleType": "car",
+    "problemType": "wont_start",
+    "min": 400,
+    "max": 1000,
+    "includes": "Diagnosis and minor fix on the spot"
+  },
+  "car_overheating": {
+    "vehicleType": "car",
+    "problemType": "overheating",
+    "min": 400,
+    "max": 1000,
+    "includes": "Coolant top-up and hose check"
+  },
+  "car_accident": {
+    "vehicleType": "car",
+    "problemType": "accident",
+    "min": 500,
+    "max": 1500,
+    "includes": "On-site assessment and first repair"
+  },
+  "car_fuel": {
+    "vehicleType": "car",
+    "problemType": "fuel",
+    "min": 250,
+    "max": 450,
+    "includes": "Fuel delivery (fuel paid separately)"
+  },
+  "car_other": {
+    "vehicleType": "car",
+    "problemType": "other",
+    "min": 300,
+    "max": 800,
+    "includes": "Diagnosis on the spot"
+  },
+  "bike_flat_tyre": {
+    "vehicleType": "bike",
+    "problemType": "flat_tyre",
+    "min": 150,
+    "max": 300,
+    "includes": "Puncture repair or spare fitting"
+  },
+  "bike_battery": {
+    "vehicleType": "bike",
+    "problemType": "battery",
+    "min": 250,
+    "max": 500,
+    "includes": "Jump start and battery check"
+  },
+  "bike_wont_start": {
+    "vehicleType": "bike",
+    "problemType": "wont_start",
+    "min": 200,
+    "max": 500,
+    "includes": "Diagnosis and minor fix on the spot"
+  },
+  "bike_overheating": {
+    "vehicleType": "bike",
+    "problemType": "overheating",
+    "min": 250,
+    "max": 600,
+    "includes": "Coolant top-up and hose check"
+  },
+  "bike_accident": {
+    "vehicleType": "bike",
+    "problemType": "accident",
+    "min": 300,
+    "max": 1000,
+    "includes": "On-site assessment and first repair"
+  },
+  "bike_fuel": {
+    "vehicleType": "bike",
+    "problemType": "fuel",
+    "min": 150,
+    "max": 300,
+    "includes": "Fuel delivery (fuel paid separately)"
+  },
+  "bike_other": {
+    "vehicleType": "bike",
+    "problemType": "other",
+    "min": 200,
+    "max": 500,
+    "includes": "Diagnosis on the spot"
+  },
+  "scooter_flat_tyre": {
+    "vehicleType": "scooter",
+    "problemType": "flat_tyre",
+    "min": 150,
+    "max": 300,
+    "includes": "Puncture repair or spare fitting"
+  },
+  "scooter_battery": {
+    "vehicleType": "scooter",
+    "problemType": "battery",
+    "min": 250,
+    "max": 500,
+    "includes": "Jump start and battery check"
+  },
+  "scooter_wont_start": {
+    "vehicleType": "scooter",
+    "problemType": "wont_start",
+    "min": 200,
+    "max": 500,
+    "includes": "Diagnosis and minor fix on the spot"
+  },
+  "scooter_overheating": {
+    "vehicleType": "scooter",
+    "problemType": "overheating",
+    "min": 250,
+    "max": 600,
+    "includes": "Coolant top-up and hose check"
+  },
+  "scooter_accident": {
+    "vehicleType": "scooter",
+    "problemType": "accident",
+    "min": 300,
+    "max": 1000,
+    "includes": "On-site assessment and first repair"
+  },
+  "scooter_fuel": {
+    "vehicleType": "scooter",
+    "problemType": "fuel",
+    "min": 150,
+    "max": 300,
+    "includes": "Fuel delivery (fuel paid separately)"
+  },
+  "scooter_other": {
+    "vehicleType": "scooter",
+    "problemType": "other",
+    "min": 200,
+    "max": 500,
+    "includes": "Diagnosis on the spot"
+  },
+  "ev_flat_tyre": {
+    "vehicleType": "ev",
+    "problemType": "flat_tyre",
+    "min": 350,
+    "max": 600,
+    "includes": "Puncture repair or spare fitting"
+  },
+  "ev_battery": {
+    "vehicleType": "ev",
+    "problemType": "battery",
+    "min": 400,
+    "max": 900,
+    "includes": "Jump start and battery check"
+  },
+  "ev_wont_start": {
+    "vehicleType": "ev",
+    "problemType": "wont_start",
+    "min": 400,
+    "max": 1000,
+    "includes": "Diagnosis and minor fix on the spot"
+  },
+  "ev_overheating": {
+    "vehicleType": "ev",
+    "problemType": "overheating",
+    "min": 400,
+    "max": 1000,
+    "includes": "Coolant top-up and hose check"
+  },
+  "ev_accident": {
+    "vehicleType": "ev",
+    "problemType": "accident",
+    "min": 500,
+    "max": 1500,
+    "includes": "On-site assessment and first repair"
+  },
+  "ev_fuel": {
+    "vehicleType": "ev",
+    "problemType": "fuel",
+    "min": 250,
+    "max": 450,
+    "includes": "Fuel delivery (fuel paid separately)"
+  },
+  "ev_other": {
+    "vehicleType": "ev",
+    "problemType": "other",
+    "min": 300,
+    "max": 800,
+    "includes": "Diagnosis on the spot"
+  }
+}
