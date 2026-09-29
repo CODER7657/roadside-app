@@ -130,4 +130,111 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get privacy_contact_body => 'Contact our grievance officer from Help & FAQ.';
+
+  @override
+  String get home_help => 'Help & FAQ';
+
+  @override
+  String get permission_location_title => 'Allow location';
+
+  @override
+  String get permission_location_body =>
+      'So the mechanic can find you. We only use your location while you book and while help is on the way.';
+
+  @override
+  String get permission_camera_title => 'Allow camera';
+
+  @override
+  String get permission_camera_body =>
+      'To add photos of the problem. Only the photos you choose are shared with your mechanic.';
+
+  @override
+  String get permission_notifications_title => 'Allow notifications';
+
+  @override
+  String get permission_notifications_body =>
+      'So we can tell you when a mechanic accepts, is on the way and arrives.';
+
+  @override
+  String get permission_blocked_body =>
+      'It\'s turned off in your phone\'s settings. Open Settings, tap Permissions and allow it.';
+
+  @override
+  String get permission_allow => 'Allow';
+
+  @override
+  String get permission_open_settings => 'Open settings';
+
+  @override
+  String get permission_not_now => 'Not now';
+
+  @override
+  String get help_title => 'Help';
+
+  @override
+  String get help_search_label => 'Search questions';
+
+  @override
+  String get help_search_hint => 'e.g. price, start code';
+
+  @override
+  String get help_no_results_title => 'No matching questions';
+
+  @override
+  String get help_no_results_body => 'Try other words, or call us.';
+
+  @override
+  String get help_call_support => 'Call support';
+
+  @override
+  String get help_whatsapp => 'WhatsApp';
+
+  @override
+  String get help_grievance_title => 'Grievance officer';
+
+  @override
+  String get help_grievance_body =>
+      'For complaints about your data or privacy, write to our grievance officer. We reply within 7 days.';
+
+  @override
+  String get help_faq_price_q => 'How much will it cost?';
+
+  @override
+  String get help_faq_price_a =>
+      'You see a price range before you book. The mechanic sets the final amount in the app after the job, and you pay them directly by UPI.';
+
+  @override
+  String get help_faq_verified_q => 'Are the mechanics verified?';
+
+  @override
+  String get help_faq_verified_a =>
+      'Yes. We check every mechanic\'s ID before they get jobs. Mechanics without a workshop also do a verification call.';
+
+  @override
+  String get help_faq_code_q => 'What is the start code?';
+
+  @override
+  String get help_faq_code_a =>
+      'A 4-digit code in your app. Share it only when the mechanic is standing with you; the job starts when they enter it.';
+
+  @override
+  String get help_faq_pay_q => 'How do I pay?';
+
+  @override
+  String get help_faq_pay_a =>
+      'By UPI, straight to the mechanic: open your UPI app from ours or scan the QR, then tap \"I have paid\". We never ask for card or bank details.';
+
+  @override
+  String get help_faq_cancel_q => 'Can I cancel?';
+
+  @override
+  String get help_faq_cancel_a =>
+      'Yes, any time before the job starts. Tell us why in one tap so we can improve.';
+
+  @override
+  String get help_faq_area_q => 'Where does it work?';
+
+  @override
+  String get help_faq_area_a =>
+      'Ahmedabad, Ankleshwar and Bharuch for now, including highway stretches nearby. More cities are coming.';
 }

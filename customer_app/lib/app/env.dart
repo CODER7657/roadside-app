@@ -5,4 +5,11 @@ abstract final class AppEnv {
   static const olaMapsApiKey = String.fromEnvironment('OLA_MAPS_API_KEY');
 
   static bool get hasMapsKey => olaMapsApiKey.isNotEmpty;
+
+  /// Support line in E.164 (e.g. +9179…), until `appConfig.supportPhone` is read from
+  /// Firestore (#92). Empty hides the call and WhatsApp buttons.
+  static const supportPhone = String.fromEnvironment('SUPPORT_PHONE');
+
+  /// The DPDP grievance officer's address (PLAN §12.12), named in the policy (#55).
+  static const grievanceEmail = String.fromEnvironment('GRIEVANCE_EMAIL');
 }
