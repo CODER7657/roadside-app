@@ -6,10 +6,9 @@ analyzer:
     strict-inference: true
     strict-raw-types: true
   exclude:
-    # Its own package (with its own pubspec); analyse it from inside example/.
-    - example/**
-    - widgetbook/**
     - build/**
+    - android/**
+    - web/**
 
 linter:
   rules:

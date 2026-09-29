@@ -2,6 +2,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'lane_ui.dart';
@@ -167,7 +168,8 @@ class LaneTemplateSample extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: lane.radius.r12),
       ),
       onPressed: () {},
-      child: Text(label, style: lane.text.label),
+      // Lane text styles carry `ink`; on a Beacon fill the label must be `onBeacon`.
+      child: Text(label, style: lane.text.label.copyWith(color: lane.color.onBeacon)),
     );
     final lines = [for (var i = 1; i <= 8; i++) Text('$i · $sample', style: lane.text.body)];
 
@@ -260,4 +262,54 @@ class _GridMap extends CustomPainter {
 
   @override
   bool shouldRepaint(_GridMap old) => old.lane.color.bg != lane.color.bg;
+}
+
+/// Renders [child] as one phone screen in a given mode, language and text scale, without
+/// `LaneApp` or providers. Golden tests and Widgetbook use it so they match exactly.
+class LanePreview extends StatelessWidget {
+  const LanePreview({
+    super.key,
+    required this.mode,
+    required this.child,
+    this.locale = const Locale('en'),
+    this.textScale = 1.0,
+    this.size = const Size(360, 800),
+  });
+
+  final LaneMode mode;
+  final Locale locale;
+  final double textScale;
+
+  /// PLAN §6.14: designs are done at 360 × 800.
+  final Size size;
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = LaneThemeData.build(mode, script: LaneScript.of(locale));
+    return Localizations.override(
+      context: context,
+      locale: locale,
+      delegates: GlobalMaterialLocalizations.delegates,
+      child: Theme(
+        data: theme,
+        child: MediaQuery(
+          data: MediaQuery.of(context).copyWith(
+            size: size,
+            textScaler: TextScaler.linear(textScale.clamp(1.0, LaneApp.maxTextScale)),
+            padding: EdgeInsets.zero,
+            viewPadding: EdgeInsets.zero,
+          ),
+          child: SizedBox.fromSize(
+            size: size,
+            child: DefaultTextStyle(
+              style: theme.extension<LaneTheme>()!.text.body,
+              child: Navigator(onGenerateRoute: (_) => MaterialPageRoute<void>(builder: (_) => child)),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }

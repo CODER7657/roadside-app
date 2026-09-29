@@ -5,5 +5,7 @@
 - Public API only via `lib/lane_ui.dart`; internals under `lib/src/`. Breaking change = `@Deprecated` for one sprint first + CHANGELOG + semver bump.
 - Every component: Widgetbook use-case (Day/Night/Glare/Saver × en/hi/gu × text 1.0/2.0) + alchemist golden + contrast test.
 - Badges: label in `ink` on a signal tint; the signal colour is only for the icon and dot (Day `route` is 4.4:1 on its tint). `test/contrast_test.dart` enforces it.
+- Goldens (`test/goldens/`, alchemist CI mode): after an intended visual change run `flutter test --update-goldens` and commit the PNGs; a failing golden writes a diff under `test/goldens/failures/` (CI uploads it). Remember: Lane text styles carry `ink`, so text on a Beacon or signal fill must `copyWith(color: onBeacon / onSignal)`.
+- Widgetbook: `cd widgetbook && flutter run -d chrome`.
 - Run locally: `flutter analyze --fatal-infos`, `flutter test`, and `cd example && flutter run` to see Day/Night/Glare/Saver × en/hi/gu.
 - Performance: animate transform/opacity only; `RepaintBoundary` around dock and rail; 60 fps on a 3 GB RAM phone.
