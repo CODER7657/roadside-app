@@ -4,31 +4,55 @@ import 'dart:io';
 import 'package:customer_app/app/app.dart';
 import 'package:customer_app/app/env.dart';
 import 'package:customer_app/app/flavor.dart';
+import 'package:customer_app/features/first_run/application/first_run.dart';
 import 'package:customer_app/features/home/presentation/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lane_ui/lane_ui.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class _NoBattery implements LaneBatterySource {
   @override
   Stream<LaneBatteryStatus> watch() => const Stream.empty();
 }
 
+late SharedPreferences prefs;
+
+/// First run already done, so the app opens on home.
+Future<void> finishedFirstRun({String language = 'en'}) async {
+  SharedPreferences.setMockInitialValues({
+    'first_run.language': language,
+    'first_run.onboarded': true,
+    'first_run.consent_version': kConsentVersion,
+    'first_run.consent_at': '2026-09-29T10:15:00.000Z',
+  });
+  prefs = await SharedPreferences.getInstance();
+}
+
 Widget app(AppFlavor flavor) => ProviderScope(
   overrides: [
     flavorProvider.overrideWithValue(flavor),
+    sharedPreferencesProvider.overrideWithValue(prefs),
     laneBatterySourceProvider.overrideWithValue(_NoBattery()),
     laneClockProvider.overrideWithValue(() => DateTime.utc(2026, 9, 29, 6, 30)),
   ],
   child: const RoadsideApp(),
 );
 
+/// Lets the splash's short delay pass, then settles on the next screen.
+Future<void> pastSplash(WidgetTester tester) async {
+  await tester.pump(const Duration(seconds: 1));
+  await tester.pumpAndSettle();
+}
+
 void main() {
+  setUp(() => finishedFirstRun());
+
   for (final flavor in AppFlavor.values) {
     testWidgets('boots into LaneApp on the home route (${flavor.name})', (tester) async {
       await tester.pumpWidget(app(flavor));
-      await tester.pumpAndSettle();
+      await pastSplash(tester);
       expect(find.byType(LaneApp), findsOneWidget);
       expect(find.byType(HomeScreen), findsOneWidget);
       expect(find.text('Help on the road, in minutes'), findsOneWidget);
@@ -36,17 +60,16 @@ void main() {
     });
   }
 
-  testWidgets('follows the phone language: Hindi and Gujarati', (tester) async {
-    addTearDown(tester.platformDispatcher.clearLocalesTestValue);
-    tester.platformDispatcher.localesTestValue = [const Locale('hi', 'IN')];
+  testWidgets('opens in the language chosen on C2: Hindi and Gujarati', (tester) async {
+    await finishedFirstRun(language: 'hi');
     await tester.pumpWidget(app(AppFlavor.dev));
-    await tester.pumpAndSettle();
+    await pastSplash(tester);
     expect(find.text('सड़क पर मदद, मिनटों में'), findsOneWidget);
-    final lane = tester.element(find.byType(HomeScreen)).lane;
-    expect(lane.script, LaneScript.devanagari);
+    expect(tester.element(find.byType(HomeScreen)).lane.script, LaneScript.devanagari);
 
-    tester.platformDispatcher.localesTestValue = [const Locale('gu', 'IN')];
-    await tester.pumpAndSettle();
+    await finishedFirstRun(language: 'gu');
+    await tester.pumpWidget(app(AppFlavor.prod));
+    await pastSplash(tester);
     expect(find.text('રસ્તા પર મદદ, મિનિટોમાં'), findsOneWidget);
   });
 
@@ -59,7 +82,7 @@ void main() {
     addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
     addTearDown(tester.platformDispatcher.clearLocalesTestValue);
     await tester.pumpWidget(app(AppFlavor.dev));
-    await tester.pumpAndSettle();
+    await pastSplash(tester);
     expect(tester.takeException(), isNull);
   });
 

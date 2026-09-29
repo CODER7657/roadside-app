@@ -43,6 +43,7 @@ dependencies:
     path: ../packages/roadside_core
   flutter_localizations:
     sdk: flutter
+  shared_preferences: ^2.5.5
 
 dev_dependencies:
   flutter_test:
@@ -66,6 +67,10 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    # ThreeUI horizon still (MIT, PLAN §6.17) for the splash, re-hued to amber.
+    - assets/images/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
