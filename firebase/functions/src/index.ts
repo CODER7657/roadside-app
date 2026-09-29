@@ -7,5 +7,5 @@ import { REGION } from './lib/admin.js';
 // Cost guard; raise per function when load tests show it's needed.
 setGlobalOptions({ region: REGION, maxInstances: 10 });
 
-// Callables land here as their issues are done, e.g.
-// export { createBooking } from './callables/createBooking.js';
+export { assignDefaultRole } from './auth/beforeUserCreated.js';
+export { createBooking } from './callables/createBooking.js';
