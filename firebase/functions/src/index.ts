@@ -15,3 +15,5 @@ export { dispatchOnBookingCreated, dispatchSweep, offerTimeout } from './dispatc
 export { onBookingStatusChange } from './notifications/onBookingStatusChange.js';
 export { onMechanicRegistered } from './triggers/onMechanicRegistered.js';
 export { onReviewCreated } from './triggers/onReviewCreated.js';
+export { createShareLink } from './share/shareLinks.js';
+export { sharePage } from './share/sharePage.js';
