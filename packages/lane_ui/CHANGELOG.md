@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-dev.5
+
+Inputs, chips and badges (#84, part 2 of 4), PLAN §6.12.
+
+- `LaneTextField`: label above, 56 dp sunken field, helper or error below (error in
+  `signal.stop`, announced as a live region); focus is a 2 px `ink` ring.
+- `LaneChip` (solid `ink` when selected, 48 dp, selection haptic), `LaneSwitch` (whole row
+  toggles; `big` is the 64 dp online toggle), `LaneListTile` (56 dp, two-line titles).
+- `SignalBadge` + `LaneSignal`: colour + icon + word, `ink` label on the tint, outline in
+  Glare. Placeholder Material icons until Phosphor (#86).
+- `PlateChip`: fixed white/black Indian plate with IND band; `PlateChip.format` spaces
+  standard and BH-series numbers; read letter by letter; scales down, never truncates.
+
 ## 0.1.0-dev.4
 
 Buttons and gestures (#7, part 1 of 4), PLAN §6.12, §6.5 ⑤, §6.11.

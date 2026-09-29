@@ -80,6 +80,20 @@ class LaneWidgetbook extends StatelessWidget {
         ],
       ),
       WidgetbookCategory(
+        name: 'Inputs and badges',
+        children: [
+          WidgetbookComponent(
+            name: 'LaneTextField, LaneChip, LaneSwitch, LaneListTile, SignalBadge, PlateChip',
+            useCases: [
+              WidgetbookUseCase(
+                name: 'All states',
+                builder: (context) => LaneInputsSample(sample: sampleFor(context)),
+              ),
+            ],
+          ),
+        ],
+      ),
+      WidgetbookCategory(
         name: 'Templates',
         children: [
           for (final (name, template) in [
