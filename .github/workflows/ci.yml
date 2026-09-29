@@ -45,7 +45,7 @@ jobs:
         with:
           filters: |
             lane_ui:   ['packages/lane_ui/**', 'tool/**']
-            core:      ['packages/roadside_core/**']
+            core:      ['packages/roadside_core/**', 'firebase/functions/src/models/**']
             customer:  ['customer_app/**', 'packages/**', 'tool/**']
             mechanic:  ['mechanic_app/**', 'packages/**', 'tool/**']
             admin:     ['admin_panel/**', 'packages/**', 'tool/**']
