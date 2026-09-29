@@ -25,10 +25,13 @@ Your work is in the GitHub issues labelled `P1`, `P2` or `P3`, grouped by milest
 | [CONTRIBUTING.md](CONTRIBUTING.md) · [SECURITY.md](SECURITY.md) | Branch → PR → review → squash-merge; how to report security issues |
 | [.github/workflows/](.github/workflows/) | **CI** (path-filtered Flutter/Functions/rules checks, gitleaks, actionlint → one required "CI result"), **PR hygiene** (title + auto-labels), **Deploy Firebase** (dev on merge, prod on tag with approval, keyless), **Release Android** (signed, obfuscated AABs) |
 | `*/CLAUDE.md` | Folder-level Claude Code rules for each owner's area |
-| [wireframes/](wireframes/) | `Wireframes.pdf` (44 frames, every screen) + `png/` + the source `wireframes.html` |
+| [wireframes/](wireframes/) | `Wireframes.pdf` (48 frames, every screen) + `png/` + the source `wireframes.html` |
 | [proposal/](proposal/) | Client proposal `Proposal.pdf` (₹30,000 all-in year 1) + source |
 | [design/tokens.json](design/tokens.json) | Lane design tokens (colours, type, space, motion, service areas) |
-| [packages/lane_ui/](packages/lane_ui/) | Lane design system package: tokens, `LaneTheme` / `context.lane`, ambient modes, `LaneApp`. Run `example/` to see every mode and type style in en/hi/gu |
+| [packages/lane_ui/](packages/lane_ui/) | **Lane** design system: tokens, `LaneApp` + ambient modes, templates, components, Phosphor icons; `example/` and `widgetbook/` to browse it |
+| [packages/roadside_core/](packages/roadside_core/) | Shared Firestore models, status machine, validators, `LaneLog`, fakes |
+| [firebase/functions/](firebase/functions/) | Cloud Functions: `createBooking`, dispatch + `respondToOffer`, notifications |
+| [customer_app/](customer_app/) | The customer Flutter app (dev/prod flavours) |
 | [design/map-render/](design/map-render/) | Renders the Uber-style mockup maps from real OpenStreetMap vector data (`npm i && npm run render`) |
 | [design/threeui-capture/](design/threeui-capture/) | How to render more ThreeUI backgrounds |
 | [assets/fonts/](assets/fonts/) | Onest, Instrument Serif, JetBrains Mono, Anek Devanagari, Anek Gujarati (+ OFL licenses) |
@@ -39,7 +42,7 @@ Your work is in the GitHub issues labelled `P1`, `P2` or `P3`, grouped by milest
 | [tool/lint_design.sh](tool/lint_design.sh) | CI check that app code uses Lane (no raw colours, strings, magic numbers) |
 | [docs/](docs/) | Licenses and the en/hi/gu glossary |
 
-The Flutter apps, packages and Firebase folders are created on day 1 (see the issues).
+Where things stand, what's blocked and the local setup: [HANDOFF.md](HANDOFF.md).
 
 ## Quick start (day 1, everyone)
 
