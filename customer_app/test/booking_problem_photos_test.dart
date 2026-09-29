@@ -5,8 +5,9 @@ import 'dart:typed_data';
 import 'package:customer_app/app/app.dart';
 import 'package:customer_app/app/flavor.dart';
 import 'package:customer_app/features/booking/application/booking_draft.dart';
+import 'package:customer_app/features/booking/application/pickup.dart';
 import 'package:customer_app/features/booking/data/photo_pipeline.dart';
-import 'package:customer_app/features/booking/presentation/location_pending_screen.dart';
+import 'package:customer_app/features/booking/presentation/confirm_location_screen.dart';
 import 'package:customer_app/features/booking/presentation/photos_screen.dart';
 import 'package:customer_app/features/booking/presentation/problem_screen.dart';
 import 'package:customer_app/features/first_run/application/first_run.dart';
@@ -21,6 +22,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lane_ui/lane_ui.dart';
 import 'package:roadside_core/roadside_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'support/fake_location.dart';
 
 class _NoBattery implements LaneBatterySource {
   @override
@@ -298,6 +301,8 @@ void main() {
           photoCompressorProvider.overrideWithValue(PhotoCompressor(encode: (b, q) async => b)),
           photoUploaderProvider.overrideWithValue(uploader),
           permissionServiceProvider.overrideWithValue(permissions),
+          locationServiceProvider.overrideWithValue(FakeLocationService()),
+          reverseGeocoderProvider.overrideWithValue(FakeGeocoder()),
           laneBatterySourceProvider.overrideWithValue(_NoBattery()),
           laneClockProvider.overrideWithValue(() => DateTime.utc(2026, 9, 29, 6, 30)),
         ],
@@ -389,7 +394,8 @@ void main() {
       expect(find.text('1 of 4 photos'), findsOneWidget);
 
       await tapText(tester, 'Next');
-      expect(find.byType(LocationPendingScreen), findsOneWidget);
+      expect(find.byType(ConfirmLocationScreen), findsOneWidget);
+      await tester.pump(const Duration(seconds: 16)); // let U6's GPS wait time out
     });
 
     testWidgets('U5: camera asks for permission first; a failed upload blocks Next until retried', (

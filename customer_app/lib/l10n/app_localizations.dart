@@ -902,6 +902,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Back to home'**
   String get booking_back_home;
+
+  /// U6 Confirm location: title in the dock.
+  ///
+  /// In en, this message translates to:
+  /// **'Where are you?'**
+  String get location_title;
+
+  /// U6: instruction under the title.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag the map so the pin is on your vehicle.'**
+  String get location_hint;
+
+  /// U6: no location permission.
+  ///
+  /// In en, this message translates to:
+  /// **'Location is off for this app. Drag the map to your spot, or allow location.'**
+  String get location_no_permission;
+
+  /// U6: opens the C7 explainer for location.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow location'**
+  String get location_allow;
+
+  /// U6: GPS is off.
+  ///
+  /// In en, this message translates to:
+  /// **'Your phone\'s location is switched off.'**
+  String get location_gps_off;
+
+  /// U6: opens the phone location settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on location'**
+  String get location_turn_on;
+
+  /// U6: no GPS reading in 15 s.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t find you. Drag the map to your spot.'**
+  String get location_no_fix;
+
+  /// U6: while reverse geocoding.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding the address…'**
+  String get location_finding_address;
+
+  /// U6: no address for the pin.
+  ///
+  /// In en, this message translates to:
+  /// **'No street address here. The mechanic will use the Plus Code.'**
+  String get location_no_address;
+
+  /// U6: the pin as a Plus Code.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus Code {code}'**
+  String location_plus_code(String code);
+
+  /// U6: landmark field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Landmark (optional)'**
+  String get location_landmark_label;
+
+  /// U6: landmark hint.
+  ///
+  /// In en, this message translates to:
+  /// **'For example: opposite the petrol pump'**
+  String get location_landmark_hint;
+
+  /// U6: pin far from the GPS reading.
+  ///
+  /// In en, this message translates to:
+  /// **'The pin is more than 2 km from where your phone is.'**
+  String get location_far_warning;
+
+  /// U6: switch needed when the pin is far away.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m booking for someone else'**
+  String get location_someone_else;
+
+  /// U6: primary button.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm pickup'**
+  String get location_confirm;
+
+  /// U6: map button that moves the pin back to the GPS reading.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to my location'**
+  String get location_recenter;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

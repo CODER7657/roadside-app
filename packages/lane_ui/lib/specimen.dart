@@ -618,3 +618,33 @@ class LaneSignatureSample extends StatelessWidget {
     );
   }
 }
+
+/// CenterPin (resting and lifted) and every AccuracyBadge state, for goldens and Widgetbook (#107).
+class LaneMapPartsSample extends StatelessWidget {
+  const LaneMapPartsSample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final lane = context.lane;
+    final gap = SizedBox(height: lane.space.s16);
+    return Scaffold(
+      body: ListView(
+        padding: EdgeInsets.all(lane.space.s24),
+        children: [
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [CenterPin(), CenterPin(lifted: true)],
+          ),
+          gap,
+          for (final m in const [null, 8.0, 35.0, 120.0]) ...[
+            Align(
+              alignment: Alignment.centerLeft,
+              child: AccuracyBadge(meters: m),
+            ),
+            gap,
+          ],
+        ],
+      ),
+    );
+  }
+}

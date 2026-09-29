@@ -94,5 +94,36 @@
         "type": "int"
       }
     }
+  },
+  "accuracy_locating": "Finding your location",
+  "@accuracy_locating": {
+    "description": "AccuracyBadge: before the first fix."
+  },
+  "accuracy_meters": "±{meters} m",
+  "@accuracy_meters": {
+    "description": "AccuracyBadge: accuracy in metres.",
+    "placeholders": {
+      "meters": {
+        "type": "int"
+      }
+    }
+  },
+  "accuracy_adjust": "±{meters} m · Adjust pin",
+  "@accuracy_adjust": {
+    "description": "AccuracyBadge: accuracy over 50 m; asks to move the pin.",
+    "placeholders": {
+      "meters": {
+        "type": "int"
+      }
+    }
+  },
+  "accuracy_semantics": "Location accurate to {meters} metres",
+  "@accuracy_semantics": {
+    "description": "AccuracyBadge: what TalkBack reads.",
+    "placeholders": {
+      "meters": {
+        "type": "int"
+      }
+    }
   }
 }

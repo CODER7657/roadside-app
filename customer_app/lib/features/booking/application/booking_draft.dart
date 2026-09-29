@@ -44,6 +44,28 @@ class DraftPhoto {
       DraftPhoto(id: id, bytes: bytes, state: state ?? this.state, url: url ?? this.url);
 }
 
+/// Where the mechanic should come (U6), in `createBooking`'s `pickup` shape.
+@immutable
+class PickupDraft {
+  const PickupDraft({
+    required this.lat,
+    required this.lng,
+    required this.address,
+    required this.accuracyMeters,
+    this.landmark = '',
+    this.plusCode = '',
+  });
+
+  final double lat;
+  final double lng;
+  final String address;
+  final String landmark;
+  final String plusCode;
+
+  /// The GPS reading's accuracy (the pin itself was placed by the customer).
+  final double accuracyMeters;
+}
+
 /// What the customer has chosen so far on U4–U7. One draft = one booking attempt: its
 /// [idempotencyKey] stays the same across retries so `createBooking` makes one booking.
 @immutable
@@ -55,6 +77,7 @@ class BookingDraft {
     this.problem,
     this.photos = const [],
     this.description = '',
+    this.pickup,
   });
 
   final String draftId;
@@ -63,6 +86,10 @@ class BookingDraft {
   final ProblemType? problem;
   final List<DraftPhoto> photos;
   final String description;
+
+  /// Set when U6 is confirmed. The customer always confirms the pin there, so
+  /// `createBooking` gets `pinConfirmed: true`.
+  final PickupDraft? pickup;
 
   bool get canAddPhoto => photos.length < PhotoLimits.maxPhotos;
   bool get uploading => photos.any((p) => p.state == PhotoUploadState.uploading);
@@ -79,6 +106,7 @@ class BookingDraft {
     ProblemType? problem,
     List<DraftPhoto>? photos,
     String? description,
+    PickupDraft? pickup,
   }) => BookingDraft(
     draftId: draftId,
     idempotencyKey: idempotencyKey,
@@ -86,6 +114,7 @@ class BookingDraft {
     problem: problem ?? this.problem,
     photos: photos ?? this.photos,
     description: description ?? this.description,
+    pickup: pickup ?? this.pickup,
   );
 }
 
@@ -102,6 +131,7 @@ class BookingDraftNotifier extends Notifier<BookingDraft> {
   void setVehicle(String vehicleId) => state = state.copyWith(vehicleId: vehicleId);
   void setProblem(ProblemType problem) => state = state.copyWith(problem: problem);
   void setDescription(String text) => state = state.copyWith(description: text);
+  void setPickup(PickupDraft pickup) => state = state.copyWith(pickup: pickup);
 
   /// Picks, compresses (EXIF stripped) and uploads a photo. Returns null on success or
   /// when the user backed out, else why it failed. The upload itself can fail and be

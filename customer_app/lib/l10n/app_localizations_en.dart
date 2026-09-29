@@ -445,4 +445,55 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get booking_back_home => 'Back to home';
+
+  @override
+  String get location_title => 'Where are you?';
+
+  @override
+  String get location_hint => 'Drag the map so the pin is on your vehicle.';
+
+  @override
+  String get location_no_permission =>
+      'Location is off for this app. Drag the map to your spot, or allow location.';
+
+  @override
+  String get location_allow => 'Allow location';
+
+  @override
+  String get location_gps_off => 'Your phone\'s location is switched off.';
+
+  @override
+  String get location_turn_on => 'Turn on location';
+
+  @override
+  String get location_no_fix => 'We couldn\'t find you. Drag the map to your spot.';
+
+  @override
+  String get location_finding_address => 'Finding the address…';
+
+  @override
+  String get location_no_address => 'No street address here. The mechanic will use the Plus Code.';
+
+  @override
+  String location_plus_code(String code) {
+    return 'Plus Code $code';
+  }
+
+  @override
+  String get location_landmark_label => 'Landmark (optional)';
+
+  @override
+  String get location_landmark_hint => 'For example: opposite the petrol pump';
+
+  @override
+  String get location_far_warning => 'The pin is more than 2 km from where your phone is.';
+
+  @override
+  String get location_someone_else => 'I\'m booking for someone else';
+
+  @override
+  String get location_confirm => 'Confirm pickup';
+
+  @override
+  String get location_recenter => 'Go to my location';
 }

@@ -32,6 +32,7 @@ export 'src/components/lane_feedback.dart'
 export 'src/components/lane_gestures.dart' show LaneHoldButton, LaneSlideToConfirm;
 export 'src/components/lane_icons.dart' show LaneIcon, LaneIcons, LaneTileGrid, ProblemTile, VehicleTile;
 export 'src/components/lane_inputs.dart' show LaneChip, LaneListTile, LaneSwitch, LaneTextField;
+export 'src/components/lane_map_parts.dart' show AccuracyBadge, CenterPin;
 export 'src/components/lane_numbers.dart'
     show BreathingPulse, CountdownRing, LaneBrightness, LaneOtpDisplay, LaneOtpInput, LaneRollingNumber;
 export 'src/components/trust_pass.dart' show TrustPass;

@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.0-dev.9
+
+Map parts for U6 Confirm location (#107), PLAN §6.12, §11.
+
+- `CenterPin`: the fixed pin whose tip sits on the widget's centre line, so
+  `LaneMapScaffold.overlay` puts it on the chosen point. `lifted` raises it with a wider
+  ground shadow while the map is dragged; no animation with reduced motion. Hidden from
+  screen readers and never catches a drag.
+- `AccuracyBadge`: "±12 m" in `go` up to 20 m, `wait` up to 50 m, grey "± N m · Adjust pin"
+  beyond; "Finding your location" while `meters` is null. Reads "Location accurate to N
+  metres" (en / hi / gu).
+
 ## 0.1.0-dev.8
 
 Signature components (#15), PLAN §6.5 ①⑥⑦⑧.

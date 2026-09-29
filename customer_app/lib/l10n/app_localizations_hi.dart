@@ -446,4 +446,55 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get booking_back_home => 'होम पर वापस';
+
+  @override
+  String get location_title => 'आप कहाँ हैं?';
+
+  @override
+  String get location_hint => 'मैप को खिसकाएँ ताकि पिन आपके वाहन पर हो।';
+
+  @override
+  String get location_no_permission =>
+      'इस ऐप के लिए लोकेशन बंद है। मैप को अपनी जगह तक खिसकाएँ, या लोकेशन की अनुमति दें।';
+
+  @override
+  String get location_allow => 'लोकेशन की अनुमति दें';
+
+  @override
+  String get location_gps_off => 'आपके फ़ोन की लोकेशन बंद है।';
+
+  @override
+  String get location_turn_on => 'लोकेशन चालू करें';
+
+  @override
+  String get location_no_fix => 'हम आपको ढूँढ नहीं पाए। मैप को अपनी जगह तक खिसकाएँ।';
+
+  @override
+  String get location_finding_address => 'पता ढूँढ रहे हैं…';
+
+  @override
+  String get location_no_address => 'यहाँ कोई पता नहीं है। मैकेनिक प्लस कोड से आएगा।';
+
+  @override
+  String location_plus_code(String code) {
+    return 'प्लस कोड $code';
+  }
+
+  @override
+  String get location_landmark_label => 'पास की पहचान (वैकल्पिक)';
+
+  @override
+  String get location_landmark_hint => 'जैसे: पेट्रोल पंप के सामने';
+
+  @override
+  String get location_far_warning => 'पिन आपके फ़ोन की जगह से 2 किमी से ज़्यादा दूर है।';
+
+  @override
+  String get location_someone_else => 'मैं किसी और के लिए बुक कर रहा/रही हूँ';
+
+  @override
+  String get location_confirm => 'पिकअप पक्का करें';
+
+  @override
+  String get location_recenter => 'मेरी लोकेशन पर जाएँ';
 }

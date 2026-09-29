@@ -445,4 +445,55 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get booking_back_home => 'હોમ પર પાછા';
+
+  @override
+  String get location_title => 'તમે ક્યાં છો?';
+
+  @override
+  String get location_hint => 'નકશો ખસેડો જેથી પિન તમારા વાહન પર આવે.';
+
+  @override
+  String get location_no_permission =>
+      'આ એપ માટે લોકેશન બંધ છે. નકશો તમારી જગ્યા સુધી ખસેડો, અથવા લોકેશનની મંજૂરી આપો.';
+
+  @override
+  String get location_allow => 'લોકેશનની મંજૂરી આપો';
+
+  @override
+  String get location_gps_off => 'તમારા ફોનનું લોકેશન બંધ છે.';
+
+  @override
+  String get location_turn_on => 'લોકેશન ચાલુ કરો';
+
+  @override
+  String get location_no_fix => 'અમે તમને શોધી શક્યા નહીં. નકશો તમારી જગ્યા સુધી ખસેડો.';
+
+  @override
+  String get location_finding_address => 'સરનામું શોધી રહ્યા છીએ…';
+
+  @override
+  String get location_no_address => 'અહીં કોઈ સરનામું નથી. મિકેનિક પ્લસ કોડથી આવશે.';
+
+  @override
+  String location_plus_code(String code) {
+    return 'પ્લસ કોડ $code';
+  }
+
+  @override
+  String get location_landmark_label => 'નજીકની ઓળખ (વૈકલ્પિક)';
+
+  @override
+  String get location_landmark_hint => 'જેમ કે: પેટ્રોલ પંપની સામે';
+
+  @override
+  String get location_far_warning => 'પિન તમારા ફોનની જગ્યાથી 2 કિમીથી વધુ દૂર છે.';
+
+  @override
+  String get location_someone_else => 'હું બીજા કોઈ માટે બુક કરું છું';
+
+  @override
+  String get location_confirm => 'પિકઅપ પાકું કરો';
+
+  @override
+  String get location_recenter => 'મારા લોકેશન પર જાઓ';
 }
