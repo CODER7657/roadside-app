@@ -93,6 +93,22 @@ class LaneSpecimen extends ConsumerWidget {
               ' · battery ${ambient.battery.level ?? '?'}%',
               style: lane.text.caption.copyWith(color: lane.color.inkMuted),
             ),
+            Gap(lane.space.s8),
+            chips<String>(
+              const [
+                ('Map', 'map'),
+                ('Flow', 'flow'),
+                ('Status', 'status'),
+                ('List', 'list'),
+                ('Form', 'form'),
+              ],
+              '',
+              (t) => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => LaneTemplateSample(template: t, sample: address),
+                ),
+              ),
+            ),
             Gap(lane.space.s24),
             row('hero', lane.text.hero, hero),
             row('display', lane.text.display, '₹1,25,000'),
@@ -129,4 +145,119 @@ class LaneSpecimen extends ConsumerWidget {
       ),
     );
   }
+}
+
+/// A sample screen for each PLAN §6.13 template, for the example app and Widgetbook.
+class LaneTemplateSample extends StatelessWidget {
+  const LaneTemplateSample({super.key, required this.template, required this.sample});
+
+  /// `map`, `flow`, `status`, `list` or `form`.
+  final String template;
+
+  /// Sample text in the active script.
+  final String sample;
+
+  @override
+  Widget build(BuildContext context) {
+    final lane = context.lane;
+    Widget primary(String label) => FilledButton(
+      style: FilledButton.styleFrom(
+        backgroundColor: lane.color.beacon,
+        foregroundColor: lane.color.onBeacon,
+        shape: RoundedRectangleBorder(borderRadius: lane.radius.r12),
+      ),
+      onPressed: () {},
+      child: Text(label, style: lane.text.label),
+    );
+    final lines = [for (var i = 1; i <= 8; i++) Text('$i · $sample', style: lane.text.body)];
+
+    return switch (template) {
+      'map' => LaneMapScaffold(
+        map: CustomPaint(painter: _GridMap(lane), child: const SizedBox.expand()),
+        overlay: Icon(Icons.location_on, size: lane.space.s48, color: lane.color.ink),
+        actions: [
+          IconButton.filled(
+            onPressed: () => Navigator.maybePop(context),
+            icon: const Icon(Icons.close),
+            style: IconButton.styleFrom(backgroundColor: lane.color.surface, foregroundColor: lane.color.ink),
+          ),
+        ],
+        dock: LaneDock(
+          header: Text('PICKUP', style: lane.text.caps),
+          primary: primary('GET HELP'),
+          children: [
+            Text(sample, style: lane.text.title),
+            ...lines,
+          ],
+        ),
+      ),
+      'flow' => LaneFlowScaffold(
+        step: 2,
+        totalSteps: 4,
+        stepLabel: 'STEP 2 OF 4',
+        title: sample,
+        primary: primary('Continue'),
+        children: lines,
+      ),
+      'status' => LaneStatusScaffold(
+        top: const Align(alignment: Alignment.centerLeft, child: LaneBackButton()),
+        visual: Icon(Icons.radar, size: lane.space.s64 * 1.5, color: lane.color.signal.wait),
+        title: "We're finding the nearest mechanic",
+        message: sample,
+        primary: primary('Cancel request'),
+      ),
+      'list' => LaneListScaffold(
+        showBack: true,
+        title: 'Booking history',
+        filters: [
+          for (final f in ['All', 'Ahmedabad', 'Ankleshwar', 'Bharuch']) Chip(label: Text(f)),
+        ],
+        itemCount: 12,
+        itemBuilder: (_, i) => Container(
+          padding: EdgeInsets.all(lane.space.s16),
+          decoration: BoxDecoration(
+            color: lane.color.surface,
+            borderRadius: lane.radius.r16,
+            border: Border.all(color: lane.color.line, width: lane.stroke.hairline),
+          ),
+          child: Text('#${1000 + i} · $sample', style: lane.text.body),
+        ),
+        empty: Text('No bookings yet', style: lane.text.body),
+      ),
+      _ => LaneFormScaffold(
+        title: 'Profile & settings',
+        primary: primary('Save'),
+        children: [
+          for (final label in ['Name', 'Phone', 'Emergency contact'])
+            TextField(
+              decoration: InputDecoration(labelText: label, border: const OutlineInputBorder()),
+            ),
+        ],
+      ),
+    };
+  }
+}
+
+/// A plain street grid standing in for the map.
+class _GridMap extends CustomPainter {
+  _GridMap(this.lane);
+
+  final LaneTheme lane;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    canvas.drawRect(Offset.zero & size, Paint()..color = lane.color.surfaceSunken);
+    final road = Paint()
+      ..color = lane.color.surface
+      ..strokeWidth = lane.space.s12;
+    for (var x = 0.0; x < size.width; x += lane.space.s64 * 1.5) {
+      canvas.drawLine(Offset(x, 0), Offset(x, size.height), road);
+    }
+    for (var y = 0.0; y < size.height; y += lane.space.s64 * 1.5) {
+      canvas.drawLine(Offset(0, y), Offset(size.width, y), road);
+    }
+  }
+
+  @override
+  bool shouldRepaint(_GridMap old) => old.lane.color.bg != lane.color.bg;
 }
