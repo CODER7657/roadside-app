@@ -371,3 +371,82 @@ class LaneButtonsSample extends StatelessWidget {
     );
   }
 }
+
+/// Inputs, chips and badges in their states, for goldens and Widgetbook (#84).
+class LaneInputsSample extends StatelessWidget {
+  const LaneInputsSample({super.key, this.sample = 'Near SG Highway, Thaltej'});
+
+  final String sample;
+
+  @override
+  Widget build(BuildContext context) {
+    final lane = context.lane;
+    Widget gap() => SizedBox(height: lane.space.s16);
+    return Scaffold(
+      body: ListView(
+        padding: EdgeInsets.all(lane.space.s16),
+        children: [
+          LaneTextField(label: 'Landmark', hint: sample, helper: 'Helps the mechanic find you'),
+          gap(),
+          const LaneTextField(
+            label: 'Registration number',
+            initialValue: 'GJ01AB',
+            errorText: 'Check the number',
+          ),
+          gap(),
+          Wrap(
+            spacing: lane.space.s8,
+            runSpacing: lane.space.s8,
+            children: [
+              LaneChip(label: 'All', selected: true, onSelected: (_) {}),
+              LaneChip(label: 'Ahmedabad', selected: false, onSelected: (_) {}),
+              const LaneChip(label: 'Bharuch', selected: false),
+            ],
+          ),
+          gap(),
+          LaneSwitch(
+            label: 'Online',
+            subtitle: 'You get new jobs',
+            value: true,
+            onChanged: (_) {},
+            big: true,
+          ),
+          LaneSwitch(label: 'Arrival chime', value: false, onChanged: (_) {}),
+          LaneListTile(
+            leading: const Icon(Icons.directions_car_rounded),
+            title: sample,
+            subtitle: 'Petrol · default',
+            trailing: const Icon(Icons.chevron_right_rounded),
+            onTap: () {},
+          ),
+          gap(),
+          Wrap(
+            spacing: lane.space.s8,
+            runSpacing: lane.space.s8,
+            children: [
+              for (final (signal, label) in [
+                (LaneSignal.wait, 'Requested'),
+                (LaneSignal.route, 'On the way'),
+                (LaneSignal.go, 'Arrived'),
+                (LaneSignal.work, 'Working'),
+                (LaneSignal.stop, 'SOS'),
+                (LaneSignal.neutral, 'Cancelled'),
+              ])
+                SignalBadge(signal: signal, label: label),
+            ],
+          ),
+          gap(),
+          Wrap(
+            spacing: lane.space.s8,
+            runSpacing: lane.space.s8,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: const [
+              PlateChip(regNo: 'GJ01AB1234'),
+              PlateChip(regNo: '22BH1234AA', large: true),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}

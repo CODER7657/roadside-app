@@ -57,6 +57,12 @@ void main() {
         _group((locale) => LaneButtonsSample(label: locale.languageCode == 'hi' ? 'मदद लें' : 'Get help')),
   );
 
+  goldenTest(
+    'inputs, chips and badges in every mode',
+    fileName: 'components_inputs',
+    builder: () => _group((locale) => LaneInputsSample(sample: _samples[locale.languageCode]!)),
+  );
+
   for (final template in ['map', 'flow', 'status', 'list', 'form']) {
     goldenTest(
       '$template template in every mode',
