@@ -11,6 +11,8 @@ import '../features/help/presentation/help_screen.dart';
 import '../features/home/presentation/home_screen.dart';
 import '../features/permissions/application/permission_service.dart';
 import '../features/permissions/presentation/permission_explainer_screen.dart';
+import '../features/vehicles/presentation/add_vehicle_screen.dart';
+import '../features/vehicles/presentation/my_vehicles_screen.dart';
 
 /// Route paths. Screens are added per issue (C7/C9 #95, login #96, U1 #12, …).
 abstract final class AppRoutes {
@@ -18,6 +20,8 @@ abstract final class AppRoutes {
   static const home = '/';
   static const privacy = '/privacy';
   static const help = '/help';
+  static const vehicles = '/vehicles';
+  static const addVehicle = '/vehicles/add';
 }
 
 /// Keeps first run in order: home (and later everything else) waits until language,
@@ -46,6 +50,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: AppRoutes.privacy, builder: (context, state) => const PrivacyNoticeScreen()),
       GoRoute(path: AppRoutes.home, builder: (context, state) => const HomeScreen()),
       GoRoute(path: AppRoutes.help, builder: (context, state) => const HelpScreen()),
+      GoRoute(path: AppRoutes.vehicles, builder: (context, state) => const MyVehiclesScreen()),
+      GoRoute(path: AppRoutes.addVehicle, builder: (context, state) => const AddVehicleScreen()),
       GoRoute(
         path: '/permission/:kind',
         builder: (context, state) =>

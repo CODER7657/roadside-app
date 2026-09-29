@@ -287,5 +287,137 @@
   "help_faq_area_a": "Ahmedabad, Ankleshwar and Bharuch for now, including highway stretches nearby. More cities are coming.",
   "@help_faq_area_a": {
     "description": "C9 FAQ."
+  },
+  "home_my_vehicles": "My vehicles",
+  "@home_my_vehicles": {
+    "description": "Temporary home: opens U3."
+  },
+  "vehicles_title": "My vehicles",
+  "@vehicles_title": {
+    "description": "U3: title."
+  },
+  "vehicles_add": "Add vehicle",
+  "@vehicles_add": {
+    "description": "U3: add button."
+  },
+  "vehicles_empty_title": "No vehicles yet",
+  "@vehicles_empty_title": {
+    "description": "U3: empty state title."
+  },
+  "vehicles_empty_body": "Add your vehicle once, and booking help takes one tap.",
+  "@vehicles_empty_body": {
+    "description": "U3: empty state body."
+  },
+  "vehicles_default_label": "Default",
+  "@vehicles_default_label": {
+    "description": "U3: marks the default vehicle."
+  },
+  "vehicles_delete": "Delete",
+  "@vehicles_delete": {
+    "description": "U3: swipe background and screen-reader action."
+  },
+  "vehicles_removed": "Vehicle removed",
+  "@vehicles_removed": {
+    "description": "U3: toast after delete."
+  },
+  "vehicles_undo": "Undo",
+  "@vehicles_undo": {
+    "description": "U3: toast action."
+  },
+  "vehicle_add_step": "New vehicle",
+  "@vehicle_add_step": {
+    "description": "U2: step label above the lane."
+  },
+  "vehicle_add_title": "Your vehicle",
+  "@vehicle_add_title": {
+    "description": "U2: title."
+  },
+  "vehicle_type_label": "Type",
+  "@vehicle_type_label": {
+    "description": "U2: vehicle type tiles label."
+  },
+  "vehicle_type_car": "Car",
+  "@vehicle_type_car": {
+    "description": "Vehicle type."
+  },
+  "vehicle_type_bike": "Bike",
+  "@vehicle_type_bike": {
+    "description": "Vehicle type (motorcycle)."
+  },
+  "vehicle_type_scooter": "Scooter",
+  "@vehicle_type_scooter": {
+    "description": "Vehicle type."
+  },
+  "vehicle_type_ev": "EV",
+  "@vehicle_type_ev": {
+    "description": "Vehicle type (electric vehicle)."
+  },
+  "vehicle_brand_label": "Brand",
+  "@vehicle_brand_label": {
+    "description": "U2: field label."
+  },
+  "vehicle_brand_hint": "e.g. Maruti Suzuki",
+  "@vehicle_brand_hint": {
+    "description": "U2: field hint."
+  },
+  "vehicle_model_label": "Model",
+  "@vehicle_model_label": {
+    "description": "U2: field label."
+  },
+  "vehicle_model_hint": "e.g. Swift",
+  "@vehicle_model_hint": {
+    "description": "U2: field hint."
+  },
+  "vehicle_reg_label": "Registration number",
+  "@vehicle_reg_label": {
+    "description": "U2: field label."
+  },
+  "vehicle_reg_hint": "GJ 01 AB 1234",
+  "@vehicle_reg_hint": {
+    "description": "U2: field hint (a plate, not translated)."
+  },
+  "vehicle_fuel_label": "Fuel",
+  "@vehicle_fuel_label": {
+    "description": "U2: fuel chips label."
+  },
+  "fuel_petrol": "Petrol",
+  "@fuel_petrol": {
+    "description": "Fuel."
+  },
+  "fuel_diesel": "Diesel",
+  "@fuel_diesel": {
+    "description": "Fuel."
+  },
+  "fuel_cng": "CNG",
+  "@fuel_cng": {
+    "description": "Fuel."
+  },
+  "fuel_electric": "Electric",
+  "@fuel_electric": {
+    "description": "Fuel."
+  },
+  "vehicle_make_default": "Make this my default",
+  "@vehicle_make_default": {
+    "description": "U2: switch, shown when other vehicles exist."
+  },
+  "vehicle_save": "Save vehicle",
+  "@vehicle_save": {
+    "description": "U2: primary button."
+  },
+  "error_field_required": "Please fill this in",
+  "@error_field_required": {
+    "description": "Validation: empty required field."
+  },
+  "error_field_too_long": "That is too long",
+  "@error_field_too_long": {
+    "description": "Validation: text over the limit."
+  },
+  "error_field_invalid": "Please check this",
+  "@error_field_invalid": {
+    "description": "Validation: any other problem."
+  },
+  "error_reg_no_invalid": "Check the number, e.g. GJ 01 AB 1234 or 22 BH 1234 AA",
+  "@error_reg_no_invalid": {
+    "description": "Validation: registration number (Indian or BH series)."
   }
 }
