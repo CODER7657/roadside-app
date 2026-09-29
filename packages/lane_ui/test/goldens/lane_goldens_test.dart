@@ -48,6 +48,15 @@ void main() {
     builder: () => _group((locale) => _scope(LaneSpecimen(locale: locale, onLocale: (_) {}))),
   );
 
+  goldenTest(
+    'buttons and gestures in every mode',
+    fileName: 'components_buttons',
+    // The loading beam repeats forever, so pump a frame instead of settling.
+    pumpBeforeTest: (tester) => tester.pump(const Duration(milliseconds: 400)),
+    builder: () =>
+        _group((locale) => LaneButtonsSample(label: locale.languageCode == 'hi' ? 'मदद लें' : 'Get help')),
+  );
+
   for (final template in ['map', 'flow', 'status', 'list', 'form']) {
     goldenTest(
       '$template template in every mode',

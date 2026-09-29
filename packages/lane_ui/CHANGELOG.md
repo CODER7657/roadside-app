@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.0-dev.4
+
+Buttons and gestures (#7, part 1 of 4), PLAN §6.12, §6.5 ⑤, §6.11.
+
+- `LaneButton.primary` (ThreeUI Launch: amber gradient, ring, ledge; face drops 2 dp on
+  press without moving the layout), `.secondary` (Spinning Border; Beacon beam while
+  loading, spinning only with motion on), `.pill` (Gradient CTA), `.ghost`, `.danger` (flat
+  `signal.stop`). `critical: true` for 64 dp; `loading` keeps the width and shows a spinner.
+- `LaneHoldButton`: 1.5 s hold fills a Gradient Beam ring in `signal.stop`, fires once with
+  the alert haptic; early release cancels; screen readers confirm with long-press.
+- `LaneSlideToConfirm`: 64 dp track, confirm past 85%, spring back otherwise, confirm by
+  double tap with a screen reader.
+- Labels always set their own colour (never inherited `ink`); goldens and Widgetbook cover
+  every variant.
+
 ## 0.1.0-dev.3
 
 Widgetbook and golden tests (#9), PLAN §7.5–§7.6.
