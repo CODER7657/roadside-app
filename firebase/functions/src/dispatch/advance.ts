@@ -12,7 +12,7 @@ import { getFunctions } from 'firebase-admin/functions';
 import { getMessaging } from 'firebase-admin/messaging';
 import { FieldValue, Timestamp } from 'firebase-admin/firestore';
 import * as logger from 'firebase-functions/logger';
-import { db, REGION } from '../lib/admin.js';
+import { db, ensureAdminApp, REGION } from '../lib/admin.js';
 import { assertTransition } from '../models/status.js';
 import { SCHEMA_VERSION } from '../models/enums.js';
 import type { BookingDoc, OfferDoc, PresenceDoc, ServiceAreaDoc } from '../models/documents.js';
@@ -40,6 +40,7 @@ export const defaultDeps: DispatchDeps = {
     if (!token) return;
     // Data-only, high priority: the app shows the full-screen offer on its `offers` channel.
     // No address, phone or coordinates in the payload.
+    ensureAdminApp();
     await getMessaging().send({
       token,
       data: { type: 'offer', offerId, bookingId },
@@ -47,6 +48,7 @@ export const defaultDeps: DispatchDeps = {
     });
   },
   async scheduleTimeout(bookingId, delaySeconds) {
+    ensureAdminApp();
     await getFunctions()
       .taskQueue(`locations/${REGION}/functions/offerTimeout`)
       .enqueue({ bookingId }, { scheduleDelaySeconds: delaySeconds });

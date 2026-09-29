@@ -3,6 +3,7 @@
 import { getAuth } from 'firebase-admin/auth';
 import { GeoPoint, Timestamp } from 'firebase-admin/firestore';
 import { db } from '../src/lib/admin.js';
+import { TEST_PROJECT } from './helpers.js';
 import { geohash } from '../src/lib/geo.js';
 import type { CityId } from '../src/models/enums.js';
 
@@ -17,7 +18,7 @@ export function north(from: { lat: number; lng: number }, km: number) {
 
 /** Wipes the test project's Firestore and Auth emulator data. */
 export async function resetEmulators(): Promise<void> {
-  const project = process.env.GCLOUD_PROJECT!;
+  const project = TEST_PROJECT;
   await fetch(
     `http://${process.env.FIRESTORE_EMULATOR_HOST}/emulator/v1/projects/${project}/databases/(default)/documents`,
     { method: 'DELETE' },
@@ -33,6 +34,11 @@ export async function resetEmulators(): Promise<void> {
 }
 
 let seq = 0;
+
+/** Unique E.164 test number: prefix digit + 3 digits of pid + 6-digit sequence. */
+function testPhone(prefix: 7 | 8): string {
+  return `+91${prefix}${String(process.pid % 1000).padStart(3, '0')}${String(seq).padStart(6, '0')}`;
+}
 
 export interface MechanicOpts {
   at: { lat: number; lng: number };
@@ -75,7 +81,7 @@ export async function seedMechanic(opts: MechanicOpts): Promise<string> {
     updatedAt: Timestamp.fromMillis(Date.now() - (opts.presenceAgeMs ?? 0)),
   });
   if (process.env.FIREBASE_AUTH_EMULATOR_HOST) {
-    await getAuth().createUser({ uid, phoneNumber: `+9170000${String(seq).padStart(5, '0')}` });
+    await getAuth().createUser({ uid, phoneNumber: testPhone(7) });
   }
   return uid;
 }
@@ -89,7 +95,7 @@ export async function seedBooking(
   const customerId = `c-${seq}`;
   await db().doc(`users/${customerId}`).set({ name: 'Priya' });
   if (process.env.FIREBASE_AUTH_EMULATOR_HOST) {
-    await getAuth().createUser({ uid: customerId, phoneNumber: `+9180000${String(seq).padStart(5, '0')}` });
+    await getAuth().createUser({ uid: customerId, phoneNumber: testPhone(8) });
   }
   await db()
     .doc(`bookings/${id}`)

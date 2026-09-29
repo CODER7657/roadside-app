@@ -11,7 +11,7 @@ import { FieldValue, Timestamp } from 'firebase-admin/firestore';
 import * as logger from 'firebase-functions/logger';
 import { HttpsError } from 'firebase-functions/v2/https';
 import { z } from 'zod';
-import { db } from '../lib/admin.js';
+import { db, ensureAdminApp } from '../lib/admin.js';
 import { secureCall } from '../lib/secureCall.js';
 import { advanceDispatch } from '../dispatch/advance.js';
 import { assertTransition } from '../models/status.js';
@@ -54,6 +54,7 @@ export function buildMechanicCard(m: MechanicDoc, kyc: MechanicKycDoc, phone: st
 }
 
 async function phoneOf(uid: string): Promise<string> {
+  ensureAdminApp();
   return (await getAuth().getUser(uid)).phoneNumber ?? '';
 }
 

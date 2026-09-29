@@ -1,3 +1,4 @@
+import { getApps, initializeApp } from 'firebase-admin/app';
 import type { CallableRequest } from 'firebase-functions/v2/https';
 
 export const emulatorRunning = Boolean(process.env.FIRESTORE_EMULATOR_HOST);
@@ -5,10 +6,15 @@ export const authEmulatorRunning = Boolean(process.env.FIREBASE_AUTH_EMULATOR_HO
 
 // Tests that call functions directly use their own emulator project, so the real
 // triggers running in the Functions emulator (project demo-roadside) never react to
-// their data. End-to-end trigger tests opt back in with triggerProjectApp().
-// Each test file runs in its own process, and nothing calls db() at import time.
+// their data. The default app is created here with an explicit projectId: firebase-admin
+// would otherwise take demo-roadside from FIREBASE_CONFIG. Each test file runs in its
+// own process and imports this module before any db() call.
 export const TRIGGER_PROJECT = 'demo-roadside';
-if (emulatorRunning) process.env.GCLOUD_PROJECT = 'demo-roadside-unit';
+export const TEST_PROJECT = 'demo-roadside-unit';
+if (emulatorRunning && !getApps().some((a) => a.name === '[DEFAULT]')) {
+  process.env.GCLOUD_PROJECT = TEST_PROJECT;
+  initializeApp({ projectId: TEST_PROJECT });
+}
 
 interface FakeCall {
   data?: unknown;
