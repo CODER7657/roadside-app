@@ -3,7 +3,7 @@
 
     <!-- PLAN §12.7: no backups, no cleartext. -->
     <application
-        android:label="@string/app_name"
+        android:label="${appName}"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:allowBackup="false"

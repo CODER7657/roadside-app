@@ -39,11 +39,11 @@ android {
             dimension = "env"
             applicationIdSuffix = ".dev"
             versionNameSuffix = "-dev"
-            resValue("string", "app_name", "Roadside Dev")
+            manifestPlaceholders["appName"] = "Roadside Dev"
         }
         create("prod") {
             dimension = "env"
-            resValue("string", "app_name", "Roadside")
+            manifestPlaceholders["appName"] = "Roadside"
         }
     }
 
