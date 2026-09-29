@@ -116,6 +116,78 @@ abstract class LaneLocalizations {
   /// In en, this message translates to:
   /// **'Loading'**
   String get skeleton_loading;
+
+  /// JourneyRail: what TalkBack reads, e.g. "Step 3 of 6: On the way".
+  ///
+  /// In en, this message translates to:
+  /// **'Step {step} of {total}: {stop}'**
+  String journey_rail_step(int step, int total, String stop);
+
+  /// JourneyRail: the booking ended without the job, e.g. "Ended: Cancelled".
+  ///
+  /// In en, this message translates to:
+  /// **'Ended: {stop}'**
+  String journey_rail_cancelled(String stop);
+
+  /// TrustPass: badge for approved, KYC-checked mechanics.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified'**
+  String get trust_verified;
+
+  /// TrustPass: workshop mechanic line.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified workshop'**
+  String get trust_verified_workshop;
+
+  /// TrustPass: independent mechanic line (PLAN §10.0).
+  ///
+  /// In en, this message translates to:
+  /// **'Verified independent mechanic · {years} yrs'**
+  String trust_verified_independent(int years);
+
+  /// TrustPass: completed jobs next to the rating.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} jobs'**
+  String trust_jobs(int count);
+
+  /// TrustPass: caps label above the 4-digit code.
+  ///
+  /// In en, this message translates to:
+  /// **'Start code'**
+  String get trust_start_code;
+
+  /// TrustPass: safety line under the code.
+  ///
+  /// In en, this message translates to:
+  /// **'Share this code only when the mechanic is standing with you.'**
+  String get trust_start_code_hint;
+
+  /// LaneOtpDisplay: tap hint (opens the code full screen).
+  ///
+  /// In en, this message translates to:
+  /// **'Show large'**
+  String get otp_show_big;
+
+  /// LaneOtpDisplay: closes the full-screen code.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get otp_close;
+
+  /// LaneOtpInput: field label for screen readers.
+  ///
+  /// In en, this message translates to:
+  /// **'Code'**
+  String get otp_input_label;
+
+  /// CountdownRing: what TalkBack reads.
+  ///
+  /// In en, this message translates to:
+  /// **'{seconds} seconds left'**
+  String countdown_seconds_left(int seconds);
 }
 
 class _LaneLocalizationsDelegate extends LocalizationsDelegate<LaneLocalizations> {

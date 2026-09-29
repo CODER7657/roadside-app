@@ -20,4 +20,50 @@ class LaneLocalizationsEn extends LaneLocalizations {
 
   @override
   String get skeleton_loading => 'Loading';
+
+  @override
+  String journey_rail_step(int step, int total, String stop) {
+    return 'Step $step of $total: $stop';
+  }
+
+  @override
+  String journey_rail_cancelled(String stop) {
+    return 'Ended: $stop';
+  }
+
+  @override
+  String get trust_verified => 'Verified';
+
+  @override
+  String get trust_verified_workshop => 'Verified workshop';
+
+  @override
+  String trust_verified_independent(int years) {
+    return 'Verified independent mechanic · $years yrs';
+  }
+
+  @override
+  String trust_jobs(int count) {
+    return '$count jobs';
+  }
+
+  @override
+  String get trust_start_code => 'Start code';
+
+  @override
+  String get trust_start_code_hint => 'Share this code only when the mechanic is standing with you.';
+
+  @override
+  String get otp_show_big => 'Show large';
+
+  @override
+  String get otp_close => 'Close';
+
+  @override
+  String get otp_input_label => 'Code';
+
+  @override
+  String countdown_seconds_left(int seconds) {
+    return '$seconds seconds left';
+  }
 }

@@ -20,6 +20,8 @@ const _variants = <(String, LaneMode, Locale, double)>[
   ('day · hi · 200%', LaneMode.day, Locale('hi'), 2.0),
 ];
 
+const _hiStops = ['अनुरोध', 'स्वीकार', 'रास्ते में', 'पहुँच गए', 'काम जारी', 'पूरा'];
+
 const _samples = {'en': 'Near SG Highway, Thaltej', 'hi': 'एसजी हाईवे के पास, थलतेज'};
 
 Widget _scope(Widget child) => ProviderScope(
@@ -80,6 +82,22 @@ void main() {
       ),
     ),
   );
+
+  for (final page in [0, 1]) {
+    goldenTest(
+      'signature components (page ${page + 1}) in every mode',
+      fileName: 'components_signature_${page + 1}',
+      // The pulse and the countdown run on, so pump a frame instead of settling.
+      pumpBeforeTest: (tester) => tester.pump(const Duration(milliseconds: 400)),
+      builder: () => _group(
+        (locale) => LaneSignatureSample(
+          page: page,
+          stops: locale.languageCode == 'hi' ? _hiStops : LaneSignatureSample.defaultStops,
+          name: locale.languageCode == 'hi' ? 'रमेश पटेल' : 'Ramesh Patel',
+        ),
+      ),
+    );
+  }
 
   for (final template in ['map', 'flow', 'status', 'list', 'form']) {
     goldenTest(

@@ -3,5 +3,17 @@
   "offline_strip_message": "તમે ઑફલાઇન છો. કૉલ અને SMS હજી ચાલે છે.",
   "error_state_title": "કંઈક ખોટું થયું",
   "error_state_retry": "ફરી પ્રયાસ કરો",
-  "skeleton_loading": "લોડ થઈ રહ્યું છે"
+  "skeleton_loading": "લોડ થઈ રહ્યું છે",
+  "journey_rail_step": "{total} માંથી પગલું {step}: {stop}",
+  "journey_rail_cancelled": "સમાપ્ત: {stop}",
+  "trust_verified": "ચકાસાયેલ",
+  "trust_verified_workshop": "ચકાસાયેલ વર્કશોપ",
+  "trust_verified_independent": "ચકાસાયેલ સ્વતંત્ર મિકેનિક · {years} વર્ષ",
+  "trust_jobs": "{count} કામ",
+  "trust_start_code": "શરૂ કરવાનો કોડ",
+  "trust_start_code_hint": "મિકેનિક તમારી સાથે ઊભો હોય ત્યારે જ આ કોડ જણાવો.",
+  "otp_show_big": "મોટું બતાવો",
+  "otp_close": "બંધ કરો",
+  "otp_input_label": "કોડ",
+  "countdown_seconds_left": "{seconds} સેકન્ડ બાકી"
 }
