@@ -1,6 +1,14 @@
 import type { CallableRequest } from 'firebase-functions/v2/https';
 
 export const emulatorRunning = Boolean(process.env.FIRESTORE_EMULATOR_HOST);
+export const authEmulatorRunning = Boolean(process.env.FIREBASE_AUTH_EMULATOR_HOST);
+
+// Tests that call functions directly use their own emulator project, so the real
+// triggers running in the Functions emulator (project demo-roadside) never react to
+// their data. End-to-end trigger tests opt back in with triggerProjectApp().
+// Each test file runs in its own process, and nothing calls db() at import time.
+export const TRIGGER_PROJECT = 'demo-roadside';
+if (emulatorRunning) process.env.GCLOUD_PROJECT = 'demo-roadside-unit';
 
 interface FakeCall {
   data?: unknown;
