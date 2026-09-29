@@ -6,7 +6,8 @@ const { join } = require('node:path');
 const { initializeTestEnvironment } = require('@firebase/rules-unit-testing');
 const { GeoPoint, Timestamp, serverTimestamp, doc, setDoc } = require('firebase/firestore');
 
-const PROJECT_ID = 'demo-roadside-rules';
+// The emulator's own project: Storage rules read Firestore (firestore.get) in that project only.
+const PROJECT_ID = process.env.GCLOUD_PROJECT || 'demo-roadside';
 
 const PHONES = {
   cust1: '+919800000001',
@@ -38,6 +39,7 @@ async function setup() {
   env = await initializeTestEnvironment({
     projectId: PROJECT_ID,
     firestore: { rules: readFileSync(join(__dirname, '..', '..', 'firestore.rules'), 'utf8') },
+    storage: { rules: readFileSync(join(__dirname, '..', '..', 'storage.rules'), 'utf8') },
   });
   return env;
 }
@@ -50,6 +52,12 @@ async function teardown() {
 function as(uid) {
   const ctx = uid ? env.authenticatedContext(uid, USERS[uid]) : env.unauthenticatedContext();
   return ctx.firestore();
+}
+
+/** Storage for a test user (`storageAs('cust1')`), or signed out (`storageAs(null)`). */
+function storageAs(uid) {
+  const ctx = uid ? env.authenticatedContext(uid, USERS[uid]) : env.unauthenticatedContext();
+  return ctx.storage();
 }
 
 /** Writes fixtures with rules disabled. `docs` is { 'path/to/doc': data }. */
@@ -157,6 +165,7 @@ module.exports = {
   setup,
   teardown,
   as,
+  storageAs,
   seed,
   minutesAgo,
   daysAgo,
