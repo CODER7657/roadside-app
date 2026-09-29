@@ -8,7 +8,9 @@ import { REGION } from './lib/admin.js';
 setGlobalOptions({ region: REGION, maxInstances: 10 });
 
 export { assignDefaultRole } from './auth/beforeUserCreated.js';
+export { cancelBooking } from './callables/cancelBooking.js';
 export { createBooking } from './callables/createBooking.js';
 export { respondToOffer } from './callables/respondToOffer.js';
 export { dispatchOnBookingCreated, dispatchSweep, offerTimeout } from './dispatch/functions.js';
 export { onBookingStatusChange } from './notifications/onBookingStatusChange.js';
+export { onReviewCreated } from './triggers/onReviewCreated.js';

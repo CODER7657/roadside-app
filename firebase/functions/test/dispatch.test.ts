@@ -21,6 +21,7 @@ const timers: string[] = [];
 setDispatchDeps({
   notifyOffer: async (mechanicId) => void pushes.push(mechanicId),
   scheduleTimeout: async (bookingId) => void timers.push(bookingId),
+  notifyOfferWithdrawn: async () => {},
 });
 
 describe('advanceDispatch (emulator)', { skip: !emulatorRunning && 'no Firestore emulator' }, () => {
