@@ -3,31 +3,32 @@ import 'package:flutter/material.dart';
 
 import '../theme/lane_theme.dart';
 import '../tokens/lane_colors.dart';
+import 'lane_icons.dart';
 
 /// The six signal meanings (PLAN §6.7). Apps map booking statuses to these.
 enum LaneSignal {
   /// `requested`
-  wait(Icons.hourglass_top_rounded),
+  wait(LaneIcons.hourglass),
 
   /// `accepted`, `arriving`
-  route(Icons.navigation_rounded),
+  route(LaneIcons.navigation),
 
   /// `arrived`, `completed`, paid
-  go(Icons.check_circle_rounded),
+  go(LaneIcons.checkCircle),
 
   /// `in_progress`
-  work(Icons.build_rounded),
+  work(LaneIcons.wrench),
 
   /// SOS, danger, destructive only
-  stop(Icons.warning_rounded),
+  stop(LaneIcons.warning),
 
   /// `cancelled`, `no_mechanic_found`
-  neutral(Icons.remove_circle_outline_rounded);
+  neutral(LaneIcons.minusCircle);
 
-  // Placeholder glyphs until the Phosphor set lands (#86).
   const LaneSignal(this.defaultIcon);
 
-  final IconData defaultIcon;
+  /// Phosphor duotone glyph shown with the word.
+  final LaneIcons defaultIcon;
 
   Color colorIn(LaneSignals s) => switch (this) {
     wait => s.wait,
@@ -60,7 +61,7 @@ class SignalBadge extends StatelessWidget {
   final String label;
 
   /// Defaults to [LaneSignal.defaultIcon].
-  final IconData? icon;
+  final LaneIcons? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +82,7 @@ class SignalBadge extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon ?? signal.defaultIcon, color: color, size: lane.space.s16),
+            LaneIcon(icon ?? signal.defaultIcon, color: color, size: lane.space.s16),
             SizedBox(width: lane.space.s8),
             Flexible(
               child: Text(label, style: lane.text.label.copyWith(color: lane.color.ink)),

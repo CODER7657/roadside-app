@@ -131,7 +131,7 @@ void main() {
       ),
     );
     expect(find.text('Something went wrong'), findsOneWidget);
-    expect(tester.widget<Icon>(find.byType(Icon)).color, LaneColors.day.inkMuted);
+    expect(tester.widget<LaneIcon>(find.byType(LaneIcon).first).color, LaneColors.day.inkMuted);
     await tester.tap(find.text('Try again'));
     await tester.tap(find.text('Send location by SMS'));
     expect((retries, sms), (1, 1));

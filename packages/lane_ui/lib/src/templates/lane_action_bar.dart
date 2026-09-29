@@ -1,6 +1,7 @@
 // The sticky bottom action area shared by the Flow, Status and Form templates.
 import 'package:flutter/material.dart';
 
+import '../components/lane_icons.dart';
 import '../theme/lane_theme.dart';
 
 /// Holds a template's primary (and optional secondary) action at the bottom of the screen,
@@ -57,7 +58,7 @@ class LaneBackButton extends StatelessWidget {
       onPressed: onPressed ?? () => Navigator.maybePop(context),
       tooltip: MaterialLocalizations.of(context).backButtonTooltip,
       constraints: BoxConstraints.tightFor(width: lane.touch.min, height: lane.touch.min),
-      icon: Icon(Icons.arrow_back_rounded, color: lane.color.ink),
+      icon: LaneIcon(LaneIcons.arrowLeft, color: lane.color.ink),
     );
   }
 }

@@ -52,6 +52,9 @@ Future<void> frames(WidgetTester tester, Duration total) async {
   }
 }
 
+/// The slider thumb's arrow.
+final thumb = find.byWidgetPredicate((w) => w is LaneIcon && w.icon == LaneIcons.caretDoubleRight);
+
 Color labelColor(WidgetTester tester, String text) => tester.widget<Text>(find.text(text)).style!.color!;
 
 void main() {
@@ -262,10 +265,10 @@ void main() {
         tester,
         column([LaneSlideToConfirm(label: 'Slide to accept', onConfirmed: () => confirmed++)]),
       );
-      final thumbStart = tester.getTopLeft(find.byIcon(Icons.keyboard_double_arrow_right_rounded));
+      final thumbStart = tester.getTopLeft(thumb);
       await slide(tester, 0.5);
       expect(confirmed, 0);
-      expect(tester.getTopLeft(find.byIcon(Icons.keyboard_double_arrow_right_rounded)), thumbStart);
+      expect(tester.getTopLeft(thumb), thumbStart);
     });
 
     testWidgets('is 64 dp tall and a screen-reader tap confirms', (tester) async {
@@ -279,9 +282,9 @@ void main() {
 
     testWidgets('disabled slider ignores drags', (tester) async {
       await pumpIn(tester, column([const LaneSlideToConfirm(label: 'Off', onConfirmed: null)]));
-      final thumbStart = tester.getTopLeft(find.byIcon(Icons.keyboard_double_arrow_right_rounded));
+      final thumbStart = tester.getTopLeft(thumb);
       await slide(tester, 0.95);
-      expect(tester.getTopLeft(find.byIcon(Icons.keyboard_double_arrow_right_rounded)), thumbStart);
+      expect(tester.getTopLeft(thumb), thumbStart);
     });
   });
 }

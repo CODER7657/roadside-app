@@ -1,7 +1,7 @@
 # packages/lane_ui — P1 (@CODER7657). Shared by all three apps: changes need P2 + P3 approval (CODEOWNERS)
 
 - Create with `flutter create --template=package packages/lane_ui` (this file survives). Tokens live in `lib/src/tokens/` and are mirrored in `design/tokens.json` (`test/tokens_json_test.dart` fails if they drift: change both in one PR).
-- Everything in PLAN §6: tokens as `ThemeExtension`, `context.lane`, `AmbientController` (Day/Night/Glare/Saver), fonts from `assets/fonts/` (declare in pubspec with OFL texts), Phosphor duotone icons, ThreeUI button styles (§6.12), templates (§6.13), `LaneHaptics`, component strings in `lib/l10n` (en/hi/gu).
+- Everything in PLAN §6: tokens as `ThemeExtension`, `context.lane`, `AmbientController` (Day/Night/Glare/Saver), fonts from `assets/fonts/` (declare in pubspec with OFL texts), Phosphor duotone icons (`LaneIcon(LaneIcons.x)`, SVGs in `assets/icons/` via flutter_svg; add new ones from `@phosphor-icons/core`), ThreeUI button styles (§6.12), templates (§6.13), `LaneHaptics`, component strings in `lib/l10n` (en/hi/gu).
 - Public API only via `lib/lane_ui.dart`; internals under `lib/src/`. Breaking change = `@Deprecated` for one sprint first + CHANGELOG + semver bump.
 - Every component: Widgetbook use-case (Day/Night/Glare/Saver × en/hi/gu × text 1.0/2.0) + alchemist golden + contrast test.
 - Badges: label in `ink` on a signal tint; the signal colour is only for the icon and dot (Day `route` is 4.4:1 on its tint). `test/contrast_test.dart` enforces it.

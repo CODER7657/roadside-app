@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../theme/lane_theme.dart';
 import '../tokens/lane_haptics.dart';
+import 'lane_icons.dart';
 
 /// Hold to confirm (SOS). A red ThreeUI Gradient Beam ring fills while held; completing
 /// the hold fires [onConfirmed] once with the alert haptic. Letting go early cancels with
@@ -278,8 +279,8 @@ class _LaneSlideToConfirmState extends State<LaneSlideToConfirm> with SingleTick
                           width: thumb,
                           height: thumb,
                           decoration: BoxDecoration(color: c.beacon, shape: BoxShape.circle),
-                          child: Icon(
-                            _done ? Icons.check_rounded : Icons.keyboard_double_arrow_right_rounded,
+                          child: LaneIcon(
+                            _done ? LaneIcons.check : LaneIcons.caretDoubleRight,
                             color: c.onBeacon,
                             size: lane.space.s32,
                           ),

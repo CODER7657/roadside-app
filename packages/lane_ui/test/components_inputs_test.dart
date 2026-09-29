@@ -153,8 +153,8 @@ void main() {
         final lane = LaneTheme.of(mode);
         for (final s in LaneSignal.values) {
           expect(textColor(tester, s.name), lane.color.ink, reason: '${s.name} label');
-          final icon = tester.widget<Icon>(
-            find.descendant(of: find.widgetWithText(SignalBadge, s.name), matching: find.byType(Icon)),
+          final icon = tester.widget<LaneIcon>(
+            find.descendant(of: find.widgetWithText(SignalBadge, s.name), matching: find.byType(LaneIcon)),
           );
           expect(icon.color, s.colorIn(lane.color.signal), reason: '${s.name} icon');
         }
