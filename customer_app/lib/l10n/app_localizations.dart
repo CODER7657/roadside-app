@@ -320,6 +320,198 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Contact our grievance officer from Help & FAQ.'**
   String get privacy_contact_body;
+
+  /// Temporary home: opens C9 until U1 (#12) has its menu.
+  ///
+  /// In en, this message translates to:
+  /// **'Help & FAQ'**
+  String get home_help;
+
+  /// C7: location explainer title.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow location'**
+  String get permission_location_title;
+
+  /// C7: why location (purpose limitation, PLAN §12.12).
+  ///
+  /// In en, this message translates to:
+  /// **'So the mechanic can find you. We only use your location while you book and while help is on the way.'**
+  String get permission_location_body;
+
+  /// C7: camera explainer title.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow camera'**
+  String get permission_camera_title;
+
+  /// C7: why camera.
+  ///
+  /// In en, this message translates to:
+  /// **'To add photos of the problem. Only the photos you choose are shared with your mechanic.'**
+  String get permission_camera_body;
+
+  /// C7: notifications explainer title.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow notifications'**
+  String get permission_notifications_title;
+
+  /// C7: why notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'So we can tell you when a mechanic accepts, is on the way and arrives.'**
+  String get permission_notifications_body;
+
+  /// C7: permission denied forever.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s turned off in your phone\'s settings. Open Settings, tap Permissions and allow it.'**
+  String get permission_blocked_body;
+
+  /// C7: primary button; shows the system prompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow'**
+  String get permission_allow;
+
+  /// C7: primary button when blocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Open settings'**
+  String get permission_open_settings;
+
+  /// C7: secondary button.
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get permission_not_now;
+
+  /// C9: title.
+  ///
+  /// In en, this message translates to:
+  /// **'Help'**
+  String get help_title;
+
+  /// C9: search field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Search questions'**
+  String get help_search_label;
+
+  /// C9: search hint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. price, start code'**
+  String get help_search_hint;
+
+  /// C9: search found nothing.
+  ///
+  /// In en, this message translates to:
+  /// **'No matching questions'**
+  String get help_no_results_title;
+
+  /// C9: search found nothing.
+  ///
+  /// In en, this message translates to:
+  /// **'Try other words, or call us.'**
+  String get help_no_results_body;
+
+  /// C9: call button.
+  ///
+  /// In en, this message translates to:
+  /// **'Call support'**
+  String get help_call_support;
+
+  /// C9: WhatsApp button (brand name, not translated).
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp'**
+  String get help_whatsapp;
+
+  /// C9: DPDP grievance contact heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Grievance officer'**
+  String get help_grievance_title;
+
+  /// C9: DPDP grievance contact (PLAN §12.12). Named person comes with #55.
+  ///
+  /// In en, this message translates to:
+  /// **'For complaints about your data or privacy, write to our grievance officer. We reply within 7 days.'**
+  String get help_grievance_body;
+
+  /// C9 FAQ.
+  ///
+  /// In en, this message translates to:
+  /// **'How much will it cost?'**
+  String get help_faq_price_q;
+
+  /// C9 FAQ.
+  ///
+  /// In en, this message translates to:
+  /// **'You see a price range before you book. The mechanic sets the final amount in the app after the job, and you pay them directly by UPI.'**
+  String get help_faq_price_a;
+
+  /// C9 FAQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Are the mechanics verified?'**
+  String get help_faq_verified_q;
+
+  /// C9 FAQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes. We check every mechanic\'s ID before they get jobs. Mechanics without a workshop also do a verification call.'**
+  String get help_faq_verified_a;
+
+  /// C9 FAQ.
+  ///
+  /// In en, this message translates to:
+  /// **'What is the start code?'**
+  String get help_faq_code_q;
+
+  /// C9 FAQ.
+  ///
+  /// In en, this message translates to:
+  /// **'A 4-digit code in your app. Share it only when the mechanic is standing with you; the job starts when they enter it.'**
+  String get help_faq_code_a;
+
+  /// C9 FAQ.
+  ///
+  /// In en, this message translates to:
+  /// **'How do I pay?'**
+  String get help_faq_pay_q;
+
+  /// C9 FAQ.
+  ///
+  /// In en, this message translates to:
+  /// **'By UPI, straight to the mechanic: open your UPI app from ours or scan the QR, then tap \"I have paid\". We never ask for card or bank details.'**
+  String get help_faq_pay_a;
+
+  /// C9 FAQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Can I cancel?'**
+  String get help_faq_cancel_q;
+
+  /// C9 FAQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, any time before the job starts. Tell us why in one tap so we can improve.'**
+  String get help_faq_cancel_a;
+
+  /// C9 FAQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Where does it work?'**
+  String get help_faq_area_q;
+
+  /// C9 FAQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Ahmedabad, Ankleshwar and Bharuch for now, including highway stretches nearby. More cities are coming.'**
+  String get help_faq_area_a;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

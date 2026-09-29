@@ -130,4 +130,111 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get privacy_contact_body => 'मदद और FAQ से हमारे शिकायत अधिकारी से संपर्क करें।';
+
+  @override
+  String get home_help => 'मदद और FAQ';
+
+  @override
+  String get permission_location_title => 'लोकेशन की अनुमति दें';
+
+  @override
+  String get permission_location_body =>
+      'ताकि मैकेनिक आपको ढूँढ सके। हम आपकी लोकेशन केवल बुकिंग के समय और मदद के रास्ते में होने तक उपयोग करते हैं।';
+
+  @override
+  String get permission_camera_title => 'कैमरा की अनुमति दें';
+
+  @override
+  String get permission_camera_body =>
+      'समस्या की तस्वीरें जोड़ने के लिए। केवल आपकी चुनी हुई तस्वीरें मैकेनिक के साथ साझा होती हैं।';
+
+  @override
+  String get permission_notifications_title => 'सूचनाओं की अनुमति दें';
+
+  @override
+  String get permission_notifications_body =>
+      'ताकि हम आपको बता सकें कि मैकेनिक ने कब स्वीकार किया, कब रास्ते में है और कब पहुँचा।';
+
+  @override
+  String get permission_blocked_body =>
+      'यह आपके फ़ोन की सेटिंग्स में बंद है। सेटिंग्स खोलें, अनुमतियाँ पर टैप करें और इसे चालू करें।';
+
+  @override
+  String get permission_allow => 'अनुमति दें';
+
+  @override
+  String get permission_open_settings => 'सेटिंग्स खोलें';
+
+  @override
+  String get permission_not_now => 'अभी नहीं';
+
+  @override
+  String get help_title => 'मदद';
+
+  @override
+  String get help_search_label => 'प्रश्न खोजें';
+
+  @override
+  String get help_search_hint => 'जैसे कीमत, शुरू करने का कोड';
+
+  @override
+  String get help_no_results_title => 'कोई मेल खाता प्रश्न नहीं';
+
+  @override
+  String get help_no_results_body => 'दूसरे शब्द आज़माएँ, या हमें कॉल करें।';
+
+  @override
+  String get help_call_support => 'सहायता को कॉल करें';
+
+  @override
+  String get help_whatsapp => 'WhatsApp';
+
+  @override
+  String get help_grievance_title => 'शिकायत अधिकारी';
+
+  @override
+  String get help_grievance_body =>
+      'अपने डेटा या गोपनीयता से जुड़ी शिकायतों के लिए हमारे शिकायत अधिकारी को लिखें। हम 7 दिनों में जवाब देते हैं।';
+
+  @override
+  String get help_faq_price_q => 'इसका खर्च कितना होगा?';
+
+  @override
+  String get help_faq_price_a =>
+      'बुक करने से पहले आपको कीमत की सीमा दिखती है। काम के बाद मैकेनिक ऐप में अंतिम राशि डालता है, और आप UPI से सीधे उसे भुगतान करते हैं।';
+
+  @override
+  String get help_faq_verified_q => 'क्या मैकेनिक सत्यापित हैं?';
+
+  @override
+  String get help_faq_verified_a =>
+      'हाँ। काम मिलने से पहले हम हर मैकेनिक की पहचान जाँचते हैं। बिना वर्कशॉप वाले मैकेनिक का वेरिफ़िकेशन कॉल भी होता है।';
+
+  @override
+  String get help_faq_code_q => 'शुरू करने का कोड क्या है?';
+
+  @override
+  String get help_faq_code_a =>
+      'आपके ऐप में 4 अंकों का कोड। इसे केवल तब बताएँ जब मैकेनिक आपके पास खड़ा हो; वह इसे डालता है तब काम शुरू होता है।';
+
+  @override
+  String get help_faq_pay_q => 'मैं भुगतान कैसे करूँ?';
+
+  @override
+  String get help_faq_pay_a =>
+      'UPI से, सीधे मैकेनिक को: हमारे ऐप से अपना UPI ऐप खोलें या QR स्कैन करें, फिर \"मैंने भुगतान कर दिया\" पर टैप करें। हम कभी कार्ड या बैंक विवरण नहीं माँगते।';
+
+  @override
+  String get help_faq_cancel_q => 'क्या मैं रद्द कर सकता हूँ?';
+
+  @override
+  String get help_faq_cancel_a =>
+      'हाँ, काम शुरू होने से पहले कभी भी। एक टैप में कारण बताएँ ताकि हम सुधार कर सकें।';
+
+  @override
+  String get help_faq_area_q => 'यह कहाँ काम करता है?';
+
+  @override
+  String get help_faq_area_a =>
+      'अभी अहमदाबाद, अंकलेश्वर और भरूच में, आसपास के हाईवे सहित। और शहर जल्द आ रहे हैं।';
 }
