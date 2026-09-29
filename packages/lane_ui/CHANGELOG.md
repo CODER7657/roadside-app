@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.0-dev.7
+
+Icons and tiles (#86, part 4 of 4): lane_ui v0.1 components complete.
+
+- `LaneIcons` + `LaneIcon`: the 23 Lane pictograms (Phosphor duotone, ink line + Beacon
+  fill) and 14 Phosphor glyphs, rendered from `assets/icons/` with `flutter_svg`; follow
+  `IconTheme` like `Icon`. `LaneIcons.forProblem` / `forVehicle` map PLAN §8 values.
+- Every Material placeholder icon in lane_ui (back, slide thumb, badges, empty / error /
+  offline) is now a Phosphor icon.
+- `ProblemTile`, `VehicleTile` (with `PlateChip`) and `LaneTileGrid` (equal-height rows).
+- `phosphor_flutter` is not used: last published May 2024, failing PLAN §3's 12-month rule.
+
 ## 0.1.0-dev.6
 
 Loading, empty, error and feedback (#85, part 3 of 4), PLAN §6.12, §6.5 ⑩, §7.4.

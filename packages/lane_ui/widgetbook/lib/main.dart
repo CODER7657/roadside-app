@@ -105,6 +105,17 @@ class LaneWidgetbook extends StatelessWidget {
         ],
       ),
       WidgetbookCategory(
+        name: 'Icons and tiles',
+        children: [
+          WidgetbookComponent(
+            name: 'LaneIcon, ProblemTile, VehicleTile',
+            useCases: [
+              WidgetbookUseCase(name: 'All icons and tiles', builder: (context) => const LaneIconsSample()),
+            ],
+          ),
+        ],
+      ),
+      WidgetbookCategory(
         name: 'Templates',
         children: [
           for (final (name, template) in [

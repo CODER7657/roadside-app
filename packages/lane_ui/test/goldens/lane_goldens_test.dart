@@ -69,6 +69,18 @@ void main() {
     builder: () => _group((_) => const LaneFeedbackSample()),
   );
 
+  goldenTest(
+    'icons, problem and vehicle tiles in every mode',
+    fileName: 'components_icons',
+    builder: () => _group(
+      (locale) => LaneIconsSample(
+        problemLabels: locale.languageCode == 'hi'
+            ? const {'flat_tyre': 'टायर पंचर', 'battery': 'बैटरी', 'wont_start': 'गाड़ी स्टार्ट नहीं हो रही'}
+            : const {},
+      ),
+    ),
+  );
+
   for (final template in ['map', 'flow', 'status', 'list', 'form']) {
     goldenTest(
       '$template template in every mode',

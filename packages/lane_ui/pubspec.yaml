@@ -1,6 +1,6 @@
 name: lane_ui
 description: "Lane, the design system shared by the customer app, mechanic app and admin panel (PLAN.md §6)."
-version: 0.1.0-dev.6
+version: 0.1.0-dev.7
 publish_to: none
 
 environment:
@@ -15,9 +15,9 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_riverpod: ^3.4.3
+  flutter_svg: ^2.3.0
   gap: ^3.0.1
   intl: ^0.20.3
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -30,6 +30,8 @@ flutter:
   # Licence texts shown on the apps' "Open-source licenses" screen (LaneLicenses.register).
   assets:
     - assets/licenses/
+    # Phosphor duotone icons (MIT): the 23 Lane pictograms + UI glyphs (lane_icons.dart).
+    - assets/icons/
 
   # Bundled, never fetched at runtime (PLAN §3, §6.8). Apps reference them through
   # LaneFonts, which passes `package: 'lane_ui'`. Onest, JetBrains Mono and Anek are

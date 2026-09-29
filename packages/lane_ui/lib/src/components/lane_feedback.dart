@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../l10n/lane_localizations.dart';
 import '../theme/lane_theme.dart';
 import 'lane_button.dart';
+import 'lane_icons.dart';
 
 /// Lane's own strings, falling back to English if an app forgot the delegate.
 LaneLocalizations laneStrings(BuildContext context) =>
@@ -110,7 +111,7 @@ class EmptyState extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          illustration ?? Icon(Icons.inbox_outlined, size: lane.space.s64, color: lane.color.inkSubtle),
+          illustration ?? LaneIcon(LaneIcons.tray, size: lane.space.s64, color: lane.color.inkSubtle),
           SizedBox(height: lane.space.s24),
           Text(
             title,
@@ -169,7 +170,7 @@ class ErrorState extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Icon(Icons.cloud_off_rounded, size: lane.space.s48, color: lane.color.inkMuted),
+          LaneIcon(LaneIcons.cloudSlash, size: lane.space.s48, color: lane.color.inkMuted),
           SizedBox(height: lane.space.s16),
           Text(
             title ?? s.error_state_title,
@@ -335,7 +336,7 @@ class OfflineStrip extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: lane.space.s16, vertical: lane.space.s8),
                     child: Row(
                       children: [
-                        Icon(Icons.wifi_off_rounded, color: c.surface, size: lane.space.s20),
+                        LaneIcon(LaneIcons.wifiSlash, color: c.surface, size: lane.space.s20),
                         SizedBox(width: lane.space.s12),
                         Expanded(
                           child: Text(

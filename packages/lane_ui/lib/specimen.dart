@@ -28,7 +28,6 @@ class LaneSpecimen extends ConsumerWidget {
     final ambient = ref.watch(ambientControllerProvider);
     final ctrl = ref.read(ambientControllerProvider.notifier);
     final (hero, address, caps) = _samples[lane.script]!;
-    final s = lane.color.signal;
 
     Widget chips<T>(List<(String, T)> options, T selected, ValueChanged<T> onSelect) => Wrap(
       spacing: lane.space.s8,
@@ -49,23 +48,6 @@ class LaneSpecimen extends ConsumerWidget {
             style: lane.text.caption.copyWith(color: lane.color.inkSubtle),
           ),
           Text(text, style: style),
-        ],
-      ),
-    );
-
-    Widget badge(String label, Color color, Color tint) => Container(
-      padding: EdgeInsets.symmetric(horizontal: lane.space.s12, vertical: lane.space.s4),
-      decoration: BoxDecoration(
-        color: tint,
-        borderRadius: lane.radius.pill,
-        border: lane.mode == LaneMode.glare ? Border.all(color: color, width: lane.stroke.hairline) : null,
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.circle, size: lane.space.s8, color: color),
-          Gap(lane.space.s8),
-          Text(label, style: lane.text.label),
         ],
       ),
     );
@@ -126,12 +108,12 @@ class LaneSpecimen extends ConsumerWidget {
               spacing: lane.space.s8,
               runSpacing: lane.space.s8,
               children: [
-                badge('Requested', s.wait, s.waitTint),
-                badge('On the way', s.route, s.routeTint),
-                badge('Arrived', s.go, s.goTint),
-                badge('Working', s.work, s.workTint),
-                badge('SOS', s.stop, s.stopTint),
-                badge('Cancelled', s.neutral, s.neutralTint),
+                const SignalBadge(signal: LaneSignal.wait, label: 'Requested'),
+                const SignalBadge(signal: LaneSignal.route, label: 'On the way'),
+                const SignalBadge(signal: LaneSignal.go, label: 'Arrived'),
+                const SignalBadge(signal: LaneSignal.work, label: 'Working'),
+                const SignalBadge(signal: LaneSignal.stop, label: 'SOS'),
+                const SignalBadge(signal: LaneSignal.neutral, label: 'Cancelled'),
               ],
             ),
             Gap(lane.space.s24),
@@ -176,11 +158,11 @@ class LaneTemplateSample extends StatelessWidget {
     return switch (template) {
       'map' => LaneMapScaffold(
         map: CustomPaint(painter: _GridMap(lane), child: const SizedBox.expand()),
-        overlay: Icon(Icons.location_on, size: lane.space.s48, color: lane.color.ink),
+        overlay: LaneIcon(LaneIcons.location, size: lane.space.s48),
         actions: [
           IconButton.filled(
             onPressed: () => Navigator.maybePop(context),
-            icon: const Icon(Icons.close),
+            icon: const LaneIcon(LaneIcons.close),
             style: IconButton.styleFrom(backgroundColor: lane.color.surface, foregroundColor: lane.color.ink),
           ),
         ],
@@ -203,7 +185,7 @@ class LaneTemplateSample extends StatelessWidget {
       ),
       'status' => LaneStatusScaffold(
         top: const Align(alignment: Alignment.centerLeft, child: LaneBackButton()),
-        visual: Icon(Icons.radar, size: lane.space.s64 * 1.5, color: lane.color.signal.wait),
+        visual: LaneIcon(LaneIcons.hourglass, size: lane.space.s64 * 1.5, color: lane.color.signal.wait),
         title: "We're finding the nearest mechanic",
         message: sample,
         primary: primary('Cancel request'),
@@ -336,7 +318,11 @@ class LaneButtonsSample extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: LaneButton.secondary(label: 'Call', onPressed: noop, icon: const Icon(Icons.call)),
+                child: LaneButton.secondary(
+                  label: 'Call',
+                  onPressed: noop,
+                  icon: const LaneIcon(LaneIcons.call),
+                ),
               ),
               SizedBox(width: lane.space.s8),
               Expanded(
@@ -413,10 +399,10 @@ class LaneInputsSample extends StatelessWidget {
           ),
           LaneSwitch(label: 'Arrival chime', value: false, onChanged: (_) {}),
           LaneListTile(
-            leading: const Icon(Icons.directions_car_rounded),
+            leading: const LaneIcon(LaneIcons.car),
             title: sample,
             subtitle: 'Petrol · default',
-            trailing: const Icon(Icons.chevron_right_rounded),
+            trailing: const LaneIcon(LaneIcons.caretRight),
             onTap: () {},
           ),
           gap(),
@@ -477,6 +463,61 @@ class LaneFeedbackSample extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Every Lane icon, the problem grid and vehicle tiles, for goldens and Widgetbook (#86).
+class LaneIconsSample extends StatelessWidget {
+  const LaneIconsSample({super.key, this.problemLabels = const {}});
+
+  /// Localised problem names keyed by PLAN §8 `problemType`; English names otherwise.
+  final Map<String, String> problemLabels;
+
+  static const problems = ['flat_tyre', 'battery', 'wont_start', 'overheating', 'accident', 'fuel', 'other'];
+
+  @override
+  Widget build(BuildContext context) {
+    final lane = context.lane;
+    return Scaffold(
+      body: ListView(
+        padding: EdgeInsets.all(lane.space.s16),
+        children: [
+          Wrap(
+            spacing: lane.space.s12,
+            runSpacing: lane.space.s12,
+            children: [for (final i in LaneIcons.values) LaneIcon(i, size: lane.space.s32)],
+          ),
+          SizedBox(height: lane.space.s24),
+          LaneTileGrid(
+            children: [
+              for (final p in problems)
+                ProblemTile(
+                  icon: LaneIcons.forProblem(p),
+                  label: problemLabels[p] ?? p.replaceAll('_', ' '),
+                  selected: p == 'battery',
+                  onTap: () {},
+                ),
+            ],
+          ),
+          SizedBox(height: lane.space.s24),
+          VehicleTile(
+            icon: LaneIcons.forVehicle('car'),
+            name: 'Maruti Swift',
+            regNo: 'GJ01AB1234',
+            detail: 'Petrol · default',
+            selected: true,
+            onTap: () {},
+          ),
+          SizedBox(height: lane.space.s12),
+          VehicleTile(
+            icon: LaneIcons.forVehicle('scooter'),
+            name: 'Honda Activa',
+            regNo: 'GJ05CD5678',
+            onTap: () {},
           ),
         ],
       ),
