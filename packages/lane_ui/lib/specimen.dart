@@ -287,13 +287,30 @@ class LanePreview extends StatelessWidget {
             size: size,
             child: DefaultTextStyle(
               style: theme.extension<LaneTheme>()!.text.body,
-              child: Navigator(onGenerateRoute: (_) => MaterialPageRoute<void>(builder: (_) => child)),
+              // The route reads the child through [_PreviewScreen], so a rebuild with a new
+              // child (Widgetbook knobs, a test re-pumping) shows it instead of the first one.
+              child: _PreviewScreen(
+                screen: child,
+                child: Navigator(onGenerateRoute: (_) => MaterialPageRoute<void>(builder: _PreviewScreen.of)),
+              ),
             ),
           ),
         ),
       ),
     );
   }
+}
+
+class _PreviewScreen extends InheritedWidget {
+  const _PreviewScreen({required this.screen, required super.child});
+
+  final Widget screen;
+
+  static Widget of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<_PreviewScreen>()!.screen;
+
+  @override
+  bool updateShouldNotify(_PreviewScreen old) => screen != old.screen;
 }
 
 /// Every button and gesture component in its states, for goldens and Widgetbook (#7).
@@ -482,9 +499,10 @@ class LaneIconsSample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final lane = context.lane;
+    final inset = lane.space.s16;
     return Scaffold(
       body: ListView(
-        padding: EdgeInsets.all(lane.space.s16),
+        padding: EdgeInsets.all(inset),
         children: [
           Wrap(
             spacing: lane.space.s12,
@@ -519,6 +537,82 @@ class LaneIconsSample extends StatelessWidget {
             regNo: 'GJ05CD5678',
             onTap: () {},
           ),
+        ],
+      ),
+    );
+  }
+}
+
+/// The signature components (#15): JourneyRail, TrustPass (both variants), the start code,
+/// code entry, a rolling number, the countdown ring and the breathing pulse.
+class LaneSignatureSample extends StatelessWidget {
+  const LaneSignatureSample({
+    super.key,
+    this.page = 0,
+    this.stops = defaultStops,
+    this.name = 'Ramesh Patel',
+  });
+
+  /// PLAN §9 order: requested · accepted · on the way · arrived · working · done.
+  static const defaultStops = ['Requested', 'Accepted', 'On the way', 'Arrived', 'Working', 'Done'];
+  static const signals = [
+    LaneSignal.wait,
+    LaneSignal.route,
+    LaneSignal.route,
+    LaneSignal.go,
+    LaneSignal.work,
+    LaneSignal.go,
+  ];
+
+  /// 0: the rails and the workshop pass. 1: the independent pass and the number parts.
+  /// (Two pages so each fits a 360 × 800 golden.)
+  final int page;
+
+  final List<String> stops;
+  final String name;
+
+  @override
+  Widget build(BuildContext context) {
+    final lane = context.lane;
+    final journey = [
+      for (final (i, label) in stops.indexed)
+        JourneyStop(label: label, signal: signals[i], time: i <= 2 ? '10:4${i * 2}' : null),
+    ];
+    final gap = SizedBox(height: lane.space.s24);
+    final inset = lane.space.s16;
+    return Scaffold(
+      body: ListView(
+        padding: EdgeInsets.all(inset),
+        children: [
+          if (page == 0) ...[
+            JourneyRail(stops: journey, current: 2),
+            gap,
+            JourneyRail(stops: journey, current: 2, direction: Axis.vertical),
+            gap,
+            TrustPass.workshop(
+              name: name,
+              shopName: 'Shree Auto Garage',
+              rating: 4.8,
+              jobs: 126,
+              vehicleTypes: const ['bike', 'car'],
+              startCode: '4827',
+            ),
+          ] else ...[
+            TrustPass.independent(name: name, years: 6, travelRegNo: 'GJ01AB1234', rating: 4.6, jobs: 38),
+            gap,
+            const LaneOtpInput(),
+            gap,
+            const Center(child: LaneRollingNumber(value: '₹1,250')),
+            gap,
+            CountdownRing(
+              elapsed: const Duration(seconds: 10),
+              child: LaneButton.primary(label: 'Accept', onPressed: () {}),
+            ),
+            gap,
+            Center(
+              child: BreathingPulse(child: LaneIcon(LaneIcons.mechanic, size: lane.space.s48)),
+            ),
+          ],
         ],
       ),
     );

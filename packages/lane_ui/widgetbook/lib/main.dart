@@ -116,6 +116,29 @@ class LaneWidgetbook extends StatelessWidget {
         ],
       ),
       WidgetbookCategory(
+        name: 'Signature',
+        children: [
+          WidgetbookComponent(
+            name: 'JourneyRail, TrustPass',
+            useCases: [
+              WidgetbookUseCase(
+                name: 'Rails and workshop pass',
+                builder: (context) => const LaneSignatureSample(),
+              ),
+            ],
+          ),
+          WidgetbookComponent(
+            name: 'TrustPass (independent), LaneOtpInput, LaneRollingNumber, CountdownRing, BreathingPulse',
+            useCases: [
+              WidgetbookUseCase(
+                name: 'Independent pass and numbers',
+                builder: (context) => const LaneSignatureSample(page: 1),
+              ),
+            ],
+          ),
+        ],
+      ),
+      WidgetbookCategory(
         name: 'Templates',
         children: [
           for (final (name, template) in [

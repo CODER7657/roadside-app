@@ -20,4 +20,50 @@ class LaneLocalizationsHi extends LaneLocalizations {
 
   @override
   String get skeleton_loading => 'लोड हो रहा है';
+
+  @override
+  String journey_rail_step(int step, int total, String stop) {
+    return '$total में से चरण $step: $stop';
+  }
+
+  @override
+  String journey_rail_cancelled(String stop) {
+    return 'समाप्त: $stop';
+  }
+
+  @override
+  String get trust_verified => 'सत्यापित';
+
+  @override
+  String get trust_verified_workshop => 'सत्यापित वर्कशॉप';
+
+  @override
+  String trust_verified_independent(int years) {
+    return 'सत्यापित स्वतंत्र मैकेनिक · $years वर्ष';
+  }
+
+  @override
+  String trust_jobs(int count) {
+    return '$count काम';
+  }
+
+  @override
+  String get trust_start_code => 'शुरू करने का कोड';
+
+  @override
+  String get trust_start_code_hint => 'यह कोड केवल तब बताएँ जब मैकेनिक आपके पास खड़ा हो।';
+
+  @override
+  String get otp_show_big => 'बड़ा दिखाएँ';
+
+  @override
+  String get otp_close => 'बंद करें';
+
+  @override
+  String get otp_input_label => 'कोड';
+
+  @override
+  String countdown_seconds_left(int seconds) {
+    return '$seconds सेकंड बाकी';
+  }
 }

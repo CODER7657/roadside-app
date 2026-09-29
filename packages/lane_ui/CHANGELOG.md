@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.1.0-dev.8
+
+Signature components (#15), PLAN §6.5 ①⑥⑦⑧.
+
+- `JourneyRail` + `JourneyStop`: the booking status as a lane line, horizontal (tracking)
+  or vertical with labels and times (detail). Solid up to the current stop, dashed after;
+  advancing flows over `motion.calm` with `LaneHaptics.statusAdvance`. `ended` greys it.
+- `TrustPass.workshop` / `TrustPass.independent` (PLAN §10.0): photo, name, verified badge,
+  rating and jobs, vehicle types, the travel-vehicle `PlateChip` for independents, and the
+  start code with its safety line. Unverified mechanics never get the word "Verified".
+- `LaneOtpDisplay`: 56 sp JetBrains Mono, digits 16 dp apart, read digit by digit; tap for
+  full screen at maximum brightness (`LaneOtpDisplay.brightness`, a `LaneBrightness`
+  wrapping `screen_brightness`, swappable in tests).
+- `LaneOtpInput`: code boxes (`length`, default 4) over one hidden field, so paste and SMS
+  `oneTimeCode` auto-fill work; digits only; `errorText` is a live region.
+- `LaneRollingNumber` (digits roll on change), `BreathingPulse` (10 s cycle, still with
+  reduced motion) and `CountdownRing` (30 s default, starts part-drained from `elapsed`,
+  reads "{n} seconds left", `onExpired` once).
+- Lane strings for all of the above in en / hi / gu; new `LaneIcons.star` glyph.
+- Fix: `LanePreview` now shows a new `child` when it's rebuilt (it kept the first one, so
+  Widgetbook knobs and re-pumped tests didn't update).
+
 ## 0.1.0-dev.7
 
 Icons and tiles (#86, part 4 of 4): lane_ui v0.1 components complete.

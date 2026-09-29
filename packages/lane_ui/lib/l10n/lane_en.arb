@@ -1,11 +1,98 @@
 {
   "@@locale": "en",
   "offline_strip_message": "You're offline. Calls and SMS still work.",
-  "@offline_strip_message": { "description": "OfflineStrip: says the connection is gone and what still works (PLAN §6.5 ⑩). Calm, not alarming." },
+  "@offline_strip_message": {
+    "description": "OfflineStrip: says the connection is gone and what still works (PLAN §6.5 ⑩). Calm, not alarming."
+  },
   "error_state_title": "Something went wrong",
-  "@error_state_title": { "description": "ErrorState: default title when the screen gives none." },
+  "@error_state_title": {
+    "description": "ErrorState: default title when the screen gives none."
+  },
   "error_state_retry": "Try again",
-  "@error_state_retry": { "description": "ErrorState: default retry button." },
+  "@error_state_retry": {
+    "description": "ErrorState: default retry button."
+  },
   "skeleton_loading": "Loading",
-  "@skeleton_loading": { "description": "Screen-reader label for a group of skeleton placeholders." }
+  "@skeleton_loading": {
+    "description": "Screen-reader label for a group of skeleton placeholders."
+  },
+  "journey_rail_step": "Step {step} of {total}: {stop}",
+  "@journey_rail_step": {
+    "description": "JourneyRail: what TalkBack reads, e.g. \"Step 3 of 6: On the way\".",
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "stop": {
+        "type": "String"
+      }
+    }
+  },
+  "journey_rail_cancelled": "Ended: {stop}",
+  "@journey_rail_cancelled": {
+    "description": "JourneyRail: the booking ended without the job, e.g. \"Ended: Cancelled\".",
+    "placeholders": {
+      "stop": {
+        "type": "String"
+      }
+    }
+  },
+  "trust_verified": "Verified",
+  "@trust_verified": {
+    "description": "TrustPass: badge for approved, KYC-checked mechanics."
+  },
+  "trust_verified_workshop": "Verified workshop",
+  "@trust_verified_workshop": {
+    "description": "TrustPass: workshop mechanic line."
+  },
+  "trust_verified_independent": "Verified independent mechanic · {years} yrs",
+  "@trust_verified_independent": {
+    "description": "TrustPass: independent mechanic line (PLAN §10.0).",
+    "placeholders": {
+      "years": {
+        "type": "int"
+      }
+    }
+  },
+  "trust_jobs": "{count} jobs",
+  "@trust_jobs": {
+    "description": "TrustPass: completed jobs next to the rating.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "trust_start_code": "Start code",
+  "@trust_start_code": {
+    "description": "TrustPass: caps label above the 4-digit code."
+  },
+  "trust_start_code_hint": "Share this code only when the mechanic is standing with you.",
+  "@trust_start_code_hint": {
+    "description": "TrustPass: safety line under the code."
+  },
+  "otp_show_big": "Show large",
+  "@otp_show_big": {
+    "description": "LaneOtpDisplay: tap hint (opens the code full screen)."
+  },
+  "otp_close": "Close",
+  "@otp_close": {
+    "description": "LaneOtpDisplay: closes the full-screen code."
+  },
+  "otp_input_label": "Code",
+  "@otp_input_label": {
+    "description": "LaneOtpInput: field label for screen readers."
+  },
+  "countdown_seconds_left": "{seconds} seconds left",
+  "@countdown_seconds_left": {
+    "description": "CountdownRing: what TalkBack reads.",
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  }
 }

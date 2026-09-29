@@ -100,7 +100,8 @@ enum LaneIcons {
   warning('glyph_warning'),
   wifiSlash('glyph_wifi_slash'),
   wrench('glyph_wrench'),
-  close('glyph_x');
+  close('glyph_x'),
+  star('glyph_star');
 
   const LaneIcons(this.file, {this.tinted = false});
 

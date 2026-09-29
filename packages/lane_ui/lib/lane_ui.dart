@@ -24,6 +24,7 @@ export 'src/ambient/battery.dart' show LaneBatterySource, LaneBatteryStatus, Plu
 export 'src/ambient/solar.dart' show LanePosition, PolarDay, SolarDay, isNightAt;
 export 'src/app/lane_app.dart' show LaneApp;
 export 'src/app/lane_licenses.dart' show LaneLicenses;
+export 'src/components/journey_rail.dart' show JourneyRail, JourneyStop;
 export 'src/components/lane_badges.dart' show LaneSignal, PlateChip, SignalBadge;
 export 'src/components/lane_button.dart' show LaneButton;
 export 'src/components/lane_feedback.dart'
@@ -31,6 +32,9 @@ export 'src/components/lane_feedback.dart'
 export 'src/components/lane_gestures.dart' show LaneHoldButton, LaneSlideToConfirm;
 export 'src/components/lane_icons.dart' show LaneIcon, LaneIcons, LaneTileGrid, ProblemTile, VehicleTile;
 export 'src/components/lane_inputs.dart' show LaneChip, LaneListTile, LaneSwitch, LaneTextField;
+export 'src/components/lane_numbers.dart'
+    show BreathingPulse, CountdownRing, LaneBrightness, LaneOtpDisplay, LaneOtpInput, LaneRollingNumber;
+export 'src/components/trust_pass.dart' show TrustPass;
 export 'src/templates/lane_action_bar.dart' show LaneActionBar, LaneBackButton;
 export 'src/templates/lane_map_scaffold.dart' show LaneDock, LaneDockSnap, LaneMapScaffold;
 export 'src/templates/lane_page_scaffolds.dart'

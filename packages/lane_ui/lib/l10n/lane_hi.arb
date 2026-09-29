@@ -3,5 +3,17 @@
   "offline_strip_message": "आप ऑफ़लाइन हैं। कॉल और SMS अब भी काम करते हैं।",
   "error_state_title": "कुछ गड़बड़ हो गई",
   "error_state_retry": "फिर से कोशिश करें",
-  "skeleton_loading": "लोड हो रहा है"
+  "skeleton_loading": "लोड हो रहा है",
+  "journey_rail_step": "{total} में से चरण {step}: {stop}",
+  "journey_rail_cancelled": "समाप्त: {stop}",
+  "trust_verified": "सत्यापित",
+  "trust_verified_workshop": "सत्यापित वर्कशॉप",
+  "trust_verified_independent": "सत्यापित स्वतंत्र मैकेनिक · {years} वर्ष",
+  "trust_jobs": "{count} काम",
+  "trust_start_code": "शुरू करने का कोड",
+  "trust_start_code_hint": "यह कोड केवल तब बताएँ जब मैकेनिक आपके पास खड़ा हो।",
+  "otp_show_big": "बड़ा दिखाएँ",
+  "otp_close": "बंद करें",
+  "otp_input_label": "कोड",
+  "countdown_seconds_left": "{seconds} सेकंड बाकी"
 }
