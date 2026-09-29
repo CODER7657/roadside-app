@@ -1,0 +1,41 @@
+{
+  "ahmedabad": {
+    "name": {
+      "en": "Ahmedabad",
+      "hi": "अहमदाबाद",
+      "gu": "અમદાવાદ"
+    },
+    "center": [
+      23.0225,
+      72.5714
+    ],
+    "radiusKm": 25,
+    "active": true
+  },
+  "ankleshwar": {
+    "name": {
+      "en": "Ankleshwar",
+      "hi": "अंकलेश्वर",
+      "gu": "અંકલેશ્વર"
+    },
+    "center": [
+      21.6264,
+      73.0152
+    ],
+    "radiusKm": 12,
+    "active": true
+  },
+  "bharuch": {
+    "name": {
+      "en": "Bharuch",
+      "hi": "भरूच",
+      "gu": "ભરૂચ"
+    },
+    "center": [
+      21.7051,
+      72.9959
+    ],
+    "radiusKm": 12,
+    "active": true
+  }
+}

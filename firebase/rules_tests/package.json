@@ -1,0 +1,23 @@
+{
+  "name": "roadside-rules-tests",
+  "private": true,
+  "description": "Firestore + Storage security rules tests on the emulator (PLAN.md §12.4)",
+  "engines": {
+    "node": "22"
+  },
+  "scripts": {
+    "test": "jest --runInBand"
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^5.0.2",
+    "firebase": "^12.19.0",
+    "jest": "^30.5.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testTimeout": 30000,
+    "testMatch": [
+      "**/test/**/*.test.js"
+    ]
+  }
+}
