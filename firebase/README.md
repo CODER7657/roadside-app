@@ -5,10 +5,10 @@ Owner: P3 (Ayush) for rules, indexes, seed and config; P2 (Hem) for `functions/`
 | File | What |
 |---|---|
 | `firestore.rules` | Deny-by-default Firestore rules (PLAN §8, §12.4) |
-| `storage.rules` | Deny-all placeholder until #47 |
+| `storage.rules` | Storage rules (PLAN §12.5): five paths, images < 5 MB, KYC write-once, no client deletes |
 | `firestore.indexes.json` | Composite indexes for history, admin lists and offers |
 | `firebase.json` | Rules, indexes, Functions (`functions/`) and emulator ports |
-| `rules_tests/` | Jest + `@firebase/rules-unit-testing`, allow + deny per collection and role |
+| `rules_tests/` | Jest + `@firebase/rules-unit-testing`, allow + deny per collection / path and role |
 | `seed/` | `serviceAreas` (3 cities), `appConfig/public`, `prices/*` |
 
 ## Run the rules tests
@@ -35,6 +35,20 @@ npm --prefix seed run seed -- --project roadside-dev --support-phone +91XXXXXXXX
 Existing documents are kept; `--overwrite` replaces them. `roadside-prod` also needs `--allow-prod`.
 Prices in `seed/data/prices.json` are placeholders until the client confirms them (admins edit
 them in A4 afterwards).
+
+## Storage paths
+
+| Path | Upload | Read |
+|---|---|---|
+| `users/{uid}/bookings/{draftId}/*` | the customer (U5, before `createBooking`) | owner, admin |
+| `mechanics/{uid}/shop/*` | the mechanic (profile, shop, toolkit photos) | owner, admin |
+| `mechanics/{uid}/kyc/*` | the mechanic, once per file | owner, admin (A2 uses signed URLs) |
+| `bookings/{id}/work/*` | assigned mechanic, `arrived` / `in_progress`, once per file | participants, admin |
+| `bookings/{id}/chat/*` | participants while active, once per file | participants, admin |
+
+Images only (jpeg / png / webp), under 5 MB; compress and strip EXIF before upload. Use unique file
+names (e.g. a timestamp) since most paths are write-once. `work/` and `chat/` read the booking from
+Firestore, so the first deploy asks to let Storage read Firestore: accept it.
 
 ## What clients may write
 
