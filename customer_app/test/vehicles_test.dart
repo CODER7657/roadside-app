@@ -1,8 +1,12 @@
 // #13: U2 Add vehicle, U3 My vehicles, and the vehicle repositories.
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:customer_app/app/app.dart';
 import 'package:customer_app/app/flavor.dart';
+import 'package:customer_app/app/router.dart';
 import 'package:customer_app/features/first_run/application/first_run.dart';
+import 'package:customer_app/features/home/presentation/home_screen.dart';
 import 'package:customer_app/features/vehicles/application/vehicles.dart';
 import 'package:customer_app/features/vehicles/data/vehicle_repository.dart';
 import 'package:customer_app/features/vehicles/presentation/add_vehicle_screen.dart';
@@ -184,7 +188,12 @@ void main() {
       await tester.pumpWidget(await app(language: language));
       await tester.pump(const Duration(seconds: 1));
       await tester.pumpAndSettle();
-      await tester.tap(find.byType(LaneButton).first); // "My vehicles"
+      // Home reaches U3 through its vehicle tile, or through U4 when there's none yet.
+      unawaited(
+        ProviderScope.containerOf(tester.element(find.byType(HomeScreen)))
+            .read(routerProvider)
+            .push(AppRoutes.vehicles),
+      );
       await tester.pumpAndSettle();
       expect(find.byType(MyVehiclesScreen), findsOneWidget);
     }

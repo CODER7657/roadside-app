@@ -1,6 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/booking/presentation/location_pending_screen.dart';
+import '../features/booking/presentation/photos_screen.dart';
+import '../features/booking/presentation/problem_screen.dart';
 import '../features/first_run/application/first_run.dart';
 import '../features/first_run/presentation/consent_screen.dart';
 import '../features/first_run/presentation/language_screen.dart';
@@ -22,6 +25,11 @@ abstract final class AppRoutes {
   static const help = '/help';
   static const vehicles = '/vehicles';
   static const addVehicle = '/vehicles/add';
+
+  // Booking flow U4–U7 (#106–#108).
+  static const bookProblem = '/book/problem';
+  static const bookPhotos = '/book/photos';
+  static const bookLocation = '/book/location';
 }
 
 /// Keeps first run in order: home (and later everything else) waits until language,
@@ -52,6 +60,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: AppRoutes.help, builder: (context, state) => const HelpScreen()),
       GoRoute(path: AppRoutes.vehicles, builder: (context, state) => const MyVehiclesScreen()),
       GoRoute(path: AppRoutes.addVehicle, builder: (context, state) => const AddVehicleScreen()),
+      GoRoute(path: AppRoutes.bookProblem, builder: (context, state) => const ProblemScreen()),
+      GoRoute(path: AppRoutes.bookPhotos, builder: (context, state) => const PhotosScreen()),
+      // U6 Confirm location replaces this in #107.
+      GoRoute(path: AppRoutes.bookLocation, builder: (context, state) => const LocationPendingScreen()),
       GoRoute(
         path: '/permission/:kind',
         builder: (context, state) =>

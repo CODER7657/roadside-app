@@ -419,5 +419,169 @@
   "error_reg_no_invalid": "Check the number, e.g. GJ 01 AB 1234 or 22 BH 1234 AA",
   "@error_reg_no_invalid": {
     "description": "Validation: registration number (Indian or BH series)."
+  },
+  "home_get_help": "Get help",
+  "@home_get_help": {
+    "description": "Home: the Beacon button that starts a booking (U4)."
+  },
+  "booking_step": "Step {step} of {total}",
+  "@booking_step": {
+    "description": "Booking flow U4–U7: step label above the title.",
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "booking_next": "Next",
+  "@booking_next": {
+    "description": "Booking flow: primary button to the next step."
+  },
+  "problem_title": "What's wrong?",
+  "@problem_title": {
+    "description": "U4 Problem picker: title."
+  },
+  "problem_vehicle_label": "Vehicle",
+  "@problem_vehicle_label": {
+    "description": "U4: label above the vehicle being fixed (tap to change)."
+  },
+  "problem_no_vehicle_title": "Add your vehicle first",
+  "@problem_no_vehicle_title": {
+    "description": "U4: shown when the customer has no vehicle yet."
+  },
+  "problem_no_vehicle_body": "The mechanic needs to know what they are fixing.",
+  "@problem_no_vehicle_body": {
+    "description": "U4: under problem_no_vehicle_title."
+  },
+  "problem_add_vehicle": "Add vehicle",
+  "@problem_add_vehicle": {
+    "description": "U4: button to U2 when there is no vehicle."
+  },
+  "problem_type_flat_tyre": "Flat tyre",
+  "@problem_type_flat_tyre": {
+    "description": "Problem type flat_tyre."
+  },
+  "problem_type_battery": "Battery",
+  "@problem_type_battery": {
+    "description": "Problem type battery."
+  },
+  "problem_type_wont_start": "Won't start",
+  "@problem_type_wont_start": {
+    "description": "Problem type wont_start."
+  },
+  "problem_type_overheating": "Overheating",
+  "@problem_type_overheating": {
+    "description": "Problem type overheating."
+  },
+  "problem_type_accident": "Accident",
+  "@problem_type_accident": {
+    "description": "Problem type accident."
+  },
+  "problem_type_fuel": "Out of fuel",
+  "@problem_type_fuel": {
+    "description": "Problem type fuel."
+  },
+  "problem_type_other": "Something else",
+  "@problem_type_other": {
+    "description": "Problem type other."
+  },
+  "photos_title": "Photos and details",
+  "@photos_title": {
+    "description": "U5: title (the step is optional)."
+  },
+  "photos_body": "Optional. Photos help the mechanic bring the right parts. We remove the location from every photo.",
+  "@photos_body": {
+    "description": "U5: explainer under the title."
+  },
+  "photos_take": "Take photo",
+  "@photos_take": {
+    "description": "U5: opens the camera."
+  },
+  "photos_gallery": "Choose from gallery",
+  "@photos_gallery": {
+    "description": "U5: opens the photo picker."
+  },
+  "photos_count": "{count} of {max} photos",
+  "@photos_count": {
+    "description": "U5: how many photos are added.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "photos_remove": "Remove photo {n}",
+  "@photos_remove": {
+    "description": "U5: remove button on a thumbnail (screen reader).",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "photos_uploading": "Uploading photo {n}",
+  "@photos_uploading": {
+    "description": "U5: thumbnail while uploading (screen reader).",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "photos_retry": "Photo {n} did not upload. Try again",
+  "@photos_retry": {
+    "description": "U5: failed thumbnail, tap to retry.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "photos_error_limit": "You can add up to 4 photos.",
+  "@photos_error_limit": {
+    "description": "U5: toast at the photo limit."
+  },
+  "photos_error_too_large": "That photo is too large. Try another one.",
+  "@photos_error_too_large": {
+    "description": "U5: toast when a photo cannot be compressed under 500 KB."
+  },
+  "photos_error_failed": "Couldn't add that photo. Try again.",
+  "@photos_error_failed": {
+    "description": "U5: toast when picking or compressing fails."
+  },
+  "photos_error_upload": "Some photos did not upload. Retry them or remove them to continue.",
+  "@photos_error_upload": {
+    "description": "U5: shown when Next is blocked by a failed upload."
+  },
+  "description_label": "What happened?",
+  "@description_label": {
+    "description": "U5: description field label."
+  },
+  "description_hint": "For example: rear tyre went flat near the toll plaza",
+  "@description_hint": {
+    "description": "U5: description hint."
+  },
+  "photos_skip": "Skip",
+  "@photos_skip": {
+    "description": "U5: continue without photos or details."
+  },
+  "photos_item": "Photo {n}",
+  "@photos_item": {
+    "description": "U5: an uploaded photo in the list.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "booking_back_home": "Back to home",
+  "@booking_back_home": {
+    "description": "Returns to Home from a booking step that is not ready yet."
   }
 }
