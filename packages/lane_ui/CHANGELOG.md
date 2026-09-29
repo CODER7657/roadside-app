@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-dev.2
+
+Screen templates (#8), PLAN §6.13.
+
+- `LaneMapScaffold` + `LaneDock`: full-screen map, floating buttons top right, dock snapping
+  between peek / half / full, primary pinned full width at 64 dp, 16 dp above the safe area.
+  The map overlay (pin) stays centred in the visible map area as the dock moves;
+  `onDockExtentChanged` gives the camera padding.
+- `LaneFlowScaffold` (step label + `LaneStepLane` progress, sticky primary above the
+  keyboard), `LaneStatusScaffold` (optional ThreeUI background under a ≥ 60% scrim),
+  `LaneListScaffold` (required empty state, filters, pull to refresh), `LaneFormScaffold`.
+- `LaneActionBar` and `LaneBackButton` (localised label) shared by the templates.
+- `LaneTemplateSample` in `specimen.dart`; the example app opens every template.
+
 ## 0.1.0-dev.1
 
 Lane foundations (#4).

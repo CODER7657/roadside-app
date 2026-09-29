@@ -36,4 +36,26 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('રસ્તા પર મદદ, મિનિટોમાં'), findsWidgets);
   });
+
+  testWidgets('opens every template sample and comes back', (tester) async {
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          laneBatterySourceProvider.overrideWithValue(_NoBattery()),
+          laneClockProvider.overrideWithValue(() => DateTime.utc(2026, 9, 29, 6, 30)),
+        ],
+        child: const SpecimenApp(),
+      ),
+    );
+    for (final t in ['Map', 'Flow', 'Status', 'List', 'Form']) {
+      await tester.tap(find.widgetWithText(ChoiceChip, t));
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull, reason: t);
+      expect(find.text('LANE DAY'), findsNothing, reason: '$t is on screen');
+      final nav = tester.state<NavigatorState>(find.byType(Navigator));
+      nav.pop();
+      await tester.pumpAndSettle();
+      expect(find.text('LANE DAY'), findsOneWidget);
+    }
+  });
 }
