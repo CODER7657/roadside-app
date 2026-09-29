@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.1.0-dev.6
+
+Loading, empty, error and feedback (#85, part 3 of 4), PLAN §6.12, §6.5 ⑩, §7.4.
+
+- Lane's own strings via gen-l10n (`lib/l10n/lane_{en,hi,gu}.arb` → `LaneLocalizations`);
+  `LaneApp` and `LanePreview` add the delegate; components fall back to English.
+- `SkeletonBlock` (still, no shimmer; outlined in Glare) and `SkeletonGroup` (announced once
+  as "Loading").
+- `EmptyState` (hero title, required action) and `ErrorState` (calm icon, default
+  title and "Try again", optional alternative such as SMS).
+- `LaneToast`: inverse fill above an optional dock offset, 4 s, one at a time, announced
+  immediately.
+- `OfflineStrip` + `LaneApp(offline:)`: neutral strip under the status bar that says what
+  still works; the screen loses its duplicate top padding. The `offlineStrip:` slot still
+  works.
+- Fixed: the route's BlockSemantics hid anything above the screen from TalkBack; the screen
+  now sits in its own semantics container.
+
 ## 0.1.0-dev.5
 
 Inputs, chips and badges (#84, part 2 of 4), PLAN §6.12.

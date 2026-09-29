@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../ambient/ambient_controller.dart';
+import '../components/lane_feedback.dart';
+import '../l10n/lane_localizations.dart';
 import '../tokens/lane_text.dart';
 import '../theme/lane_theme.dart';
 import 'lane_licenses.dart';
@@ -13,7 +15,7 @@ import 'lane_licenses.dart';
 /// - the hi/gu type scale when the locale is Hindi or Gujarati
 /// - text scaling clamped to 200% (layouts must reflow up to there)
 /// - shared-axis page transitions (a fade with reduced motion)
-/// - the OfflineStrip slot above every screen
+/// - the OfflineStrip above every screen ([offline]), and Lane's own strings (en/hi/gu)
 /// - third-party notices on the licenses screen
 ///
 /// Needs a `ProviderScope` above it.
@@ -27,6 +29,7 @@ class LaneApp extends ConsumerWidget {
     this.locale,
     this.localizationsDelegates,
     this.supportedLocales = const [Locale('en')],
+    this.offline,
     this.offlineStrip,
   }) : home = null;
 
@@ -39,6 +42,7 @@ class LaneApp extends ConsumerWidget {
     this.locale,
     this.localizationsDelegates,
     this.supportedLocales = const [Locale('en')],
+    this.offline,
     this.offlineStrip,
   }) : routerConfig = null;
 
@@ -53,9 +57,19 @@ class LaneApp extends ConsumerWidget {
   final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
   final Iterable<Locale> supportedLocales;
 
-  /// The connectivity banner (`OfflineStrip`). It sits above the screen, owns the top safe
-  /// area while shown and takes no space when online.
+  /// Whether the device is offline (from the app's connectivity provider). When set,
+  /// LaneApp shows an [OfflineStrip] above every screen and moves the top safe area to it.
+  final bool? offline;
+
+  /// A custom banner instead of [offline]'s `OfflineStrip`. It must own the top safe area
+  /// itself while shown.
   final Widget? offlineStrip;
+
+  /// Lane's component strings first, then the app's.
+  Iterable<LocalizationsDelegate<dynamic>> get _delegates => [
+    LaneLocalizations.delegate,
+    ...?localizationsDelegates,
+  ];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -66,7 +80,7 @@ class LaneApp extends ConsumerWidget {
     final fade = LaneTheme.of(mode).motion;
 
     Widget shell(BuildContext context, Widget? child) =>
-        _LaneShell(offlineStrip: offlineStrip, child: child ?? const SizedBox.shrink());
+        _LaneShell(offline: offline, offlineStrip: offlineStrip, child: child ?? const SizedBox.shrink());
 
     if (routerConfig != null) {
       return MaterialApp.router(
@@ -74,7 +88,7 @@ class LaneApp extends ConsumerWidget {
         title: title,
         onGenerateTitle: onGenerateTitle,
         locale: locale,
-        localizationsDelegates: localizationsDelegates,
+        localizationsDelegates: _delegates,
         supportedLocales: supportedLocales,
         theme: theme,
         themeAnimationDuration: fade.standard,
@@ -88,7 +102,7 @@ class LaneApp extends ConsumerWidget {
       title: title,
       onGenerateTitle: onGenerateTitle,
       locale: locale,
-      localizationsDelegates: localizationsDelegates,
+      localizationsDelegates: _delegates,
       supportedLocales: supportedLocales,
       theme: theme,
       themeAnimationDuration: fade.standard,
@@ -100,8 +114,9 @@ class LaneApp extends ConsumerWidget {
 }
 
 class _LaneShell extends StatelessWidget {
-  const _LaneShell({required this.offlineStrip, required this.child});
+  const _LaneShell({required this.offline, required this.offlineStrip, required this.child});
 
+  final bool? offline;
   final Widget? offlineStrip;
   final Widget child;
 
@@ -113,15 +128,25 @@ class _LaneShell extends StatelessWidget {
     final lane = base.extension<LaneTheme>()!.withScript(LaneScript.of(Localizations.localeOf(context)));
 
     Widget screen = child;
-    if (offlineStrip != null) {
+    final strip = offlineStrip ?? (offline == null ? null : OfflineStrip(offline: offline!));
+    if (strip != null) {
       screen = Column(
         children: [
-          offlineStrip!,
-          Expanded(child: screen),
+          strip,
+          Expanded(
+            // While the strip is shown it owns the status-bar area, so the screen mustn't
+            // pad for it again. Its own semantics container stops the route's BlockSemantics
+            // from hiding the strip from TalkBack.
+            child: Semantics(
+              container: true,
+              child: MediaQuery.removePadding(context: context, removeTop: offline ?? false, child: screen),
+            ),
+          ),
         ],
       );
     }
 
+    // The strip sits inside the theme so it gets the hi/gu type and the cross-fade.
     return Theme(
       data: base.copyWith(textTheme: LaneThemeData.textThemeOf(lane.text), extensions: [lane]),
       child: MediaQuery.withClampedTextScaling(

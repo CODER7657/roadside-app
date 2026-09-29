@@ -63,6 +63,12 @@ void main() {
     builder: () => _group((locale) => LaneInputsSample(sample: _samples[locale.languageCode]!)),
   );
 
+  goldenTest(
+    'loading, empty, error and offline in every mode',
+    fileName: 'components_feedback',
+    builder: () => _group((_) => const LaneFeedbackSample()),
+  );
+
   for (final template in ['map', 'flow', 'status', 'list', 'form']) {
     goldenTest(
       '$template template in every mode',

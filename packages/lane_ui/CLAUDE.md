@@ -8,6 +8,8 @@
 - Goldens (`test/goldens/`, alchemist CI mode): after an intended visual change run `flutter test --update-goldens` and commit the PNGs; a failing golden writes a diff under `test/goldens/failures/` (CI uploads it). Remember: Lane text styles carry `ink`, so text on a Beacon or signal fill must `copyWith(color: onBeacon / onSignal)`.
 - CI goldens don't render opacity (alchemist's text-blocking paint pass) or shadows: assert disabled/faded states in widget tests instead.
 - Buttons: `LaneButton.primary / secondary / pill / ghost / danger`, `critical: true` for 64 dp; `LaneHoldButton` (SOS) and `LaneSlideToConfirm` take their semantics text from the app.
+- Component strings: add keys to `lib/l10n/lane_en.arb` (+ hi, gu) and run `flutter gen-l10n`; read them with `laneStrings(context)`.
+- TalkBack: a live region needs `Semantics(container: true, liveRegion: true)`, and anything faded in needs `alwaysIncludeSemantics` so it's announced at once.
 - Widgetbook: `cd widgetbook && flutter run -d chrome`.
 - Run locally: `flutter analyze --fatal-infos`, `flutter test`, and `cd example && flutter run` to see Day/Night/Glare/Saver × en/hi/gu.
 - Performance: animate transform/opacity only; `RepaintBoundary` around dock and rail; 60 fps on a 3 GB RAM phone.

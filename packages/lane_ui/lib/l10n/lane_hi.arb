@@ -1,0 +1,7 @@
+{
+  "@@locale": "hi",
+  "offline_strip_message": "आप ऑफ़लाइन हैं। कॉल और SMS अब भी काम करते हैं।",
+  "error_state_title": "कुछ गड़बड़ हो गई",
+  "error_state_retry": "फिर से कोशिश करें",
+  "skeleton_loading": "लोड हो रहा है"
+}
