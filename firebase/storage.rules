@@ -1,10 +1,92 @@
 rules_version = '2';
 
-// Placeholder: deny everything until the real Storage rules land (#47, PLAN §12.5).
+// Storage rules (PLAN.md §12.5). Owner: P3.
+//
+// - Deny by default: only the five paths below exist.
+// - Every write is an image (jpeg / png / webp) under 5 MB. Clients compress and strip EXIF first.
+// - Nobody deletes from a client; retention jobs (Functions) clean up (§12.10).
+// - Customers see mechanic and booking photos through the download URLs Functions snapshot into
+//   bookings, never by listing these paths. Admins see KYC through short-lived signed URLs.
+// Every change here ships with tests in rules_tests/.
+
 service firebase.storage {
   match /b/{bucket}/o {
-    match /{allPaths=**} {
-      allow read, write: if false;
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isSelf(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && request.auth.token.get('role', '') == 'admin';
+    }
+
+    function isImage() {
+      return request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/(jpeg|png|webp)');
+    }
+
+    function isFileName(name) {
+      return name.matches('^[A-Za-z0-9._-]{1,100}$');
+    }
+
+    function booking(bookingId) {
+      return firestore.get(/databases/(default)/documents/bookings/$(bookingId)).data;
+    }
+
+    function isParticipant(b) {
+      return isSignedIn() && (b.customerId == request.auth.uid || b.mechanicId == request.auth.uid);
+    }
+
+    function isActive(b) {
+      return b.status in ['requested', 'accepted', 'arriving', 'arrived', 'in_progress'];
+    }
+
+    // U5: problem photos, uploaded before createBooking (the folder is the customer's draft id).
+    match /users/{uid}/bookings/{draftId}/{file} {
+      allow read: if isSelf(uid) || isAdmin();
+      allow create, update: if isSelf(uid) && isFileName(file) && isImage();
+      allow delete: if false;
+    }
+
+    // M1: profile, shop and toolkit photos (shown to customers through the mechanicCard URL).
+    match /mechanics/{uid}/shop/{file} {
+      allow read: if isSelf(uid) || isAdmin();
+      allow create, update: if isSelf(uid) && isFileName(file) && isImage();
+      allow delete: if false;
+    }
+
+    // M1 KYC: ID proof, selfie with ID, address proof. Write once; owner + admin read.
+    match /mechanics/{uid}/kyc/{file} {
+      allow read: if isSelf(uid) || isAdmin();
+      allow create: if isSelf(uid) && resource == null && isFileName(file) && isImage();
+      allow update, delete: if false;
+    }
+
+    // M7: before / after photos by the assigned mechanic during the job.
+    match /bookings/{bookingId}/work/{file} {
+      allow read: if isParticipant(booking(bookingId)) || isAdmin();
+      allow create: if isSignedIn()
+        && booking(bookingId).mechanicId == request.auth.uid
+        && booking(bookingId).status in ['arrived', 'in_progress']
+        && resource == null
+        && isFileName(file)
+        && isImage();
+      allow update, delete: if false;
+    }
+
+    // U11: chat photos, by participants while the booking is active.
+    match /bookings/{bookingId}/chat/{file} {
+      allow read: if isParticipant(booking(bookingId)) || isAdmin();
+      allow create: if isParticipant(booking(bookingId))
+        && isActive(booking(bookingId))
+        && resource == null
+        && isFileName(file)
+        && isImage();
+      allow update, delete: if false;
     }
   }
 }
