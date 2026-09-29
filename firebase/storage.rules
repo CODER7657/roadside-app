@@ -1,0 +1,10 @@
+rules_version = '2';
+
+// Placeholder: deny everything until the real Storage rules land (#47, PLAN §12.5).
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

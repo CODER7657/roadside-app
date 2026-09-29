@@ -1,0 +1,15 @@
+{
+  "name": "roadside-seed",
+  "private": true,
+  "description": "Seeds serviceAreas, appConfig/public and prices (PLAN.md §8)",
+  "type": "module",
+  "engines": {
+    "node": "22"
+  },
+  "scripts": {
+    "seed": "node seed.mjs"
+  },
+  "dependencies": {
+    "firebase-admin": "^14.5.0"
+  }
+}
