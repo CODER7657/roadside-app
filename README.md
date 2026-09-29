@@ -28,7 +28,7 @@ Your work is in the GitHub issues labelled `P1`, `P2` or `P3`, grouped by milest
 | [wireframes/](wireframes/) | `Wireframes.pdf` (44 frames, every screen) + `png/` + the source `wireframes.html` |
 | [proposal/](proposal/) | Client proposal `Proposal.pdf` (₹30,000 all-in year 1) + source |
 | [design/tokens.json](design/tokens.json) | Lane design tokens (colours, type, space, motion, service areas) |
-| [design/lane_tokens.dart](design/lane_tokens.dart) | Dart starter for `packages/lane_ui` tokens |
+| [packages/lane_ui/](packages/lane_ui/) | Lane design system package: tokens, `LaneTheme` / `context.lane`, ambient modes, `LaneApp`. Run `example/` to see every mode and type style in en/hi/gu |
 | [design/map-render/](design/map-render/) | Renders the Uber-style mockup maps from real OpenStreetMap vector data (`npm i && npm run render`) |
 | [design/threeui-capture/](design/threeui-capture/) | How to render more ThreeUI backgrounds |
 | [assets/fonts/](assets/fonts/) | Onest, Instrument Serif, JetBrains Mono, Anek Devanagari, Anek Gujarati (+ OFL licenses) |

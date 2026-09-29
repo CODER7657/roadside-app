@@ -9,7 +9,7 @@ Read this first if you're picking the project up in a new session. The source of
 | Plan rev 2 (Lane design, security, 20 days, 3 cities, ₹25k + ₹5k) | `PLAN.md` (also `D:\brainstorm\PLAN.md`; v1 kept as `D:\brainstorm\PLAN.v1.md`) | ✅ Done |
 | Client proposal (9 pages, ₹30,000 all-in year 1) | `proposal/Proposal.pdf` (source `proposal.html`, images in `proposal/img/`) | ✅ Ready to send; fill the client's name on the cover |
 | Wireframes (44 frames: C1–C10, U1–U18 + U1·SOS + U1·Area, M1–M9, A1–A6) | `wireframes/Wireframes.pdf`, `png/`, source `wireframes.html` | ✅ Needs client sign-off (issue for P1, Day 2) |
-| Design tokens | `design/tokens.json`, `design/lane_tokens.dart` | ✅ Starter; P1 moves them into `packages/lane_ui` on day 1 |
+| Design tokens | `packages/lane_ui/lib/src/tokens/` (source of truth), mirrored in `design/tokens.json` | ✅ In `lane_ui` since #4; a test fails if the two drift |
 | Assets | `assets/`: fonts (OFL), Phosphor icons (MIT), ThreeUI renders (MIT), brand marks, real OSM maps | ✅ |
 | Repo process | CODEOWNERS, PR template, issue forms, CONTRIBUTING, SECURITY, `.gitattributes`, `.editorconfig`, design lint | ✅ CODEOWNERS uses @Hem60 / @Ayush3422 |
 | CI/CD | `.github/workflows/`: CI (one required check **CI result**), PR hygiene, Deploy Firebase (keyless), Release Android | ✅ CI green on `main`; deploy/release skip until Firebase and signing are configured |
