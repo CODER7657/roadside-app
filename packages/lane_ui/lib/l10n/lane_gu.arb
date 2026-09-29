@@ -1,0 +1,7 @@
+{
+  "@@locale": "gu",
+  "offline_strip_message": "તમે ઑફલાઇન છો. કૉલ અને SMS હજી ચાલે છે.",
+  "error_state_title": "કંઈક ખોટું થયું",
+  "error_state_retry": "ફરી પ્રયાસ કરો",
+  "skeleton_loading": "લોડ થઈ રહ્યું છે"
+}

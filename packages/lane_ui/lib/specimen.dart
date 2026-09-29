@@ -291,7 +291,7 @@ class LanePreview extends StatelessWidget {
     return Localizations.override(
       context: context,
       locale: locale,
-      delegates: GlobalMaterialLocalizations.delegates,
+      delegates: [LaneLocalizations.delegate, ...GlobalMaterialLocalizations.delegates],
       child: Theme(
         data: theme,
         child: MediaQuery(
@@ -444,6 +444,39 @@ class LaneInputsSample extends StatelessWidget {
               PlateChip(regNo: 'GJ01AB1234'),
               PlateChip(regNo: '22BH1234AA', large: true),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Loading, empty, error and offline states, for goldens and Widgetbook (#85).
+class LaneFeedbackSample extends StatelessWidget {
+  const LaneFeedbackSample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final lane = context.lane;
+    return Scaffold(
+      body: Column(
+        children: [
+          const OfflineStrip(offline: true),
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.all(lane.space.s16),
+              children: [
+                SkeletonGroup.lines(),
+                SizedBox(height: lane.space.s16),
+                ErrorState(onRetry: () {}, alternativeLabel: 'Send location by SMS', onAlternative: () {}),
+                EmptyState(
+                  title: 'No bookings yet',
+                  message: 'Your trips will show here.',
+                  actionLabel: 'Get help',
+                  onAction: () {},
+                ),
+              ],
+            ),
           ),
         ],
       ),

@@ -1,0 +1,8 @@
+# Component strings that live inside lane_ui (PLAN §6.15). Apps' own strings stay in their ARB files.
+arb-dir: lib/l10n
+template-arb-file: lane_en.arb
+output-localization-file: lane_localizations.dart
+output-class: LaneLocalizations
+output-dir: lib/src/l10n
+nullable-getter: true
+format: true
