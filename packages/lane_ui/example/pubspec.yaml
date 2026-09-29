@@ -1,0 +1,24 @@
+name: lane_ui_example
+description: "Blank app on LaneApp: switch Day/Night/Glare/Saver and see every type style in en/hi/gu (issue #4)."
+publish_to: none
+version: 0.1.0
+
+environment:
+  sdk: ^3.13.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_riverpod: ^3.4.3
+  lane_ui:
+    path: ../
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
