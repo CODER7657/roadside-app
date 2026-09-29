@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.0-dev.3
+
+Widgetbook and golden tests (#9), PLAN §7.5–§7.6.
+
+- `widgetbook/`: the catalogue app. Every use case switches Day / Night / Glare / Saver,
+  en / hi / gu and text scale 1.0–2.0 from the addon panel.
+- Golden tests (`test/goldens/`, alchemist CI mode, so images match on every OS) for the
+  specimen and all five templates in the four modes plus Hindi at 200%.
+- `LanePreview` in `specimen.dart`: one phone frame for a given mode, locale and text scale,
+  shared by goldens and Widgetbook.
+- Fixed: the sample Beacon button label used `ink` (light in Night) instead of `onBeacon`.
+
 ## 0.1.0-dev.2
 
 Screen templates (#8), PLAN §6.13.
