@@ -1,0 +1,9 @@
+{
+  "@@locale": "en",
+  "app_title": "Roadside",
+  "@app_title": { "description": "App name in the task switcher. Placeholder until the client names the app (HANDOFF §4.6)." },
+  "home_placeholder_title": "Help on the road, in minutes",
+  "@home_placeholder_title": { "description": "Temporary home screen until U1 Home (#12) lands." },
+  "home_placeholder_body": "We're getting everything ready. Booking a mechanic arrives in the next update.",
+  "@home_placeholder_body": { "description": "Temporary home screen body until U1 Home (#12) lands." }
+}
