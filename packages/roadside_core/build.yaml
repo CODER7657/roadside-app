@@ -1,0 +1,9 @@
+targets:
+  $default:
+    builders:
+      json_serializable:
+        options:
+          # Firestore stores maps, not Dart objects: nested models must be converted too.
+          explicit_to_json: true
+          # A malformed document throws a CheckedFromJsonException naming the bad field.
+          checked: true
