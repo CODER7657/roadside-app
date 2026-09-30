@@ -499,4 +499,55 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get location_retry => 'Try again';
+
+  @override
+  String get price_title => 'Your estimate';
+
+  @override
+  String get price_book => 'Book mechanic';
+
+  @override
+  String get price_note =>
+      'You pay the mechanic directly after the job, by UPI or cash. The amount can change if parts are needed.';
+
+  @override
+  String get price_error_out_of_area =>
+      'We\'re not in this area yet. We serve Ahmedabad, Ankleshwar and Bharuch.';
+
+  @override
+  String get price_change_pickup => 'Change pickup';
+
+  @override
+  String get price_error_active_booking => 'You already have a booking in progress.';
+
+  @override
+  String get price_open_booking => 'Open my booking';
+
+  @override
+  String get price_error_paused =>
+      'Bookings are paused for a short while. Please try again in a few minutes.';
+
+  @override
+  String get price_error_unavailable => 'We can\'t price this problem yet. Our support team can help.';
+
+  @override
+  String get price_get_support => 'Get support';
+
+  @override
+  String get price_error_vehicle => 'This vehicle was removed. Choose another one.';
+
+  @override
+  String get price_choose_vehicle => 'Choose vehicle';
+
+  @override
+  String get price_error_rate_limited => 'Too many tries. Please wait a few minutes and try again.';
+
+  @override
+  String get price_error_network => 'Couldn\'t book. Check your connection and try again.';
+
+  @override
+  String get searching_title => 'Booking sent';
+
+  @override
+  String get searching_body => 'We\'re finding the nearest mechanic.';
 }

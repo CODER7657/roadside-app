@@ -1,10 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../features/booking/presentation/booking_pending_screen.dart';
 import '../features/booking/presentation/confirm_location_screen.dart';
 import '../features/booking/presentation/photos_screen.dart';
+import '../features/booking/presentation/price_screen.dart';
 import '../features/booking/presentation/problem_screen.dart';
+import '../features/booking/presentation/searching_pending_screen.dart';
 import '../features/first_run/application/first_run.dart';
 import '../features/first_run/presentation/consent_screen.dart';
 import '../features/first_run/presentation/language_screen.dart';
@@ -32,6 +33,7 @@ abstract final class AppRoutes {
   static const bookPhotos = '/book/photos';
   static const bookLocation = '/book/location';
   static const bookPrice = '/book/price';
+  static const searching = '/booking/searching';
 }
 
 /// Keeps first run in order: home (and later everything else) waits until language,
@@ -65,8 +67,9 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: AppRoutes.bookProblem, builder: (context, state) => const ProblemScreen()),
       GoRoute(path: AppRoutes.bookPhotos, builder: (context, state) => const PhotosScreen()),
       GoRoute(path: AppRoutes.bookLocation, builder: (context, state) => const ConfirmLocationScreen()),
-      // U7 Price estimate replaces this in #108.
-      GoRoute(path: AppRoutes.bookPrice, builder: (context, state) => const BookingPendingScreen()),
+      GoRoute(path: AppRoutes.bookPrice, builder: (context, state) => const PriceScreen()),
+      // U8 Searching replaces this in #16.
+      GoRoute(path: AppRoutes.searching, builder: (context, state) => const SearchingPendingScreen()),
       GoRoute(
         path: '/permission/:kind',
         builder: (context, state) =>

@@ -499,4 +499,55 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get location_retry => 'ફરી પ્રયાસ કરો';
+
+  @override
+  String get price_title => 'તમારો અંદાજ';
+
+  @override
+  String get price_book => 'મિકેનિક બુક કરો';
+
+  @override
+  String get price_note =>
+      'કામ પછી તમે સીધા મિકેનિકને UPI અથવા રોકડથી ચૂકવો છો. પાર્ટ્સ લાગે તો રકમ બદલાઈ શકે છે.';
+
+  @override
+  String get price_error_out_of_area =>
+      'અમે હજી આ વિસ્તારમાં નથી. અમે અમદાવાદ, અંકલેશ્વર અને ભરૂચમાં સેવા આપીએ છીએ.';
+
+  @override
+  String get price_change_pickup => 'પિકઅપ બદલો';
+
+  @override
+  String get price_error_active_booking => 'તમારું એક બુકિંગ પહેલેથી ચાલુ છે.';
+
+  @override
+  String get price_open_booking => 'મારું બુકિંગ ખોલો';
+
+  @override
+  String get price_error_paused => 'બુકિંગ થોડા સમય માટે બંધ છે. કૃપા કરીને થોડી મિનિટ પછી ફરી પ્રયાસ કરો.';
+
+  @override
+  String get price_error_unavailable =>
+      'અમે હજી આ સમસ્યાની કિંમત કહી શકતા નથી. અમારી સહાય ટીમ મદદ કરી શકે છે.';
+
+  @override
+  String get price_get_support => 'સહાય મેળવો';
+
+  @override
+  String get price_error_vehicle => 'આ વાહન દૂર કરાયું છે. બીજું પસંદ કરો.';
+
+  @override
+  String get price_choose_vehicle => 'વાહન પસંદ કરો';
+
+  @override
+  String get price_error_rate_limited => 'ઘણા બધા પ્રયાસો. કૃપા કરીને થોડી મિનિટ રાહ જોઈ ફરી પ્રયાસ કરો.';
+
+  @override
+  String get price_error_network => 'બુક થઈ શક્યું નહીં. તમારું કનેક્શન તપાસી ફરી પ્રયાસ કરો.';
+
+  @override
+  String get searching_title => 'બુકિંગ મોકલાયું';
+
+  @override
+  String get searching_body => 'અમે સૌથી નજીકનો મિકેનિક શોધી રહ્યા છીએ.';
 }

@@ -84,4 +84,9 @@ class LaneLocalizationsEn extends LaneLocalizations {
   String accuracy_semantics(int meters) {
     return 'Location accurate to $meters metres';
   }
+
+  @override
+  String price_range_semantics(String min, String max) {
+    return '$min to $max';
+  }
 }

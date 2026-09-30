@@ -7,7 +7,7 @@ import 'package:customer_app/features/booking/application/booking_draft.dart';
 import 'package:customer_app/features/booking/application/pickup.dart';
 import 'package:customer_app/features/booking/data/location.dart';
 import 'package:customer_app/features/booking/data/plus_code.dart';
-import 'package:customer_app/features/booking/presentation/booking_pending_screen.dart';
+import 'package:customer_app/features/booking/presentation/price_screen.dart';
 import 'package:customer_app/features/booking/presentation/confirm_location_screen.dart';
 import 'package:customer_app/features/first_run/application/first_run.dart';
 import 'package:customer_app/features/permissions/application/permission_service.dart';
@@ -346,7 +346,7 @@ void main() {
       await tester.enterText(find.byType(TextField), 'Opposite the petrol pump');
       await tester.tap(find.text('Confirm pickup'));
       await tester.pumpAndSettle();
-      expect(find.byType(BookingPendingScreen), findsOneWidget);
+      expect(find.byType(PriceScreen), findsOneWidget);
     });
 
     testWidgets('dragging the map lifts the pin and moves the pickup', (tester) async {

@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.0-dev.10
+
+U7 Price estimate (#108), PLAN §6.12, §6.5 ⑦.
+
+- `PriceRange`: "₹350–₹600" in the mono display face with Indian digit grouping
+  (`₹1,25,000`), one amount when min equals max, the `includes` line underneath. Scales down
+  instead of truncating; reads "₹350 to ₹600" (en / hi / gu). `PriceRange.rupees` formats an
+  amount. (roadside_core also exports a `PriceRange` data class: apps importing both `hide`
+  one.)
+
 ## 0.1.0-dev.9
 
 Map parts for U6 Confirm location (#107), PLAN §6.12, §11.

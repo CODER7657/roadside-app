@@ -35,6 +35,7 @@ export 'src/components/lane_inputs.dart' show LaneChip, LaneListTile, LaneSwitch
 export 'src/components/lane_map_parts.dart' show AccuracyBadge, CenterPin;
 export 'src/components/lane_numbers.dart'
     show BreathingPulse, CountdownRing, LaneBrightness, LaneOtpDisplay, LaneOtpInput, LaneRollingNumber;
+export 'src/components/price_range.dart' show PriceRange;
 export 'src/components/trust_pass.dart' show TrustPass;
 export 'src/templates/lane_action_bar.dart' show LaneActionBar, LaneBackButton;
 export 'src/templates/lane_map_scaffold.dart' show LaneDock, LaneDockSnap, LaneMapButton, LaneMapScaffold;
