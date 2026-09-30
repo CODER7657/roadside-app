@@ -422,6 +422,372 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Minimum must be less than maximum'**
   String get prices_error_order;
+
+  /// Mechanic status.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get mechanic_status_pending;
+
+  /// Mechanic status.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved'**
+  String get mechanic_status_approved;
+
+  /// Mechanic status.
+  ///
+  /// In en, this message translates to:
+  /// **'Blocked'**
+  String get mechanic_status_blocked;
+
+  /// Mechanic type (PLAN §10.0).
+  ///
+  /// In en, this message translates to:
+  /// **'Workshop'**
+  String get mechanic_type_workshop;
+
+  /// Mechanic type (PLAN §10.0).
+  ///
+  /// In en, this message translates to:
+  /// **'Independent'**
+  String get mechanic_type_independent;
+
+  /// A2 type filter.
+  ///
+  /// In en, this message translates to:
+  /// **'All types'**
+  String get approvals_type_all;
+
+  /// A2 search field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get approvals_search_label;
+
+  /// A2 search hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Mechanic name'**
+  String get approvals_search_hint;
+
+  /// A2 empty list. {status} is a status name.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing here: no mechanics with status {status}.'**
+  String approvals_empty(String status);
+
+  /// A2 load error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load mechanics.'**
+  String get approvals_load_failed;
+
+  /// Independent mechanic's experience.
+  ///
+  /// In en, this message translates to:
+  /// **'{years, plural, =1{1 year} other{{years} years}}'**
+  String approvals_experience(int years);
+
+  /// A2: when the mechanic registered.
+  ///
+  /// In en, this message translates to:
+  /// **'registered {date}'**
+  String approvals_registered(String date);
+
+  /// Independent: where they start from.
+  ///
+  /// In en, this message translates to:
+  /// **'Base area'**
+  String get approvals_base_area;
+
+  /// Independent: vehicle they arrive on.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel vehicle ({vehicle})'**
+  String approvals_travel_vehicle(String vehicle);
+
+  /// Workshop name.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop'**
+  String get approvals_shop_name;
+
+  /// Workshop address.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get approvals_shop_address;
+
+  /// Problem types they fix.
+  ///
+  /// In en, this message translates to:
+  /// **'Services'**
+  String get approvals_services;
+
+  /// Vehicle types they work on.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicles'**
+  String get approvals_vehicle_types;
+
+  /// A2 section title.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos'**
+  String get approvals_photos;
+
+  /// Photo label.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile photo'**
+  String get approvals_photo_profile;
+
+  /// Photo label.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop photo'**
+  String get approvals_photo_shop;
+
+  /// Photo label.
+  ///
+  /// In en, this message translates to:
+  /// **'Toolkit photo {n}'**
+  String approvals_photo_toolkit(int n);
+
+  /// A2 KYC section title.
+  ///
+  /// In en, this message translates to:
+  /// **'Identity and payment'**
+  String get approvals_kyc;
+
+  /// A2: no KYC document.
+  ///
+  /// In en, this message translates to:
+  /// **'KYC not submitted yet.'**
+  String get approvals_kyc_missing;
+
+  /// KYC field.
+  ///
+  /// In en, this message translates to:
+  /// **'UPI'**
+  String get approvals_upi;
+
+  /// KYC field.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get approvals_phone;
+
+  /// Independent: optional reference.
+  ///
+  /// In en, this message translates to:
+  /// **'Reference'**
+  String get approvals_reference;
+
+  /// Opens a signed URL.
+  ///
+  /// In en, this message translates to:
+  /// **'Open ID proof'**
+  String get approvals_document_id;
+
+  /// Opens a signed URL.
+  ///
+  /// In en, this message translates to:
+  /// **'Open selfie with ID'**
+  String get approvals_document_selfie;
+
+  /// Opens a signed URL.
+  ///
+  /// In en, this message translates to:
+  /// **'Open address proof'**
+  String get approvals_document_address;
+
+  /// A2 KYC note (PLAN §12.11).
+  ///
+  /// In en, this message translates to:
+  /// **'Documents open in a new tab through a link that expires in minutes. Don\'t download them.'**
+  String get approvals_documents_note;
+
+  /// A2: no signed URL returned.
+  ///
+  /// In en, this message translates to:
+  /// **'That document isn\'t available.'**
+  String get approvals_document_missing;
+
+  /// A2 section title.
+  ///
+  /// In en, this message translates to:
+  /// **'Checklist'**
+  String get approvals_checklist;
+
+  /// Workshop checklist.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop photo shows a real workshop'**
+  String get approvals_check_shop_photo;
+
+  /// Workshop checklist.
+  ///
+  /// In en, this message translates to:
+  /// **'ID proof matches the name'**
+  String get approvals_check_id_proof;
+
+  /// Workshop checklist.
+  ///
+  /// In en, this message translates to:
+  /// **'Services and vehicles make sense'**
+  String get approvals_check_services;
+
+  /// Independent checklist.
+  ///
+  /// In en, this message translates to:
+  /// **'Selfie matches the ID'**
+  String get approvals_check_selfie;
+
+  /// Independent checklist.
+  ///
+  /// In en, this message translates to:
+  /// **'Address proof checked'**
+  String get approvals_check_address;
+
+  /// Independent checklist.
+  ///
+  /// In en, this message translates to:
+  /// **'Toolkit photos show real tools'**
+  String get approvals_check_toolkit;
+
+  /// Independent: before logging the call.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification call notes'**
+  String get approvals_call_notes_label;
+
+  /// Example notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Video call, ID matched, 6 years at Patel Motors confirmed.'**
+  String get approvals_call_notes_hint;
+
+  /// Records the call (admin callable).
+  ///
+  /// In en, this message translates to:
+  /// **'Log verification call'**
+  String get approvals_call_log;
+
+  /// Toast.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification call logged.'**
+  String get approvals_call_logged;
+
+  /// Independent: the logged call.
+  ///
+  /// In en, this message translates to:
+  /// **'Call logged {date}: {notes}'**
+  String approvals_call_done(String date, String notes);
+
+  /// A2 primary action.
+  ///
+  /// In en, this message translates to:
+  /// **'Approve'**
+  String get approvals_approve;
+
+  /// Toast.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved. They can go online now.'**
+  String get approvals_approved;
+
+  /// A2 destructive action.
+  ///
+  /// In en, this message translates to:
+  /// **'Block'**
+  String get approvals_block;
+
+  /// Block reason, required.
+  ///
+  /// In en, this message translates to:
+  /// **'Why are you blocking them?'**
+  String get approvals_block_reason_label;
+
+  /// Block reason hint.
+  ///
+  /// In en, this message translates to:
+  /// **'For example: ID proof doesn\'t match'**
+  String get approvals_block_reason_hint;
+
+  /// Confirms the block.
+  ///
+  /// In en, this message translates to:
+  /// **'Block mechanic'**
+  String get approvals_block_confirm;
+
+  /// Cancels blocking.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get approvals_block_cancel;
+
+  /// Toast.
+  ///
+  /// In en, this message translates to:
+  /// **'Blocked. They\'re signed out everywhere.'**
+  String get approvals_blocked;
+
+  /// A2 detail for blocked mechanics.
+  ///
+  /// In en, this message translates to:
+  /// **'This mechanic is blocked and can\'t receive jobs.'**
+  String get approvals_blocked_note;
+
+  /// A2 footer.
+  ///
+  /// In en, this message translates to:
+  /// **'Every approval, block and call is recorded in the audit log.'**
+  String get approvals_audit_note;
+
+  /// Why Approve is disabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Approve needs the KYC documents first.'**
+  String get approvals_why_kyc;
+
+  /// Why Approve is disabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Tick every checklist item to approve.'**
+  String get approvals_why_checklist;
+
+  /// Why Approve is disabled (PLAN §10.0).
+  ///
+  /// In en, this message translates to:
+  /// **'Log the verification call to approve an independent mechanic.'**
+  String get approvals_why_call;
+
+  /// The callable isn't deployed or reachable.
+  ///
+  /// In en, this message translates to:
+  /// **'That action isn\'t available yet. Try again later.'**
+  String get approvals_error_unavailable;
+
+  /// failed-precondition.
+  ///
+  /// In en, this message translates to:
+  /// **'The server refused: check the mechanic\'s status and the verification call.'**
+  String get approvals_error_precondition;
+
+  /// permission-denied.
+  ///
+  /// In en, this message translates to:
+  /// **'Your admin access has changed. Sign in again.'**
+  String get approvals_error_not_allowed;
+
+  /// Other errors.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Nothing was changed.'**
+  String get approvals_error_unknown;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

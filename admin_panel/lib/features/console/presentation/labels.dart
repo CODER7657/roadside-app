@@ -27,3 +27,14 @@ String problemLabel(AppLocalizations l10n, ProblemType problem) => switch (probl
   ProblemType.fuel => l10n.problem_type_fuel,
   ProblemType.other => l10n.problem_type_other,
 };
+
+String mechanicStatusLabel(AppLocalizations l10n, MechanicStatus status) => switch (status) {
+  MechanicStatus.pending => l10n.mechanic_status_pending,
+  MechanicStatus.approved => l10n.mechanic_status_approved,
+  MechanicStatus.blocked => l10n.mechanic_status_blocked,
+};
+
+String mechanicTypeLabel(AppLocalizations l10n, MechanicType type) => switch (type) {
+  MechanicType.workshop => l10n.mechanic_type_workshop,
+  MechanicType.independent => l10n.mechanic_type_independent,
+};

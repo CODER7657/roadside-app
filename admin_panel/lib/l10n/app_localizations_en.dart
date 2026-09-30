@@ -194,4 +194,202 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get prices_error_order => 'Minimum must be less than maximum';
+
+  @override
+  String get mechanic_status_pending => 'Pending';
+
+  @override
+  String get mechanic_status_approved => 'Approved';
+
+  @override
+  String get mechanic_status_blocked => 'Blocked';
+
+  @override
+  String get mechanic_type_workshop => 'Workshop';
+
+  @override
+  String get mechanic_type_independent => 'Independent';
+
+  @override
+  String get approvals_type_all => 'All types';
+
+  @override
+  String get approvals_search_label => 'Search';
+
+  @override
+  String get approvals_search_hint => 'Mechanic name';
+
+  @override
+  String approvals_empty(String status) {
+    return 'Nothing here: no mechanics with status $status.';
+  }
+
+  @override
+  String get approvals_load_failed => 'Couldn\'t load mechanics.';
+
+  @override
+  String approvals_experience(int years) {
+    String _temp0 = intl.Intl.pluralLogic(years, locale: localeName, other: '$years years', one: '1 year');
+    return '$_temp0';
+  }
+
+  @override
+  String approvals_registered(String date) {
+    return 'registered $date';
+  }
+
+  @override
+  String get approvals_base_area => 'Base area';
+
+  @override
+  String approvals_travel_vehicle(String vehicle) {
+    return 'Travel vehicle ($vehicle)';
+  }
+
+  @override
+  String get approvals_shop_name => 'Shop';
+
+  @override
+  String get approvals_shop_address => 'Address';
+
+  @override
+  String get approvals_services => 'Services';
+
+  @override
+  String get approvals_vehicle_types => 'Vehicles';
+
+  @override
+  String get approvals_photos => 'Photos';
+
+  @override
+  String get approvals_photo_profile => 'Profile photo';
+
+  @override
+  String get approvals_photo_shop => 'Shop photo';
+
+  @override
+  String approvals_photo_toolkit(int n) {
+    return 'Toolkit photo $n';
+  }
+
+  @override
+  String get approvals_kyc => 'Identity and payment';
+
+  @override
+  String get approvals_kyc_missing => 'KYC not submitted yet.';
+
+  @override
+  String get approvals_upi => 'UPI';
+
+  @override
+  String get approvals_phone => 'Phone';
+
+  @override
+  String get approvals_reference => 'Reference';
+
+  @override
+  String get approvals_document_id => 'Open ID proof';
+
+  @override
+  String get approvals_document_selfie => 'Open selfie with ID';
+
+  @override
+  String get approvals_document_address => 'Open address proof';
+
+  @override
+  String get approvals_documents_note =>
+      'Documents open in a new tab through a link that expires in minutes. Don\'t download them.';
+
+  @override
+  String get approvals_document_missing => 'That document isn\'t available.';
+
+  @override
+  String get approvals_checklist => 'Checklist';
+
+  @override
+  String get approvals_check_shop_photo => 'Shop photo shows a real workshop';
+
+  @override
+  String get approvals_check_id_proof => 'ID proof matches the name';
+
+  @override
+  String get approvals_check_services => 'Services and vehicles make sense';
+
+  @override
+  String get approvals_check_selfie => 'Selfie matches the ID';
+
+  @override
+  String get approvals_check_address => 'Address proof checked';
+
+  @override
+  String get approvals_check_toolkit => 'Toolkit photos show real tools';
+
+  @override
+  String get approvals_call_notes_label => 'Verification call notes';
+
+  @override
+  String get approvals_call_notes_hint => 'Video call, ID matched, 6 years at Patel Motors confirmed.';
+
+  @override
+  String get approvals_call_log => 'Log verification call';
+
+  @override
+  String get approvals_call_logged => 'Verification call logged.';
+
+  @override
+  String approvals_call_done(String date, String notes) {
+    return 'Call logged $date: $notes';
+  }
+
+  @override
+  String get approvals_approve => 'Approve';
+
+  @override
+  String get approvals_approved => 'Approved. They can go online now.';
+
+  @override
+  String get approvals_block => 'Block';
+
+  @override
+  String get approvals_block_reason_label => 'Why are you blocking them?';
+
+  @override
+  String get approvals_block_reason_hint => 'For example: ID proof doesn\'t match';
+
+  @override
+  String get approvals_block_confirm => 'Block mechanic';
+
+  @override
+  String get approvals_block_cancel => 'Cancel';
+
+  @override
+  String get approvals_blocked => 'Blocked. They\'re signed out everywhere.';
+
+  @override
+  String get approvals_blocked_note => 'This mechanic is blocked and can\'t receive jobs.';
+
+  @override
+  String get approvals_audit_note => 'Every approval, block and call is recorded in the audit log.';
+
+  @override
+  String get approvals_why_kyc => 'Approve needs the KYC documents first.';
+
+  @override
+  String get approvals_why_checklist => 'Tick every checklist item to approve.';
+
+  @override
+  String get approvals_why_call => 'Log the verification call to approve an independent mechanic.';
+
+  @override
+  String get approvals_error_unavailable => 'That action isn\'t available yet. Try again later.';
+
+  @override
+  String get approvals_error_precondition =>
+      'The server refused: check the mechanic\'s status and the verification call.';
+
+  @override
+  String get approvals_error_not_allowed => 'Your admin access has changed. Sign in again.';
+
+  @override
+  String get approvals_error_unknown => 'Something went wrong. Nothing was changed.';
 }

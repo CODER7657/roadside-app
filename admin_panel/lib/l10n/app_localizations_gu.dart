@@ -193,4 +193,201 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get prices_error_order => 'ઓછામાં ઓછું, વધુમાં વધુથી ઓછું હોવું જોઈએ';
+
+  @override
+  String get mechanic_status_pending => 'બાકી';
+
+  @override
+  String get mechanic_status_approved => 'મંજૂર';
+
+  @override
+  String get mechanic_status_blocked => 'બ્લૉક';
+
+  @override
+  String get mechanic_type_workshop => 'વર્કશૉપ';
+
+  @override
+  String get mechanic_type_independent => 'સ્વતંત્ર';
+
+  @override
+  String get approvals_type_all => 'બધા પ્રકાર';
+
+  @override
+  String get approvals_search_label => 'શોધો';
+
+  @override
+  String get approvals_search_hint => 'મિકેનિકનું નામ';
+
+  @override
+  String approvals_empty(String status) {
+    return 'અહીં કંઈ નથી: $status સ્થિતિવાળા કોઈ મિકેનિક નથી.';
+  }
+
+  @override
+  String get approvals_load_failed => 'મિકેનિક લોડ ન થયા.';
+
+  @override
+  String approvals_experience(int years) {
+    String _temp0 = intl.Intl.pluralLogic(years, locale: localeName, other: '$years વર્ષ', one: '1 વર્ષ');
+    return '$_temp0';
+  }
+
+  @override
+  String approvals_registered(String date) {
+    return '$dateએ નોંધાયા';
+  }
+
+  @override
+  String get approvals_base_area => 'બેઝ વિસ્તાર';
+
+  @override
+  String approvals_travel_vehicle(String vehicle) {
+    return 'આવવાનું વાહન ($vehicle)';
+  }
+
+  @override
+  String get approvals_shop_name => 'દુકાન';
+
+  @override
+  String get approvals_shop_address => 'સરનામું';
+
+  @override
+  String get approvals_services => 'સેવાઓ';
+
+  @override
+  String get approvals_vehicle_types => 'વાહનો';
+
+  @override
+  String get approvals_photos => 'ફોટા';
+
+  @override
+  String get approvals_photo_profile => 'પ્રોફાઇલ ફોટો';
+
+  @override
+  String get approvals_photo_shop => 'દુકાનનો ફોટો';
+
+  @override
+  String approvals_photo_toolkit(int n) {
+    return 'ઓજારોનો ફોટો $n';
+  }
+
+  @override
+  String get approvals_kyc => 'ઓળખ અને ચુકવણી';
+
+  @override
+  String get approvals_kyc_missing => 'KYC હજી જમા નથી થયું.';
+
+  @override
+  String get approvals_upi => 'UPI';
+
+  @override
+  String get approvals_phone => 'ફોન';
+
+  @override
+  String get approvals_reference => 'રેફરન્સ';
+
+  @override
+  String get approvals_document_id => 'ID પ્રૂફ ખોલો';
+
+  @override
+  String get approvals_document_selfie => 'ID સાથે સેલ્ફી ખોલો';
+
+  @override
+  String get approvals_document_address => 'સરનામાનો પ્રૂફ ખોલો';
+
+  @override
+  String get approvals_documents_note =>
+      'દસ્તાવેજો નવા ટૅબમાં એવી લિંકથી ખૂલે છે જે થોડી મિનિટમાં પૂરી થાય છે. તેને ડાઉનલોડ ન કરો.';
+
+  @override
+  String get approvals_document_missing => 'આ દસ્તાવેજ ઉપલબ્ધ નથી.';
+
+  @override
+  String get approvals_checklist => 'ચેકલિસ્ટ';
+
+  @override
+  String get approvals_check_shop_photo => 'દુકાનના ફોટામાં સાચી વર્કશૉપ છે';
+
+  @override
+  String get approvals_check_id_proof => 'ID પ્રૂફ નામ સાથે મેળ ખાય છે';
+
+  @override
+  String get approvals_check_services => 'સેવાઓ અને વાહનો યોગ્ય લાગે છે';
+
+  @override
+  String get approvals_check_selfie => 'સેલ્ફી ID સાથે મેળ ખાય છે';
+
+  @override
+  String get approvals_check_address => 'સરનામાનો પ્રૂફ તપાસ્યો';
+
+  @override
+  String get approvals_check_toolkit => 'ઓજારોના ફોટામાં સાચાં ઓજારો છે';
+
+  @override
+  String get approvals_call_notes_label => 'વેરિફિકેશન કૉલની નોંધ';
+
+  @override
+  String get approvals_call_notes_hint => 'વીડિયો કૉલ, ID મેળ ખાધું, પટેલ મોટર્સમાં 6 વર્ષની પુષ્ટિ.';
+
+  @override
+  String get approvals_call_log => 'વેરિફિકેશન કૉલ નોંધો';
+
+  @override
+  String get approvals_call_logged => 'વેરિફિકેશન કૉલ નોંધાયો.';
+
+  @override
+  String approvals_call_done(String date, String notes) {
+    return 'કૉલ નોંધાયો $date: $notes';
+  }
+
+  @override
+  String get approvals_approve => 'મંજૂર કરો';
+
+  @override
+  String get approvals_approved => 'મંજૂર થયું. હવે તેઓ ઑનલાઇન થઈ શકે છે.';
+
+  @override
+  String get approvals_block => 'બ્લૉક કરો';
+
+  @override
+  String get approvals_block_reason_label => 'તમે તેમને કેમ બ્લૉક કરો છો?';
+
+  @override
+  String get approvals_block_reason_hint => 'દા.ત.: ID પ્રૂફ મેળ ખાતું નથી';
+
+  @override
+  String get approvals_block_confirm => 'મિકેનિકને બ્લૉક કરો';
+
+  @override
+  String get approvals_block_cancel => 'રદ કરો';
+
+  @override
+  String get approvals_blocked => 'બ્લૉક કર્યા. તેમને બધે સાઇન આઉટ કર્યા.';
+
+  @override
+  String get approvals_blocked_note => 'આ મિકેનિક બ્લૉક છે અને કામ લઈ શકતા નથી.';
+
+  @override
+  String get approvals_audit_note => 'દરેક મંજૂરી, બ્લૉક અને કૉલ ઑડિટ લૉગમાં નોંધાય છે.';
+
+  @override
+  String get approvals_why_kyc => 'મંજૂરી પહેલાં KYC દસ્તાવેજો જોઈએ.';
+
+  @override
+  String get approvals_why_checklist => 'મંજૂર કરવા ચેકલિસ્ટની દરેક આઇટમ ટિક કરો.';
+
+  @override
+  String get approvals_why_call => 'સ્વતંત્ર મિકેનિકને મંજૂર કરવા વેરિફિકેશન કૉલ નોંધો.';
+
+  @override
+  String get approvals_error_unavailable => 'આ કામ હજી ઉપલબ્ધ નથી. પછી પ્રયાસ કરો.';
+
+  @override
+  String get approvals_error_precondition => 'સર્વરે ના પાડી: મિકેનિકની સ્થિતિ અને વેરિફિકેશન કૉલ તપાસો.';
+
+  @override
+  String get approvals_error_not_allowed => 'તમારી એડમિન ઍક્સેસ બદલાઈ છે. ફરી સાઇન ઇન કરો.';
+
+  @override
+  String get approvals_error_unknown => 'કંઈક ખોટું થયું. કંઈ બદલાયું નથી.';
 }
