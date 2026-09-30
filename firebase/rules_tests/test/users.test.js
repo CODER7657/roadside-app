@@ -60,6 +60,14 @@ describe('users/{uid}', () => {
     await assertFails(updateDoc(doc(db, 'users/cust1'), h.stampUpdate({ deletionRequestedAt: serverTimestamp() })));
   });
 
+  test('once deletion is requested, the profile is frozen for the app', async () => {
+    await h.seed({
+      'users/cust2': { ...h.user('cust2'), deletionRequestedAt: h.minutesAgo(10), createdAt: h.daysAgo(3), updatedAt: h.daysAgo(3), schemaVersion: 1 },
+    });
+    await assertFails(updateDoc(doc(h.as('cust2'), 'users/cust2'), h.stampUpdate({ language: 'hi' })));
+    await assertFails(updateDoc(doc(h.as('cust2'), 'users/cust2'), h.stampUpdate({ fcmToken: 'token' })));
+  });
+
   test('others cannot read a profile; admins can', async () => {
     await assertFails(getDoc(doc(h.as('cust2'), 'users/cust1')));
     await assertFails(getDoc(doc(h.as('mech1'), 'users/cust1')));

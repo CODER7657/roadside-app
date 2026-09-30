@@ -45,6 +45,10 @@ _Mechanic _$MechanicFromJson(Map<String, dynamic> json) =>
         ratingCount: $checkedConvert('ratingCount', (v) => (v as num?)?.toInt() ?? 0),
         jobsCompleted: $checkedConvert('jobsCompleted', (v) => (v as num?)?.toInt() ?? 0),
         fcmToken: $checkedConvert('fcmToken', (v) => v as String?),
+        deletionRequestedAt: $checkedConvert(
+          'deletionRequestedAt',
+          (v) => _$JsonConverterFromJson<Object, DateTime>(v, const TimestampConverter().fromJson),
+        ),
         createdAt: $checkedConvert(
           'createdAt',
           (v) => _$JsonConverterFromJson<Object, DateTime>(v, const TimestampConverter().fromJson),
@@ -77,6 +81,10 @@ Map<String, dynamic> _$MechanicToJson(_Mechanic instance) => <String, dynamic>{
   'ratingCount': instance.ratingCount,
   'jobsCompleted': instance.jobsCompleted,
   'fcmToken': ?instance.fcmToken,
+  'deletionRequestedAt': ?_$JsonConverterToJson<Object, DateTime>(
+    instance.deletionRequestedAt,
+    const TimestampConverter().toJson,
+  ),
   'createdAt': ?_$JsonConverterToJson<Object, DateTime>(
     instance.createdAt,
     const TimestampConverter().toJson,

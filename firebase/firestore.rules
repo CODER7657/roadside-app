@@ -156,7 +156,9 @@ service cloud.firestore {
         && (!('deletionRequestedAt' in data()) || data().deletionRequestedAt == null)  // 🔒
         && isUserProfile(data())
         && isNewDoc();
+      // Frozen once requestAccountDeletion has set deletionRequestedAt (🔒).
       allow update: if isSelf(uid)
+        && resource.data.get('deletionRequestedAt', null) == null
         && changedOnly(['name', 'language', 'emergencyContacts', 'fcmToken', 'consent', 'updatedAt'])
         && isUserProfile(data())
         && isTouched();
@@ -243,8 +245,11 @@ service cloud.firestore {
         && isNewDoc();
 
       // While pending: fix the profile (not type, city or 🔒 fields). After review: fcmToken only.
+      // Once requestAccountDeletion has set deletionRequestedAt (🔒, never in mechanicCommonKeys, so
+      // clients can't write it), the profile is frozen for the app, whatever the status.
       allow update: if isSelf(uid)
         && isTouched()
+        && resource.data.get('deletionRequestedAt', null) == null
         && (resource.data.status == 'pending'
             ? (changedOnly(['name', 'profilePhotoUrl', 'vehicleTypes', 'services', 'fcmToken', 'updatedAt']
                            .concat(mechanicTypeKeys(resource.data.mechanicType)))

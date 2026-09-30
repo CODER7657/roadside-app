@@ -21,7 +21,10 @@ mixin _$Mechanic {
  MechanicStatus get status;/// 🔒
  double get rating;/// 🔒
  int get ratingCount;/// 🔒
- int get jobsCompleted; String? get fcmToken;@TimestampConverter() DateTime? get createdAt;@TimestampConverter() DateTime? get updatedAt; int get schemaVersion;
+ int get jobsCompleted; String? get fcmToken;/// 🔒 Set by `requestAccountDeletion`; kept on the reduced profile after the purge, so the KYC
+/// retention job knows when the mechanic left (PLAN §8, §12.10). Null (and left out of
+/// `toJson()`) for everyone else, since the rules reject it from clients.
+@TimestampConverter() DateTime? get deletionRequestedAt;@TimestampConverter() DateTime? get createdAt;@TimestampConverter() DateTime? get updatedAt; int get schemaVersion;
 /// Create a copy of Mechanic
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -35,20 +38,20 @@ $MechanicCopyWith<Mechanic> get copyWith => _$MechanicCopyWithImpl<Mechanic>(thi
 @override
 bool operator ==(Object other) {
   final _this = this as Mechanic;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Mechanic&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.profilePhotoUrl, _this.profilePhotoUrl) || other.profilePhotoUrl == _this.profilePhotoUrl)&&(identical(other.mechanicType, _this.mechanicType) || other.mechanicType == _this.mechanicType)&&(identical(other.shopName, _this.shopName) || other.shopName == _this.shopName)&&(identical(other.shopAddress, _this.shopAddress) || other.shopAddress == _this.shopAddress)&&(identical(other.shopPhotoUrl, _this.shopPhotoUrl) || other.shopPhotoUrl == _this.shopPhotoUrl)&&(identical(other.baseArea, _this.baseArea) || other.baseArea == _this.baseArea)&&(identical(other.experienceYears, _this.experienceYears) || other.experienceYears == _this.experienceYears)&&const DeepCollectionEquality().equals(other.toolkitPhotoUrls, _this.toolkitPhotoUrls)&&(identical(other.travelVehicle, _this.travelVehicle) || other.travelVehicle == _this.travelVehicle)&&(identical(other.cityId, _this.cityId) || other.cityId == _this.cityId)&&const DeepCollectionEquality().equals(other.vehicleTypes, _this.vehicleTypes)&&const DeepCollectionEquality().equals(other.services, _this.services)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.rating, _this.rating) || other.rating == _this.rating)&&(identical(other.ratingCount, _this.ratingCount) || other.ratingCount == _this.ratingCount)&&(identical(other.jobsCompleted, _this.jobsCompleted) || other.jobsCompleted == _this.jobsCompleted)&&(identical(other.fcmToken, _this.fcmToken) || other.fcmToken == _this.fcmToken)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt)&&(identical(other.updatedAt, _this.updatedAt) || other.updatedAt == _this.updatedAt)&&(identical(other.schemaVersion, _this.schemaVersion) || other.schemaVersion == _this.schemaVersion));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Mechanic&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.profilePhotoUrl, _this.profilePhotoUrl) || other.profilePhotoUrl == _this.profilePhotoUrl)&&(identical(other.mechanicType, _this.mechanicType) || other.mechanicType == _this.mechanicType)&&(identical(other.shopName, _this.shopName) || other.shopName == _this.shopName)&&(identical(other.shopAddress, _this.shopAddress) || other.shopAddress == _this.shopAddress)&&(identical(other.shopPhotoUrl, _this.shopPhotoUrl) || other.shopPhotoUrl == _this.shopPhotoUrl)&&(identical(other.baseArea, _this.baseArea) || other.baseArea == _this.baseArea)&&(identical(other.experienceYears, _this.experienceYears) || other.experienceYears == _this.experienceYears)&&const DeepCollectionEquality().equals(other.toolkitPhotoUrls, _this.toolkitPhotoUrls)&&(identical(other.travelVehicle, _this.travelVehicle) || other.travelVehicle == _this.travelVehicle)&&(identical(other.cityId, _this.cityId) || other.cityId == _this.cityId)&&const DeepCollectionEquality().equals(other.vehicleTypes, _this.vehicleTypes)&&const DeepCollectionEquality().equals(other.services, _this.services)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.rating, _this.rating) || other.rating == _this.rating)&&(identical(other.ratingCount, _this.ratingCount) || other.ratingCount == _this.ratingCount)&&(identical(other.jobsCompleted, _this.jobsCompleted) || other.jobsCompleted == _this.jobsCompleted)&&(identical(other.fcmToken, _this.fcmToken) || other.fcmToken == _this.fcmToken)&&(identical(other.deletionRequestedAt, _this.deletionRequestedAt) || other.deletionRequestedAt == _this.deletionRequestedAt)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt)&&(identical(other.updatedAt, _this.updatedAt) || other.updatedAt == _this.updatedAt)&&(identical(other.schemaVersion, _this.schemaVersion) || other.schemaVersion == _this.schemaVersion));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as Mechanic;
-  return Object.hashAll([runtimeType,_this.name,_this.profilePhotoUrl,_this.mechanicType,_this.shopName,_this.shopAddress,_this.shopPhotoUrl,_this.baseArea,_this.experienceYears,const DeepCollectionEquality().hash(_this.toolkitPhotoUrls),_this.travelVehicle,_this.cityId,const DeepCollectionEquality().hash(_this.vehicleTypes),const DeepCollectionEquality().hash(_this.services),_this.status,_this.rating,_this.ratingCount,_this.jobsCompleted,_this.fcmToken,_this.createdAt,_this.updatedAt,_this.schemaVersion]);
+  return Object.hashAll([runtimeType,_this.name,_this.profilePhotoUrl,_this.mechanicType,_this.shopName,_this.shopAddress,_this.shopPhotoUrl,_this.baseArea,_this.experienceYears,const DeepCollectionEquality().hash(_this.toolkitPhotoUrls),_this.travelVehicle,_this.cityId,const DeepCollectionEquality().hash(_this.vehicleTypes),const DeepCollectionEquality().hash(_this.services),_this.status,_this.rating,_this.ratingCount,_this.jobsCompleted,_this.fcmToken,_this.deletionRequestedAt,_this.createdAt,_this.updatedAt,_this.schemaVersion]);
 }
 
 @override
 String toString() {
   final _this = this as Mechanic;
-  return 'Mechanic(name: ${_this.name}, profilePhotoUrl: ${_this.profilePhotoUrl}, mechanicType: ${_this.mechanicType}, shopName: ${_this.shopName}, shopAddress: ${_this.shopAddress}, shopPhotoUrl: ${_this.shopPhotoUrl}, baseArea: ${_this.baseArea}, experienceYears: ${_this.experienceYears}, toolkitPhotoUrls: ${_this.toolkitPhotoUrls}, travelVehicle: ${_this.travelVehicle}, cityId: ${_this.cityId}, vehicleTypes: ${_this.vehicleTypes}, services: ${_this.services}, status: ${_this.status}, rating: ${_this.rating}, ratingCount: ${_this.ratingCount}, jobsCompleted: ${_this.jobsCompleted}, fcmToken: ${_this.fcmToken}, createdAt: ${_this.createdAt}, updatedAt: ${_this.updatedAt}, schemaVersion: ${_this.schemaVersion})';
+  return 'Mechanic(name: ${_this.name}, profilePhotoUrl: ${_this.profilePhotoUrl}, mechanicType: ${_this.mechanicType}, shopName: ${_this.shopName}, shopAddress: ${_this.shopAddress}, shopPhotoUrl: ${_this.shopPhotoUrl}, baseArea: ${_this.baseArea}, experienceYears: ${_this.experienceYears}, toolkitPhotoUrls: ${_this.toolkitPhotoUrls}, travelVehicle: ${_this.travelVehicle}, cityId: ${_this.cityId}, vehicleTypes: ${_this.vehicleTypes}, services: ${_this.services}, status: ${_this.status}, rating: ${_this.rating}, ratingCount: ${_this.ratingCount}, jobsCompleted: ${_this.jobsCompleted}, fcmToken: ${_this.fcmToken}, deletionRequestedAt: ${_this.deletionRequestedAt}, createdAt: ${_this.createdAt}, updatedAt: ${_this.updatedAt}, schemaVersion: ${_this.schemaVersion})';
 }
 
 
@@ -59,7 +62,7 @@ abstract mixin class $MechanicCopyWith<$Res>  {
   factory $MechanicCopyWith(Mechanic value, $Res Function(Mechanic) _then) = _$MechanicCopyWithImpl;
 @useResult
 $Res call({
- String name, String profilePhotoUrl, MechanicType mechanicType, String? shopName, String? shopAddress, String? shopPhotoUrl, BaseArea? baseArea, int? experienceYears, List<String>? toolkitPhotoUrls, TravelVehicle? travelVehicle, CityId cityId, List<VehicleType> vehicleTypes, List<ProblemType> services, MechanicStatus status, double rating, int ratingCount, int jobsCompleted, String? fcmToken,@TimestampConverter() DateTime? createdAt,@TimestampConverter() DateTime? updatedAt, int schemaVersion
+ String name, String profilePhotoUrl, MechanicType mechanicType, String? shopName, String? shopAddress, String? shopPhotoUrl, BaseArea? baseArea, int? experienceYears, List<String>? toolkitPhotoUrls, TravelVehicle? travelVehicle, CityId cityId, List<VehicleType> vehicleTypes, List<ProblemType> services, MechanicStatus status, double rating, int ratingCount, int jobsCompleted, String? fcmToken,@TimestampConverter() DateTime? deletionRequestedAt,@TimestampConverter() DateTime? createdAt,@TimestampConverter() DateTime? updatedAt, int schemaVersion
 });
 
 
@@ -76,7 +79,7 @@ class _$MechanicCopyWithImpl<$Res>
 
 /// Create a copy of Mechanic
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? profilePhotoUrl = null,Object? mechanicType = null,Object? shopName = freezed,Object? shopAddress = freezed,Object? shopPhotoUrl = freezed,Object? baseArea = freezed,Object? experienceYears = freezed,Object? toolkitPhotoUrls = freezed,Object? travelVehicle = freezed,Object? cityId = null,Object? vehicleTypes = null,Object? services = null,Object? status = null,Object? rating = null,Object? ratingCount = null,Object? jobsCompleted = null,Object? fcmToken = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,Object? schemaVersion = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? profilePhotoUrl = null,Object? mechanicType = null,Object? shopName = freezed,Object? shopAddress = freezed,Object? shopPhotoUrl = freezed,Object? baseArea = freezed,Object? experienceYears = freezed,Object? toolkitPhotoUrls = freezed,Object? travelVehicle = freezed,Object? cityId = null,Object? vehicleTypes = null,Object? services = null,Object? status = null,Object? rating = null,Object? ratingCount = null,Object? jobsCompleted = null,Object? fcmToken = freezed,Object? deletionRequestedAt = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,Object? schemaVersion = null,}) {
   return _then(Mechanic(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,profilePhotoUrl: null == profilePhotoUrl ? _self.profilePhotoUrl : profilePhotoUrl // ignore: cast_nullable_to_non_nullable
@@ -96,7 +99,8 @@ as MechanicStatus,rating: null == rating ? _self.rating : rating // ignore: cast
 as double,ratingCount: null == ratingCount ? _self.ratingCount : ratingCount // ignore: cast_nullable_to_non_nullable
 as int,jobsCompleted: null == jobsCompleted ? _self.jobsCompleted : jobsCompleted // ignore: cast_nullable_to_non_nullable
 as int,fcmToken: freezed == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
-as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String?,deletionRequestedAt: freezed == deletionRequestedAt ? _self.deletionRequestedAt : deletionRequestedAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,schemaVersion: null == schemaVersion ? _self.schemaVersion : schemaVersion // ignore: cast_nullable_to_non_nullable
 as int,
@@ -208,10 +212,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String profilePhotoUrl,  MechanicType mechanicType,  String? shopName,  String? shopAddress,  String? shopPhotoUrl,  BaseArea? baseArea,  int? experienceYears,  List<String>? toolkitPhotoUrls,  TravelVehicle? travelVehicle,  CityId cityId,  List<VehicleType> vehicleTypes,  List<ProblemType> services,  MechanicStatus status,  double rating,  int ratingCount,  int jobsCompleted,  String? fcmToken, @TimestampConverter()  DateTime? createdAt, @TimestampConverter()  DateTime? updatedAt,  int schemaVersion)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String profilePhotoUrl,  MechanicType mechanicType,  String? shopName,  String? shopAddress,  String? shopPhotoUrl,  BaseArea? baseArea,  int? experienceYears,  List<String>? toolkitPhotoUrls,  TravelVehicle? travelVehicle,  CityId cityId,  List<VehicleType> vehicleTypes,  List<ProblemType> services,  MechanicStatus status,  double rating,  int ratingCount,  int jobsCompleted,  String? fcmToken, @TimestampConverter()  DateTime? deletionRequestedAt, @TimestampConverter()  DateTime? createdAt, @TimestampConverter()  DateTime? updatedAt,  int schemaVersion)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Mechanic() when $default != null:
-return $default(_that.name,_that.profilePhotoUrl,_that.mechanicType,_that.shopName,_that.shopAddress,_that.shopPhotoUrl,_that.baseArea,_that.experienceYears,_that.toolkitPhotoUrls,_that.travelVehicle,_that.cityId,_that.vehicleTypes,_that.services,_that.status,_that.rating,_that.ratingCount,_that.jobsCompleted,_that.fcmToken,_that.createdAt,_that.updatedAt,_that.schemaVersion);case _:
+return $default(_that.name,_that.profilePhotoUrl,_that.mechanicType,_that.shopName,_that.shopAddress,_that.shopPhotoUrl,_that.baseArea,_that.experienceYears,_that.toolkitPhotoUrls,_that.travelVehicle,_that.cityId,_that.vehicleTypes,_that.services,_that.status,_that.rating,_that.ratingCount,_that.jobsCompleted,_that.fcmToken,_that.deletionRequestedAt,_that.createdAt,_that.updatedAt,_that.schemaVersion);case _:
   return orElse();
 
 }
@@ -229,10 +233,10 @@ return $default(_that.name,_that.profilePhotoUrl,_that.mechanicType,_that.shopNa
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String profilePhotoUrl,  MechanicType mechanicType,  String? shopName,  String? shopAddress,  String? shopPhotoUrl,  BaseArea? baseArea,  int? experienceYears,  List<String>? toolkitPhotoUrls,  TravelVehicle? travelVehicle,  CityId cityId,  List<VehicleType> vehicleTypes,  List<ProblemType> services,  MechanicStatus status,  double rating,  int ratingCount,  int jobsCompleted,  String? fcmToken, @TimestampConverter()  DateTime? createdAt, @TimestampConverter()  DateTime? updatedAt,  int schemaVersion)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String profilePhotoUrl,  MechanicType mechanicType,  String? shopName,  String? shopAddress,  String? shopPhotoUrl,  BaseArea? baseArea,  int? experienceYears,  List<String>? toolkitPhotoUrls,  TravelVehicle? travelVehicle,  CityId cityId,  List<VehicleType> vehicleTypes,  List<ProblemType> services,  MechanicStatus status,  double rating,  int ratingCount,  int jobsCompleted,  String? fcmToken, @TimestampConverter()  DateTime? deletionRequestedAt, @TimestampConverter()  DateTime? createdAt, @TimestampConverter()  DateTime? updatedAt,  int schemaVersion)  $default,) {final _that = this;
 switch (_that) {
 case _Mechanic():
-return $default(_that.name,_that.profilePhotoUrl,_that.mechanicType,_that.shopName,_that.shopAddress,_that.shopPhotoUrl,_that.baseArea,_that.experienceYears,_that.toolkitPhotoUrls,_that.travelVehicle,_that.cityId,_that.vehicleTypes,_that.services,_that.status,_that.rating,_that.ratingCount,_that.jobsCompleted,_that.fcmToken,_that.createdAt,_that.updatedAt,_that.schemaVersion);case _:
+return $default(_that.name,_that.profilePhotoUrl,_that.mechanicType,_that.shopName,_that.shopAddress,_that.shopPhotoUrl,_that.baseArea,_that.experienceYears,_that.toolkitPhotoUrls,_that.travelVehicle,_that.cityId,_that.vehicleTypes,_that.services,_that.status,_that.rating,_that.ratingCount,_that.jobsCompleted,_that.fcmToken,_that.deletionRequestedAt,_that.createdAt,_that.updatedAt,_that.schemaVersion);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -249,10 +253,10 @@ return $default(_that.name,_that.profilePhotoUrl,_that.mechanicType,_that.shopNa
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String profilePhotoUrl,  MechanicType mechanicType,  String? shopName,  String? shopAddress,  String? shopPhotoUrl,  BaseArea? baseArea,  int? experienceYears,  List<String>? toolkitPhotoUrls,  TravelVehicle? travelVehicle,  CityId cityId,  List<VehicleType> vehicleTypes,  List<ProblemType> services,  MechanicStatus status,  double rating,  int ratingCount,  int jobsCompleted,  String? fcmToken, @TimestampConverter()  DateTime? createdAt, @TimestampConverter()  DateTime? updatedAt,  int schemaVersion)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String profilePhotoUrl,  MechanicType mechanicType,  String? shopName,  String? shopAddress,  String? shopPhotoUrl,  BaseArea? baseArea,  int? experienceYears,  List<String>? toolkitPhotoUrls,  TravelVehicle? travelVehicle,  CityId cityId,  List<VehicleType> vehicleTypes,  List<ProblemType> services,  MechanicStatus status,  double rating,  int ratingCount,  int jobsCompleted,  String? fcmToken, @TimestampConverter()  DateTime? deletionRequestedAt, @TimestampConverter()  DateTime? createdAt, @TimestampConverter()  DateTime? updatedAt,  int schemaVersion)?  $default,) {final _that = this;
 switch (_that) {
 case _Mechanic() when $default != null:
-return $default(_that.name,_that.profilePhotoUrl,_that.mechanicType,_that.shopName,_that.shopAddress,_that.shopPhotoUrl,_that.baseArea,_that.experienceYears,_that.toolkitPhotoUrls,_that.travelVehicle,_that.cityId,_that.vehicleTypes,_that.services,_that.status,_that.rating,_that.ratingCount,_that.jobsCompleted,_that.fcmToken,_that.createdAt,_that.updatedAt,_that.schemaVersion);case _:
+return $default(_that.name,_that.profilePhotoUrl,_that.mechanicType,_that.shopName,_that.shopAddress,_that.shopPhotoUrl,_that.baseArea,_that.experienceYears,_that.toolkitPhotoUrls,_that.travelVehicle,_that.cityId,_that.vehicleTypes,_that.services,_that.status,_that.rating,_that.ratingCount,_that.jobsCompleted,_that.fcmToken,_that.deletionRequestedAt,_that.createdAt,_that.updatedAt,_that.schemaVersion);case _:
   return null;
 
 }
@@ -264,7 +268,7 @@ return $default(_that.name,_that.profilePhotoUrl,_that.mechanicType,_that.shopNa
 
 @JsonSerializable(includeIfNull: false)
 class _Mechanic implements Mechanic {
-  const _Mechanic({required this.name, required this.profilePhotoUrl, required this.mechanicType, this.shopName, this.shopAddress, this.shopPhotoUrl, this.baseArea, this.experienceYears,  List<String>? toolkitPhotoUrls, this.travelVehicle, required this.cityId, required  List<VehicleType> vehicleTypes, required  List<ProblemType> services, this.status = MechanicStatus.pending, this.rating = 0, this.ratingCount = 0, this.jobsCompleted = 0, this.fcmToken, @TimestampConverter() this.createdAt, @TimestampConverter() this.updatedAt, this.schemaVersion = kSchemaVersion}): _toolkitPhotoUrls = toolkitPhotoUrls,_vehicleTypes = vehicleTypes,_services = services;
+  const _Mechanic({required this.name, required this.profilePhotoUrl, required this.mechanicType, this.shopName, this.shopAddress, this.shopPhotoUrl, this.baseArea, this.experienceYears,  List<String>? toolkitPhotoUrls, this.travelVehicle, required this.cityId, required  List<VehicleType> vehicleTypes, required  List<ProblemType> services, this.status = MechanicStatus.pending, this.rating = 0, this.ratingCount = 0, this.jobsCompleted = 0, this.fcmToken, @TimestampConverter() this.deletionRequestedAt, @TimestampConverter() this.createdAt, @TimestampConverter() this.updatedAt, this.schemaVersion = kSchemaVersion}): _toolkitPhotoUrls = toolkitPhotoUrls,_vehicleTypes = vehicleTypes,_services = services;
   factory _Mechanic.fromJson(Map<String, dynamic> json) => _$MechanicFromJson(json);
 
 @override final  String name;
@@ -310,6 +314,10 @@ class _Mechanic implements Mechanic {
 /// 🔒
 @override@JsonKey() final  int jobsCompleted;
 @override final  String? fcmToken;
+/// 🔒 Set by `requestAccountDeletion`; kept on the reduced profile after the purge, so the KYC
+/// retention job knows when the mechanic left (PLAN §8, §12.10). Null (and left out of
+/// `toJson()`) for everyone else, since the rules reject it from clients.
+@override@TimestampConverter() final  DateTime? deletionRequestedAt;
 @override@TimestampConverter() final  DateTime? createdAt;
 @override@TimestampConverter() final  DateTime? updatedAt;
 @override@JsonKey() final  int schemaVersion;
@@ -327,18 +335,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Mechanic&&(identical(other.name, name) || other.name == name)&&(identical(other.profilePhotoUrl, profilePhotoUrl) || other.profilePhotoUrl == profilePhotoUrl)&&(identical(other.mechanicType, mechanicType) || other.mechanicType == mechanicType)&&(identical(other.shopName, shopName) || other.shopName == shopName)&&(identical(other.shopAddress, shopAddress) || other.shopAddress == shopAddress)&&(identical(other.shopPhotoUrl, shopPhotoUrl) || other.shopPhotoUrl == shopPhotoUrl)&&(identical(other.baseArea, baseArea) || other.baseArea == baseArea)&&(identical(other.experienceYears, experienceYears) || other.experienceYears == experienceYears)&&const DeepCollectionEquality().equals(other.toolkitPhotoUrls, _toolkitPhotoUrls)&&(identical(other.travelVehicle, travelVehicle) || other.travelVehicle == travelVehicle)&&(identical(other.cityId, cityId) || other.cityId == cityId)&&const DeepCollectionEquality().equals(other.vehicleTypes, _vehicleTypes)&&const DeepCollectionEquality().equals(other.services, _services)&&(identical(other.status, status) || other.status == status)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.ratingCount, ratingCount) || other.ratingCount == ratingCount)&&(identical(other.jobsCompleted, jobsCompleted) || other.jobsCompleted == jobsCompleted)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.schemaVersion, schemaVersion) || other.schemaVersion == schemaVersion));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Mechanic&&(identical(other.name, name) || other.name == name)&&(identical(other.profilePhotoUrl, profilePhotoUrl) || other.profilePhotoUrl == profilePhotoUrl)&&(identical(other.mechanicType, mechanicType) || other.mechanicType == mechanicType)&&(identical(other.shopName, shopName) || other.shopName == shopName)&&(identical(other.shopAddress, shopAddress) || other.shopAddress == shopAddress)&&(identical(other.shopPhotoUrl, shopPhotoUrl) || other.shopPhotoUrl == shopPhotoUrl)&&(identical(other.baseArea, baseArea) || other.baseArea == baseArea)&&(identical(other.experienceYears, experienceYears) || other.experienceYears == experienceYears)&&const DeepCollectionEquality().equals(other.toolkitPhotoUrls, _toolkitPhotoUrls)&&(identical(other.travelVehicle, travelVehicle) || other.travelVehicle == travelVehicle)&&(identical(other.cityId, cityId) || other.cityId == cityId)&&const DeepCollectionEquality().equals(other.vehicleTypes, _vehicleTypes)&&const DeepCollectionEquality().equals(other.services, _services)&&(identical(other.status, status) || other.status == status)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.ratingCount, ratingCount) || other.ratingCount == ratingCount)&&(identical(other.jobsCompleted, jobsCompleted) || other.jobsCompleted == jobsCompleted)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&(identical(other.deletionRequestedAt, deletionRequestedAt) || other.deletionRequestedAt == deletionRequestedAt)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.schemaVersion, schemaVersion) || other.schemaVersion == schemaVersion));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hashAll([runtimeType,name,profilePhotoUrl,mechanicType,shopName,shopAddress,shopPhotoUrl,baseArea,experienceYears,const DeepCollectionEquality().hash(_toolkitPhotoUrls),travelVehicle,cityId,const DeepCollectionEquality().hash(_vehicleTypes),const DeepCollectionEquality().hash(_services),status,rating,ratingCount,jobsCompleted,fcmToken,createdAt,updatedAt,schemaVersion]);
+    return Object.hashAll([runtimeType,name,profilePhotoUrl,mechanicType,shopName,shopAddress,shopPhotoUrl,baseArea,experienceYears,const DeepCollectionEquality().hash(_toolkitPhotoUrls),travelVehicle,cityId,const DeepCollectionEquality().hash(_vehicleTypes),const DeepCollectionEquality().hash(_services),status,rating,ratingCount,jobsCompleted,fcmToken,deletionRequestedAt,createdAt,updatedAt,schemaVersion]);
 }
 
 @override
 String toString() {
-    return 'Mechanic(name: $name, profilePhotoUrl: $profilePhotoUrl, mechanicType: $mechanicType, shopName: $shopName, shopAddress: $shopAddress, shopPhotoUrl: $shopPhotoUrl, baseArea: $baseArea, experienceYears: $experienceYears, toolkitPhotoUrls: $toolkitPhotoUrls, travelVehicle: $travelVehicle, cityId: $cityId, vehicleTypes: $vehicleTypes, services: $services, status: $status, rating: $rating, ratingCount: $ratingCount, jobsCompleted: $jobsCompleted, fcmToken: $fcmToken, createdAt: $createdAt, updatedAt: $updatedAt, schemaVersion: $schemaVersion)';
+    return 'Mechanic(name: $name, profilePhotoUrl: $profilePhotoUrl, mechanicType: $mechanicType, shopName: $shopName, shopAddress: $shopAddress, shopPhotoUrl: $shopPhotoUrl, baseArea: $baseArea, experienceYears: $experienceYears, toolkitPhotoUrls: $toolkitPhotoUrls, travelVehicle: $travelVehicle, cityId: $cityId, vehicleTypes: $vehicleTypes, services: $services, status: $status, rating: $rating, ratingCount: $ratingCount, jobsCompleted: $jobsCompleted, fcmToken: $fcmToken, deletionRequestedAt: $deletionRequestedAt, createdAt: $createdAt, updatedAt: $updatedAt, schemaVersion: $schemaVersion)';
 }
 
 
@@ -349,7 +357,7 @@ abstract mixin class _$MechanicCopyWith<$Res> implements $MechanicCopyWith<$Res>
   factory _$MechanicCopyWith(_Mechanic value, $Res Function(_Mechanic) _then) = __$MechanicCopyWithImpl;
 @override @useResult
 $Res call({
- String name, String profilePhotoUrl, MechanicType mechanicType, String? shopName, String? shopAddress, String? shopPhotoUrl, BaseArea? baseArea, int? experienceYears, List<String>? toolkitPhotoUrls, TravelVehicle? travelVehicle, CityId cityId, List<VehicleType> vehicleTypes, List<ProblemType> services, MechanicStatus status, double rating, int ratingCount, int jobsCompleted, String? fcmToken,@TimestampConverter() DateTime? createdAt,@TimestampConverter() DateTime? updatedAt, int schemaVersion
+ String name, String profilePhotoUrl, MechanicType mechanicType, String? shopName, String? shopAddress, String? shopPhotoUrl, BaseArea? baseArea, int? experienceYears, List<String>? toolkitPhotoUrls, TravelVehicle? travelVehicle, CityId cityId, List<VehicleType> vehicleTypes, List<ProblemType> services, MechanicStatus status, double rating, int ratingCount, int jobsCompleted, String? fcmToken,@TimestampConverter() DateTime? deletionRequestedAt,@TimestampConverter() DateTime? createdAt,@TimestampConverter() DateTime? updatedAt, int schemaVersion
 });
 
 
@@ -366,7 +374,7 @@ class __$MechanicCopyWithImpl<$Res>
 
 /// Create a copy of Mechanic
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? profilePhotoUrl = null,Object? mechanicType = null,Object? shopName = freezed,Object? shopAddress = freezed,Object? shopPhotoUrl = freezed,Object? baseArea = freezed,Object? experienceYears = freezed,Object? toolkitPhotoUrls = freezed,Object? travelVehicle = freezed,Object? cityId = null,Object? vehicleTypes = null,Object? services = null,Object? status = null,Object? rating = null,Object? ratingCount = null,Object? jobsCompleted = null,Object? fcmToken = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,Object? schemaVersion = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? profilePhotoUrl = null,Object? mechanicType = null,Object? shopName = freezed,Object? shopAddress = freezed,Object? shopPhotoUrl = freezed,Object? baseArea = freezed,Object? experienceYears = freezed,Object? toolkitPhotoUrls = freezed,Object? travelVehicle = freezed,Object? cityId = null,Object? vehicleTypes = null,Object? services = null,Object? status = null,Object? rating = null,Object? ratingCount = null,Object? jobsCompleted = null,Object? fcmToken = freezed,Object? deletionRequestedAt = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,Object? schemaVersion = null,}) {
   return _then(_Mechanic(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,profilePhotoUrl: null == profilePhotoUrl ? _self.profilePhotoUrl : profilePhotoUrl // ignore: cast_nullable_to_non_nullable
@@ -386,7 +394,8 @@ as MechanicStatus,rating: null == rating ? _self.rating : rating // ignore: cast
 as double,ratingCount: null == ratingCount ? _self.ratingCount : ratingCount // ignore: cast_nullable_to_non_nullable
 as int,jobsCompleted: null == jobsCompleted ? _self.jobsCompleted : jobsCompleted // ignore: cast_nullable_to_non_nullable
 as int,fcmToken: freezed == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
-as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String?,deletionRequestedAt: freezed == deletionRequestedAt ? _self.deletionRequestedAt : deletionRequestedAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,schemaVersion: null == schemaVersion ? _self.schemaVersion : schemaVersion // ignore: cast_nullable_to_non_nullable
 as int,

@@ -52,6 +52,11 @@ abstract class Mechanic with _$Mechanic {
     /// 🔒
     @Default(0) int jobsCompleted,
     String? fcmToken,
+
+    /// 🔒 Set by `requestAccountDeletion`; kept on the reduced profile after the purge, so the KYC
+    /// retention job knows when the mechanic left (PLAN §8, §12.10). Null (and left out of
+    /// `toJson()`) for everyone else, since the rules reject it from clients.
+    @TimestampConverter() DateTime? deletionRequestedAt,
     @TimestampConverter() DateTime? createdAt,
     @TimestampConverter() DateTime? updatedAt,
     @Default(kSchemaVersion) int schemaVersion,

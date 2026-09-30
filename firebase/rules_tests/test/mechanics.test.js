@@ -13,6 +13,7 @@ beforeEach(async () => {
     'mechanics/mech1': { ...h.workshopMechanic(), status: 'approved', rating: 4.8, ratingCount: 10, jobsCompleted: 12, ...stamps },
     'mechanics/mechP': { ...h.independentMechanic(), ...stamps },
     'mechanics/mechBlocked': { ...h.workshopMechanic(), status: 'blocked', ...stamps },
+    'mechanics/mechLeaving': { ...h.workshopMechanic(), status: 'approved', deletionRequestedAt: h.minutesAgo(10), ...stamps },
     'mechanics/mech1/private/kyc': { ...h.kyc('mech1'), ...stamps },
     'presence/mech1': { isOnline: false, location: h.location(), updatedAt: h.minutesAgo(5), cityId: 'ahmedabad', activeBookingId: null },
   });
@@ -83,6 +84,19 @@ describe('mechanics/{uid} after registration', () => {
     await assertFails(updateDoc(ref, h.stampUpdate({ name: 'Someone else' })));
     await assertFails(updateDoc(ref, h.stampUpdate({ rating: 5 })));
     await assertFails(updateDoc(ref, h.stampUpdate({ status: 'approved', jobsCompleted: 999 })));
+  });
+
+  test('deletionRequestedAt is server-only (🔒, requestAccountDeletion; #182)', async () => {
+    const at = Timestamp.now();
+    await assertFails(setDoc(doc(h.as('newMech'), 'mechanics/newMech'), h.stampNew({ ...h.workshopMechanic(), deletionRequestedAt: at })));
+    await assertFails(updateDoc(doc(h.as('mechP'), 'mechanics/mechP'), h.stampUpdate({ deletionRequestedAt: at })));
+    await assertFails(updateDoc(doc(h.as('mech1'), 'mechanics/mech1'), h.stampUpdate({ deletionRequestedAt: at })));
+  });
+
+  test('once deletion is requested, the profile is frozen for the app', async () => {
+    const ref = doc(h.as('mechLeaving'), 'mechanics/mechLeaving');
+    await assertFails(updateDoc(ref, h.stampUpdate({ fcmToken: 'new-token' })));
+    await assertFails(updateDoc(ref, h.stampUpdate({ deletionRequestedAt: null })));
   });
 
   test('blocked: cannot unblock themself', async () => {
