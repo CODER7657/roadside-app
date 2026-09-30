@@ -865,5 +865,75 @@
   "notif_start_code_locked_body": "Someone tried your start code 5 times. Only read it out to your mechanic in person.",
   "@notif_start_code_locked_body": {
     "description": "Push/inbox body for start_code_locked."
+  },
+  "tracking_on_the_way": "{name} is on the way",
+  "@tracking_on_the_way": {
+    "description": "U10: arriving.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tracking_arrived": "{name} has arrived",
+  "@tracking_arrived": {
+    "description": "U10: arrived.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tracking_eta": "{minutes} min",
+  "@tracking_eta": {
+    "description": "U10: ETA, rolls as it changes.",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "tracking_away": "away",
+  "@tracking_away": {
+    "description": "U10: after the ETA (\"6 min away\")."
+  },
+  "tracking_waiting": "Waiting for {name}'s location…",
+  "@tracking_waiting": {
+    "description": "U10: no reading yet.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tracking_stale": "Location last updated {minutes} min ago. It may be out of signal.",
+  "@tracking_stale": {
+    "description": "U10: reading older than 30 s.",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "tracking_call": "Call {name}",
+  "@tracking_call": {
+    "description": "U10: opens the phone dialer.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tracking_call_failed": "Couldn't open the phone app.",
+  "@tracking_call_failed": {
+    "description": "U10: dialer failed to open."
+  },
+  "tracking_start_code": "Start code",
+  "@tracking_start_code": {
+    "description": "U10: label above the code."
+  },
+  "tracking_start_code_hint": "Share this code only when the mechanic is standing with you.",
+  "@tracking_start_code_hint": {
+    "description": "U10: under the code."
   }
 }

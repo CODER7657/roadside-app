@@ -12,3 +12,8 @@ final liveBookingProvider = StreamProvider.autoDispose.family<Booking?, String>(
 final startCodeProvider = StreamProvider.autoDispose.family<String?, String>(
   (ref, bookingId) => ref.watch(bookingRepositoryProvider).watchOtp(bookingId).map((otp) => otp?.code),
 );
+
+/// The mechanic's latest reading during the trip (U10).
+final liveLocationProvider = StreamProvider.autoDispose.family<LiveLocation?, String>(
+  (ref, bookingId) => ref.watch(bookingRepositoryProvider).watchLive(bookingId),
+);

@@ -660,4 +660,46 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get notif_start_code_locked_body =>
       'किसी ने आपका स्टार्ट कोड 5 बार आज़माया। इसे केवल अपने मैकेनिक को सामने से बताएँ।';
+
+  @override
+  String tracking_on_the_way(String name) {
+    return '$name रास्ते में हैं';
+  }
+
+  @override
+  String tracking_arrived(String name) {
+    return '$name पहुँच गए हैं';
+  }
+
+  @override
+  String tracking_eta(int minutes) {
+    return '$minutes मिनट';
+  }
+
+  @override
+  String get tracking_away => 'दूर';
+
+  @override
+  String tracking_waiting(String name) {
+    return '$name की लोकेशन का इंतज़ार…';
+  }
+
+  @override
+  String tracking_stale(int minutes) {
+    return 'लोकेशन $minutes मिनट पहले अपडेट हुई। शायद नेटवर्क नहीं है।';
+  }
+
+  @override
+  String tracking_call(String name) {
+    return '$name को कॉल करें';
+  }
+
+  @override
+  String get tracking_call_failed => 'फ़ोन ऐप नहीं खुल सका।';
+
+  @override
+  String get tracking_start_code => 'शुरू करने का कोड';
+
+  @override
+  String get tracking_start_code_hint => 'यह कोड केवल तब बताएँ जब मैकेनिक आपके पास खड़ा हो।';
 }

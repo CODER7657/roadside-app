@@ -658,4 +658,46 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get notif_start_code_locked_body =>
       'Someone tried your start code 5 times. Only read it out to your mechanic in person.';
+
+  @override
+  String tracking_on_the_way(String name) {
+    return '$name is on the way';
+  }
+
+  @override
+  String tracking_arrived(String name) {
+    return '$name has arrived';
+  }
+
+  @override
+  String tracking_eta(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String get tracking_away => 'away';
+
+  @override
+  String tracking_waiting(String name) {
+    return 'Waiting for $name\'s location…';
+  }
+
+  @override
+  String tracking_stale(int minutes) {
+    return 'Location last updated $minutes min ago. It may be out of signal.';
+  }
+
+  @override
+  String tracking_call(String name) {
+    return 'Call $name';
+  }
+
+  @override
+  String get tracking_call_failed => 'Couldn\'t open the phone app.';
+
+  @override
+  String get tracking_start_code => 'Start code';
+
+  @override
+  String get tracking_start_code_hint => 'Share this code only when the mechanic is standing with you.';
 }
