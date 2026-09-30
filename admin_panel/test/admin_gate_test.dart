@@ -136,10 +136,10 @@ void main() {
     await settle(tester);
     expect(container.read(cityFilterProvider), CityId.bharuch);
 
-    await tester.tap(find.text('Approvals').first);
+    await tester.tap(find.text('Complaints & reviews').first);
     await settle(tester);
-    expect(container.read(routerProvider).state.matchedLocation, '/approvals');
-    expect(find.textContaining('#50'), findsOneWidget);
+    expect(container.read(routerProvider).state.matchedLocation, '/complaints');
+    expect(find.textContaining('#54'), findsOneWidget);
     expect(container.read(cityFilterProvider), CityId.bharuch);
 
     await tester.tap(find.text('All cities'));

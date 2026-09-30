@@ -10,6 +10,7 @@ import '../features/auth/presentation/sign_in_screen.dart';
 import '../features/console/application/city_filter.dart';
 import '../features/console/presentation/console_sections.dart';
 import '../features/console/presentation/labels.dart';
+import '../features/approvals/presentation/approvals_screen.dart';
 import '../features/prices/presentation/prices_screen.dart';
 import '../l10n/app_localizations.dart';
 
@@ -41,6 +42,7 @@ final routerProvider = Provider<GoRouter>((ref) {
               path: section.path,
               pageBuilder: (_, _) => NoTransitionPage(
                 child: switch (section) {
+                  ConsoleSection.approvals => const ApprovalsScreen(),
                   ConsoleSection.prices => const PricesScreen(),
                   _ => SectionPlaceholder(section: section),
                 },
