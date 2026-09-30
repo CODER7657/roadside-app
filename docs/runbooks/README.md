@@ -11,6 +11,7 @@ then the follow-up. Keep them short enough to follow on a phone.
 | [rollback.md](rollback.md) | A release (app, functions or rules) is causing harm |
 | [hotfix.md](hotfix.md) | A fix must reach production without the unreleased work on `main` |
 | [app-check-and-monitoring.md](app-check-and-monitoring.md) | Setting up or enforcing App Check, Crashlytics, Performance (#48) |
+| [launch-monitoring.md](launch-monitoring.md) | Setting up alerts and budgets, and the launch-week daily check-in (#62) |
 
 ## Who does what
 

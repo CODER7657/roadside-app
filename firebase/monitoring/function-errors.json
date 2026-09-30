@@ -1,0 +1,21 @@
+{
+  "displayName": "Roadside: functions error rate above 2%",
+  "combiner": "OR",
+  "severity": "ERROR",
+  "conditions": [
+    {
+      "displayName": "More than 2% of function calls failed (5xx) over 10 minutes, with at least 20 calls",
+      "conditionPrometheusQueryLanguage": {
+        "query": "(sum(rate(run_googleapis_com:request_count{monitored_resource=\"cloud_run_revision\",response_code_class=\"5xx\"}[10m])) / sum(rate(run_googleapis_com:request_count{monitored_resource=\"cloud_run_revision\"}[10m])) > 0.02) and (sum(increase(run_googleapis_com:request_count{monitored_resource=\"cloud_run_revision\"}[10m])) >= 20)",
+        "duration": "300s",
+        "evaluationInterval": "60s"
+      }
+    }
+  ],
+  "alertStrategy": { "autoClose": "1800s" },
+  "documentation": {
+    "mimeType": "text/markdown",
+    "subject": "Roadside: functions failing",
+    "content": "Cloud Functions (2nd gen, asia-south1) return server errors on more than 2% of calls. Client errors (bad input, not allowed, rate limited) are 4xx and don't count.\n\nOpen Logs Explorer: `resource.type=\"cloud_run_revision\" severity>=ERROR` to see which function. If a release just went out: docs/runbooks/rollback.md. If bookings are affected: docs/runbooks/dispatch-outage.md."
+  }
+}

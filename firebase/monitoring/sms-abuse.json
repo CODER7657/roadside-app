@@ -1,0 +1,37 @@
+{
+  "displayName": "Roadside: OTP SMS abuse",
+  "combiner": "OR",
+  "severity": "CRITICAL",
+  "conditions": [
+    {
+      "displayName": "More than 100 OTP SMS sent in an hour",
+      "conditionPrometheusQueryLanguage": {
+        "query": "sum(increase(identitytoolkit_googleapis_com:usage_sent_sms_count[1h])) > 100",
+        "duration": "0s",
+        "evaluationInterval": "300s"
+      }
+    },
+    {
+      "displayName": "An OTP SMS was sent outside India",
+      "conditionPrometheusQueryLanguage": {
+        "query": "sum(increase(identitytoolkit_googleapis_com:usage_sent_sms_count{region_code!=\"IN\"}[1h])) > 0",
+        "duration": "0s",
+        "evaluationInterval": "300s"
+      }
+    },
+    {
+      "displayName": "More than 10 OTP SMS blocked by the region policy in an hour",
+      "conditionPrometheusQueryLanguage": {
+        "query": "sum(increase(identitytoolkit_googleapis_com:usage_blocked_sms_count[1h])) > 10",
+        "duration": "0s",
+        "evaluationInterval": "300s"
+      }
+    }
+  ],
+  "alertStrategy": { "autoClose": "7200s" },
+  "documentation": {
+    "mimeType": "text/markdown",
+    "subject": "Roadside: possible OTP SMS abuse",
+    "content": "OTP SMS volume is unusual: more than 100 in an hour, a code sent outside India (the region policy should allow India only), or many blocked by the region policy (someone is trying).\n\nFollow docs/runbooks/sms-abuse.md. Compare with sign-ins in A1: a normal SMS success rate is 70-85%, below 50% means abuse. Tune the 100/hour threshold after launch week (#62)."
+  }
+}
