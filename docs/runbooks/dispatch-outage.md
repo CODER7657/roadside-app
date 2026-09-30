@@ -22,13 +22,18 @@ all. A stranded driver is waiting: **talk to customers first, debug second.**
    New bookings then get the friendly "service paused" message instead of waiting in vain. Set a
    `maintenanceMessage` with the support phone.
 4. **Help the people already waiting.** For each booking stuck in `requested`, the support phone
-   calls the customer (A3 shows the booking and the customer's number), then either:
+   calls the customer, then either:
    - phones approved mechanics near the pickup and gives the customer the mechanic's name and number,
      **or**
    - tells them honestly that no one is available.
 
    Either way, cancel the in-app booking in A3 with the reason "dispatch outage", so it doesn't sit in
    `requested`.
+
+   A3 shows the customer's name and number only after a mechanic accepts (`customerCard`). For a
+   booking still in `requested`, take its `customerId` and read the number from
+   `users/{customerId}.phone` in Firebase console → Firestore (admins only). Don't copy it anywhere
+   else.
 
    There is **no manual assignment in the app yet.** A callable to assign a mechanic from A3 is a
    follow-up for P2. Until it exists, bookings arranged by phone happen outside the app.
@@ -38,7 +43,8 @@ all. A stranded driver is waiting: **talk to customers first, debug second.**
 - **Function errors:** Cloud Logging for `dispatchOnBookingCreated`, `dispatchSweep`, `offerTimeout`
   and `respondToOffer`. Look for errors, timeouts and `permission-denied`.
 - **Push:** are offers written to `offers/` but mechanics get no notification? Then FCM or the
-  mechanic app's notification permission is the problem. Mechanics can still see offers in the app.
+  mechanic app's notification permission is the problem. The mechanic app has no in-app list of
+  offers, so without the push a mechanic doesn't see them at all.
 - **A recent release?** Then [rollback.md](rollback.md).
 - **App Check enforcement just changed?** Unenforce and check again.
 - **Billing:** Firestore quota, or a disabled billing account, stops everything.
