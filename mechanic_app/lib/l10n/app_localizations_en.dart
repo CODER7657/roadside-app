@@ -588,6 +588,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get offer_not_available_body => 'You\'re offline or already on a job.';
 
   @override
+  String get offer_profile_incomplete_title => 'Finish your profile first';
+
+  @override
+  String get offer_profile_incomplete_body => 'Some details are missing. Complete your profile to take jobs.';
+
+  @override
+  String get offer_not_approved_title => 'You\'re not approved yet';
+
+  @override
+  String get offer_not_approved_body =>
+      'We\'re still checking your documents. You can take jobs once you\'re approved.';
+
+  @override
   String get offer_back => 'Back to dashboard';
 
   @override

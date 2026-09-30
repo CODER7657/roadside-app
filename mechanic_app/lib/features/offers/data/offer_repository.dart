@@ -19,6 +19,12 @@ enum OfferOutcome {
   /// The mechanic went offline or already has a job (`error_not_available`).
   notAvailable,
 
+  /// The mechanic's profile or KYC is missing (`error_profile_incomplete`).
+  profileIncomplete,
+
+  /// The mechanic isn't approved (any more) (`error_mechanic_not_approved`).
+  notApproved,
+
   /// Network or anything unexpected: the screen offers to try again.
   failed,
 }
@@ -38,6 +44,8 @@ OfferOutcome outcomeForError(String? messageKey) => switch (messageKey) {
   'error_offer_unavailable' => OfferOutcome.unavailable,
   'error_offer_expired' => OfferOutcome.expired,
   'error_not_available' => OfferOutcome.notAvailable,
+  'error_profile_incomplete' => OfferOutcome.profileIncomplete,
+  'error_mechanic_not_approved' => OfferOutcome.notApproved,
   _ => OfferOutcome.failed,
 };
 

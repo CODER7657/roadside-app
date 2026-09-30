@@ -589,6 +589,20 @@ class AppLocalizationsHi extends AppLocalizations {
   String get offer_not_available_body => 'आप ऑफ़लाइन हैं या पहले से किसी काम पर हैं।';
 
   @override
+  String get offer_profile_incomplete_title => 'पहले अपनी प्रोफ़ाइल पूरी करें';
+
+  @override
+  String get offer_profile_incomplete_body =>
+      'कुछ जानकारी बाकी है। काम लेने के लिए अपनी प्रोफ़ाइल पूरी करें।';
+
+  @override
+  String get offer_not_approved_title => 'आप अभी स्वीकृत नहीं हैं';
+
+  @override
+  String get offer_not_approved_body =>
+      'हम अभी आपके दस्तावेज़ जाँच रहे हैं। स्वीकृति मिलने के बाद आप काम ले सकेंगे।';
+
+  @override
   String get offer_back => 'डैशबोर्ड पर वापस';
 
   @override

@@ -1191,6 +1191,30 @@ abstract class AppLocalizations {
   /// **'You\'re offline or already on a job.'**
   String get offer_not_available_body;
 
+  /// M4 closed: the callable said the mechanic's profile or KYC is missing.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish your profile first'**
+  String get offer_profile_incomplete_title;
+
+  /// M4 closed: profile incomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Some details are missing. Complete your profile to take jobs.'**
+  String get offer_profile_incomplete_body;
+
+  /// M4 closed: the callable said the mechanic isn't approved.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re not approved yet'**
+  String get offer_not_approved_title;
+
+  /// M4 closed: not approved.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'re still checking your documents. You can take jobs once you\'re approved.'**
+  String get offer_not_approved_body;
+
   /// M4 closed: back to M3.
   ///
   /// In en, this message translates to:
