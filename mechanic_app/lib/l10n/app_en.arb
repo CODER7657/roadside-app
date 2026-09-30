@@ -990,5 +990,9 @@
   "job_turn_on_location": "Turn on location",
   "@job_turn_on_location": {
     "description": "M5 banner button: opens the phone's location settings."
+  },
+  "job_eta_here": "You're at the pickup",
+  "@job_eta_here": {
+    "description": "M5: instead of an ETA once within ~50 m of the pickup."
   }
 }

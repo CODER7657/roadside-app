@@ -557,6 +557,19 @@ void main() {
       expect(picker.picks, 2);
     });
 
+    testWidgets('name fields use the name keyboard (no autocorrect)', (tester) async {
+      await tester.pumpWidget(await app());
+      await pastSplash(tester);
+      await tapText(tester, 'Yes, I have a workshop');
+      await tapText(tester, 'Bharuch');
+      await tapText(tester, 'Next');
+      TextInputType keyboardOf(String key) => tester
+          .widget<TextField>(find.descendant(of: find.byKey(ValueKey(key)), matching: find.byType(TextField)))
+          .keyboardType;
+      expect(keyboardOf('name'), TextInputType.name);
+      expect(keyboardOf('shopName'), TextInputType.name);
+    });
+
     testWidgets('Not now on the camera explainer: no camera, back on the form', (tester) async {
       permissions.camera = PermissionAccess.askable;
       await tester.pumpWidget(await app());

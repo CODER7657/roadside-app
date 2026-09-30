@@ -763,4 +763,7 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get job_turn_on_location => 'લોકેશન ચાલુ કરો';
+
+  @override
+  String get job_eta_here => 'તમે પિકઅપ પર પહોંચી ગયા છો';
 }

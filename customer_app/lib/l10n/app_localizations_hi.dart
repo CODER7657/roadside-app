@@ -906,6 +906,75 @@ class AppLocalizationsHi extends AppLocalizations {
   String get home_booking_open => 'खोलने के लिए टैप करें';
 
   @override
+  String get contacts_title => 'आपातकालीन संपर्क';
+
+  @override
+  String get contacts_body => 'SOS इन लोगों को आपकी लाइव लोकेशन भेजता है। अधिकतम 3।';
+
+  @override
+  String get contacts_empty =>
+      'अभी कोई संपर्क नहीं। किसी ऐसे व्यक्ति को जोड़ें जो आपात स्थिति में मदद कर सके।';
+
+  @override
+  String get contacts_add_picker => 'संपर्कों से जोड़ें';
+
+  @override
+  String get contacts_add_manual => 'नंबर लिखें';
+
+  @override
+  String get contacts_full => 'आप अधिकतम 3 संपर्क सेव कर सकते हैं।';
+
+  @override
+  String contacts_remove(String name) {
+    return '$name को हटाएँ';
+  }
+
+  @override
+  String get contacts_save => 'सेव करें';
+
+  @override
+  String get contacts_saved => 'संपर्क सेव हो गए।';
+
+  @override
+  String get contacts_save_failed => 'आपके संपर्क सेव नहीं हो सके। दोबारा कोशिश करें।';
+
+  @override
+  String get contacts_error_invalid => 'यह नंबर इस्तेमाल नहीं हो सकता। मोबाइल नंबर डालें।';
+
+  @override
+  String get contacts_error_duplicate => 'यह नंबर पहले से सूची में है।';
+
+  @override
+  String get contacts_picker_failed => 'आपके संपर्क नहीं खुल सके। नंबर लिखकर जोड़ें।';
+
+  @override
+  String get contacts_manual_title => 'संपर्क जोड़ें';
+
+  @override
+  String get contacts_name_label => 'नाम';
+
+  @override
+  String get contacts_phone_label => 'मोबाइल नंबर';
+
+  @override
+  String get contacts_manual_add => 'जोड़ें';
+
+  @override
+  String get contacts_discard_title => 'बदलाव छोड़ दें?';
+
+  @override
+  String get contacts_discard => 'छोड़ें';
+
+  @override
+  String get contacts_keep_editing => 'बदलाव जारी रखें';
+
+  @override
+  String get contacts_error => 'आपके संपर्क लोड नहीं हो सके।';
+
+  @override
+  String get contacts_retry => 'दोबारा कोशिश करें';
+
+  @override
   String get chat_open => 'चैट';
 
   @override
