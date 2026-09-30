@@ -7,8 +7,10 @@
 # Creates:
 #   - service account github-deploy@<project>, no keys
 #   - Workload Identity pool "github" + OIDC provider "github-actions", accepting only tokens from
-#     this repo (matched by numeric id, so a renamed or re-created repo can't use it) and from
-#     jobs running in the given GitHub environment
+#     this repo (matched by numeric id, so a renamed or re-created repo can't use it), from jobs
+#     running in the given GitHub environment, and from the right ref: `production` only from a
+#     v* tag (admins-only tag ruleset), anything else only from main. Without the ref check, anyone
+#     with write access could dispatch deploy-firebase.yml from their own branch with target=prod.
 #   - roles for the service account: Firebase Admin + Service Usage Consumer; --blaze adds what
 #     Functions deploys need
 # Prints the repo variables to set (needs repo admin: Settings → Secrets and variables → Actions).
@@ -63,7 +65,12 @@ if ! "$GCLOUD" iam workload-identity-pools describe "$pool" --project "$project"
     --display-name "GitHub Actions"
 fi
 
-condition="assertion.repository_id == '$repo_id' && assertion.repository_owner_id == '$owner_id' && assertion.environment == '$environment'"
+# Which refs may deploy: prod only from a release tag, dev only from main (unreviewed branches never).
+case "$environment" in
+  production) ref_rule="assertion.ref.startsWith('refs/tags/v')" ;;
+  *) ref_rule="assertion.ref == 'refs/heads/main'" ;;
+esac
+condition="assertion.repository_id == '$repo_id' && assertion.repository_owner_id == '$owner_id' && assertion.environment == '$environment' && $ref_rule"
 mapping="google.subject=assertion.sub,attribute.repository_id=assertion.repository_id,attribute.environment=assertion.environment"
 if "$GCLOUD" iam workload-identity-pools providers describe "$provider" --project "$project" --location global \
      --workload-identity-pool "$pool" >/dev/null 2>&1; then
