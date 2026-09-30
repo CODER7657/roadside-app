@@ -624,9 +624,6 @@ class AppLocalizationsGu extends AppLocalizations {
   String get live_not_found => 'આ બુકિંગ મળ્યું નહીં.';
 
   @override
-  String get live_working_title => 'તમારો મિકેનિક કામ કરી રહ્યો છે';
-
-  @override
   String get assigned_title => 'એક મિકેનિક આવી રહ્યો છે';
 
   @override
@@ -701,4 +698,111 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get tracking_start_code_hint => 'મિકેનિક તમારી સાથે ઊભો હોય ત્યારે જ આ કોડ જણાવો.';
+
+  @override
+  String working_title(String name) {
+    return '$name કામ કરી રહ્યા છે';
+  }
+
+  @override
+  String working_since(String time, int minutes) {
+    return '$time વાગ્યે શરૂ · અત્યાર સુધી $minutes મિનિટ';
+  }
+
+  @override
+  String get working_started => 'કામ શરૂ થઈ ગયું છે.';
+
+  @override
+  String payment_title(String name) {
+    return '$nameને ચુકવણી કરો';
+  }
+
+  @override
+  String payment_estimate_was(String min, String max) {
+    return 'અંદાજ $min–$max હતો';
+  }
+
+  @override
+  String get payment_no_amount => 'મિકેનિક અંતિમ રકમ દાખલ કરે તેની રાહ.';
+
+  @override
+  String get payment_pay_upi => 'UPI એપથી ચુકવણી કરો';
+
+  @override
+  String payment_qr_label(String amount, String name) {
+    return '$nameને $amount ચુકવવાનો QR કોડ';
+  }
+
+  @override
+  String get payment_qr_hint => 'અથવા કોઈપણ UPI એપથી સ્કેન કરો';
+
+  @override
+  String get payment_copy_upi => 'UPI ID કૉપિ કરો';
+
+  @override
+  String get payment_upi_copied => 'UPI ID કૉપિ થઈ';
+
+  @override
+  String get payment_no_upi_app => 'કોઈ UPI એપ ખૂલી નહીં. બીજા ફોનથી QR સ્કેન કરો, અથવા રોકડ આપો.';
+
+  @override
+  String payment_cash(String name) {
+    return '$nameને રોકડ આપો, અથવા તેમનું UPI ID પૂછો.';
+  }
+
+  @override
+  String get payment_i_have_paid => 'મેં ચુકવણી કરી દીધી';
+
+  @override
+  String get payment_problem => 'કંઈક ખોટું છે';
+
+  @override
+  String get payment_error_network => 'ચુકવણી અપડેટ થઈ નહીં. તમારું કનેક્શન તપાસી ફરી પ્રયાસ કરો.';
+
+  @override
+  String payment_waiting_title(String name) {
+    return '$nameની પુષ્ટિની રાહ';
+  }
+
+  @override
+  String payment_waiting_body(String amount) {
+    return 'તેઓ જોશે કે $amount તેમની UPI એપમાં આવ્યા.';
+  }
+
+  @override
+  String payment_confirmed_title(String amount) {
+    return '$amount ચૂકવાયા';
+  }
+
+  @override
+  String get payment_confirmed_title_plain => 'ચુકવણીની પુષ્ટિ થઈ';
+
+  @override
+  String payment_confirmed_body(String name) {
+    return 'આભાર! $nameએ તમારી ચુકવણીની પુષ્ટિ કરી.';
+  }
+
+  @override
+  String get payment_disputed_title => 'અમે આ જોઈ રહ્યા છીએ';
+
+  @override
+  String get payment_disputed_body => 'અમારી ટીમ આ ચુકવણી વિશે તમારો સંપર્ક કરશે.';
+
+  @override
+  String get payment_dispute_title => 'ચુકવણીમાં શું ખોટું છે?';
+
+  @override
+  String get payment_dispute_label => 'શું થયું તે જણાવો';
+
+  @override
+  String get payment_dispute_hint => 'જેમ કે: બતાવેલી રકમ કરતાં વધુ માંગ્યું';
+
+  @override
+  String get payment_dispute_send => 'સમસ્યા જણાવો';
+
+  @override
+  String get payment_dispute_sent => 'આભાર. અમે આ જોઈશું.';
+
+  @override
+  String get cancel_keep_open => 'પાછા જાઓ';
 }

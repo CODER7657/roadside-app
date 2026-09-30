@@ -818,10 +818,6 @@
   "@live_not_found": {
     "description": "Booking missing or not the customer's."
   },
-  "live_working_title": "Your mechanic is on the job",
-  "@live_working_title": {
-    "description": "in_progress and later, until U12 (#17)."
-  },
   "assigned_title": "A mechanic is coming",
   "@assigned_title": {
     "description": "U9: accepted."
@@ -935,5 +931,180 @@
   "tracking_start_code_hint": "Share this code only when the mechanic is standing with you.",
   "@tracking_start_code_hint": {
     "description": "U10: under the code."
+  },
+  "working_title": "{name} is working on it",
+  "@working_title": {
+    "description": "U12 Job in progress: title.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "working_since": "Started at {time} · {minutes} min so far",
+  "@working_since": {
+    "description": "U12: when the work started and for how long.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "working_started": "Work has started.",
+  "@working_started": {
+    "description": "U12: no start time yet."
+  },
+  "payment_title": "Pay {name}",
+  "@payment_title": {
+    "description": "U13 Payment: title.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "payment_estimate_was": "The estimate was {min}–{max}",
+  "@payment_estimate_was": {
+    "description": "U13: under the final amount.",
+    "placeholders": {
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "payment_no_amount": "Waiting for the mechanic to enter the final amount.",
+  "@payment_no_amount": {
+    "description": "U13: finalAmount missing."
+  },
+  "payment_pay_upi": "Pay with UPI app",
+  "@payment_pay_upi": {
+    "description": "U13: primary; opens the upi://pay link."
+  },
+  "payment_qr_label": "QR code to pay {amount} to {name}",
+  "@payment_qr_label": {
+    "description": "U13: TalkBack label of the QR.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "payment_qr_hint": "Or scan this with any UPI app",
+  "@payment_qr_hint": {
+    "description": "U13: under the QR."
+  },
+  "payment_copy_upi": "Copy UPI ID",
+  "@payment_copy_upi": {
+    "description": "U13: copies the mechanic UPI ID."
+  },
+  "payment_upi_copied": "UPI ID copied",
+  "@payment_upi_copied": {
+    "description": "U13: toast after copying."
+  },
+  "payment_no_upi_app": "No UPI app opened. Scan the QR with another phone, or pay in cash.",
+  "@payment_no_upi_app": {
+    "description": "U13: the deep link found no app."
+  },
+  "payment_cash": "Pay {name} in cash, or ask them for their UPI ID.",
+  "@payment_cash": {
+    "description": "U13: no valid UPI ID on the card.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "payment_i_have_paid": "I have paid",
+  "@payment_i_have_paid": {
+    "description": "U13: markPaid."
+  },
+  "payment_problem": "Something's wrong",
+  "@payment_problem": {
+    "description": "U13: opens the dispute sheet."
+  },
+  "payment_error_network": "Couldn't update the payment. Check your connection and try again.",
+  "@payment_error_network": {
+    "description": "U13: markPaid / disputePayment failed."
+  },
+  "payment_waiting_title": "Waiting for {name} to confirm",
+  "@payment_waiting_title": {
+    "description": "U13 after \"I have paid\".",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "payment_waiting_body": "They check that {amount} arrived in their UPI app.",
+  "@payment_waiting_body": {
+    "description": "U13 after \"I have paid\".",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "payment_confirmed_title": "Paid {amount}",
+  "@payment_confirmed_title": {
+    "description": "Payment confirmed: title.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "payment_confirmed_title_plain": "Payment confirmed",
+  "@payment_confirmed_title_plain": {
+    "description": "Payment confirmed without an amount."
+  },
+  "payment_confirmed_body": "Thank you! {name} confirmed your payment.",
+  "@payment_confirmed_body": {
+    "description": "Payment confirmed: message.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "payment_disputed_title": "We're looking into it",
+  "@payment_disputed_title": {
+    "description": "Payment disputed: title."
+  },
+  "payment_disputed_body": "Our team will contact you about this payment.",
+  "@payment_disputed_body": {
+    "description": "Payment disputed: message."
+  },
+  "payment_dispute_title": "What's wrong with the payment?",
+  "@payment_dispute_title": {
+    "description": "Dispute sheet: title."
+  },
+  "payment_dispute_label": "Tell us what happened",
+  "@payment_dispute_label": {
+    "description": "Dispute sheet: text field."
+  },
+  "payment_dispute_hint": "For example: asked for more than the amount shown",
+  "@payment_dispute_hint": {
+    "description": "Dispute sheet: hint."
+  },
+  "payment_dispute_send": "Report problem",
+  "@payment_dispute_send": {
+    "description": "Dispute sheet: confirm."
+  },
+  "payment_dispute_sent": "Thanks. We'll look into it.",
+  "@payment_dispute_sent": {
+    "description": "Toast after a dispute."
+  },
+  "cancel_keep_open": "Go back",
+  "@cancel_keep_open": {
+    "description": "Sheet: close without doing anything."
   }
 }

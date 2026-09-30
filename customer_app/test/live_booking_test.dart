@@ -48,6 +48,12 @@ class CancelRecorder implements BookingService {
   Future<CreatedBooking> createBooking(BookingDraft draft) => throw UnimplementedError();
 
   @override
+  Future<void> markPaid(String bookingId) => throw UnimplementedError();
+
+  @override
+  Future<void> disputePayment(String bookingId, String text) => throw UnimplementedError();
+
+  @override
   Future<void> cancelBooking(String bookingId, CancelReason reason) async {
     calls.add((bookingId, reason));
     final a = answer;
@@ -273,7 +279,7 @@ void main() {
       tall(tester);
       store.put(id, bookingAt(BookingStatus.inProgress));
       await open(tester);
-      expect(find.text('Your mechanic is on the job'), findsOneWidget);
+      expect(find.text('Kiran Patel is working on it'), findsOneWidget);
       expect(find.text('Cancel booking'), findsNothing);
     });
 

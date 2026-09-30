@@ -99,6 +99,9 @@ class BookingException implements Exception {
   /// `cancelBooking`: the booking can't be cancelled any more (work has started, or it ended).
   static const invalidStatus = 'error_invalid_status';
   static const bookingNotFound = 'error_booking_not_found';
+
+  /// `markPaid` / `disputePayment`: the payment has already moved on (PLAN §9 Payment).
+  static const invalidPaymentStatus = 'error_invalid_payment_status';
   static const network = 'network';
   static const unknown = 'unknown';
 
@@ -135,6 +138,12 @@ abstract interface class BookingService {
 
   /// `cancelBooking` as the customer, with a required reason (PLAN §9). Throws [BookingException].
   Future<void> cancelBooking(String bookingId, CancelReason reason);
+
+  /// "I have paid": `pending → customer_marked_paid` (#128). Throws [BookingException].
+  Future<void> markPaid(String bookingId);
+
+  /// "Something's wrong": `→ disputed` and a payment complaint for the admins (#128).
+  Future<void> disputePayment(String bookingId, String text);
 }
 
 /// The reasons the customer cancel sheet offers (`cancelBooking` takes any snake_case code;
@@ -168,6 +177,21 @@ class CallableBookingService implements BookingService {
         min: (estimate['min']! as num).toInt(),
         max: (estimate['max']! as num).toInt(),
       );
+    } on FirebaseFunctionsException catch (e) {
+      throw bookingExceptionFrom(e.code, e.message, e.details);
+    }
+  }
+
+  @override
+  Future<void> markPaid(String bookingId) => _call('markPaid', {'bookingId': bookingId});
+
+  @override
+  Future<void> disputePayment(String bookingId, String text) =>
+      _call('disputePayment', {'bookingId': bookingId, 'text': text.trim()});
+
+  Future<void> _call(String name, Map<String, Object?> data) async {
+    try {
+      await _functions.httpsCallable(name).call<Object?>(data);
     } on FirebaseFunctionsException catch (e) {
       throw bookingExceptionFrom(e.code, e.message, e.details);
     }
@@ -294,5 +318,37 @@ class FakeBookingService implements BookingService {
       bookingId,
       booking.copyWith(status: BookingStatus.cancelled, cancelledBy: Actor.customer, cancelReason: reason),
     );
+  }
+
+  @override
+  Future<void> markPaid(String bookingId) =>
+      _pay(bookingId, from: const [PaymentStatus.pending], to: PaymentStatus.customerMarkedPaid);
+
+  @override
+  Future<void> disputePayment(String bookingId, String text) => _pay(
+    bookingId,
+    from: const [PaymentStatus.pending, PaymentStatus.customerMarkedPaid],
+    to: PaymentStatus.disputed,
+  );
+
+  /// The #128 payment table for the customer: only on a completed booking of theirs.
+  Future<void> _pay(String bookingId, {required List<PaymentStatus> from, required PaymentStatus to}) async {
+    calls++;
+    final fail = failNext;
+    if (fail != null) {
+      failNext = null;
+      throw fail;
+    }
+    final booking = store[bookingId];
+    if (booking == null || booking.customerId != customerId) {
+      throw const BookingException(BookingException.bookingNotFound);
+    }
+    if (booking.status != BookingStatus.completed) {
+      throw const BookingException(BookingException.invalidStatus);
+    }
+    if (!from.contains(booking.paymentStatus)) {
+      throw const BookingException(BookingException.invalidPaymentStatus);
+    }
+    store.put(bookingId, booking.copyWith(paymentStatus: to));
   }
 }
