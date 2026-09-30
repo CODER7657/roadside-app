@@ -1020,4 +1020,73 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get chat_error_retry => 'Try again';
+
+  @override
+  String get home_profile => 'Profile & settings';
+
+  @override
+  String get profile_title => 'Profile & settings';
+
+  @override
+  String get profile_error => 'Couldn\'t load your profile. Your settings still work.';
+
+  @override
+  String get profile_language => 'Language';
+
+  @override
+  String get profile_language_title => 'Choose your language';
+
+  @override
+  String get profile_display_mode => 'Display mode';
+
+  @override
+  String get profile_display_auto => 'Auto';
+
+  @override
+  String get profile_display_auto_hint => 'Day or Night by local sunset. Saver when the battery is low.';
+
+  @override
+  String get profile_display_day => 'Day';
+
+  @override
+  String get profile_display_day_hint => 'A light screen, all the time.';
+
+  @override
+  String get profile_display_night => 'Night';
+
+  @override
+  String get profile_display_night_hint => 'A dark screen, all the time.';
+
+  @override
+  String get profile_display_glare => 'Glare';
+
+  @override
+  String get profile_display_glare_hint => 'Black on white with bigger text, for bright sun.';
+
+  @override
+  String get profile_chime => 'Arrival chime';
+
+  @override
+  String get profile_chime_hint => 'A short sound when your mechanic arrives.';
+
+  @override
+  String get profile_contacts => 'Emergency contacts';
+
+  @override
+  String profile_contacts_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count saved',
+      one: '1 saved',
+      zero: 'None saved yet',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get profile_privacy => 'Privacy & data';
+
+  @override
+  String get profile_licenses => 'Open-source licenses';
 }

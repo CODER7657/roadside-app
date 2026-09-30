@@ -12,7 +12,8 @@ import 'lane_icons.dart';
 ///
 /// A tap is the user's **manual choice**, which PLAN §6.5 ③ ranks above everything else,
 /// so it works even in Saver (a low battery in bright sun must not leave a dark screen).
-/// Tapping again hands back to the automatic modes. TalkBack hears a toggle.
+/// Tapping again hands back to the mode chosen in settings, or to the automatic modes.
+/// TalkBack hears a toggle.
 class LaneGlareButton extends ConsumerWidget {
   const LaneGlareButton({super.key});
 
@@ -26,7 +27,7 @@ class LaneGlareButton extends ConsumerWidget {
       child: LaneMapButton(
         icon: LaneIcons.sun,
         tooltip: on ? strings.glare_turn_off : strings.glare_turn_on,
-        onPressed: () => ref.read(ambientControllerProvider.notifier).setManual(on ? null : LaneMode.glare),
+        onPressed: ref.read(ambientControllerProvider.notifier).toggleManualGlare,
       ),
     );
   }

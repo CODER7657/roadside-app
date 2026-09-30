@@ -1416,5 +1416,90 @@
   "chat_error_retry": "Try again",
   "@chat_error_retry": {
     "description": "U11: error state action."
+  },
+  "home_profile": "Profile & settings",
+  "@home_profile": {
+    "description": "U1: tooltip and screen-reader label of the map button that opens U18."
+  },
+  "profile_title": "Profile & settings",
+  "@profile_title": {
+    "description": "U18: title."
+  },
+  "profile_error": "Couldn't load your profile. Your settings still work.",
+  "@profile_error": {
+    "description": "U18: error state for the name and number; the settings below are kept on the phone."
+  },
+  "profile_language": "Language",
+  "@profile_language": {
+    "description": "U18: row that opens the language choice."
+  },
+  "profile_language_title": "Choose your language",
+  "@profile_language_title": {
+    "description": "U18: title of the language sheet."
+  },
+  "profile_display_mode": "Display mode",
+  "@profile_display_mode": {
+    "description": "U18: row and sheet title for Auto / Day / Night / Glare."
+  },
+  "profile_display_auto": "Auto",
+  "@profile_display_auto": {
+    "description": "U18: display mode chosen by the app."
+  },
+  "profile_display_auto_hint": "Day or Night by local sunset. Saver when the battery is low.",
+  "@profile_display_auto_hint": {
+    "description": "U18: explains Auto."
+  },
+  "profile_display_day": "Day",
+  "@profile_display_day": {
+    "description": "U18: display mode."
+  },
+  "profile_display_day_hint": "A light screen, all the time.",
+  "@profile_display_day_hint": {
+    "description": "U18: explains Day."
+  },
+  "profile_display_night": "Night",
+  "@profile_display_night": {
+    "description": "U18: display mode."
+  },
+  "profile_display_night_hint": "A dark screen, all the time.",
+  "@profile_display_night_hint": {
+    "description": "U18: explains Night."
+  },
+  "profile_display_glare": "Glare",
+  "@profile_display_glare": {
+    "description": "U18: display mode for bright sunlight (the ☀ button on the map)."
+  },
+  "profile_display_glare_hint": "Black on white with bigger text, for bright sun.",
+  "@profile_display_glare_hint": {
+    "description": "U18: explains Glare."
+  },
+  "profile_chime": "Arrival chime",
+  "@profile_chime": {
+    "description": "U18: switch for the one sound the app plays."
+  },
+  "profile_chime_hint": "A short sound when your mechanic arrives.",
+  "@profile_chime_hint": {
+    "description": "U18: explains the arrival chime."
+  },
+  "profile_contacts": "Emergency contacts",
+  "@profile_contacts": {
+    "description": "U18: row that opens U17."
+  },
+  "profile_contacts_count": "{count, plural, =0{None saved yet} =1{1 saved} other{{count} saved}}",
+  "@profile_contacts_count": {
+    "description": "U18: how many emergency contacts are saved.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profile_privacy": "Privacy & data",
+  "@profile_privacy": {
+    "description": "U18: row that opens the privacy notice."
+  },
+  "profile_licenses": "Open-source licenses",
+  "@profile_licenses": {
+    "description": "U18: row that opens the licenses page."
   }
 }

@@ -22,16 +22,11 @@ Future<void> bootstrap(AppFlavor flavor) async {
     return true;
   };
 
-  // First-run state (language, onboarding, consent) is read before the first frame.
+  // First-run state and U18 settings are read before the first frame.
   final prefs = await SharedPreferences.getInstance();
 
-  runApp(
-    ProviderScope(
-      overrides: [
-        flavorProvider.overrideWithValue(flavor),
-        sharedPreferencesProvider.overrideWithValue(prefs),
-      ],
-      child: const RoadsideApp(),
-    ),
+  final container = createAppContainer(
+    overrides: [flavorProvider.overrideWithValue(flavor), sharedPreferencesProvider.overrideWithValue(prefs)],
   );
+  runApp(UncontrolledProviderScope(container: container, child: const RoadsideApp()));
 }

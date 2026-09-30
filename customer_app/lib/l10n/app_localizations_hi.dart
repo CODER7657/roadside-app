@@ -1021,4 +1021,72 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get chat_error_retry => 'दोबारा कोशिश करें';
+
+  @override
+  String get home_profile => 'प्रोफ़ाइल और सेटिंग्स';
+
+  @override
+  String get profile_title => 'प्रोफ़ाइल और सेटिंग्स';
+
+  @override
+  String get profile_error => 'आपकी प्रोफ़ाइल लोड नहीं हो सकी। आपकी सेटिंग्स फिर भी काम करती हैं।';
+
+  @override
+  String get profile_language => 'भाषा';
+
+  @override
+  String get profile_language_title => 'अपनी भाषा चुनें';
+
+  @override
+  String get profile_display_mode => 'डिस्प्ले मोड';
+
+  @override
+  String get profile_display_auto => 'ऑटो';
+
+  @override
+  String get profile_display_auto_hint => 'सूर्यास्त के हिसाब से दिन या रात। बैटरी कम होने पर सेवर।';
+
+  @override
+  String get profile_display_day => 'दिन';
+
+  @override
+  String get profile_display_day_hint => 'हमेशा हल्की स्क्रीन।';
+
+  @override
+  String get profile_display_night => 'रात';
+
+  @override
+  String get profile_display_night_hint => 'हमेशा गहरी स्क्रीन।';
+
+  @override
+  String get profile_display_glare => 'धूप मोड';
+
+  @override
+  String get profile_display_glare_hint => 'तेज़ धूप के लिए सफ़ेद पर काला, बड़े अक्षर।';
+
+  @override
+  String get profile_chime => 'पहुँचने की घंटी';
+
+  @override
+  String get profile_chime_hint => 'मैकेनिक के पहुँचने पर एक छोटी आवाज़।';
+
+  @override
+  String get profile_contacts => 'आपातकालीन संपर्क';
+
+  @override
+  String profile_contacts_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count सेव किए गए',
+      zero: 'अभी कोई सेव नहीं',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get profile_privacy => 'गोपनीयता और डेटा';
+
+  @override
+  String get profile_licenses => 'ओपन-सोर्स लाइसेंस';
 }

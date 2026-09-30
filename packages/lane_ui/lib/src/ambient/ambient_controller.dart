@@ -19,6 +19,7 @@ class AmbientState {
   const AmbientState({
     required this.now,
     this.manual,
+    this.beforeGlare,
     this.glare = false,
     this.systemDark = false,
     this.battery = LaneBatteryStatus.unknown,
@@ -27,6 +28,9 @@ class AmbientState {
 
   /// The user's explicit choice (Profile & settings). Null means automatic.
   final LaneMode? manual;
+
+  /// The manual choice the ☀ button replaced, restored when it is tapped off.
+  final LaneMode? beforeGlare;
 
   /// The ☀ Glare button in the dock is on.
   final bool glare;
@@ -52,6 +56,7 @@ class AmbientState {
 
   AmbientState copyWith({
     LaneMode? Function()? manual,
+    LaneMode? Function()? beforeGlare,
     bool? glare,
     bool? systemDark,
     LaneBatteryStatus? battery,
@@ -59,6 +64,7 @@ class AmbientState {
     DateTime? now,
   }) => AmbientState(
     manual: manual != null ? manual() : this.manual,
+    beforeGlare: beforeGlare != null ? beforeGlare() : this.beforeGlare,
     glare: glare ?? this.glare,
     systemDark: systemDark ?? this.systemDark,
     battery: battery ?? this.battery,
@@ -128,7 +134,13 @@ class AmbientController extends Notifier<AmbientState> {
   }
 
   /// Sets or clears (null) the user's manual mode.
-  void setManual(LaneMode? mode) => state = state.copyWith(manual: () => mode);
+  void setManual(LaneMode? mode) => state = state.copyWith(manual: () => mode, beforeGlare: () => null);
+
+  /// The ☀ button: Glare as the manual mode, and off again back to the manual choice it
+  /// replaced (a Night picked in settings stays Night), or to automatic if there was none.
+  void toggleManualGlare() => state = state.manual == LaneMode.glare
+      ? state.copyWith(manual: () => state.beforeGlare, beforeGlare: () => null)
+      : state.copyWith(manual: () => LaneMode.glare, beforeGlare: () => state.manual);
 
   void setGlare(bool on) => state = state.copyWith(glare: on);
 

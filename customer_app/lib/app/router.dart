@@ -19,6 +19,7 @@ import '../features/help/presentation/help_screen.dart';
 import '../features/home/presentation/home_screen.dart';
 import '../features/permissions/application/permission_service.dart';
 import '../features/permissions/presentation/permission_explainer_screen.dart';
+import '../features/profile/presentation/profile_screen.dart';
 import '../features/vehicles/presentation/add_vehicle_screen.dart';
 import '../features/vehicles/presentation/my_vehicles_screen.dart';
 
@@ -28,6 +29,9 @@ abstract final class AppRoutes {
   static const home = '/';
   static const privacy = '/privacy';
   static const help = '/help';
+
+  /// U18 Profile & settings (from the map button on Home).
+  static const profile = '/profile';
 
   /// U17 Emergency contacts (linked from U18 and the SOS sheet).
   static const emergencyContacts = '/profile/contacts';
@@ -76,6 +80,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: AppRoutes.privacy, builder: (context, state) => const PrivacyNoticeScreen()),
       GoRoute(path: AppRoutes.home, builder: (context, state) => const HomeScreen()),
       GoRoute(path: AppRoutes.help, builder: (context, state) => const HelpScreen()),
+      GoRoute(path: AppRoutes.profile, builder: (context, state) => const ProfileScreen()),
       GoRoute(
         path: AppRoutes.emergencyContacts,
         builder: (context, state) => const EmergencyContactsScreen(),
