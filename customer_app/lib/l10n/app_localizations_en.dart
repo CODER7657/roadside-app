@@ -13,13 +13,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_title => 'Roadside';
 
   @override
-  String get home_placeholder_title => 'Help on the road, in minutes';
-
-  @override
-  String get home_placeholder_body =>
-      'We\'re getting everything ready. Booking a mechanic arrives in the next update.';
-
-  @override
   String flow_step_label(int step, int total) {
     return 'Step $step of $total';
   }
@@ -623,9 +616,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get live_not_found => 'We couldn\'t find this booking.';
 
   @override
-  String get live_working_title => 'Your mechanic is on the job';
-
-  @override
   String get assigned_title => 'A mechanic is coming';
 
   @override
@@ -658,4 +648,260 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get notif_start_code_locked_body =>
       'Someone tried your start code 5 times. Only read it out to your mechanic in person.';
+
+  @override
+  String tracking_on_the_way(String name) {
+    return '$name is on the way';
+  }
+
+  @override
+  String tracking_arrived(String name) {
+    return '$name has arrived';
+  }
+
+  @override
+  String tracking_eta(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String get tracking_away => 'away';
+
+  @override
+  String tracking_waiting(String name) {
+    return 'Waiting for $name\'s location…';
+  }
+
+  @override
+  String tracking_stale(int minutes) {
+    return 'Location last updated $minutes min ago. It may be out of signal.';
+  }
+
+  @override
+  String tracking_call(String name) {
+    return 'Call $name';
+  }
+
+  @override
+  String get tracking_call_failed => 'Couldn\'t open the phone app.';
+
+  @override
+  String get tracking_start_code => 'Start code';
+
+  @override
+  String get tracking_start_code_hint => 'Share this code only when the mechanic is standing with you.';
+
+  @override
+  String working_title(String name) {
+    return '$name is working on it';
+  }
+
+  @override
+  String working_since(String time, int minutes) {
+    return 'Started at $time · $minutes min so far';
+  }
+
+  @override
+  String get working_started => 'Work has started.';
+
+  @override
+  String payment_title(String name) {
+    return 'Pay $name';
+  }
+
+  @override
+  String payment_estimate_was(String min, String max) {
+    return 'The estimate was $min–$max';
+  }
+
+  @override
+  String get payment_no_amount => 'Waiting for the mechanic to enter the final amount.';
+
+  @override
+  String get payment_pay_upi => 'Pay with UPI app';
+
+  @override
+  String payment_qr_label(String amount, String name) {
+    return 'QR code to pay $amount to $name';
+  }
+
+  @override
+  String get payment_qr_hint => 'Or scan this with any UPI app';
+
+  @override
+  String get payment_copy_upi => 'Copy UPI ID';
+
+  @override
+  String get payment_upi_copied => 'UPI ID copied';
+
+  @override
+  String get payment_no_upi_app => 'No UPI app opened. Scan the QR with another phone, or pay in cash.';
+
+  @override
+  String payment_cash(String name) {
+    return 'Pay $name in cash, or ask them for their UPI ID.';
+  }
+
+  @override
+  String get payment_i_have_paid => 'I have paid';
+
+  @override
+  String get payment_problem => 'Something\'s wrong';
+
+  @override
+  String get payment_error_network => 'Couldn\'t update the payment. Check your connection and try again.';
+
+  @override
+  String payment_waiting_title(String name) {
+    return 'Waiting for $name to confirm';
+  }
+
+  @override
+  String payment_waiting_body(String amount) {
+    return 'They check that $amount arrived in their UPI app.';
+  }
+
+  @override
+  String payment_confirmed_title(String amount) {
+    return 'Paid $amount';
+  }
+
+  @override
+  String get payment_confirmed_title_plain => 'Payment confirmed';
+
+  @override
+  String payment_confirmed_body(String name) {
+    return 'Thank you! $name confirmed your payment.';
+  }
+
+  @override
+  String get payment_disputed_title => 'We\'re looking into it';
+
+  @override
+  String get payment_disputed_body => 'Our team will contact you about this payment.';
+
+  @override
+  String get payment_dispute_title => 'What\'s wrong with the payment?';
+
+  @override
+  String get payment_dispute_label => 'Tell us what happened';
+
+  @override
+  String get payment_dispute_hint => 'For example: asked for more than the amount shown';
+
+  @override
+  String get payment_dispute_send => 'Report problem';
+
+  @override
+  String get payment_dispute_sent => 'Thanks. We\'ll look into it.';
+
+  @override
+  String get cancel_keep_open => 'Go back';
+
+  @override
+  String review_rate(String name) {
+    return 'Rate $name';
+  }
+
+  @override
+  String get review_step => 'Your review';
+
+  @override
+  String review_title(String name) {
+    return 'How was $name?';
+  }
+
+  @override
+  String review_stars_label(String name) {
+    return 'Rating for $name';
+  }
+
+  @override
+  String get review_tags_good => 'What went well?';
+
+  @override
+  String get review_tags_bad => 'What went wrong?';
+
+  @override
+  String get review_tag_on_time => 'On time';
+
+  @override
+  String get review_tag_friendly => 'Friendly';
+
+  @override
+  String get review_tag_fixed_fast => 'Fixed it fast';
+
+  @override
+  String get review_tag_fair_price => 'Fair price';
+
+  @override
+  String get review_tag_late => 'Came late';
+
+  @override
+  String get review_tag_rude => 'Rude';
+
+  @override
+  String get review_tag_overcharged => 'Charged too much';
+
+  @override
+  String get review_tag_not_fixed => 'Not fixed';
+
+  @override
+  String get review_comment_label => 'Anything else? (optional)';
+
+  @override
+  String get review_submit => 'Send review';
+
+  @override
+  String get review_thanks => 'Thanks for your review!';
+
+  @override
+  String get review_error => 'Couldn\'t send your review. Check your connection and try again.';
+
+  @override
+  String get review_not_allowed => 'This booking can’t be reviewed.';
+
+  @override
+  String get review_already => 'You have rated this booking. Thank you!';
+
+  @override
+  String get home_city_outside => 'Outside our area';
+
+  @override
+  String get home_locating => 'Finding your location…';
+
+  @override
+  String get home_no_location =>
+      'Share your location to see help near you. You can still get help without it.';
+
+  @override
+  String get home_show_location => 'Show my location';
+
+  @override
+  String get home_no_fix =>
+      'We couldn\'t find your location. You can still get help and place the pin yourself.';
+
+  @override
+  String get home_outside_title => 'We\'re not in your area yet';
+
+  @override
+  String get home_outside_body =>
+      'We serve Ahmedabad, Ankleshwar and Bharuch. Send us your location by SMS and our team will help you find someone.';
+
+  @override
+  String get home_sms_location => 'Send my location by SMS';
+
+  @override
+  String home_sms_body(String link, String code) {
+    return 'I need roadside help. My location: $link (Plus Code $code)';
+  }
+
+  @override
+  String get home_sms_failed => 'Couldn\'t open the SMS app.';
+
+  @override
+  String get home_booking_active => 'Your booking is in progress';
+
+  @override
+  String get home_booking_open => 'Tap to open it';
 }

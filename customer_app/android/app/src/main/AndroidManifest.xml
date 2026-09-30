@@ -56,6 +56,11 @@
             <data android:mimeType="text/plain"/>
         </intent>
         <!-- Help & FAQ: call support, WhatsApp, email the grievance officer (url_launcher). -->
+        <!-- U13: "Pay with UPI app" (upi://pay deep link to any installed UPI app). -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="upi" />
+        </intent>
         <intent>
             <action android:name="android.intent.action.DIAL" />
             <data android:scheme="tel" />

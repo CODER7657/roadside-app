@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
@@ -10,6 +12,7 @@ import '../features/auth/application/admin_session.dart';
 import '../features/auth/data/admin_auth.dart';
 import 'app.dart';
 import 'env.dart';
+import 'firebase_providers.dart';
 import 'flavor.dart';
 
 /// Starts the panel for a flavour. Firebase comes from `env/*.json`, or the local emulators when
@@ -27,20 +30,29 @@ Future<void> bootstrap(AppFlavor flavor) async {
   };
 
   AdminAuth? auth;
+  FirebaseFunctions? functions;
   final options = AppEnv.firebaseOptions;
   if (options != null) {
     await Firebase.initializeApp(options: options);
     if (AppEnv.useEmulators) {
       assert(flavor == AppFlavor.dev, 'Emulators are for the dev flavour only');
       await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+      FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
     }
+    functions = FirebaseFunctions.instanceFor(region: 'asia-south1');
+    if (AppEnv.useEmulators) functions.useFunctionsEmulator('localhost', 5001);
     auth = FirebaseAdminAuth(FirebaseAuth.instance);
   }
 
   runApp(
     UncontrolledProviderScope(
       container: createAdminContainer(
-        overrides: [flavorProvider.overrideWithValue(flavor), adminAuthProvider.overrideWithValue(auth)],
+        overrides: [
+          flavorProvider.overrideWithValue(flavor),
+          adminAuthProvider.overrideWithValue(auth),
+          if (options != null) firestoreProvider.overrideWithValue(FirebaseFirestore.instance),
+          if (functions != null) functionsProvider.overrideWithValue(functions),
+        ],
       ),
       child: const AdminApp(),
     ),
