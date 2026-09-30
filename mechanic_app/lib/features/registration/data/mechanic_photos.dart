@@ -1,5 +1,7 @@
+import 'dart:math';
 import 'dart:typed_data';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -74,8 +76,20 @@ class PhotoCompressor {
   }
 }
 
-/// Uploads M1 photos to the paths the storage rules allow (#102). The Firebase implementation
-/// (#120) must set `contentType: image/jpeg`: the rules only accept image content types.
+final _random = Random.secure();
+
+/// A new Storage file name for each upload, e.g. `id-proof-1790000000000-k3x9q.jpg`. KYC
+/// paths are write-once (storage rules), so a retry after a failed save, or after the app was
+/// killed mid-submit, must never reuse a name. A unique name also keeps the CDN from serving an
+/// older shop photo.
+String uniquePhotoName(String base, {DateTime? now}) {
+  final stamp = (now ?? DateTime.now()).millisecondsSinceEpoch;
+  final salt = _random.nextInt(1 << 30).toRadixString(36);
+  return '$base-$stamp-$salt.jpg';
+}
+
+/// Uploads M1 photos to the paths the storage rules allow (#102), as `image/jpeg` (the rules
+/// only accept image content types).
 abstract interface class MechanicPhotoUploader {
   /// Profile, shop and toolkit photos → `mechanics/{uid}/shop/{fileName}`. Returns the
   /// **download URL** (shown to customers through the mechanicCard).
@@ -86,7 +100,31 @@ abstract interface class MechanicPhotoUploader {
   Future<String> uploadKycDocument({required String fileName, required Uint8List bytes});
 }
 
-/// Until Firebase is wired (#120): keeps nothing and returns Storage-shaped values.
+class FirebaseMechanicPhotoUploader implements MechanicPhotoUploader {
+  FirebaseMechanicPhotoUploader(this._storage, this.uid);
+
+  final FirebaseStorage _storage;
+  final String uid;
+
+  static final _jpeg = SettableMetadata(contentType: 'image/jpeg');
+
+  Future<Reference> _put(String path, Uint8List bytes) async {
+    final ref = _storage.ref(path);
+    await ref.putData(bytes, _jpeg);
+    return ref;
+  }
+
+  @override
+  Future<String> uploadShopPhoto({required String fileName, required Uint8List bytes}) async =>
+      (await _put('mechanics/$uid/shop/$fileName', bytes)).getDownloadURL();
+
+  @override
+  Future<String> uploadKycDocument({required String fileName, required Uint8List bytes}) async =>
+      (await _put('mechanics/$uid/kyc/$fileName', bytes)).fullPath;
+}
+
+/// Until the repositories switch to Firebase (#123): keeps nothing and returns Storage-shaped
+/// values. Like the storage rules, it refuses a second write to the same KYC path.
 class FakeMechanicPhotoUploader implements MechanicPhotoUploader {
   FakeMechanicPhotoUploader({this.uid = 'me', this.failNext = 0});
 
@@ -115,6 +153,8 @@ class FakeMechanicPhotoUploader implements MechanicPhotoUploader {
   Future<String> uploadKycDocument({required String fileName, required Uint8List bytes}) async {
     _maybeFail();
     final path = 'mechanics/$uid/kyc/$fileName';
+    // storage.rules: `allow create: if ... resource == null`, no update.
+    if (uploaded.contains(path)) throw Exception('storage/unauthorized: $path exists');
     uploaded.add(path);
     return path;
   }

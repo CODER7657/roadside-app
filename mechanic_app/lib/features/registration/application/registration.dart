@@ -353,29 +353,33 @@ class RegistrationController extends Notifier<RegistrationState> {
     final uploader = ref.read(mechanicPhotoUploaderProvider);
 
     try {
-      Future<void> shop(RegistrationPhoto p, String file) async {
+      // Every upload gets a new name: KYC paths are write-once (see uniquePhotoName).
+      Future<void> shop(RegistrationPhoto p, String base) async {
         final bytes = draft.photos[p];
         if (bytes == null || _shopUrls.containsKey(p)) return;
-        _shopUrls[p] = await uploader.uploadShopPhoto(fileName: file, bytes: bytes);
+        _shopUrls[p] = await uploader.uploadShopPhoto(fileName: uniquePhotoName(base), bytes: bytes);
       }
 
-      Future<void> kyc(RegistrationPhoto p, String file) async {
+      Future<void> kyc(RegistrationPhoto p, String base) async {
         final bytes = draft.photos[p];
         if (bytes == null || _kycPaths.containsKey(p)) return;
-        _kycPaths[p] = await uploader.uploadKycDocument(fileName: file, bytes: bytes);
+        _kycPaths[p] = await uploader.uploadKycDocument(fileName: uniquePhotoName(base), bytes: bytes);
       }
 
-      await shop(RegistrationPhoto.profile, 'profile.jpg');
-      await kyc(RegistrationPhoto.idProof, 'id-proof.jpg');
+      await shop(RegistrationPhoto.profile, 'profile');
+      await kyc(RegistrationPhoto.idProof, 'id-proof');
       if (draft.isIndependent) {
         for (final (i, bytes) in draft.toolkitPhotos.indexed) {
           if (_toolkitUrls.containsKey(i)) continue;
-          _toolkitUrls[i] = await uploader.uploadShopPhoto(fileName: 'toolkit-${i + 1}.jpg', bytes: bytes);
+          _toolkitUrls[i] = await uploader.uploadShopPhoto(
+            fileName: uniquePhotoName('toolkit-${i + 1}'),
+            bytes: bytes,
+          );
         }
-        await kyc(RegistrationPhoto.selfieWithId, 'selfie-with-id.jpg');
-        await kyc(RegistrationPhoto.addressProof, 'address-proof.jpg');
+        await kyc(RegistrationPhoto.selfieWithId, 'selfie-with-id');
+        await kyc(RegistrationPhoto.addressProof, 'address-proof');
       } else {
-        await shop(RegistrationPhoto.shop, 'shop.jpg');
+        await shop(RegistrationPhoto.shop, 'shop');
       }
     } catch (_) {
       state = state.copyWith(submitting: false, submitError: SubmitError.upload);

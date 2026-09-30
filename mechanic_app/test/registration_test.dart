@@ -29,6 +29,14 @@ class _NoBattery implements LaneBatterySource {
   Stream<LaneBatteryStatus> watch() => const Stream.empty();
 }
 
+/// A photo uploaded under a unique name, e.g. `mechanics/mech-1/kyc/id-proof-<ms>-<salt>.jpg`.
+Matcher photoPath(String folder, String base) => matches(
+  RegExp(
+    '^mechanics/mech-1/$folder/$base-'
+    r'\d+-[0-9a-z]+\.jpg$',
+  ),
+);
+
 class _FakePicker implements PhotoPicker {
   _FakePicker({this.cancel = false});
 
@@ -216,12 +224,12 @@ void main() {
       fill(MechanicType.workshop);
       expect(await container.read(registrationProvider.notifier).submit(), isTrue);
       expect(uploader.uploaded, [
-        'mechanics/mech-1/shop/profile.jpg',
-        'mechanics/mech-1/kyc/id-proof.jpg',
-        'mechanics/mech-1/shop/shop.jpg',
+        photoPath('shop', 'profile'),
+        photoPath('kyc', 'id-proof'),
+        photoPath('shop', 'shop'),
       ]);
       expect(repo.profile!.shopPhotoUrl, startsWith('https://firebasestorage.googleapis.com/'));
-      expect(repo.kyc!.idProofPath, 'mechanics/mech-1/kyc/id-proof.jpg');
+      expect(repo.kyc!.idProofPath, photoPath('kyc', 'id-proof'));
       expect(repo.profile!.status, MechanicStatus.pending);
       expect(repo.claimRefreshes, 1);
       expect(container.read(registrationProvider).submitted, isTrue);
@@ -231,15 +239,15 @@ void main() {
       fill(MechanicType.independent);
       await container.read(registrationProvider.notifier).submit();
       expect(uploader.uploaded, [
-        'mechanics/mech-1/shop/profile.jpg',
-        'mechanics/mech-1/kyc/id-proof.jpg',
-        'mechanics/mech-1/shop/toolkit-1.jpg',
-        'mechanics/mech-1/shop/toolkit-2.jpg',
-        'mechanics/mech-1/kyc/selfie-with-id.jpg',
-        'mechanics/mech-1/kyc/address-proof.jpg',
+        photoPath('shop', 'profile'),
+        photoPath('kyc', 'id-proof'),
+        photoPath('shop', 'toolkit-1'),
+        photoPath('shop', 'toolkit-2'),
+        photoPath('kyc', 'selfie-with-id'),
+        photoPath('kyc', 'address-proof'),
       ]);
       expect(repo.profile!.toolkitPhotoUrls, hasLength(2));
-      expect(repo.kyc!.selfieWithIdPath, 'mechanics/mech-1/kyc/selfie-with-id.jpg');
+      expect(repo.kyc!.selfieWithIdPath, photoPath('kyc', 'selfie-with-id'));
     });
 
     test('an upload failure keeps what worked; the retry only sends the rest', () async {
@@ -263,7 +271,7 @@ void main() {
 
       expect(await c.submit(), isTrue);
       expect(
-        uploader.uploaded.where((p) => p.endsWith('profile.jpg')),
+        uploader.uploaded.where((p) => p.contains('/shop/profile-')),
         hasLength(1),
         reason: 'not sent twice',
       );
@@ -295,6 +303,61 @@ void main() {
       expect(container.read(registrationProvider).submitError, SubmitError.save);
       expect(await c.submit(), isTrue);
       expect(uploader.uploaded, hasLength(3), reason: 'photos were uploaded once');
+    });
+
+    // P1's #145 review: KYC paths are write-once (storage.rules), and the fake refuses a
+    // second write to the same path, like the rules.
+    test('a save failure, then a new ID photo: the retry uploads it under a new name', () async {
+      container.dispose();
+      container = ProviderContainer(
+        overrides: [
+          mechanicPhotoUploaderProvider.overrideWithValue(uploader),
+          registrationRepositoryProvider.overrideWithValue(repo),
+          photoCompressorProvider.overrideWithValue(identityCompressor),
+          photoPickerProvider.overrideWithValue(_FakePicker()),
+        ],
+      );
+      addTearDown(container.dispose);
+      repo.failNext = 1;
+      fill(MechanicType.workshop);
+      final c = container.read(registrationProvider.notifier);
+      expect(await c.submit(), isFalse);
+      expect(await c.pickPhoto(RegistrationPhoto.idProof, PhotoSource.camera), isTrue);
+      expect(await c.submit(), isTrue);
+      final ids = uploader.uploaded.where((p) => p.contains('/kyc/id-proof-')).toList();
+      expect(ids, hasLength(2));
+      expect(ids.toSet(), hasLength(2), reason: 'never the same KYC path twice');
+      expect(repo.kyc!.idProofPath, ids.last);
+    });
+
+    test('the app restarts mid-submit: KYC is uploaded again under new names', () async {
+      repo.failNext = 1;
+      fill(MechanicType.independent);
+      expect(await container.read(registrationProvider.notifier).submit(), isFalse);
+
+      // A fresh start: the controller has no record of what was uploaded.
+      container.dispose();
+      container = make();
+      addTearDown(container.dispose);
+      fill(MechanicType.independent);
+      expect(await container.read(registrationProvider.notifier).submit(), isTrue);
+      final kyc = uploader.uploaded.where((p) => p.contains('/kyc/')).toList();
+      expect(kyc, hasLength(6));
+      expect(kyc.toSet(), hasLength(6));
+    });
+
+    test('the fake refuses a second write to a KYC path, like the rules', () async {
+      await uploader.uploadKycDocument(fileName: 'id-proof.jpg', bytes: tinyPng);
+      expect(() => uploader.uploadKycDocument(fileName: 'id-proof.jpg', bytes: tinyPng), throwsException);
+    });
+
+    test("photo names are unique and pass the rules' file-name check", () {
+      final now = DateTime.utc(2026, 9, 30, 12);
+      final a = uniquePhotoName('id-proof', now: now);
+      final b = uniquePhotoName('id-proof', now: now);
+      expect(a, matches(RegExp(r'^id-proof-\d+-[0-9a-z]+\.jpg$')));
+      expect(a, matches(RegExp(r'^[A-Za-z0-9._-]{1,100}$')), reason: 'storage.rules isFileName');
+      expect(a, isNot(b), reason: 'unique even within the same millisecond');
     });
 
     test('submit with a missing field jumps to that step instead', () async {
