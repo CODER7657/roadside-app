@@ -137,5 +137,13 @@
         "type": "String"
       }
     }
+  },
+  "glare_turn_on": "Sunlight mode: high contrast for bright light",
+  "@glare_turn_on": {
+    "description": "LaneGlareButton tooltip / TalkBack when off."
+  },
+  "glare_turn_off": "Turn off sunlight mode",
+  "@glare_turn_off": {
+    "description": "LaneGlareButton tooltip / TalkBack when on."
   }
 }

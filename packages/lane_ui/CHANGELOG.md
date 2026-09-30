@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.0-dev.12
+
+Ambient polish (#20), PLAN §6.5 ③.
+
+- `LaneGlareButton`: the ☀ map button (a `LaneMapButton`). A tap is the user's **manual
+  choice**, which ranks above everything, so it works in Saver too (a low battery in bright
+  sun must not leave a dark screen); tapping again hands back to the automatic modes.
+  TalkBack hears a toggle; tooltips in en / hi / gu.
+- `LaneIcons.sun` (Phosphor `sun` duotone).
+
 ## 0.1.0-dev.11
 
 Sheets for U8 cancel (#125), PLAN §6.12, §6.5 ⑤.

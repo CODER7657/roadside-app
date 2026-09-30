@@ -89,4 +89,10 @@ class LaneLocalizationsGu extends LaneLocalizations {
   String price_range_semantics(String min, String max) {
     return '$min થી $max';
   }
+
+  @override
+  String get glare_turn_on => 'તડકા મોડ: તેજ પ્રકાશ માટે ઊંચો કોન્ટ્રાસ્ટ';
+
+  @override
+  String get glare_turn_off => 'તડકા મોડ બંધ કરો';
 }

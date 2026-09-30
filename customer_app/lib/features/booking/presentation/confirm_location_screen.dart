@@ -101,6 +101,8 @@ class _ConfirmLocationScreenState extends ConsumerState<ConfirmLocationScreen> w
           : mapBuilder(center: pin, onMoveStarted: _notifier.dragStarted, onMoveEnded: _notifier.dragEnded),
       overlay: CenterPin(lifted: pickup.dragging),
       actions: [
+        // ☀ for reading the map in sunlight (PLAN §6.5 ③).
+        const LaneGlareButton(),
         if (fix != null)
           LaneMapButton(
             icon: LaneIcons.navigation,

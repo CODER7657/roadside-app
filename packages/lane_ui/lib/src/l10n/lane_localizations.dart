@@ -218,6 +218,18 @@ abstract class LaneLocalizations {
   /// In en, this message translates to:
   /// **'{min} to {max}'**
   String price_range_semantics(String min, String max);
+
+  /// LaneGlareButton tooltip / TalkBack when off.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunlight mode: high contrast for bright light'**
+  String get glare_turn_on;
+
+  /// LaneGlareButton tooltip / TalkBack when on.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off sunlight mode'**
+  String get glare_turn_off;
 }
 
 class _LaneLocalizationsDelegate extends LocalizationsDelegate<LaneLocalizations> {

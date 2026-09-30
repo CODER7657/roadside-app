@@ -20,5 +20,7 @@
   "accuracy_meters": "±{meters} मी",
   "accuracy_adjust": "±{meters} मी · पिन ठीक करें",
   "accuracy_semantics": "लोकेशन {meters} मीटर तक सटीक",
-  "price_range_semantics": "{min} से {max}"
+  "price_range_semantics": "{min} से {max}",
+  "glare_turn_on": "धूप मोड: तेज़ रोशनी के लिए गहरा कंट्रास्ट",
+  "glare_turn_off": "धूप मोड बंद करें"
 }
