@@ -1,7 +1,6 @@
 // A4 Price editor (#51). "Done when: createBooking uses the edited prices": the saved documents
 // must have the shape Functions' priceFor() reads, i.e. roadside_core's Price.rangeFor().
 
-import 'package:admin_panel/app/firebase_providers.dart';
 import 'package:admin_panel/app/router.dart';
 import 'package:admin_panel/features/console/application/city_filter.dart';
 import 'package:admin_panel/features/prices/application/price_editor.dart';
@@ -160,7 +159,7 @@ void main() {
 
     Future<void> openPrices(WidgetTester tester) async {
       db = await seededDb();
-      await pumpPanel(tester, overrides: [firestoreProvider.overrideWithValue(db)]);
+      await pumpPanel(tester, firestore: db);
       auth.emit(admin);
       await settle(tester);
       container.read(routerProvider).go('/prices');

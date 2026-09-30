@@ -85,14 +85,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get console_sign_out => 'Sign out';
 
   @override
-  String get console_section_coming_title => 'Coming next';
-
-  @override
-  String console_section_coming_body(String issue) {
-    return 'This screen arrives with issue #$issue.';
-  }
-
-  @override
   String get vehicle_type_car => 'Car';
 
   @override
@@ -541,4 +533,173 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get live_cancel_refused => 'This booking can\'t be cancelled any more.';
+
+  @override
+  String get complaints_tab_open => 'Open';
+
+  @override
+  String complaints_tab_open_count(int count) {
+    return 'Open ($count)';
+  }
+
+  @override
+  String get complaints_tab_resolved => 'Resolved';
+
+  @override
+  String get complaints_tab_reviews => 'Reviews';
+
+  @override
+  String get complaints_load_failed => 'Couldn\'t load complaints.';
+
+  @override
+  String get complaints_empty_open => 'No open complaints.';
+
+  @override
+  String get complaints_empty_resolved => 'No resolved complaints yet.';
+
+  @override
+  String get complaints_empty_reviews => 'No reviews yet.';
+
+  @override
+  String complaints_title(String category, String ref) {
+    return '$category · $ref';
+  }
+
+  @override
+  String complaints_raised_by_customer(String name) {
+    return 'Raised by the customer, $name';
+  }
+
+  @override
+  String complaints_raised_by_mechanic(String name) {
+    return 'Raised by the mechanic, $name';
+  }
+
+  @override
+  String complaints_resolution(String text) {
+    return 'Resolution: $text';
+  }
+
+  @override
+  String get complaints_resolution_label => 'Resolution note';
+
+  @override
+  String get complaints_resolution_hint =>
+      'For example: called both, UPI transfer found, confirmed with the mechanic.';
+
+  @override
+  String get complaints_resolve => 'Resolve';
+
+  @override
+  String get complaints_resolved => 'Complaint resolved.';
+
+  @override
+  String complaints_stars(int stars) {
+    String _temp0 = intl.Intl.pluralLogic(stars, locale: localeName, other: '$stars stars', one: '1 star');
+    return '$_temp0';
+  }
+
+  @override
+  String get complaints_category_payment => 'Payment dispute';
+
+  @override
+  String get complaints_category_service => 'Service';
+
+  @override
+  String get complaints_category_safety => 'Safety';
+
+  @override
+  String get complaints_category_other => 'Other';
+
+  @override
+  String get payment_status_pending => 'Not paid yet';
+
+  @override
+  String get payment_status_marked_paid => 'Customer says paid';
+
+  @override
+  String get payment_status_confirmed => 'Paid, confirmed';
+
+  @override
+  String get payment_status_disputed => 'Disputed';
+
+  @override
+  String get settings_load_failed => 'Couldn\'t load settings.';
+
+  @override
+  String get settings_app_title => 'App';
+
+  @override
+  String get settings_min_build_label => 'Minimum supported build';
+
+  @override
+  String get settings_min_build_help => 'Older app builds must update before they can be used.';
+
+  @override
+  String get settings_maintenance_label => 'Maintenance message';
+
+  @override
+  String get settings_maintenance_help => 'Shown to everyone in the apps. Leave empty for none.';
+
+  @override
+  String get settings_support_phone_label => 'Support phone';
+
+  @override
+  String get settings_support_phone_hint => '+91 98XXX XXXXX';
+
+  @override
+  String get settings_phone_invalid => 'Enter a phone number with its country code, e.g. +91…';
+
+  @override
+  String get settings_dispatch_label => 'Take new bookings';
+
+  @override
+  String get settings_dispatch_on => 'On: customers can book.';
+
+  @override
+  String get settings_dispatch_off => 'Off: every new booking is refused until you turn it back on.';
+
+  @override
+  String get settings_save => 'Save';
+
+  @override
+  String get settings_saved => 'Saved. The apps pick it up within a minute.';
+
+  @override
+  String get settings_areas_title => 'Service areas';
+
+  @override
+  String settings_area_missing(String city) {
+    return '$city isn\'t set up yet (run the seed).';
+  }
+
+  @override
+  String get settings_area_on => 'On: bookings accepted here.';
+
+  @override
+  String settings_area_off(String city) {
+    return 'Off: new bookings in $city get \"not in your area yet\".';
+  }
+
+  @override
+  String settings_area_radius_label(String city) {
+    return '$city radius (km)';
+  }
+
+  @override
+  String get settings_area_radius_invalid => 'Between 1 and 100 km';
+
+  @override
+  String settings_area_save(String city) {
+    return 'Save $city';
+  }
+
+  @override
+  String get settings_admins_title => 'Admins';
+
+  @override
+  String get settings_admins_note => 'Read only. Admins are added and removed with tool/admin (PLAN §12.11).';
+
+  @override
+  String get complaints_audit_note => 'The resolution is recorded with your account in the audit log.';
 }

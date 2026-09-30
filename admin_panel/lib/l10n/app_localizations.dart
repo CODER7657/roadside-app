@@ -237,18 +237,6 @@ abstract class AppLocalizations {
   /// **'Sign out'**
   String get console_sign_out;
 
-  /// Placeholder for a screen not built yet.
-  ///
-  /// In en, this message translates to:
-  /// **'Coming next'**
-  String get console_section_coming_title;
-
-  /// Placeholder body. {issue} is a GitHub issue number.
-  ///
-  /// In en, this message translates to:
-  /// **'This screen arrives with issue #{issue}.'**
-  String console_section_coming_body(String issue);
-
   /// Vehicle type.
   ///
   /// In en, this message translates to:
@@ -1046,6 +1034,300 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This booking can\'t be cancelled any more.'**
   String get live_cancel_refused;
+
+  /// A5 tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get complaints_tab_open;
+
+  /// A5 tab with count.
+  ///
+  /// In en, this message translates to:
+  /// **'Open ({count})'**
+  String complaints_tab_open_count(int count);
+
+  /// A5 tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Resolved'**
+  String get complaints_tab_resolved;
+
+  /// A5 tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Reviews'**
+  String get complaints_tab_reviews;
+
+  /// A5 error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load complaints.'**
+  String get complaints_load_failed;
+
+  /// A5 empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No open complaints.'**
+  String get complaints_empty_open;
+
+  /// A5 empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No resolved complaints yet.'**
+  String get complaints_empty_resolved;
+
+  /// A5 empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No reviews yet.'**
+  String get complaints_empty_reviews;
+
+  /// A5 detail title, e.g. Payment dispute · #K3F9QA.
+  ///
+  /// In en, this message translates to:
+  /// **'{category} · {ref}'**
+  String complaints_title(String category, String ref);
+
+  /// A5 detail.
+  ///
+  /// In en, this message translates to:
+  /// **'Raised by the customer, {name}'**
+  String complaints_raised_by_customer(String name);
+
+  /// A5 detail.
+  ///
+  /// In en, this message translates to:
+  /// **'Raised by the mechanic, {name}'**
+  String complaints_raised_by_mechanic(String name);
+
+  /// A5 resolved complaint.
+  ///
+  /// In en, this message translates to:
+  /// **'Resolution: {text}'**
+  String complaints_resolution(String text);
+
+  /// A5: note before resolving.
+  ///
+  /// In en, this message translates to:
+  /// **'Resolution note'**
+  String get complaints_resolution_label;
+
+  /// A5 hint.
+  ///
+  /// In en, this message translates to:
+  /// **'For example: called both, UPI transfer found, confirmed with the mechanic.'**
+  String get complaints_resolution_hint;
+
+  /// A5 action.
+  ///
+  /// In en, this message translates to:
+  /// **'Resolve'**
+  String get complaints_resolve;
+
+  /// Toast.
+  ///
+  /// In en, this message translates to:
+  /// **'Complaint resolved.'**
+  String get complaints_resolved;
+
+  /// Review rating.
+  ///
+  /// In en, this message translates to:
+  /// **'{stars, plural, =1{1 star} other{{stars} stars}}'**
+  String complaints_stars(int stars);
+
+  /// Complaint category.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment dispute'**
+  String get complaints_category_payment;
+
+  /// Complaint category.
+  ///
+  /// In en, this message translates to:
+  /// **'Service'**
+  String get complaints_category_service;
+
+  /// Complaint category.
+  ///
+  /// In en, this message translates to:
+  /// **'Safety'**
+  String get complaints_category_safety;
+
+  /// Complaint category.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get complaints_category_other;
+
+  /// Payment status.
+  ///
+  /// In en, this message translates to:
+  /// **'Not paid yet'**
+  String get payment_status_pending;
+
+  /// Payment status.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer says paid'**
+  String get payment_status_marked_paid;
+
+  /// Payment status.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid, confirmed'**
+  String get payment_status_confirmed;
+
+  /// Payment status.
+  ///
+  /// In en, this message translates to:
+  /// **'Disputed'**
+  String get payment_status_disputed;
+
+  /// A6 error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load settings.'**
+  String get settings_load_failed;
+
+  /// A6 section: appConfig/public.
+  ///
+  /// In en, this message translates to:
+  /// **'App'**
+  String get settings_app_title;
+
+  /// A6 field.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum supported build'**
+  String get settings_min_build_label;
+
+  /// A6 help.
+  ///
+  /// In en, this message translates to:
+  /// **'Older app builds must update before they can be used.'**
+  String get settings_min_build_help;
+
+  /// A6 field.
+  ///
+  /// In en, this message translates to:
+  /// **'Maintenance message'**
+  String get settings_maintenance_label;
+
+  /// A6 help.
+  ///
+  /// In en, this message translates to:
+  /// **'Shown to everyone in the apps. Leave empty for none.'**
+  String get settings_maintenance_help;
+
+  /// A6 field.
+  ///
+  /// In en, this message translates to:
+  /// **'Support phone'**
+  String get settings_support_phone_label;
+
+  /// A6 phone hint.
+  ///
+  /// In en, this message translates to:
+  /// **'+91 98XXX XXXXX'**
+  String get settings_support_phone_hint;
+
+  /// A6 phone error.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a phone number with its country code, e.g. +91…'**
+  String get settings_phone_invalid;
+
+  /// A6: dispatch kill switch.
+  ///
+  /// In en, this message translates to:
+  /// **'Take new bookings'**
+  String get settings_dispatch_label;
+
+  /// Kill switch on.
+  ///
+  /// In en, this message translates to:
+  /// **'On: customers can book.'**
+  String get settings_dispatch_on;
+
+  /// Kill switch off.
+  ///
+  /// In en, this message translates to:
+  /// **'Off: every new booking is refused until you turn it back on.'**
+  String get settings_dispatch_off;
+
+  /// A6 app save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get settings_save;
+
+  /// Toast.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved. The apps pick it up within a minute.'**
+  String get settings_saved;
+
+  /// A6 section.
+  ///
+  /// In en, this message translates to:
+  /// **'Service areas'**
+  String get settings_areas_title;
+
+  /// A6: missing serviceAreas doc.
+  ///
+  /// In en, this message translates to:
+  /// **'{city} isn\'t set up yet (run the seed).'**
+  String settings_area_missing(String city);
+
+  /// City on.
+  ///
+  /// In en, this message translates to:
+  /// **'On: bookings accepted here.'**
+  String get settings_area_on;
+
+  /// City off.
+  ///
+  /// In en, this message translates to:
+  /// **'Off: new bookings in {city} get \"not in your area yet\".'**
+  String settings_area_off(String city);
+
+  /// A6 radius field.
+  ///
+  /// In en, this message translates to:
+  /// **'{city} radius (km)'**
+  String settings_area_radius_label(String city);
+
+  /// Radius error.
+  ///
+  /// In en, this message translates to:
+  /// **'Between 1 and 100 km'**
+  String get settings_area_radius_invalid;
+
+  /// Saves one city.
+  ///
+  /// In en, this message translates to:
+  /// **'Save {city}'**
+  String settings_area_save(String city);
+
+  /// A6 section.
+  ///
+  /// In en, this message translates to:
+  /// **'Admins'**
+  String get settings_admins_title;
+
+  /// A6 note.
+  ///
+  /// In en, this message translates to:
+  /// **'Read only. Admins are added and removed with tool/admin (PLAN §12.11).'**
+  String get settings_admins_note;
+
+  /// A5 footer under Resolve.
+  ///
+  /// In en, this message translates to:
+  /// **'The resolution is recorded with your account in the audit log.'**
+  String get complaints_audit_note;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
