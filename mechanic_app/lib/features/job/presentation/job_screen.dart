@@ -265,10 +265,10 @@ class _Details extends ConsumerWidget {
         Text(headline, style: lane.text.title.copyWith(color: lane.color.ink)),
         if (fix != null && (b.status == BookingStatus.accepted || b.status == BookingStatus.arriving)) ...[
           SizedBox(height: lane.space.s4),
-          Text(
-            l10n.job_eta(etaMinutes(fix, b.pickup.geopoint)),
-            style: lane.text.body.copyWith(color: lane.color.inkMuted),
-          ),
+          Text(switch (etaMinutes(fix, b.pickup.geopoint)) {
+            0 => l10n.job_eta_here,
+            final minutes => l10n.job_eta(minutes),
+          }, style: lane.text.body.copyWith(color: lane.color.inkMuted)),
         ],
         SizedBox(height: lane.space.s12),
         if (firstName.isNotEmpty)

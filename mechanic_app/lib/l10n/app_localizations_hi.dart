@@ -765,4 +765,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get job_turn_on_location => 'लोकेशन चालू करें';
+
+  @override
+  String get job_eta_here => 'आप पिकअप पर पहुँच गए हैं';
 }
