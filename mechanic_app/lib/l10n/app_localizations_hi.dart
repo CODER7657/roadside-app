@@ -768,4 +768,47 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get job_eta_here => 'आप पिकअप पर पहुँच गए हैं';
+
+  @override
+  String get job_enter_start_code => 'स्टार्ट कोड डालें';
+
+  @override
+  String get start_code_step => 'काम शुरू करें';
+
+  @override
+  String get start_code_title => 'स्टार्ट कोड डालें';
+
+  @override
+  String get start_code_body => 'ग्राहक से उनकी स्क्रीन पर दिखा 4 अंकों का कोड पूछें।';
+
+  @override
+  String get start_code_rule => '5 कोशिशें, फिर 10 मिनट का लॉक।';
+
+  @override
+  String get start_code_submit => 'काम शुरू करें';
+
+  @override
+  String start_code_wrong(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'यह कोड सही नहीं है। $count कोशिशें बाकी।',
+      one: 'यह कोड सही नहीं है। 1 कोशिश बाकी।',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String start_code_locked(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'बहुत सारे गलत कोड। $minutes मिनट बाद फिर से कोशिश करें।',
+      one: 'बहुत सारे गलत कोड। 1 मिनट बाद फिर से कोशिश करें।',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get start_code_failed => 'कोड जाँच नहीं पाए। कनेक्शन देखकर फिर से कोशिश करें।';
 }

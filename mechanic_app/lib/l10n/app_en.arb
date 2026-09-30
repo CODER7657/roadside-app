@@ -994,5 +994,51 @@
   "job_eta_here": "You're at the pickup",
   "@job_eta_here": {
     "description": "M5: instead of an ETA once within ~50 m of the pickup."
+  },
+  "job_enter_start_code": "Enter start code",
+  "@job_enter_start_code": {
+    "description": "M5 primary once arrived: opens M6."
+  },
+  "start_code_step": "Start the job",
+  "@start_code_step": {
+    "description": "M6 header above the step lane."
+  },
+  "start_code_title": "Enter start code",
+  "@start_code_title": {
+    "description": "M6 title."
+  },
+  "start_code_body": "Ask the customer for the 4-digit code on their screen.",
+  "@start_code_body": {
+    "description": "M6 instruction."
+  },
+  "start_code_rule": "5 tries, then a 10-minute lock.",
+  "@start_code_rule": {
+    "description": "M6 note under the code (PLAN §12.9)."
+  },
+  "start_code_submit": "Start job",
+  "@start_code_submit": {
+    "description": "M6 primary."
+  },
+  "start_code_wrong": "{count, plural, =1{That code isn't right. 1 try left.} other{That code isn't right. {count} tries left.}}",
+  "@start_code_wrong": {
+    "description": "M6 error after a wrong code.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "start_code_locked": "{minutes, plural, =1{Too many wrong codes. Try again in 1 minute.} other{Too many wrong codes. Try again in {minutes} minutes.}}",
+  "@start_code_locked": {
+    "description": "M6 while locked (10 minutes after 5 wrong codes).",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "start_code_failed": "Couldn't check the code. Check your connection and try again.",
+  "@start_code_failed": {
+    "description": "M6 network or unexpected error."
   }
 }

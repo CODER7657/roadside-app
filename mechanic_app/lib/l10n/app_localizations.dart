@@ -1532,6 +1532,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You\'re at the pickup'**
   String get job_eta_here;
+
+  /// M5 primary once arrived: opens M6.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter start code'**
+  String get job_enter_start_code;
+
+  /// M6 header above the step lane.
+  ///
+  /// In en, this message translates to:
+  /// **'Start the job'**
+  String get start_code_step;
+
+  /// M6 title.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter start code'**
+  String get start_code_title;
+
+  /// M6 instruction.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask the customer for the 4-digit code on their screen.'**
+  String get start_code_body;
+
+  /// M6 note under the code (PLAN §12.9).
+  ///
+  /// In en, this message translates to:
+  /// **'5 tries, then a 10-minute lock.'**
+  String get start_code_rule;
+
+  /// M6 primary.
+  ///
+  /// In en, this message translates to:
+  /// **'Start job'**
+  String get start_code_submit;
+
+  /// M6 error after a wrong code.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{That code isn\'t right. 1 try left.} other{That code isn\'t right. {count} tries left.}}'**
+  String start_code_wrong(int count);
+
+  /// M6 while locked (10 minutes after 5 wrong codes).
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes, plural, =1{Too many wrong codes. Try again in 1 minute.} other{Too many wrong codes. Try again in {minutes} minutes.}}'**
+  String start_code_locked(int minutes);
+
+  /// M6 network or unexpected error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t check the code. Check your connection and try again.'**
+  String get start_code_failed;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

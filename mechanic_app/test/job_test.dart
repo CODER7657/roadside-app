@@ -372,7 +372,8 @@ void main() {
 
       await tapText(tester, "I've arrived");
       expect(find.text("You're at the customer"), findsOneWidget);
-      expect(find.textContaining('start code'), findsOneWidget);
+      expect(find.textContaining('4-digit start code'), findsOneWidget);
+      expect(find.widgetWithText(LaneButton, 'Enter start code'), findsOneWidget, reason: 'M6 next');
       expect(find.text("I've arrived"), findsNothing);
     });
 

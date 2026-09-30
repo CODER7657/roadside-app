@@ -15,6 +15,7 @@ import '../features/first_run/presentation/splash_screen.dart';
 import '../features/dashboard/presentation/dashboard_screen.dart';
 import '../features/help/presentation/help_screen.dart';
 import '../features/job/presentation/job_screen.dart';
+import '../features/job/presentation/start_code_screen.dart';
 import '../features/offers/presentation/offer_screen.dart';
 import '../features/permissions/application/permission_service.dart';
 import '../features/permissions/presentation/permission_explainer_screen.dart';
@@ -118,6 +119,12 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/job/:bookingId',
         builder: (context, state) => JobScreen(bookingId: state.pathParameters['bookingId']!),
+        routes: [
+          GoRoute(
+            path: 'start',
+            builder: (context, state) => StartCodeScreen(bookingId: state.pathParameters['bookingId']!),
+          ),
+        ],
       ),
       GoRoute(
         path: '/permission/:kind',

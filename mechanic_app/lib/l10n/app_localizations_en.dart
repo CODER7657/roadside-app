@@ -767,4 +767,47 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get job_eta_here => 'You\'re at the pickup';
+
+  @override
+  String get job_enter_start_code => 'Enter start code';
+
+  @override
+  String get start_code_step => 'Start the job';
+
+  @override
+  String get start_code_title => 'Enter start code';
+
+  @override
+  String get start_code_body => 'Ask the customer for the 4-digit code on their screen.';
+
+  @override
+  String get start_code_rule => '5 tries, then a 10-minute lock.';
+
+  @override
+  String get start_code_submit => 'Start job';
+
+  @override
+  String start_code_wrong(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'That code isn\'t right. $count tries left.',
+      one: 'That code isn\'t right. 1 try left.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String start_code_locked(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Too many wrong codes. Try again in $minutes minutes.',
+      one: 'Too many wrong codes. Try again in 1 minute.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get start_code_failed => 'Couldn\'t check the code. Check your connection and try again.';
 }
