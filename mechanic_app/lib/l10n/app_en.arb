@@ -1,328 +1,688 @@
 {
   "@@locale": "en",
   "app_title": "Roadside Mechanic",
-  "@app_title": { "description": "App name in the task switcher. Placeholder until the client names the app (HANDOFF §4.6)." },
-  "home_placeholder_title": "Jobs near you, when you're ready",
-  "@home_placeholder_title": { "description": "Temporary home screen until M3 Dashboard (#27) lands." },
-  "home_placeholder_body": "We're getting everything ready. Registration and going online arrive in the next update.",
-  "@home_placeholder_body": { "description": "Temporary home screen body until M3 Dashboard (#27) lands." },
-
+  "@app_title": {
+    "description": "App name in the task switcher. Placeholder until the client names the app (HANDOFF §4.6)."
+  },
   "flow_step_label": "Step {step} of {total}",
   "@flow_step_label": {
     "description": "Progress label on multi-step flows.",
-    "placeholders": { "step": { "type": "int" }, "total": { "type": "int" } }
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
   },
-
   "splash_tagline": "Jobs near you, paid straight to you",
-  "@splash_tagline": { "description": "C1 Splash: brand line for mechanics." },
+  "@splash_tagline": {
+    "description": "C1 Splash: brand line for mechanics."
+  },
   "splash_loading": "Getting things ready",
-  "@splash_loading": { "description": "C1 Splash: shown while the app starts." },
-
+  "@splash_loading": {
+    "description": "C1 Splash: shown while the app starts."
+  },
   "language_title": "Choose your language",
-  "@language_title": { "description": "C2 Language: title." },
+  "@language_title": {
+    "description": "C2 Language: title."
+  },
   "language_body": "You can change it later in Settings.",
-  "@language_body": { "description": "C2 Language: note under the title." },
+  "@language_body": {
+    "description": "C2 Language: note under the title."
+  },
   "language_continue": "Continue",
-  "@language_continue": { "description": "C2 Language: primary button." },
-
+  "@language_continue": {
+    "description": "C2 Language: primary button."
+  },
   "onboarding_slide1_title": "Jobs near you",
-  "@onboarding_slide1_title": { "description": "C3 Onboarding slide 1 title (mechanic)." },
+  "@onboarding_slide1_title": {
+    "description": "C3 Onboarding slide 1 title (mechanic)."
+  },
   "onboarding_slide1_body": "Go online and we send you breakdowns close by. Slide to accept the ones you want.",
-  "@onboarding_slide1_body": { "description": "C3 Onboarding slide 1 body." },
+  "@onboarding_slide1_body": {
+    "description": "C3 Onboarding slide 1 body."
+  },
   "onboarding_slide2_title": "Reach them, start with their code",
-  "@onboarding_slide2_title": { "description": "C3 Onboarding slide 2 title." },
+  "@onboarding_slide2_title": {
+    "description": "C3 Onboarding slide 2 title."
+  },
   "onboarding_slide2_body": "Navigate to the customer. When you arrive, they read you a start code to begin the job.",
-  "@onboarding_slide2_body": { "description": "C3 Onboarding slide 2 body." },
+  "@onboarding_slide2_body": {
+    "description": "C3 Onboarding slide 2 body."
+  },
   "onboarding_slide3_title": "Paid straight to your UPI",
-  "@onboarding_slide3_title": { "description": "C3 Onboarding slide 3 title." },
+  "@onboarding_slide3_title": {
+    "description": "C3 Onboarding slide 3 title."
+  },
   "onboarding_slide3_body": "Customers pay you directly. The app never holds your money.",
-  "@onboarding_slide3_body": { "description": "C3 Onboarding slide 3 body." },
+  "@onboarding_slide3_body": {
+    "description": "C3 Onboarding slide 3 body."
+  },
   "onboarding_next": "Next",
-  "@onboarding_next": { "description": "C3 Onboarding: next slide." },
+  "@onboarding_next": {
+    "description": "C3 Onboarding: next slide."
+  },
   "onboarding_skip": "Skip",
-  "@onboarding_skip": { "description": "C3 Onboarding: skip to consent." },
+  "@onboarding_skip": {
+    "description": "C3 Onboarding: skip to consent."
+  },
   "onboarding_start": "Get started",
-  "@onboarding_start": { "description": "C3 Onboarding: last slide button." },
-
+  "@onboarding_start": {
+    "description": "C3 Onboarding: last slide button."
+  },
   "consent_title": "Your privacy",
-  "@consent_title": { "description": "C4 Consent: title." },
+  "@consent_title": {
+    "description": "C4 Consent: title."
+  },
   "consent_intro": "We only collect what we need to send you jobs and keep customers safe.",
-  "@consent_intro": { "description": "C4 Consent: first line (mechanic)." },
+  "@consent_intro": {
+    "description": "C4 Consent: first line (mechanic)."
+  },
   "consent_point_collect": "Your phone number, name, photos, ID documents for verification and your UPI details.",
-  "@consent_point_collect": { "description": "C4 Consent: what is collected (mechanic)." },
+  "@consent_point_collect": {
+    "description": "C4 Consent: what is collected (mechanic)."
+  },
   "consent_point_location": "Your location, only while you're online or on a job. Never when you're offline.",
-  "@consent_point_location": { "description": "C4 Consent: location use (mechanic)." },
+  "@consent_point_location": {
+    "description": "C4 Consent: location use (mechanic)."
+  },
   "consent_point_delete": "You can see, correct or delete your data at any time.",
-  "@consent_point_delete": { "description": "C4 Consent: rights line." },
+  "@consent_point_delete": {
+    "description": "C4 Consent: rights line."
+  },
   "consent_age": "I am 18 or older",
-  "@consent_age": { "description": "C4 Consent: age checkbox." },
+  "@consent_age": {
+    "description": "C4 Consent: age checkbox."
+  },
   "consent_notice": "I agree to the privacy notice",
-  "@consent_notice": { "description": "C4 Consent: agreement checkbox." },
+  "@consent_notice": {
+    "description": "C4 Consent: agreement checkbox."
+  },
   "consent_agree": "Agree and continue",
-  "@consent_agree": { "description": "C4 Consent: primary button, enabled when both boxes are ticked." },
+  "@consent_agree": {
+    "description": "C4 Consent: primary button, enabled when both boxes are ticked."
+  },
   "consent_read_notice": "Read the full notice",
-  "@consent_read_notice": { "description": "C4 Consent: opens the full notice." },
-
+  "@consent_read_notice": {
+    "description": "C4 Consent: opens the full notice."
+  },
   "privacy_title": "Privacy notice",
-  "@privacy_title": { "description": "Full privacy notice: title." },
+  "@privacy_title": {
+    "description": "Full privacy notice: title."
+  },
   "privacy_collect_title": "What we collect",
-  "@privacy_collect_title": { "description": "Privacy notice section title." },
+  "@privacy_collect_title": {
+    "description": "Privacy notice section title."
+  },
   "privacy_collect_body": "Your phone number, name and language; your profile and shop or toolkit photos; your ID proof (and, if you work without a shop, a selfie with it and an address proof) to verify you; your UPI ID and name; and your location while you're online or on a job.",
-  "@privacy_collect_body": { "description": "Privacy notice: what we collect (mechanic)." },
+  "@privacy_collect_body": {
+    "description": "Privacy notice: what we collect (mechanic)."
+  },
   "privacy_use_title": "Why we use it",
-  "@privacy_use_title": { "description": "Privacy notice section title." },
+  "@privacy_use_title": {
+    "description": "Privacy notice section title."
+  },
   "privacy_use_body": "To verify you, send you nearby jobs, show customers who is coming and where you are on the way, and let them pay you. We don't show ads or sell your data.",
-  "@privacy_use_body": { "description": "Privacy notice: why (mechanic)." },
+  "@privacy_use_body": {
+    "description": "Privacy notice: why (mechanic)."
+  },
   "privacy_keep_title": "How long we keep it",
-  "@privacy_keep_title": { "description": "Privacy notice section title." },
+  "@privacy_keep_title": {
+    "description": "Privacy notice section title."
+  },
   "privacy_keep_body": "Your online location is replaced as you move and cleared when you go offline. Live location during a job: 24 hours after it ends. Chat: 90 days. ID documents: until 180 days after you leave. Job records: 3 years for tax.",
-  "@privacy_keep_body": { "description": "Privacy notice: retention (mechanic, PLAN §12.10)." },
+  "@privacy_keep_body": {
+    "description": "Privacy notice: retention (mechanic, PLAN §12.10)."
+  },
   "privacy_rights_title": "Your rights",
-  "@privacy_rights_title": { "description": "Privacy notice section title." },
+  "@privacy_rights_title": {
+    "description": "Privacy notice section title."
+  },
   "privacy_rights_body": "See and correct your details in the app, withdraw your consent, or delete your account from Settings.",
-  "@privacy_rights_body": { "description": "Privacy notice: rights." },
+  "@privacy_rights_body": {
+    "description": "Privacy notice: rights."
+  },
   "privacy_contact_title": "Questions or complaints",
-  "@privacy_contact_title": { "description": "Privacy notice section title." },
+  "@privacy_contact_title": {
+    "description": "Privacy notice section title."
+  },
   "privacy_contact_body": "Contact our grievance officer from Help & FAQ.",
-  "@privacy_contact_body": { "description": "Privacy notice: grievance contact." },
-
+  "@privacy_contact_body": {
+    "description": "Privacy notice: grievance contact."
+  },
   "home_help": "Help & FAQ",
-  "@home_help": { "description": "Home: opens C9 Help & FAQ." },
+  "@home_help": {
+    "description": "Home: opens C9 Help & FAQ."
+  },
   "permission_location_title": "Allow location",
-  "@permission_location_title": { "description": "C7: location explainer title." },
+  "@permission_location_title": {
+    "description": "C7: location explainer title."
+  },
   "permission_location_body": "So we can send you jobs nearby and show customers you're on the way. Only while you're online or on a job; during a job a notification shows it's on.",
-  "@permission_location_body": { "description": "C7: why the mechanic app needs location (no background location)." },
+  "@permission_location_body": {
+    "description": "C7: why the mechanic app needs location (no background location)."
+  },
   "permission_camera_title": "Allow camera",
-  "@permission_camera_title": { "description": "C7: camera explainer title." },
+  "@permission_camera_title": {
+    "description": "C7: camera explainer title."
+  },
   "permission_camera_body": "To add your profile, shop or toolkit photos, your ID documents, and before and after photos of each job.",
-  "@permission_camera_body": { "description": "C7: why the mechanic app needs the camera." },
+  "@permission_camera_body": {
+    "description": "C7: why the mechanic app needs the camera."
+  },
   "permission_notifications_title": "Allow notifications",
-  "@permission_notifications_title": { "description": "C7: notifications explainer title." },
+  "@permission_notifications_title": {
+    "description": "C7: notifications explainer title."
+  },
   "permission_notifications_body": "So you hear new job offers straight away, and get updates on your jobs even when the app is closed.",
-  "@permission_notifications_body": { "description": "C7: why the mechanic app needs notifications." },
+  "@permission_notifications_body": {
+    "description": "C7: why the mechanic app needs notifications."
+  },
   "permission_full_screen_title": "Show job offers on the lock screen",
-  "@permission_full_screen_title": { "description": "C7: full-screen offers explainer title (Android 14+ special access)." },
+  "@permission_full_screen_title": {
+    "description": "C7: full-screen offers explainer title (Android 14+ special access)."
+  },
   "permission_full_screen_body": "A new job fills the screen like an incoming call, so you never miss one. On the next screen, turn on full-screen notifications for this app.",
-  "@permission_full_screen_body": { "description": "C7: why full-screen offers; the next screen is the phone's settings page." },
+  "@permission_full_screen_body": {
+    "description": "C7: why full-screen offers; the next screen is the phone's settings page."
+  },
   "permission_blocked_body": "It's turned off in your phone's settings. Open Settings, tap Permissions and allow it.",
-  "@permission_blocked_body": { "description": "C7: shown when the permission was denied for good." },
+  "@permission_blocked_body": {
+    "description": "C7: shown when the permission was denied for good."
+  },
   "permission_allow": "Allow",
-  "@permission_allow": { "description": "C7: primary button." },
+  "@permission_allow": {
+    "description": "C7: primary button."
+  },
   "permission_open_settings": "Open settings",
-  "@permission_open_settings": { "description": "C7: primary button when blocked." },
+  "@permission_open_settings": {
+    "description": "C7: primary button when blocked."
+  },
   "permission_not_now": "Not now",
-  "@permission_not_now": { "description": "C7: secondary button." },
+  "@permission_not_now": {
+    "description": "C7: secondary button."
+  },
   "help_title": "Help",
-  "@help_title": { "description": "C9: title." },
+  "@help_title": {
+    "description": "C9: title."
+  },
   "help_search_label": "Search questions",
-  "@help_search_label": { "description": "C9: search field label." },
+  "@help_search_label": {
+    "description": "C9: search field label."
+  },
   "help_search_hint": "e.g. offers, start code, payment",
-  "@help_search_hint": { "description": "C9: search field hint (mechanic)." },
+  "@help_search_hint": {
+    "description": "C9: search field hint (mechanic)."
+  },
   "help_no_results_title": "No matching questions",
-  "@help_no_results_title": { "description": "C9: empty search title." },
+  "@help_no_results_title": {
+    "description": "C9: empty search title."
+  },
   "help_no_results_body": "Try other words, or call us.",
-  "@help_no_results_body": { "description": "C9: empty search body." },
+  "@help_no_results_body": {
+    "description": "C9: empty search body."
+  },
   "help_call_support": "Call support",
-  "@help_call_support": { "description": "C9: call button." },
+  "@help_call_support": {
+    "description": "C9: call button."
+  },
   "help_whatsapp": "WhatsApp",
-  "@help_whatsapp": { "description": "C9: WhatsApp button (brand name, not translated)." },
+  "@help_whatsapp": {
+    "description": "C9: WhatsApp button (brand name, not translated)."
+  },
   "help_grievance_title": "Grievance officer",
-  "@help_grievance_title": { "description": "C9: DPDP grievance section title." },
+  "@help_grievance_title": {
+    "description": "C9: DPDP grievance section title."
+  },
   "help_grievance_body": "For complaints about your data or privacy, write to our grievance officer. We reply within 7 days.",
-  "@help_grievance_body": { "description": "C9: DPDP grievance section body." },
+  "@help_grievance_body": {
+    "description": "C9: DPDP grievance section body."
+  },
   "help_faq_jobs_q": "How do I get jobs?",
-  "@help_faq_jobs_q": { "description": "C9 FAQ (mechanic)." },
+  "@help_faq_jobs_q": {
+    "description": "C9 FAQ (mechanic)."
+  },
   "help_faq_jobs_a": "Once you're approved, go online on the home screen. Nearby breakdowns come to you as offers; slide to accept within 30 seconds.",
-  "@help_faq_jobs_a": { "description": "C9 FAQ answer." },
+  "@help_faq_jobs_a": {
+    "description": "C9 FAQ answer."
+  },
   "help_faq_no_offers_q": "Why am I not getting offers?",
-  "@help_faq_no_offers_q": { "description": "C9 FAQ (mechanic)." },
+  "@help_faq_no_offers_q": {
+    "description": "C9 FAQ (mechanic)."
+  },
   "help_faq_no_offers_a": "Check that you're online, approved, and in your city, and that your vehicle types and services are set. Keep the app open with location on; offers only go to mechanics close by.",
-  "@help_faq_no_offers_a": { "description": "C9 FAQ answer." },
+  "@help_faq_no_offers_a": {
+    "description": "C9 FAQ answer."
+  },
   "help_faq_verify_q": "How does verification work?",
-  "@help_faq_verify_q": { "description": "C9 FAQ (mechanic)." },
+  "@help_faq_verify_q": {
+    "description": "C9 FAQ (mechanic)."
+  },
   "help_faq_verify_a": "We check your ID and photos before you get jobs. If you work without a workshop, we also call you for a short verification.",
-  "@help_faq_verify_a": { "description": "C9 FAQ answer." },
+  "@help_faq_verify_a": {
+    "description": "C9 FAQ answer."
+  },
   "help_faq_code_q": "What is the start code?",
-  "@help_faq_code_q": { "description": "C9 FAQ (mechanic)." },
+  "@help_faq_code_q": {
+    "description": "C9 FAQ (mechanic)."
+  },
   "help_faq_code_a": "When you arrive, the customer reads you a 4-digit code. Enter it to start the job. After 5 wrong tries it locks for 10 minutes.",
-  "@help_faq_code_a": { "description": "C9 FAQ answer." },
+  "@help_faq_code_a": {
+    "description": "C9 FAQ answer."
+  },
   "help_faq_pay_q": "How do I get paid?",
-  "@help_faq_pay_q": { "description": "C9 FAQ (mechanic)." },
+  "@help_faq_pay_q": {
+    "description": "C9 FAQ (mechanic)."
+  },
   "help_faq_pay_a": "The customer pays you directly by UPI. Check your UPI app, then tap Confirm. If the money hasn't arrived, tap Not received and we'll look into it.",
-  "@help_faq_pay_a": { "description": "C9 FAQ answer." },
+  "@help_faq_pay_a": {
+    "description": "C9 FAQ answer."
+  },
   "help_faq_cancel_q": "Can I cancel a job?",
-  "@help_faq_cancel_q": { "description": "C9 FAQ (mechanic)." },
+  "@help_faq_cancel_q": {
+    "description": "C9 FAQ (mechanic)."
+  },
   "help_faq_cancel_a": "Yes, but it counts against your reliability. Before you arrive, the job goes to another mechanic; after you arrive, tell us why.",
-  "@help_faq_cancel_a": { "description": "C9 FAQ answer." },
-
+  "@help_faq_cancel_a": {
+    "description": "C9 FAQ answer."
+  },
   "register_type_title": "Join as a mechanic",
-  "@register_type_title": {"description": "M1 step 1 title."},
+  "@register_type_title": {
+    "description": "M1 step 1 title."
+  },
   "register_about_title": "About you",
-  "@register_about_title": {"description": "M1 step 2 title."},
+  "@register_about_title": {
+    "description": "M1 step 2 title."
+  },
   "register_work_title": "Your work",
-  "@register_work_title": {"description": "M1 step 3 title."},
+  "@register_work_title": {
+    "description": "M1 step 3 title."
+  },
   "register_id_title": "ID and payment",
-  "@register_id_title": {"description": "M1 step 4 title."},
+  "@register_id_title": {
+    "description": "M1 step 4 title."
+  },
   "register_next": "Next",
-  "@register_next": {"description": "M1: next step."},
+  "@register_next": {
+    "description": "M1: next step."
+  },
   "register_submit": "Send for approval",
-  "@register_submit": {"description": "M1: last step, submits the registration."},
+  "@register_submit": {
+    "description": "M1: last step, submits the registration."
+  },
   "register_error_upload": "A photo didn't upload. Check your connection and send again; photos already sent won't upload twice.",
-  "@register_error_upload": {"description": "M1: photo upload failed."},
+  "@register_error_upload": {
+    "description": "M1: photo upload failed."
+  },
   "register_error_save": "We couldn't save your details. Check your connection and send again.",
-  "@register_error_save": {"description": "M1: saving the profile failed."},
+  "@register_error_save": {
+    "description": "M1: saving the profile failed."
+  },
   "register_type_question": "Do you have a workshop?",
-  "@register_type_question": {"description": "M1 step 1: the first question (PLAN §10.0)."},
+  "@register_type_question": {
+    "description": "M1 step 1: the first question (PLAN §10.0)."
+  },
   "register_type_workshop": "Yes, I have a workshop",
-  "@register_type_workshop": {"description": "M1: workshop path."},
+  "@register_type_workshop": {
+    "description": "M1: workshop path."
+  },
   "register_type_independent": "No, I work independently",
-  "@register_type_independent": {"description": "M1: independent path (M1·Ind)."},
+  "@register_type_independent": {
+    "description": "M1: independent path (M1·Ind)."
+  },
   "register_city_label": "Your city",
-  "@register_city_label": {"description": "M1: city heading."},
+  "@register_city_label": {
+    "description": "M1: city heading."
+  },
   "register_city_help": "You get jobs in this city. Only our team can change it later.",
-  "@register_city_help": {"description": "M1: city note (cityId is changed only by admin)."},
+  "@register_city_help": {
+    "description": "M1: city note (cityId is changed only by admin)."
+  },
   "city_ahmedabad": "Ahmedabad",
-  "@city_ahmedabad": {"description": "City name."},
+  "@city_ahmedabad": {
+    "description": "City name."
+  },
   "city_ankleshwar": "Ankleshwar",
-  "@city_ankleshwar": {"description": "City name."},
+  "@city_ankleshwar": {
+    "description": "City name."
+  },
   "city_bharuch": "Bharuch",
-  "@city_bharuch": {"description": "City name."},
+  "@city_bharuch": {
+    "description": "City name."
+  },
   "register_photo_source_title": "Add a photo",
-  "@register_photo_source_title": {"description": "M1: camera or gallery sheet title."},
+  "@register_photo_source_title": {
+    "description": "M1: camera or gallery sheet title."
+  },
   "register_photo_camera": "Take a photo",
-  "@register_photo_camera": {"description": "M1: use the camera."},
+  "@register_photo_camera": {
+    "description": "M1: use the camera."
+  },
   "register_photo_gallery": "Choose from gallery",
-  "@register_photo_gallery": {"description": "M1: pick from gallery."},
+  "@register_photo_gallery": {
+    "description": "M1: pick from gallery."
+  },
   "register_photo_too_large": "That photo is too large. Try another one.",
-  "@register_photo_too_large": {"description": "M1: photo can't be made small enough."},
+  "@register_photo_too_large": {
+    "description": "M1: photo can't be made small enough."
+  },
   "register_photo_add": "Add photo",
-  "@register_photo_add": {"description": "M1: empty photo slot."},
+  "@register_photo_add": {
+    "description": "M1: empty photo slot."
+  },
   "register_photo_remove": "Remove photo",
-  "@register_photo_remove": {"description": "M1: remove a toolkit photo."},
+  "@register_photo_remove": {
+    "description": "M1: remove a toolkit photo."
+  },
   "register_name_label": "Your name",
-  "@register_name_label": {"description": "M1: name field."},
+  "@register_name_label": {
+    "description": "M1: name field."
+  },
   "register_photo_profile": "Your photo (customers see it)",
-  "@register_photo_profile": {"description": "M1: profile photo slot."},
+  "@register_photo_profile": {
+    "description": "M1: profile photo slot."
+  },
   "register_shop_heading": "Your shop",
-  "@register_shop_heading": {"description": "M1 workshop: heading."},
+  "@register_shop_heading": {
+    "description": "M1 workshop: heading."
+  },
   "register_shop_name_label": "Shop name",
-  "@register_shop_name_label": {"description": "M1 workshop: shop name."},
+  "@register_shop_name_label": {
+    "description": "M1 workshop: shop name."
+  },
   "register_shop_address_label": "Shop address",
-  "@register_shop_address_label": {"description": "M1 workshop: shop address."},
+  "@register_shop_address_label": {
+    "description": "M1 workshop: shop address."
+  },
   "register_photo_shop": "Shop photo",
-  "@register_photo_shop": {"description": "M1 workshop: shop photo slot."},
+  "@register_photo_shop": {
+    "description": "M1 workshop: shop photo slot."
+  },
   "register_independent_heading": "How you work",
-  "@register_independent_heading": {"description": "M1·Ind: heading."},
+  "@register_independent_heading": {
+    "description": "M1·Ind: heading."
+  },
   "register_experience_label": "Years of experience",
-  "@register_experience_label": {"description": "M1·Ind: experience."},
+  "@register_experience_label": {
+    "description": "M1·Ind: experience."
+  },
   "register_base_area_label": "Where you usually start from",
-  "@register_base_area_label": {"description": "M1·Ind: base area locality."},
+  "@register_base_area_label": {
+    "description": "M1·Ind: base area locality."
+  },
   "register_base_area_hint": "e.g. GIDC Ankleshwar",
-  "@register_base_area_hint": {"description": "M1·Ind: base area hint."},
+  "@register_base_area_hint": {
+    "description": "M1·Ind: base area hint."
+  },
   "register_travel_heading": "What you travel on",
-  "@register_travel_heading": {"description": "M1·Ind: travel vehicle heading (shown to customers)."},
+  "@register_travel_heading": {
+    "description": "M1·Ind: travel vehicle heading (shown to customers)."
+  },
   "register_travel_reg_label": "Its number plate",
-  "@register_travel_reg_label": {"description": "M1·Ind: travel vehicle plate."},
+  "@register_travel_reg_label": {
+    "description": "M1·Ind: travel vehicle plate."
+  },
   "register_travel_reg_hint": "e.g. GJ 16 CK 4471",
-  "@register_travel_reg_hint": {"description": "M1·Ind: plate hint."},
+  "@register_travel_reg_hint": {
+    "description": "M1·Ind: plate hint."
+  },
   "register_toolkit_heading": "Your tools",
-  "@register_toolkit_heading": {"description": "M1·Ind: toolkit photos heading."},
+  "@register_toolkit_heading": {
+    "description": "M1·Ind: toolkit photos heading."
+  },
   "register_toolkit_help": "Add at least 2 photos of the tools you carry.",
-  "@register_toolkit_help": {"description": "M1·Ind: toolkit photos help (2–5)."},
+  "@register_toolkit_help": {
+    "description": "M1·Ind: toolkit photos help (2–5)."
+  },
   "register_photo_toolkit": "Tools {number}",
-  "@register_photo_toolkit": {"description": "M1·Ind: toolkit photo slot.", "placeholders": {"number": {"type": "int"}}},
+  "@register_photo_toolkit": {
+    "description": "M1·Ind: toolkit photo slot.",
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
   "vehicle_type_car": "Car",
-  "@vehicle_type_car": {"description": "Vehicle type."},
+  "@vehicle_type_car": {
+    "description": "Vehicle type."
+  },
   "vehicle_type_bike": "Bike",
-  "@vehicle_type_bike": {"description": "Vehicle type."},
+  "@vehicle_type_bike": {
+    "description": "Vehicle type."
+  },
   "vehicle_type_scooter": "Scooter",
-  "@vehicle_type_scooter": {"description": "Vehicle type."},
+  "@vehicle_type_scooter": {
+    "description": "Vehicle type."
+  },
   "vehicle_type_ev": "EV",
-  "@vehicle_type_ev": {"description": "Vehicle type."},
+  "@vehicle_type_ev": {
+    "description": "Vehicle type."
+  },
   "register_vehicles_label": "Vehicles you work on",
-  "@register_vehicles_label": {"description": "M1 step 3: vehicle types."},
+  "@register_vehicles_label": {
+    "description": "M1 step 3: vehicle types."
+  },
   "register_services_label": "What you can fix",
-  "@register_services_label": {"description": "M1 step 3: services."},
+  "@register_services_label": {
+    "description": "M1 step 3: services."
+  },
   "problem_type_flat_tyre": "Flat tyre",
-  "@problem_type_flat_tyre": {"description": "Problem type."},
+  "@problem_type_flat_tyre": {
+    "description": "Problem type."
+  },
   "problem_type_battery": "Battery",
-  "@problem_type_battery": {"description": "Problem type."},
+  "@problem_type_battery": {
+    "description": "Problem type."
+  },
   "problem_type_wont_start": "Won't start",
-  "@problem_type_wont_start": {"description": "Problem type."},
+  "@problem_type_wont_start": {
+    "description": "Problem type."
+  },
   "problem_type_overheating": "Overheating",
-  "@problem_type_overheating": {"description": "Problem type."},
+  "@problem_type_overheating": {
+    "description": "Problem type."
+  },
   "problem_type_accident": "Accident",
-  "@problem_type_accident": {"description": "Problem type."},
+  "@problem_type_accident": {
+    "description": "Problem type."
+  },
   "problem_type_fuel": "Out of fuel",
-  "@problem_type_fuel": {"description": "Problem type."},
+  "@problem_type_fuel": {
+    "description": "Problem type."
+  },
   "problem_type_other": "Something else",
-  "@problem_type_other": {"description": "Problem type."},
+  "@problem_type_other": {
+    "description": "Problem type."
+  },
   "register_id_private": "Only our verification team sees these. Customers never do.",
-  "@register_id_private": {"description": "M1 step 4: KYC privacy note."},
+  "@register_id_private": {
+    "description": "M1 step 4: KYC privacy note."
+  },
   "register_photo_id_proof": "ID proof",
-  "@register_photo_id_proof": {"description": "M1: ID proof slot."},
+  "@register_photo_id_proof": {
+    "description": "M1: ID proof slot."
+  },
   "register_photo_selfie": "Selfie holding your ID",
-  "@register_photo_selfie": {"description": "M1·Ind: selfie with ID slot."},
+  "@register_photo_selfie": {
+    "description": "M1·Ind: selfie with ID slot."
+  },
   "register_photo_address_proof": "Address proof",
-  "@register_photo_address_proof": {"description": "M1·Ind: address proof slot."},
+  "@register_photo_address_proof": {
+    "description": "M1·Ind: address proof slot."
+  },
   "register_upi_heading": "Where customers pay you",
-  "@register_upi_heading": {"description": "M1: UPI heading."},
+  "@register_upi_heading": {
+    "description": "M1: UPI heading."
+  },
   "register_upi_id_label": "UPI ID",
-  "@register_upi_id_label": {"description": "M1: UPI ID."},
+  "@register_upi_id_label": {
+    "description": "M1: UPI ID."
+  },
   "register_upi_id_hint": "e.g. name@bank",
-  "@register_upi_id_hint": {"description": "M1: UPI ID hint."},
+  "@register_upi_id_hint": {
+    "description": "M1: UPI ID hint."
+  },
   "register_upi_name_label": "Name on the UPI account",
-  "@register_upi_name_label": {"description": "M1: UPI name."},
+  "@register_upi_name_label": {
+    "description": "M1: UPI name."
+  },
   "register_reference_heading": "Someone who knows your work (optional)",
-  "@register_reference_heading": {"description": "M1·Ind: reference heading."},
+  "@register_reference_heading": {
+    "description": "M1·Ind: reference heading."
+  },
   "register_reference_help": "For example a workshop you trained at.",
-  "@register_reference_help": {"description": "M1·Ind: reference help."},
+  "@register_reference_help": {
+    "description": "M1·Ind: reference help."
+  },
   "register_reference_name_label": "Their name",
-  "@register_reference_name_label": {"description": "M1·Ind: reference name."},
+  "@register_reference_name_label": {
+    "description": "M1·Ind: reference name."
+  },
   "register_reference_phone_label": "Their phone",
-  "@register_reference_phone_label": {"description": "M1·Ind: reference phone."},
+  "@register_reference_phone_label": {
+    "description": "M1·Ind: reference phone."
+  },
   "register_reference_phone_hint": "+91…",
-  "@register_reference_phone_hint": {"description": "M1·Ind: phone hint (E.164)."},
+  "@register_reference_phone_hint": {
+    "description": "M1·Ind: phone hint (E.164)."
+  },
   "error_field_required": "Please fill this in",
-  "@error_field_required": {"description": "Validation."},
+  "@error_field_required": {
+    "description": "Validation."
+  },
   "error_field_too_long": "That is too long",
-  "@error_field_too_long": {"description": "Validation."},
+  "@error_field_too_long": {
+    "description": "Validation."
+  },
   "error_field_invalid": "Please check this",
-  "@error_field_invalid": {"description": "Validation."},
+  "@error_field_invalid": {
+    "description": "Validation."
+  },
   "error_reg_no_invalid": "Check the number, e.g. GJ 01 AB 1234 or 22 BH 1234 AA",
-  "@error_reg_no_invalid": {"description": "Validation."},
+  "@error_reg_no_invalid": {
+    "description": "Validation."
+  },
   "error_phone_invalid": "Check the number, e.g. +91 98765 43210",
-  "@error_phone_invalid": {"description": "Validation."},
+  "@error_phone_invalid": {
+    "description": "Validation."
+  },
   "error_upi_invalid": "Check the UPI ID, e.g. name@bank",
-  "@error_upi_invalid": {"description": "Validation."},
+  "@error_upi_invalid": {
+    "description": "Validation."
+  },
   "error_experience_invalid": "Enter years as a number, 0 to 60",
-  "@error_experience_invalid": {"description": "Validation."},
+  "@error_experience_invalid": {
+    "description": "Validation."
+  },
   "error_toolkit_photos_too_few": "Add at least 2 photos of your tools",
-  "@error_toolkit_photos_too_few": {"description": "Validation."},
+  "@error_toolkit_photos_too_few": {
+    "description": "Validation."
+  },
   "pending_title": "We're checking your details",
-  "@pending_title": {"description": "M2 title."},
+  "@pending_title": {
+    "description": "M2 title."
+  },
   "pending_body_workshop": "Usually within 24 hours. We'll let you know.",
-  "@pending_body_workshop": {"description": "M2 body, workshop."},
+  "@pending_body_workshop": {
+    "description": "M2 body, workshop."
+  },
   "pending_body_independent": "We'll call you for a short verification, usually within 24 hours.",
-  "@pending_body_independent": {"description": "M2 body, independent (PLAN §10.0)."},
+  "@pending_body_independent": {
+    "description": "M2 body, independent (PLAN §10.0)."
+  },
   "pending_blocked_title": "Your account is on hold",
-  "@pending_blocked_title": {"description": "M2 blocked title."},
+  "@pending_blocked_title": {
+    "description": "M2 blocked title."
+  },
   "pending_blocked_body": "Please call support to find out more.",
-  "@pending_blocked_body": {"description": "M2 blocked body."},
+  "@pending_blocked_body": {
+    "description": "M2 blocked body."
+  },
   "pending_item_shop": "Shop details",
-  "@pending_item_shop": {"description": "M2 checklist, workshop."},
+  "@pending_item_shop": {
+    "description": "M2 checklist, workshop."
+  },
   "pending_item_details": "Your details and tools",
-  "@pending_item_details": {"description": "M2 checklist, independent."},
+  "@pending_item_details": {
+    "description": "M2 checklist, independent."
+  },
   "pending_item_id": "ID proof",
-  "@pending_item_id": {"description": "M2 checklist."},
+  "@pending_item_id": {
+    "description": "M2 checklist."
+  },
   "pending_item_id_selfie": "ID, selfie and address proof",
-  "@pending_item_id_selfie": {"description": "M2 checklist, independent."},
+  "@pending_item_id_selfie": {
+    "description": "M2 checklist, independent."
+  },
   "pending_item_call": "Verification call",
-  "@pending_item_call": {"description": "M2 checklist, independent."},
+  "@pending_item_call": {
+    "description": "M2 checklist, independent."
+  },
   "pending_received": "Received",
-  "@pending_received": {"description": "M2 checklist state."},
+  "@pending_received": {
+    "description": "M2 checklist state."
+  },
   "pending_checking": "Checking…",
-  "@pending_checking": {"description": "M2 checklist state."},
+  "@pending_checking": {
+    "description": "M2 checklist state."
+  },
   "pending_call_waiting": "We'll call you",
-  "@pending_call_waiting": {"description": "M2 checklist state."}
+  "@pending_call_waiting": {
+    "description": "M2 checklist state."
+  },
+  "dashboard_title": "Today",
+  "@dashboard_title": {
+    "description": "M3 title."
+  },
+  "dashboard_online": "You're online",
+  "@dashboard_online": {
+    "description": "M3 toggle label when online."
+  },
+  "dashboard_online_body": "We'll send you jobs nearby.",
+  "@dashboard_online_body": {
+    "description": "M3 toggle subtitle when online."
+  },
+  "dashboard_finding_location": "Finding your location…",
+  "@dashboard_finding_location": {
+    "description": "M3: waiting for the first GPS fix."
+  },
+  "dashboard_offline": "You're offline",
+  "@dashboard_offline": {
+    "description": "M3 toggle label when offline."
+  },
+  "dashboard_offline_body": "Go online to get jobs. We only use your location while you're online.",
+  "@dashboard_offline_body": {
+    "description": "M3 toggle subtitle when offline."
+  },
+  "dashboard_gps_off": "Your phone's location is switched off. Turn it on to go online.",
+  "@dashboard_gps_off": {
+    "description": "M3: GPS off."
+  },
+  "dashboard_turn_on_location": "Turn on location",
+  "@dashboard_turn_on_location": {
+    "description": "M3: opens location settings."
+  },
+  "dashboard_lost_connection": "You went offline: we couldn't update your location for 2 minutes. Check your connection and go online again.",
+  "@dashboard_lost_connection": {
+    "description": "M3: presence went stale, so the app stopped."
+  },
+  "dashboard_jobs_today": "Jobs today",
+  "@dashboard_jobs_today": {
+    "description": "M3 stat."
+  },
+  "dashboard_earned_today": "Earned today",
+  "@dashboard_earned_today": {
+    "description": "M3 stat."
+  },
+  "dashboard_recent_jobs": "Recent jobs",
+  "@dashboard_recent_jobs": {
+    "description": "M3 list heading."
+  },
+  "dashboard_no_jobs_yet": "No jobs yet today. Stay online and they'll come to you.",
+  "@dashboard_no_jobs_yet": {
+    "description": "M3 empty list."
+  }
 }

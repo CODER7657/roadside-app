@@ -13,13 +13,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get app_title => 'Roadside Mechanic';
 
   @override
-  String get home_placeholder_title => 'आपके पास के काम, जब आप तैयार हों';
-
-  @override
-  String get home_placeholder_body =>
-      'हम सब कुछ तैयार कर रहे हैं। रजिस्ट्रेशन और ऑनलाइन होने की सुविधा अगले अपडेट में आएगी।';
-
-  @override
   String flow_step_label(int step, int total) {
     return '$total में से चरण $step';
   }
@@ -506,4 +499,45 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get pending_call_waiting => 'हम कॉल करेंगे';
+
+  @override
+  String get dashboard_title => 'आज';
+
+  @override
+  String get dashboard_online => 'आप ऑनलाइन हैं';
+
+  @override
+  String get dashboard_online_body => 'हम आपको पास के काम भेजेंगे।';
+
+  @override
+  String get dashboard_finding_location => 'आपकी लोकेशन ढूँढ रहे हैं…';
+
+  @override
+  String get dashboard_offline => 'आप ऑफ़लाइन हैं';
+
+  @override
+  String get dashboard_offline_body =>
+      'काम पाने के लिए ऑनलाइन हों। हम आपकी लोकेशन सिर्फ़ ऑनलाइन होने पर इस्तेमाल करते हैं।';
+
+  @override
+  String get dashboard_gps_off => 'आपके फ़ोन की लोकेशन बंद है। ऑनलाइन होने के लिए इसे चालू करें।';
+
+  @override
+  String get dashboard_turn_on_location => 'लोकेशन चालू करें';
+
+  @override
+  String get dashboard_lost_connection =>
+      'आप ऑफ़लाइन हो गए: 2 मिनट तक हम आपकी लोकेशन अपडेट नहीं कर पाए। अपना कनेक्शन जाँचें और फिर से ऑनलाइन हों।';
+
+  @override
+  String get dashboard_jobs_today => 'आज के काम';
+
+  @override
+  String get dashboard_earned_today => 'आज की कमाई';
+
+  @override
+  String get dashboard_recent_jobs => 'हाल के काम';
+
+  @override
+  String get dashboard_no_jobs_yet => 'आज अभी तक कोई काम नहीं। ऑनलाइन रहें, काम आपके पास आएँगे।';
 }

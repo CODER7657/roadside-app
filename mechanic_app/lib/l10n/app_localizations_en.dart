@@ -13,13 +13,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_title => 'Roadside Mechanic';
 
   @override
-  String get home_placeholder_title => 'Jobs near you, when you\'re ready';
-
-  @override
-  String get home_placeholder_body =>
-      'We\'re getting everything ready. Registration and going online arrive in the next update.';
-
-  @override
   String flow_step_label(int step, int total) {
     return 'Step $step of $total';
   }
@@ -505,4 +498,45 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pending_call_waiting => 'We\'ll call you';
+
+  @override
+  String get dashboard_title => 'Today';
+
+  @override
+  String get dashboard_online => 'You\'re online';
+
+  @override
+  String get dashboard_online_body => 'We\'ll send you jobs nearby.';
+
+  @override
+  String get dashboard_finding_location => 'Finding your location…';
+
+  @override
+  String get dashboard_offline => 'You\'re offline';
+
+  @override
+  String get dashboard_offline_body =>
+      'Go online to get jobs. We only use your location while you\'re online.';
+
+  @override
+  String get dashboard_gps_off => 'Your phone\'s location is switched off. Turn it on to go online.';
+
+  @override
+  String get dashboard_turn_on_location => 'Turn on location';
+
+  @override
+  String get dashboard_lost_connection =>
+      'You went offline: we couldn\'t update your location for 2 minutes. Check your connection and go online again.';
+
+  @override
+  String get dashboard_jobs_today => 'Jobs today';
+
+  @override
+  String get dashboard_earned_today => 'Earned today';
+
+  @override
+  String get dashboard_recent_jobs => 'Recent jobs';
+
+  @override
+  String get dashboard_no_jobs_yet => 'No jobs yet today. Stay online and they\'ll come to you.';
 }

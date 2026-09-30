@@ -99,18 +99,6 @@ abstract class AppLocalizations {
   /// **'Roadside Mechanic'**
   String get app_title;
 
-  /// Temporary home screen until M3 Dashboard (#27) lands.
-  ///
-  /// In en, this message translates to:
-  /// **'Jobs near you, when you\'re ready'**
-  String get home_placeholder_title;
-
-  /// Temporary home screen body until M3 Dashboard (#27) lands.
-  ///
-  /// In en, this message translates to:
-  /// **'We\'re getting everything ready. Registration and going online arrive in the next update.'**
-  String get home_placeholder_body;
-
   /// Progress label on multi-step flows.
   ///
   /// In en, this message translates to:
@@ -1034,6 +1022,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'We\'ll call you'**
   String get pending_call_waiting;
+
+  /// M3 title.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get dashboard_title;
+
+  /// M3 toggle label when online.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re online'**
+  String get dashboard_online;
+
+  /// M3 toggle subtitle when online.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll send you jobs nearby.'**
+  String get dashboard_online_body;
+
+  /// M3: waiting for the first GPS fix.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding your location…'**
+  String get dashboard_finding_location;
+
+  /// M3 toggle label when offline.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re offline'**
+  String get dashboard_offline;
+
+  /// M3 toggle subtitle when offline.
+  ///
+  /// In en, this message translates to:
+  /// **'Go online to get jobs. We only use your location while you\'re online.'**
+  String get dashboard_offline_body;
+
+  /// M3: GPS off.
+  ///
+  /// In en, this message translates to:
+  /// **'Your phone\'s location is switched off. Turn it on to go online.'**
+  String get dashboard_gps_off;
+
+  /// M3: opens location settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on location'**
+  String get dashboard_turn_on_location;
+
+  /// M3: presence went stale, so the app stopped.
+  ///
+  /// In en, this message translates to:
+  /// **'You went offline: we couldn\'t update your location for 2 minutes. Check your connection and go online again.'**
+  String get dashboard_lost_connection;
+
+  /// M3 stat.
+  ///
+  /// In en, this message translates to:
+  /// **'Jobs today'**
+  String get dashboard_jobs_today;
+
+  /// M3 stat.
+  ///
+  /// In en, this message translates to:
+  /// **'Earned today'**
+  String get dashboard_earned_today;
+
+  /// M3 list heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent jobs'**
+  String get dashboard_recent_jobs;
+
+  /// M3 empty list.
+  ///
+  /// In en, this message translates to:
+  /// **'No jobs yet today. Stay online and they\'ll come to you.'**
+  String get dashboard_no_jobs_yet;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
