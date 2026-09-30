@@ -11,7 +11,10 @@ import 'package:roadside_core/roadside_core.dart' as core show JourneyStop;
 import '../../../app/router.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../dashboard/data/location_service.dart';
+import '../../dashboard/application/online.dart';
 import '../../help/presentation/help_screen.dart';
+import '../../permissions/application/permission_service.dart';
+import '../../permissions/presentation/permission_explainer_screen.dart';
 import '../application/job.dart';
 import '../data/job_repository.dart';
 
@@ -38,15 +41,40 @@ class JobScreen extends ConsumerStatefulWidget {
 class _JobScreenState extends ConsumerState<JobScreen> {
   bool _busy = false;
 
+  /// Back from the phone's Settings (location switched on or allowed): try sharing again.
+  late final AppLifecycleListener _lifecycle;
+
+  @override
+  void initState() {
+    super.initState();
+    _lifecycle = AppLifecycleListener(
+      onResume: () => unawaited(ref.read(jobTrackingProvider.notifier).retry()),
+    );
+  }
+
+  @override
+  void dispose() {
+    _lifecycle.dispose();
+    super.dispose();
+  }
+
+  Future<void> _allowLocation() async {
+    if (await ensurePermission(context, ref, AppPermission.location)) {
+      await ref.read(jobTrackingProvider.notifier).retry();
+    }
+  }
+
   void _syncTracking(Booking? b) {
     final tracking = ref.read(jobTrackingProvider.notifier);
     if (b == null) return;
     if (kTrackedStatuses.contains(b.status)) {
       final l10n = AppLocalizations.of(context);
-      tracking.start(
-        bookingId: widget.bookingId,
-        pickup: b.pickup.geopoint,
-        notification: ForegroundTracking(title: l10n.job_tracking_title, text: l10n.job_tracking_text),
+      unawaited(
+        tracking.start(
+          bookingId: widget.bookingId,
+          pickup: b.pickup.geopoint,
+          notification: ForegroundTracking(title: l10n.job_tracking_title, text: l10n.job_tracking_text),
+        ),
       );
     } else if (ref.read(jobTrackingProvider).bookingId == widget.bookingId) {
       tracking.stop();
@@ -95,6 +123,9 @@ class _JobScreenState extends ConsumerState<JobScreen> {
       return _Ended(title: l10n.job_done_title, body: l10n.job_done_body);
     }
 
+    final problem = ref.watch(
+      jobTrackingProvider.select((s) => s.bookingId == widget.bookingId ? s.problem : null),
+    );
     final repo = ref.read(jobRepositoryProvider);
     final primary = switch (b.status) {
       BookingStatus.accepted => LaneButton.primary(
@@ -125,7 +156,49 @@ class _JobScreenState extends ConsumerState<JobScreen> {
         initial: LaneDockSnap.half,
         header: _Rail(status: b.status),
         primary: primary,
-        children: [_Details(bookingId: widget.bookingId, booking: b)],
+        children: [
+          if (problem != null)
+            _LocationBanner(
+              problem: problem,
+              onFix: problem == JobLocationProblem.permission
+                  ? _allowLocation
+                  : () => ref.read(locationServiceProvider).openSettings(),
+            ),
+          _Details(bookingId: widget.bookingId, booking: b),
+        ],
+      ),
+    );
+  }
+}
+
+/// CLAUDE.md: location screens handle permission-denied and GPS-off. Without location the
+/// customer can't see the mechanic coming and `markArrived` can't confirm the arrival.
+class _LocationBanner extends StatelessWidget {
+  const _LocationBanner({required this.problem, required this.onFix});
+
+  final JobLocationProblem problem;
+  final VoidCallback onFix;
+
+  @override
+  Widget build(BuildContext context) {
+    final lane = context.lane;
+    final l10n = AppLocalizations.of(context);
+    final (message, action) = switch (problem) {
+      JobLocationProblem.permission => (l10n.job_location_needed, l10n.job_allow_location),
+      JobLocationProblem.gpsOff => (l10n.job_gps_off, l10n.job_turn_on_location),
+    };
+    return Padding(
+      padding: EdgeInsets.only(bottom: lane.space.s16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Semantics(
+            liveRegion: true,
+            child: Text(message, style: lane.text.body.copyWith(color: lane.color.signal.stop)),
+          ),
+          SizedBox(height: lane.space.s8),
+          LaneButton.secondary(label: action, icon: const LaneIcon(LaneIcons.location), onPressed: onFix),
+        ],
       ),
     );
   }

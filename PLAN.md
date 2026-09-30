@@ -641,6 +641,7 @@ General rules for every document:
 - `vehicleTypes`: list, `services`: list of problem types
 - `status` 🔒 (`pending` | `approved` | `blocked`), `rating` 🔒, `ratingCount` 🔒, `jobsCompleted` 🔒
 - `fcmToken`
+- `deletionRequestedAt` (🔒, set by `requestAccountDeletion`; the purge keeps it on the reduced profile so the KYC retention job knows when the mechanic left)
 
 ### `mechanics/{uid}/private/kyc`: self (write once while `pending`) and admin read
 - `phone` (🔒 from Auth), `idProofPath` (Storage path, not URL), `upiId`, `upiName`, `kycCheckedBy` 🔒, `kycCheckedAt` 🔒

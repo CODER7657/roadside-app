@@ -270,6 +270,33 @@ void main() {
     expect(find.text('No bookings yet'), findsOneWidget);
   });
 
+  testWidgets('list: optional subtitle under the title; the controller drives the scroll (#127)', (
+    tester,
+  ) async {
+    final controller = ScrollController();
+    addTearDown(controller.dispose);
+    await tester.pumpWidget(
+      host(
+        LaneListScaffold(
+          title: 'Kiran Patel',
+          subtitle: 'On the way · 5 min',
+          controller: controller,
+          itemCount: 60,
+          itemBuilder: (_, i) => SizedBox(height: 48, child: Text('message $i')),
+          empty: const Text('No messages yet'),
+        ),
+      ),
+    );
+    expect(
+      tester.getRect(find.text('On the way · 5 min')).top,
+      greaterThan(tester.getRect(find.text('Kiran Patel')).bottom),
+    );
+    expect(controller.hasClients, isTrue);
+    controller.jumpTo(controller.position.maxScrollExtent);
+    await tester.pump();
+    expect(find.text('message 59'), findsOneWidget);
+  });
+
   testWidgets('status background gets at least a 60% bg scrim', (tester) async {
     await tester.pumpWidget(
       host(

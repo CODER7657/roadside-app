@@ -1718,6 +1718,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Tap to open it'**
   String get home_booking_open;
+
+  /// U10/U12: button that opens U11 Chat.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat'**
+  String get chat_open;
+
+  /// U11: title when the mechanic's name isn't known yet.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat'**
+  String get chat_title;
+
+  /// U11: empty state title.
+  ///
+  /// In en, this message translates to:
+  /// **'No messages yet'**
+  String get chat_empty_title;
+
+  /// U11: empty state message.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell {name} anything that helps them find you or your vehicle.'**
+  String chat_empty_body(String name);
+
+  /// U11: shown instead of the composer once the booking has ended (PLAN §8: read for 30 days).
+  ///
+  /// In en, this message translates to:
+  /// **'This chat has closed. You can still read it for 30 days.'**
+  String get chat_closed;
+
+  /// U11: TalkBack for one of my messages.
+  ///
+  /// In en, this message translates to:
+  /// **'You: {text}'**
+  String chat_you(String text);
+
+  /// U11: TalkBack for the mechanic's message.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}: {text}'**
+  String chat_from(String name, String text);
+
+  /// U11: sheet title for choosing camera or gallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a photo'**
+  String get chat_photo_title;
+
+  /// U11: sheet option, opens the camera.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo'**
+  String get chat_photo_take;
+
+  /// U11: sheet option, opens the gallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from gallery'**
+  String get chat_photo_gallery;
+
+  /// U11: toast when a photo can't be made small enough.
+  ///
+  /// In en, this message translates to:
+  /// **'That photo is too large. Try another one.'**
+  String get chat_photo_too_large;
+
+  /// U11: toast when picking or preparing a photo failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t add that photo. Try again.'**
+  String get chat_photo_failed;
+
+  /// U11: error state.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load the chat. Check your connection.'**
+  String get chat_error;
+
+  /// U11: error state action.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get chat_error_retry;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

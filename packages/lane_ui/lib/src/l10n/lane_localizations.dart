@@ -242,6 +242,48 @@ abstract class LaneLocalizations {
   /// In en, this message translates to:
   /// **'Not rated yet'**
   String get star_rating_none;
+
+  /// ChatComposer: placeholder in the text field.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get chat_hint;
+
+  /// ChatComposer: send button (TalkBack).
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get chat_send;
+
+  /// ChatComposer: camera button tooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a photo'**
+  String get chat_add_photo;
+
+  /// ChatComposer: shown near the 500-character limit.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} characters left'**
+  String chat_chars_left(int count);
+
+  /// ChatBubble: my message is still on its way.
+  ///
+  /// In en, this message translates to:
+  /// **'Sending…'**
+  String get chat_sending;
+
+  /// ChatBubble: my message failed; tapping it retries.
+  ///
+  /// In en, this message translates to:
+  /// **'Not sent. Tap to try again.'**
+  String get chat_failed;
+
+  /// ChatBubble: TalkBack for a message with a photo.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo'**
+  String get chat_photo;
 }
 
 class _LaneLocalizationsDelegate extends LocalizationsDelegate<LaneLocalizations> {

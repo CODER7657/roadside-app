@@ -11,8 +11,11 @@ import 'package:lane_ui/lane_ui.dart';
 import 'package:mechanic_app/app/app.dart';
 import 'package:mechanic_app/app/flavor.dart';
 import 'package:mechanic_app/app/router.dart';
+import 'package:mechanic_app/app/secure_window.dart';
 import 'package:mechanic_app/features/first_run/application/first_run.dart';
 import 'package:mechanic_app/features/help/presentation/help_screen.dart';
+import 'package:mechanic_app/features/permissions/application/permission_service.dart';
+import 'package:mechanic_app/features/permissions/presentation/permission_explainer_screen.dart';
 import 'package:mechanic_app/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:mechanic_app/features/registration/application/registration.dart';
 import 'package:mechanic_app/features/registration/data/mechanic_photos.dart';
@@ -36,6 +39,33 @@ Matcher photoPath(String folder, String base) => matches(
     r'\d+-[0-9a-z]+\.jpg$',
   ),
 );
+
+/// Camera permission as the phone has it; asking grants it.
+class _FakePermissions implements PermissionService {
+  PermissionAccess camera = PermissionAccess.granted;
+  final requested = <AppPermission>[];
+
+  @override
+  Future<PermissionAccess> status(AppPermission permission) async =>
+      permission == AppPermission.camera ? camera : PermissionAccess.granted;
+
+  @override
+  Future<PermissionAccess> request(AppPermission permission) async {
+    requested.add(permission);
+    if (permission == AppPermission.camera) camera = PermissionAccess.granted;
+    return PermissionAccess.granted;
+  }
+
+  @override
+  Future<bool> openSettings() async => true;
+}
+
+class _FakeSecureWindow implements SecureWindow {
+  final calls = <bool>[];
+
+  @override
+  Future<void> setSecure(bool secure) async => calls.add(secure);
+}
 
 class _FakePicker implements PhotoPicker {
   _FakePicker({this.cancel = false});
@@ -445,6 +475,8 @@ void main() {
   group('M1 / M2 screens', () {
     late InMemoryRegistrationRepository repo;
     late _FakePicker picker;
+    late _FakePermissions permissions;
+    late _FakeSecureWindow secure;
 
     Future<Widget> app({InMemoryRegistrationRepository? registration, String language = 'en'}) async {
       SharedPreferences.setMockInitialValues({
@@ -462,6 +494,8 @@ void main() {
           photoPickerProvider.overrideWithValue(picker),
           photoCompressorProvider.overrideWithValue(identityCompressor),
           mechanicPhotoUploaderProvider.overrideWithValue(FakeMechanicPhotoUploader(uid: 'mech-1')),
+          permissionServiceProvider.overrideWithValue(permissions),
+          secureWindowProvider.overrideWithValue(secure),
           supportContactsProvider.overrideWithValue((phone: '+917900000000', grievanceEmail: '')),
           laneBatterySourceProvider.overrideWithValue(_NoBattery()),
           laneClockProvider.overrideWithValue(() => DateTime.utc(2026, 9, 30, 6, 30)),
@@ -496,6 +530,44 @@ void main() {
     setUp(() {
       repo = InMemoryRegistrationRepository();
       picker = _FakePicker();
+      permissions = _FakePermissions();
+      secure = _FakeSecureWindow();
+    });
+
+    testWidgets('Take a photo: the C7 camera explainer comes before the camera', (tester) async {
+      permissions.camera = PermissionAccess.askable;
+      await tester.pumpWidget(await app());
+      await pastSplash(tester);
+      await tapText(tester, 'Yes, I have a workshop');
+      await tapText(tester, 'Bharuch');
+      await tapText(tester, 'Next');
+
+      await addPhoto(tester, 'Your photo (customers see it)');
+      expect(find.byType(PermissionExplainerScreen), findsOneWidget);
+      expect(picker.picks, 0, reason: 'no camera before the explainer');
+      await tester.tap(find.widgetWithText(LaneButton, 'Allow'));
+      await tester.pumpAndSettle();
+      expect(permissions.requested, [AppPermission.camera]);
+      expect(picker.picks, 1);
+      expect(find.text('Step 2 of 4'), findsOneWidget);
+
+      // Allowed now: the next photo goes straight to the camera.
+      await addPhoto(tester, 'Shop photo');
+      expect(permissions.requested, hasLength(1));
+      expect(picker.picks, 2);
+    });
+
+    testWidgets('Not now on the camera explainer: no camera, back on the form', (tester) async {
+      permissions.camera = PermissionAccess.askable;
+      await tester.pumpWidget(await app());
+      await pastSplash(tester);
+      await tapText(tester, 'Yes, I have a workshop');
+      await tapText(tester, 'Bharuch');
+      await tapText(tester, 'Next');
+      await addPhoto(tester, 'Your photo (customers see it)');
+      await tapText(tester, 'Not now');
+      expect(picker.picks, 0);
+      expect(find.text('Step 2 of 4'), findsOneWidget);
     });
 
     testWidgets('an unregistered mechanic lands on M1 step 1', (tester) async {
@@ -537,6 +609,7 @@ void main() {
       await tapText(tester, 'Next');
 
       expect(find.text('Step 4 of 4'), findsOneWidget);
+      expect(secure.calls, [true], reason: 'ID and UPI: no screenshots (PLAN §12.7)');
       expect(find.text('Selfie holding your ID'), findsNothing);
       await addPhoto(tester, 'ID proof');
       await type(tester, 'upiId', 'ramesh@okaxis');
@@ -544,6 +617,7 @@ void main() {
       await tapText(tester, 'Send for approval');
 
       expect(find.byType(PendingScreen), findsOneWidget);
+      expect(secure.calls.last, isFalse, reason: 'secure only on the ID step');
       expect(find.text("We're checking your details"), findsOneWidget);
       expect(find.text('Usually within 24 hours. We\'ll let you know.'), findsOneWidget);
       expect(find.text('Shop details'), findsOneWidget);

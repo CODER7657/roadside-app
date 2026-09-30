@@ -270,5 +270,19 @@
   "home_sms_body": "મને રસ્તા પર મદદ જોઈએ છે. મારું લોકેશન: {link} (પ્લસ કોડ {code})",
   "home_sms_failed": "SMS એપ ખૂલી નહીં.",
   "home_booking_active": "તમારું બુકિંગ ચાલુ છે",
-  "home_booking_open": "ખોલવા ટેપ કરો"
+  "home_booking_open": "ખોલવા ટેપ કરો",
+  "chat_open": "ચેટ",
+  "chat_title": "ચેટ",
+  "chat_empty_title": "હજી કોઈ સંદેશ નથી",
+  "chat_empty_body": "{name}ને એવું કંઈ પણ કહો જેનાથી તેઓ તમને કે તમારા વાહનને શોધી શકે.",
+  "chat_closed": "આ ચેટ બંધ થઈ ગઈ છે. તમે તેને 30 દિવસ સુધી વાંચી શકો છો.",
+  "chat_you": "તમે: {text}",
+  "chat_from": "{name}: {text}",
+  "chat_photo_title": "ફોટો મોકલો",
+  "chat_photo_take": "ફોટો પાડો",
+  "chat_photo_gallery": "ગેલેરીમાંથી પસંદ કરો",
+  "chat_photo_too_large": "આ ફોટો બહુ મોટો છે. બીજો પસંદ કરો.",
+  "chat_photo_failed": "ફોટો ઉમેરી શકાયો નહીં. ફરી પ્રયાસ કરો.",
+  "chat_error": "ચેટ લોડ થઈ શકી નહીં. તમારું કનેક્શન તપાસો.",
+  "chat_error_retry": "ફરી પ્રયાસ કરો"
 }

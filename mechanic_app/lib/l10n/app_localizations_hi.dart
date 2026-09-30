@@ -752,4 +752,17 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get login_error_failed => 'कुछ गड़बड़ हो गई। फिर से कोशिश करें।';
+
+  @override
+  String get job_location_needed =>
+      'ग्राहक आपको आते हुए नहीं देख पा रहे। लोकेशन की अनुमति दें ताकि वे आपको देख सकें।';
+
+  @override
+  String get job_allow_location => 'लोकेशन की अनुमति दें';
+
+  @override
+  String get job_gps_off => 'आपके फ़ोन की लोकेशन बंद है। इसे चालू करें ताकि ग्राहक आपको आते हुए देख सकें।';
+
+  @override
+  String get job_turn_on_location => 'लोकेशन चालू करें';
 }

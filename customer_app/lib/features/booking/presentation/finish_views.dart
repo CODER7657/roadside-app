@@ -16,11 +16,14 @@ import '../application/estimate.dart';
 import '../data/booking_service.dart';
 import '../data/upi.dart';
 import 'booking_rail.dart';
+import 'contact_actions.dart';
 
-/// U12 Job in progress: the Working stop on the rail and how long the work has been going.
+/// U12 Job in progress: the Working stop on the rail, how long the work has been going, and
+/// Call / Chat with the mechanic.
 class WorkingView extends ConsumerStatefulWidget {
-  const WorkingView({super.key, required this.booking});
+  const WorkingView({super.key, required this.bookingId, required this.booking});
 
+  final String bookingId;
   final Booking booking;
 
   @override
@@ -69,6 +72,7 @@ class _WorkingViewState extends ConsumerState<WorkingView> {
       ),
       title: l10n.working_title(name),
       message: message,
+      primary: b.mechanicCard == null ? null : ContactActions(bookingId: widget.bookingId, booking: b),
     );
   }
 }

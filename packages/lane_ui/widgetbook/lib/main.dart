@@ -125,6 +125,12 @@ class LaneWidgetbook extends StatelessWidget {
         name: 'Signature',
         children: [
           WidgetbookComponent(
+            name: 'ChatBubble, ChatComposer',
+            useCases: [
+              WidgetbookUseCase(name: 'Every message state', builder: (context) => const LaneChatSample()),
+            ],
+          ),
+          WidgetbookComponent(
             name: 'CenterPin, AccuracyBadge, PriceRange',
             useCases: [
               WidgetbookUseCase(name: 'All states', builder: (context) => const LaneMapPartsSample()),
