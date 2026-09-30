@@ -17,6 +17,11 @@ import 'package:mechanic_app/features/first_run/presentation/privacy_notice_scre
 import 'package:mechanic_app/features/first_run/presentation/splash_screen.dart';
 import 'package:mechanic_app/features/home/presentation/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mechanic_app/features/registration/application/registration.dart';
+import 'package:mechanic_app/features/registration/data/registration_repository.dart';
+import 'package:mechanic_app/features/registration/presentation/registration_screen.dart';
+
+import 'support.dart';
 
 class _NoBattery implements LaneBatterySource {
   @override
@@ -30,10 +35,11 @@ Future<SharedPreferences> prefsWith(Map<String, Object> values) async {
   return SharedPreferences.getInstance();
 }
 
-Widget app(SharedPreferences prefs) => ProviderScope(
+Widget app(SharedPreferences prefs, {RegistrationRepository? registration}) => ProviderScope(
   overrides: [
     flavorProvider.overrideWithValue(AppFlavor.dev),
     sharedPreferencesProvider.overrideWithValue(prefs),
+    registrationRepositoryProvider.overrideWithValue(registration ?? approvedMechanic()),
     firstRunClockProvider.overrideWithValue(() => consentTime),
     laneBatterySourceProvider.overrideWithValue(_NoBattery()),
     laneClockProvider.overrideWithValue(() => DateTime.utc(2026, 9, 30, 6, 30)),
@@ -105,9 +111,10 @@ void main() {
     await pastSplash(tester);
   });
 
-  testWidgets('first run end to end: splash, Gujarati, onboarding, consent, home; saved', (tester) async {
+  testWidgets('first run end to end: splash, Gujarati, onboarding, consent, then M1; saved', (tester) async {
     final prefs = await prefsWith({});
-    await tester.pumpWidget(app(prefs));
+    // A brand-new mechanic: not registered yet, so first run leads into registration (M1).
+    await tester.pumpWidget(app(prefs, registration: InMemoryRegistrationRepository()));
     await pastSplash(tester);
 
     // C2: English by default (test locale); choosing Gujarati switches the app at once.
@@ -150,7 +157,7 @@ void main() {
     await tester.pumpAndSettle();
     await tapAgree();
 
-    expect(find.byType(HomeScreen), findsOneWidget);
+    expect(find.byType(RegistrationScreen), findsOneWidget);
     expect(prefs.getString('first_run.language'), 'gu');
     expect(prefs.getBool('first_run.onboarded'), isTrue);
     expect(prefs.getString('first_run.consent_version'), kConsentVersion);

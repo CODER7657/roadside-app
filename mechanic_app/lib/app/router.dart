@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:roadside_core/roadside_core.dart';
 
 import '../features/first_run/application/first_run.dart';
 import '../features/first_run/presentation/consent_screen.dart';
@@ -11,13 +13,18 @@ import '../features/help/presentation/help_screen.dart';
 import '../features/home/presentation/home_screen.dart';
 import '../features/permissions/application/permission_service.dart';
 import '../features/permissions/presentation/permission_explainer_screen.dart';
+import '../features/registration/application/registration.dart';
+import '../features/registration/presentation/pending_screen.dart';
+import '../features/registration/presentation/registration_screen.dart';
 
-/// Route paths. Screens are added per issue (C7/C9 #122, login #123, M1 #26, M3 #27, …).
+/// Route paths. Screens are added per issue (login #123, M3 #27, …).
 abstract final class AppRoutes {
   static const splash = '/splash';
   static const home = '/';
   static const privacy = '/privacy';
   static const help = '/help';
+  static const register = '/register';
+  static const pending = '/pending';
 }
 
 /// Keeps first run in order: home (and later everything else) waits until language,
@@ -34,10 +41,36 @@ String? firstRunRedirect(FirstRunState firstRun, String location) {
   return at != -1 && at <= steps.indexOf(next) ? null : next;
 }
 
+/// After first run: M1 until registered, M2 while pending or blocked, home once approved.
+/// Help, the privacy notice and permission explainers stay reachable from M1 and M2.
+/// While the profile is still loading ([status] not yet known), nothing moves.
+String? registrationRedirect(AsyncValue<MechanicStatus?> status, String location) {
+  const open = [AppRoutes.splash, AppRoutes.privacy, AppRoutes.help];
+  if (open.contains(location) || location.startsWith('/permission/')) return null;
+  if (!status.hasValue) return null;
+  final target = switch (status.value) {
+    null => AppRoutes.register,
+    MechanicStatus.pending || MechanicStatus.blocked => AppRoutes.pending,
+    MechanicStatus.approved => AppRoutes.home,
+  };
+  return location == target ? null : target;
+}
+
 final routerProvider = Provider<GoRouter>((ref) {
+  // Re-run the redirects when the profile changes (submitted, approved, blocked).
+  final refresh = ValueNotifier<int>(0);
+  ref.listen(registrationStatusProvider, (_, _) => refresh.value++);
+
   final router = GoRouter(
     initialLocation: AppRoutes.splash,
-    redirect: (context, state) => firstRunRedirect(ref.read(firstRunProvider), state.matchedLocation),
+    refreshListenable: refresh,
+    redirect: (context, state) {
+      final location = state.matchedLocation;
+      return firstRunRedirect(ref.read(firstRunProvider), location) ??
+          (ref.read(firstRunProvider).nextStep == null
+              ? registrationRedirect(ref.read(registrationStatusProvider), location)
+              : null);
+    },
     routes: [
       GoRoute(path: AppRoutes.splash, builder: (context, state) => const SplashScreen()),
       GoRoute(path: FirstRunStep.language, builder: (context, state) => const LanguageScreen()),
@@ -46,6 +79,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: AppRoutes.privacy, builder: (context, state) => const PrivacyNoticeScreen()),
       GoRoute(path: AppRoutes.home, builder: (context, state) => const HomeScreen()),
       GoRoute(path: AppRoutes.help, builder: (context, state) => const HelpScreen()),
+      GoRoute(path: AppRoutes.register, builder: (context, state) => const RegistrationScreen()),
+      GoRoute(path: AppRoutes.pending, builder: (context, state) => const PendingScreen()),
       GoRoute(
         path: '/permission/:kind',
         builder: (context, state) =>
@@ -53,6 +88,9 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
     ],
   );
-  ref.onDispose(router.dispose);
+  ref.onDispose(() {
+    router.dispose();
+    refresh.dispose();
+  });
   return router;
 });
