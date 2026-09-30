@@ -119,6 +119,12 @@ class LaneWidgetbook extends StatelessWidget {
         name: 'Signature',
         children: [
           WidgetbookComponent(
+            name: 'CenterPin, AccuracyBadge',
+            useCases: [
+              WidgetbookUseCase(name: 'All states', builder: (context) => const LaneMapPartsSample()),
+            ],
+          ),
+          WidgetbookComponent(
             name: 'JourneyRail, TrustPass',
             useCases: [
               WidgetbookUseCase(

@@ -15,5 +15,9 @@
   "otp_show_big": "મોટું બતાવો",
   "otp_close": "બંધ કરો",
   "otp_input_label": "કોડ",
-  "countdown_seconds_left": "{seconds} સેકન્ડ બાકી"
+  "countdown_seconds_left": "{seconds} સેકન્ડ બાકી",
+  "accuracy_locating": "તમારું લોકેશન શોધી રહ્યા છીએ",
+  "accuracy_meters": "±{meters} મી",
+  "accuracy_adjust": "±{meters} મી · પિન ગોઠવો",
+  "accuracy_semantics": "લોકેશન {meters} મીટર સુધી ચોક્કસ"
 }

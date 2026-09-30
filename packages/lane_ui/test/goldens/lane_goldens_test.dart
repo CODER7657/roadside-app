@@ -83,6 +83,12 @@ void main() {
     ),
   );
 
+  goldenTest(
+    'center pin and accuracy badge in every mode',
+    fileName: 'components_map_parts',
+    builder: () => _group((_) => const LaneMapPartsSample()),
+  );
+
   for (final page in [0, 1]) {
     goldenTest(
       'signature components (page ${page + 1}) in every mode',

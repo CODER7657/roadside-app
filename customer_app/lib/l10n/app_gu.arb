@@ -134,5 +134,22 @@
   "description_hint": "જેમ કે: ટોલ પ્લાઝા પાસે પાછળનું ટાયર પંક્ચર થયું",
   "photos_skip": "છોડો",
   "photos_item": "ફોટો {n}",
-  "booking_back_home": "હોમ પર પાછા"
+  "booking_back_home": "હોમ પર પાછા",
+  "location_title": "તમે ક્યાં છો?",
+  "location_hint": "નકશો ખસેડો જેથી પિન તમારા વાહન પર આવે.",
+  "location_no_permission": "આ એપ માટે લોકેશન બંધ છે. નકશો તમારી જગ્યા સુધી ખસેડો, અથવા લોકેશનની મંજૂરી આપો.",
+  "location_allow": "લોકેશનની મંજૂરી આપો",
+  "location_gps_off": "તમારા ફોનનું લોકેશન બંધ છે.",
+  "location_turn_on": "લોકેશન ચાલુ કરો",
+  "location_no_fix": "અમે તમને શોધી શક્યા નહીં. નકશો તમારી જગ્યા સુધી ખસેડો.",
+  "location_finding_address": "સરનામું શોધી રહ્યા છીએ…",
+  "location_no_address": "અહીં કોઈ સરનામું નથી. મિકેનિક પ્લસ કોડથી આવશે.",
+  "location_plus_code": "પ્લસ કોડ {code}",
+  "location_landmark_label": "નજીકની ઓળખ (વૈકલ્પિક)",
+  "location_landmark_hint": "જેમ કે: પેટ્રોલ પંપની સામે",
+  "location_far_warning": "પિન તમારા ફોનની જગ્યાથી 2 કિમીથી વધુ દૂર છે.",
+  "location_someone_else": "હું બીજા કોઈ માટે બુક કરું છું",
+  "location_confirm": "પિકઅપ પાકું કરો",
+  "location_recenter": "મારા લોકેશન પર જાઓ",
+  "location_retry": "ફરી પ્રયાસ કરો"
 }

@@ -66,4 +66,22 @@ class LaneLocalizationsHi extends LaneLocalizations {
   String countdown_seconds_left(int seconds) {
     return '$seconds सेकंड बाकी';
   }
+
+  @override
+  String get accuracy_locating => 'आपकी लोकेशन ढूँढ रहे हैं';
+
+  @override
+  String accuracy_meters(int meters) {
+    return '±$meters मी';
+  }
+
+  @override
+  String accuracy_adjust(int meters) {
+    return '±$meters मी · पिन ठीक करें';
+  }
+
+  @override
+  String accuracy_semantics(int meters) {
+    return 'लोकेशन $meters मीटर तक सटीक';
+  }
 }

@@ -66,4 +66,22 @@ class LaneLocalizationsEn extends LaneLocalizations {
   String countdown_seconds_left(int seconds) {
     return '$seconds seconds left';
   }
+
+  @override
+  String get accuracy_locating => 'Finding your location';
+
+  @override
+  String accuracy_meters(int meters) {
+    return '±$meters m';
+  }
+
+  @override
+  String accuracy_adjust(int meters) {
+    return '±$meters m · Adjust pin';
+  }
+
+  @override
+  String accuracy_semantics(int meters) {
+    return 'Location accurate to $meters metres';
+  }
 }

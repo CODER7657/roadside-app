@@ -1,4 +1,7 @@
 // PLAN §6.13 templates. Done-when for #8: they render at 320 px width and 200% text.
+import 'dart:async';
+import 'dart:ui' show Tristate;
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -145,6 +148,82 @@ void main() {
     final button = tester.getRect(find.byIcon(Icons.my_location));
     expect(button.right, greaterThan(360 - 80));
     expect(button.top, lessThan(100));
+  });
+
+  testWidgets('map: a root screen has no back button; a pushed one does, top left, and it pops', (
+    tester,
+  ) async {
+    setView(tester, const Size(360, 800));
+    await tester.pumpWidget(host(templates['map']!, locale: const Locale('en')));
+    await tester.pumpAndSettle();
+    expect(find.byTooltip('Back'), findsNothing, reason: 'nothing to go back to');
+
+    final nav = tester.state<NavigatorState>(find.byType(Navigator).last);
+    unawaited(nav.push(MaterialPageRoute<void>(builder: (_) => templates['map']!)));
+    await tester.pumpAndSettle();
+    final back = find.byTooltip('Back');
+    expect(back, findsOneWidget);
+    final rect = tester.getRect(back);
+    expect(rect.left, lessThan(80));
+    expect(rect.top, lessThan(100));
+    expect(rect.width, greaterThanOrEqualTo(48));
+    expect(rect.height, greaterThanOrEqualTo(48));
+
+    await tester.tap(back);
+    await tester.pumpAndSettle();
+    expect(find.byTooltip('Back'), findsNothing);
+  });
+
+  testWidgets('map: showBack false hides it even when the route can pop', (tester) async {
+    setView(tester, const Size(360, 800));
+    await tester.pumpWidget(host(const SizedBox(), locale: const Locale('en')));
+    final nav = tester.state<NavigatorState>(find.byType(Navigator).last);
+    unawaited(
+      nav.push(
+        MaterialPageRoute<void>(
+          builder: (_) => const LaneMapScaffold(
+            showBack: false,
+            map: SizedBox.expand(),
+            dock: LaneDock(children: [Text('dock')]),
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('dock'), findsOneWidget);
+    expect(find.byTooltip('Back'), findsNothing);
+  });
+
+  testWidgets('LaneMapButton: 48 dp, labelled by its tooltip, disabled without onPressed', (tester) async {
+    setView(tester, const Size(360, 800));
+    var taps = 0;
+    await tester.pumpWidget(
+      host(
+        Scaffold(
+          body: Column(
+            children: [
+              LaneMapButton(
+                icon: LaneIcons.navigation,
+                tooltip: 'Go to my location',
+                onPressed: () => taps++,
+              ),
+              const LaneMapButton(icon: LaneIcons.navigation, tooltip: 'Off', onPressed: null),
+            ],
+          ),
+        ),
+        locale: const Locale('en'),
+      ),
+    );
+    final on = find.byTooltip('Go to my location');
+    expect(tester.getSize(on).width, greaterThanOrEqualTo(48));
+    await tester.tap(on);
+    await tester.tap(find.byTooltip('Off'), warnIfMissed: false);
+    expect(taps, 1);
+    // TalkBack reads the tooltip; the disabled one is announced as not enabled.
+    final node = tester.getSemantics(find.byType(IconButton).first);
+    expect(node.tooltip, 'Go to my location');
+    expect(node.flagsCollection.isEnabled, Tristate.isTrue);
+    expect(tester.getSemantics(find.byType(IconButton).last).flagsCollection.isEnabled, Tristate.isFalse);
   });
 
   testWidgets('flow: step lane shows done / current / upcoming; back and step are labelled', (tester) async {

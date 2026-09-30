@@ -188,6 +188,30 @@ abstract class LaneLocalizations {
   /// In en, this message translates to:
   /// **'{seconds} seconds left'**
   String countdown_seconds_left(int seconds);
+
+  /// AccuracyBadge: before the first fix.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding your location'**
+  String get accuracy_locating;
+
+  /// AccuracyBadge: accuracy in metres.
+  ///
+  /// In en, this message translates to:
+  /// **'±{meters} m'**
+  String accuracy_meters(int meters);
+
+  /// AccuracyBadge: accuracy over 50 m; asks to move the pin.
+  ///
+  /// In en, this message translates to:
+  /// **'±{meters} m · Adjust pin'**
+  String accuracy_adjust(int meters);
+
+  /// AccuracyBadge: what TalkBack reads.
+  ///
+  /// In en, this message translates to:
+  /// **'Location accurate to {meters} metres'**
+  String accuracy_semantics(int meters);
 }
 
 class _LaneLocalizationsDelegate extends LocalizationsDelegate<LaneLocalizations> {

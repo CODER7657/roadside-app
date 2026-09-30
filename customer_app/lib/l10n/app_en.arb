@@ -583,5 +583,78 @@
   "booking_back_home": "Back to home",
   "@booking_back_home": {
     "description": "Returns to Home from a booking step that is not ready yet."
+  },
+  "location_title": "Where are you?",
+  "@location_title": {
+    "description": "U6 Confirm location: title in the dock."
+  },
+  "location_hint": "Drag the map so the pin is on your vehicle.",
+  "@location_hint": {
+    "description": "U6: instruction under the title."
+  },
+  "location_no_permission": "Location is off for this app. Drag the map to your spot, or allow location.",
+  "@location_no_permission": {
+    "description": "U6: no location permission."
+  },
+  "location_allow": "Allow location",
+  "@location_allow": {
+    "description": "U6: opens the C7 explainer for location."
+  },
+  "location_gps_off": "Your phone's location is switched off.",
+  "@location_gps_off": {
+    "description": "U6: GPS is off."
+  },
+  "location_turn_on": "Turn on location",
+  "@location_turn_on": {
+    "description": "U6: opens the phone location settings."
+  },
+  "location_no_fix": "We couldn't find you. Drag the map to your spot.",
+  "@location_no_fix": {
+    "description": "U6: no GPS reading in 15 s."
+  },
+  "location_finding_address": "Finding the address…",
+  "@location_finding_address": {
+    "description": "U6: while reverse geocoding."
+  },
+  "location_no_address": "No street address here. The mechanic will use the Plus Code.",
+  "@location_no_address": {
+    "description": "U6: no address for the pin."
+  },
+  "location_plus_code": "Plus Code {code}",
+  "@location_plus_code": {
+    "description": "U6: the pin as a Plus Code.",
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "location_landmark_label": "Landmark (optional)",
+  "@location_landmark_label": {
+    "description": "U6: landmark field label."
+  },
+  "location_landmark_hint": "For example: opposite the petrol pump",
+  "@location_landmark_hint": {
+    "description": "U6: landmark hint."
+  },
+  "location_far_warning": "The pin is more than 2 km from where your phone is.",
+  "@location_far_warning": {
+    "description": "U6: pin far from the GPS reading."
+  },
+  "location_someone_else": "I'm booking for someone else",
+  "@location_someone_else": {
+    "description": "U6: switch needed when the pin is far away."
+  },
+  "location_confirm": "Confirm pickup",
+  "@location_confirm": {
+    "description": "U6: primary button."
+  },
+  "location_recenter": "Go to my location",
+  "@location_recenter": {
+    "description": "U6: map button that moves the pin back to the GPS reading."
+  },
+  "location_retry": "Try again",
+  "@location_retry": {
+    "description": "U6: look for the phone's location again after no reading."
   }
 }
