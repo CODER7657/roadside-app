@@ -144,6 +144,14 @@ void main() {
       expect(breadcrumbs.single, contains('verifyStartOtp failed'));
     });
 
+    test('with redaction off, nothing reaches the crash reporter', () {
+      LaneLog.redact = false;
+      LaneLog.e('createBooking failed for +91 98765 43210', fields: {'phone': '+919876543210'});
+      expect(breadcrumbs, isEmpty);
+      expect(reported, isEmpty);
+      expect(console.single.fields['phone'], '+919876543210'); // the local console still sees it
+    });
+
     test('an error without an error object reports its message', () {
       LaneLog.e('dispatch stalled for 98765 43210');
       final (error, stack) = reported.single;

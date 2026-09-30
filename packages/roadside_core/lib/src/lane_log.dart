@@ -83,13 +83,17 @@ abstract final class LaneLog {
   /// A sink for a crash reporter such as Crashlytics. Every record is added to the breadcrumb
   /// [log]; error-level records are also reported as non-fatal issues through [recordError], as a
   /// [RedactedError]. Records are redacted before they get here, so turn on [redact] in any build
-  /// that reports (it is on in release). [alsoTo] keeps a second sink, e.g. the developer console.
+  /// that reports (it is on in release); while it is off, nothing is reported. [alsoTo] keeps a
+  /// second sink, e.g. the developer console.
   static LogSink crashReporterSink({
     required void Function(String message) log,
     required void Function(RedactedError error, StackTrace? stackTrace) recordError,
     LogSink? alsoTo,
   }) => (r) {
     alsoTo?.call(r);
+    // With redaction off (debug, or a profile build that forgot to turn it on), the record still
+    // holds personal data: it stays on the phone.
+    if (!redact) return;
     log(r.format());
     if (r.level == LogLevel.error) {
       recordError(RedactedError(r.error ?? r.message), r.stackTrace ?? StackTrace.empty);
