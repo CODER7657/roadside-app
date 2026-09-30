@@ -23,7 +23,8 @@ check 'Color\(0x'                                             'Raw Color(0x…):
 check '\bColors\.[a-z]'                                       'Material Colors.*: use context.lane.color.*'
 check '\bTextStyle\('                                         'TextStyle(…): use context.lane.text.*'
 check 'fontSize:'                                             'fontSize: use a Lane text style'
-check 'EdgeInsets\.(all|only|symmetric)\([^)]*[0-9]'          'Magic-number padding: use lane.space.*'
+# A digit that starts a number (not the 4 in lane.space.s4).
+check 'EdgeInsets\.(all|only|symmetric)\(([^)]*[^A-Za-z0-9_.])?[0-9]' 'Magic-number padding: use lane.space.*'
 check 'SizedBox\((height|width): *[0-9]'                      'Magic-number SizedBox: use Gap(lane.space.*)'
 check 'BorderRadius\.circular\( *[0-9]'                       'Magic radius: use lane.radius.*'
 check 'Duration\(milliseconds:'                               'Raw Duration in UI: use lane.motion.*'

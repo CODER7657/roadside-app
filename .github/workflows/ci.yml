@@ -173,7 +173,7 @@ jobs:
         run: npx --yes firebase-tools@latest emulators:exec --project demo-roadside --only firestore,storage "npm --prefix rules_tests test"
 
   tools:
-    name: Tool self-tests (check_strings, scripts)
+    name: Tool self-tests (check_strings, lint_design, scripts)
     needs: changes
     if: needs.changes.outputs.tools == 'true'
     runs-on: ubuntu-latest
@@ -197,6 +197,9 @@ jobs:
       - name: check_strings self-test
         shell: bash
         run: bash tool/test/check_strings_test.sh
+      - name: lint_design self-test
+        shell: bash
+        run: bash tool/test/lint_design_test.sh
 
   secrets:
     name: Secret scan (gitleaks)
