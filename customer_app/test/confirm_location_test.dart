@@ -488,6 +488,24 @@ void main() {
       expect(find.text('±14 m'), findsOneWidget);
     });
 
+    testWidgets('a good reading sets the sunset position; ☀ switches the map to Glare', (tester) async {
+      tall(tester);
+      await openU6(tester);
+      location.add(home.lat, home.lng, 9);
+      await tester.pumpAndSettle();
+      final container = ProviderScope.containerOf(tester.element(find.byType(ConfirmLocationScreen)));
+      final position = container.read(ambientControllerProvider).position!;
+      expect((position.lat, position.lng), (home.lat, home.lng));
+
+      expect(find.byType(LaneGlareButton), findsOneWidget);
+      await tester.tap(find.byType(LaneGlareButton));
+      await tester.pumpAndSettle();
+      expect(container.read(laneModeProvider), LaneMode.glare);
+      await tester.tap(find.byType(LaneGlareButton));
+      await tester.pumpAndSettle();
+      expect(container.read(laneModeProvider), isNot(LaneMode.glare));
+    });
+
     testWidgets('fits at 320 px, 200% text, Hindi', (tester) async {
       tester.view.physicalSize = const Size(320, 640);
       tester.view.devicePixelRatio = 1;

@@ -20,5 +20,9 @@
   "accuracy_meters": "±{meters} મી",
   "accuracy_adjust": "±{meters} મી · પિન ગોઠવો",
   "accuracy_semantics": "લોકેશન {meters} મીટર સુધી ચોક્કસ",
-  "price_range_semantics": "{min} થી {max}"
+  "price_range_semantics": "{min} થી {max}",
+  "glare_turn_on": "તડકા મોડ: તેજ પ્રકાશ માટે ઊંચો કોન્ટ્રાસ્ટ",
+  "glare_turn_off": "તડકા મોડ બંધ કરો",
+  "star_rating_value": "5 માંથી {count} સ્ટાર",
+  "star_rating_none": "હજી રેટિંગ નથી આપ્યું"
 }

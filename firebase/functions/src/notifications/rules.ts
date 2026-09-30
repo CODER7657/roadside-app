@@ -20,6 +20,7 @@ export const NOTICE_TYPES = [
   'payment_marked_paid',
   'payment_confirmed',
   'payment_disputed',
+  'start_code_locked',
 ] as const;
 export type NoticeType = (typeof NOTICE_TYPES)[number];
 
@@ -39,7 +40,12 @@ export type BookingState = Pick<
   'status' | 'customerId' | 'mechanicId' | 'paymentStatus' | 'finalAmount' | 'cancelledBy'
 >;
 
-function notice(uid: string | null | undefined, side: Side, type: NoticeType, args: Record<string, string> = {}): Notice[] {
+export function notice(
+  uid: string | null | undefined,
+  side: Side,
+  type: NoticeType,
+  args: Record<string, string> = {},
+): Notice[] {
   if (!uid) return [];
   return [{ uid, side, type, titleKey: `notif_${type}_title`, bodyKey: `notif_${type}_body`, args }];
 }
