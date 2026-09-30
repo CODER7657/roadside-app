@@ -79,6 +79,8 @@ export interface MechanicDoc extends BaseDoc {
   ratingCount: number;
   jobsCompleted: number;
   fcmToken: string | null;
+  /** 🔒 Set by requestAccountDeletion (#167; proposed for PLAN §8 alongside users/{uid}). */
+  deletionRequestedAt?: Timestamp | null;
 }
 
 /** mechanics/{uid}/private/kyc */
