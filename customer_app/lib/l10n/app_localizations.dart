@@ -1239,12 +1239,6 @@ abstract class AppLocalizations {
   /// **'We couldn\'t find this booking.'**
   String get live_not_found;
 
-  /// in_progress and later, until U12 (#17).
-  ///
-  /// In en, this message translates to:
-  /// **'Your mechanic is on the job'**
-  String get live_working_title;
-
   /// U9: accepted.
   ///
   /// In en, this message translates to:
@@ -1310,6 +1304,360 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Someone tried your start code 5 times. Only read it out to your mechanic in person.'**
   String get notif_start_code_locked_body;
+
+  /// U10: arriving.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is on the way'**
+  String tracking_on_the_way(String name);
+
+  /// U10: arrived.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} has arrived'**
+  String tracking_arrived(String name);
+
+  /// U10: ETA, rolls as it changes.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min'**
+  String tracking_eta(int minutes);
+
+  /// U10: after the ETA ("6 min away").
+  ///
+  /// In en, this message translates to:
+  /// **'away'**
+  String get tracking_away;
+
+  /// U10: no reading yet.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for {name}\'s location…'**
+  String tracking_waiting(String name);
+
+  /// U10: reading older than 30 s.
+  ///
+  /// In en, this message translates to:
+  /// **'Location last updated {minutes} min ago. It may be out of signal.'**
+  String tracking_stale(int minutes);
+
+  /// U10: opens the phone dialer.
+  ///
+  /// In en, this message translates to:
+  /// **'Call {name}'**
+  String tracking_call(String name);
+
+  /// U10: dialer failed to open.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t open the phone app.'**
+  String get tracking_call_failed;
+
+  /// U10: label above the code.
+  ///
+  /// In en, this message translates to:
+  /// **'Start code'**
+  String get tracking_start_code;
+
+  /// U10: under the code.
+  ///
+  /// In en, this message translates to:
+  /// **'Share this code only when the mechanic is standing with you.'**
+  String get tracking_start_code_hint;
+
+  /// U12 Job in progress: title.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is working on it'**
+  String working_title(String name);
+
+  /// U12: when the work started and for how long.
+  ///
+  /// In en, this message translates to:
+  /// **'Started at {time} · {minutes} min so far'**
+  String working_since(String time, int minutes);
+
+  /// U12: no start time yet.
+  ///
+  /// In en, this message translates to:
+  /// **'Work has started.'**
+  String get working_started;
+
+  /// U13 Payment: title.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay {name}'**
+  String payment_title(String name);
+
+  /// U13: under the final amount.
+  ///
+  /// In en, this message translates to:
+  /// **'The estimate was {min}–{max}'**
+  String payment_estimate_was(String min, String max);
+
+  /// U13: finalAmount missing.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for the mechanic to enter the final amount.'**
+  String get payment_no_amount;
+
+  /// U13: primary; opens the upi://pay link.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay with UPI app'**
+  String get payment_pay_upi;
+
+  /// U13: TalkBack label of the QR.
+  ///
+  /// In en, this message translates to:
+  /// **'QR code to pay {amount} to {name}'**
+  String payment_qr_label(String amount, String name);
+
+  /// U13: under the QR.
+  ///
+  /// In en, this message translates to:
+  /// **'Or scan this with any UPI app'**
+  String get payment_qr_hint;
+
+  /// U13: copies the mechanic UPI ID.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy UPI ID'**
+  String get payment_copy_upi;
+
+  /// U13: toast after copying.
+  ///
+  /// In en, this message translates to:
+  /// **'UPI ID copied'**
+  String get payment_upi_copied;
+
+  /// U13: the deep link found no app.
+  ///
+  /// In en, this message translates to:
+  /// **'No UPI app opened. Scan the QR with another phone, or pay in cash.'**
+  String get payment_no_upi_app;
+
+  /// U13: no valid UPI ID on the card.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay {name} in cash, or ask them for their UPI ID.'**
+  String payment_cash(String name);
+
+  /// U13: markPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'I have paid'**
+  String get payment_i_have_paid;
+
+  /// U13: opens the dispute sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Something\'s wrong'**
+  String get payment_problem;
+
+  /// U13: markPaid / disputePayment failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t update the payment. Check your connection and try again.'**
+  String get payment_error_network;
+
+  /// U13 after "I have paid".
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for {name} to confirm'**
+  String payment_waiting_title(String name);
+
+  /// U13 after "I have paid".
+  ///
+  /// In en, this message translates to:
+  /// **'They check that {amount} arrived in their UPI app.'**
+  String payment_waiting_body(String amount);
+
+  /// Payment confirmed: title.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid {amount}'**
+  String payment_confirmed_title(String amount);
+
+  /// Payment confirmed without an amount.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment confirmed'**
+  String get payment_confirmed_title_plain;
+
+  /// Payment confirmed: message.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you! {name} confirmed your payment.'**
+  String payment_confirmed_body(String name);
+
+  /// Payment disputed: title.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'re looking into it'**
+  String get payment_disputed_title;
+
+  /// Payment disputed: message.
+  ///
+  /// In en, this message translates to:
+  /// **'Our team will contact you about this payment.'**
+  String get payment_disputed_body;
+
+  /// Dispute sheet: title.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s wrong with the payment?'**
+  String get payment_dispute_title;
+
+  /// Dispute sheet: text field.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us what happened'**
+  String get payment_dispute_label;
+
+  /// Dispute sheet: hint.
+  ///
+  /// In en, this message translates to:
+  /// **'For example: asked for more than the amount shown'**
+  String get payment_dispute_hint;
+
+  /// Dispute sheet: confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Report problem'**
+  String get payment_dispute_send;
+
+  /// Toast after a dispute.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks. We\'ll look into it.'**
+  String get payment_dispute_sent;
+
+  /// Sheet: close without doing anything.
+  ///
+  /// In en, this message translates to:
+  /// **'Go back'**
+  String get cancel_keep_open;
+
+  /// Payment confirmed: opens U14.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate {name}'**
+  String review_rate(String name);
+
+  /// U14: step label.
+  ///
+  /// In en, this message translates to:
+  /// **'Your review'**
+  String get review_step;
+
+  /// U14: title.
+  ///
+  /// In en, this message translates to:
+  /// **'How was {name}?'**
+  String review_title(String name);
+
+  /// U14: StarRating label for TalkBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Rating for {name}'**
+  String review_stars_label(String name);
+
+  /// U14: tags for 4–5 stars.
+  ///
+  /// In en, this message translates to:
+  /// **'What went well?'**
+  String get review_tags_good;
+
+  /// U14: tags for 1–3 stars.
+  ///
+  /// In en, this message translates to:
+  /// **'What went wrong?'**
+  String get review_tags_bad;
+
+  /// Tag on_time.
+  ///
+  /// In en, this message translates to:
+  /// **'On time'**
+  String get review_tag_on_time;
+
+  /// Tag friendly.
+  ///
+  /// In en, this message translates to:
+  /// **'Friendly'**
+  String get review_tag_friendly;
+
+  /// Tag fixed_fast.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed it fast'**
+  String get review_tag_fixed_fast;
+
+  /// Tag fair_price.
+  ///
+  /// In en, this message translates to:
+  /// **'Fair price'**
+  String get review_tag_fair_price;
+
+  /// Tag late.
+  ///
+  /// In en, this message translates to:
+  /// **'Came late'**
+  String get review_tag_late;
+
+  /// Tag rude.
+  ///
+  /// In en, this message translates to:
+  /// **'Rude'**
+  String get review_tag_rude;
+
+  /// Tag overcharged.
+  ///
+  /// In en, this message translates to:
+  /// **'Charged too much'**
+  String get review_tag_overcharged;
+
+  /// Tag not_fixed.
+  ///
+  /// In en, this message translates to:
+  /// **'Not fixed'**
+  String get review_tag_not_fixed;
+
+  /// U14: comment field.
+  ///
+  /// In en, this message translates to:
+  /// **'Anything else? (optional)'**
+  String get review_comment_label;
+
+  /// U14: primary.
+  ///
+  /// In en, this message translates to:
+  /// **'Send review'**
+  String get review_submit;
+
+  /// Toast after sending.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks for your review!'**
+  String get review_thanks;
+
+  /// Toast: submit failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t send your review. Check your connection and try again.'**
+  String get review_error;
+
+  /// Not completed, not theirs, or already reviewed.
+  ///
+  /// In en, this message translates to:
+  /// **'This booking can’t be reviewed.'**
+  String get review_not_allowed;
+
+  /// U14: already reviewed.
+  ///
+  /// In en, this message translates to:
+  /// **'You have rated this booking. Thank you!'**
+  String get review_already;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

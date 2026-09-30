@@ -1,8 +1,9 @@
-// #107: CenterPin and AccuracyBadge. #108: PriceRange.
+// #107: CenterPin and AccuracyBadge. #108: PriceRange. #133: LaneQrCode.
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lane_ui/lane_ui.dart';
 import 'package:lane_ui/specimen.dart';
+import 'package:qr/qr.dart';
 
 Future<void> pumpIn(
   WidgetTester tester,
@@ -139,6 +140,56 @@ void main() {
       );
       expect(tester.takeException(), isNull);
       expect(find.text('₹1,25,000–₹2,50,000'), findsOneWidget);
+    });
+  });
+
+  group('LaneQrCode', () {
+    const upi = 'upi://pay?pa=kiran@okaxis&pn=Kiran%20Patel&am=450.00&cu=INR&tn=Booking%20FAKEBOOK';
+
+    testWidgets('one image node with the label from the app; square at the given size', (tester) async {
+      final handle = tester.ensureSemantics();
+      await pumpIn(
+        tester,
+        const Scaffold(
+          body: Center(
+            child: LaneQrCode(data: upi, semanticLabel: 'Pay ₹450 to Kiran Patel', size: 180),
+          ),
+        ),
+      );
+      final node = tester.getSemantics(find.byType(LaneQrCode));
+      expect(node.label, 'Pay ₹450 to Kiran Patel');
+      expect(node.flagsCollection.isImage, isTrue);
+      expect(tester.getSize(find.byType(LaneQrCode)), const Size(180, 180));
+      handle.dispose();
+    });
+
+    testWidgets('long data still fits (a bigger QR version), in every mode', (tester) async {
+      final long = '$upi&note=${'x' * 400}';
+      for (final mode in LaneMode.values) {
+        await pumpIn(
+          tester,
+          Scaffold(
+            body: Center(
+              child: LaneQrCode(data: long, semanticLabel: 'QR'),
+            ),
+          ),
+          mode: mode,
+        );
+        expect(tester.takeException(), isNull, reason: '$mode');
+      }
+    });
+
+    test('the same data always gives the same code (so a golden is stable)', () {
+      String bits(String data) {
+        final img = QrImage(QrCode(payload: QrPayload.fromString(data)));
+        return [
+          for (var r = 0; r < img.moduleCount; r++)
+            for (var c = 0; c < img.moduleCount; c++) img.isDark(r, c) ? '1' : '0',
+        ].join();
+      }
+
+      expect(bits(upi), bits(upi));
+      expect(bits(upi), isNot(bits('$upi&x=1')));
     });
   });
 

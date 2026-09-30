@@ -9,6 +9,11 @@ import '../features/auth/application/admin_session.dart';
 import '../features/auth/presentation/sign_in_screen.dart';
 import '../features/console/application/city_filter.dart';
 import '../features/console/presentation/console_sections.dart';
+import '../features/console/presentation/labels.dart';
+import '../features/approvals/presentation/approvals_screen.dart';
+import '../features/dashboard/presentation/dashboard_screen.dart';
+import '../features/live/presentation/live_screen.dart';
+import '../features/prices/presentation/prices_screen.dart';
 import '../l10n/app_localizations.dart';
 
 const signInPath = '/sign-in';
@@ -37,7 +42,15 @@ final routerProvider = Provider<GoRouter>((ref) {
           for (final section in ConsoleSection.values)
             GoRoute(
               path: section.path,
-              pageBuilder: (_, _) => NoTransitionPage(child: SectionPlaceholder(section: section)),
+              pageBuilder: (_, _) => NoTransitionPage(
+                child: switch (section) {
+                  ConsoleSection.dashboard => const DashboardScreen(),
+                  ConsoleSection.approvals => const ApprovalsScreen(),
+                  ConsoleSection.live => const LiveScreen(),
+                  ConsoleSection.prices => const PricesScreen(),
+                  _ => SectionPlaceholder(section: section),
+                },
+              ),
             ),
         ],
       ),
@@ -62,13 +75,6 @@ class _Console extends ConsumerWidget {
     final session = ref.watch(adminSessionProvider);
     final email = session is SessionAdmin ? session.user.email : null;
 
-    String cityLabel(CityId? c) => switch (c) {
-      null => l10n.console_city_all,
-      CityId.ahmedabad => l10n.console_city_ahmedabad,
-      CityId.ankleshwar => l10n.console_city_ankleshwar,
-      CityId.bharuch => l10n.console_city_bharuch,
-    };
-
     return ConsoleShell(
       title: current.label(l10n),
       nav: [
@@ -89,7 +95,7 @@ class _Console extends ConsumerWidget {
           children: [
             for (final c in <CityId?>[null, ...CityId.values])
               LaneChip(
-                label: cityLabel(c),
+                label: cityLabel(l10n, c),
                 selected: city == c,
                 onSelected: (_) => ref.read(cityFilterProvider.notifier).select(c),
               ),
