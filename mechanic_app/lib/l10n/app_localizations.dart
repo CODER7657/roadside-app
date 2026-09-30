@@ -1100,6 +1100,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No jobs yet today. Stay online and they\'ll come to you.'**
   String get dashboard_no_jobs_yet;
+
+  /// M4 title.
+  ///
+  /// In en, this message translates to:
+  /// **'New job'**
+  String get offer_title;
+
+  /// M4 row label.
+  ///
+  /// In en, this message translates to:
+  /// **'Distance'**
+  String get offer_distance;
+
+  /// M4 distance; km is already formatted.
+  ///
+  /// In en, this message translates to:
+  /// **'{km} km'**
+  String offer_distance_value(String km);
+
+  /// M4 row label (locality only, never the address).
+  ///
+  /// In en, this message translates to:
+  /// **'Area'**
+  String get offer_area;
+
+  /// M4 slider.
+  ///
+  /// In en, this message translates to:
+  /// **'Slide to accept'**
+  String get offer_slide_accept;
+
+  /// M4 decline.
+  ///
+  /// In en, this message translates to:
+  /// **'Decline'**
+  String get offer_decline;
+
+  /// M4: network error, retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t reach us. Check your connection and slide again.'**
+  String get offer_failed;
+
+  /// M4 closed: expired.
+  ///
+  /// In en, this message translates to:
+  /// **'This job has timed out'**
+  String get offer_expired_title;
+
+  /// M4 closed: expired.
+  ///
+  /// In en, this message translates to:
+  /// **'Offers last 30 seconds. We\'ll send you the next one nearby.'**
+  String get offer_expired_body;
+
+  /// M4 closed: withdrawn.
+  ///
+  /// In en, this message translates to:
+  /// **'This job was taken back'**
+  String get offer_withdrawn_title;
+
+  /// M4 closed: withdrawn.
+  ///
+  /// In en, this message translates to:
+  /// **'The customer cancelled or no longer needs help.'**
+  String get offer_withdrawn_body;
+
+  /// M4 closed: taken or gone.
+  ///
+  /// In en, this message translates to:
+  /// **'This job is no longer available'**
+  String get offer_taken_title;
+
+  /// M4 closed: taken or gone.
+  ///
+  /// In en, this message translates to:
+  /// **'It went to another mechanic. Stay online for the next one.'**
+  String get offer_taken_body;
+
+  /// M4 closed: offline or already on a job.
+  ///
+  /// In en, this message translates to:
+  /// **'You can\'t take this job right now'**
+  String get offer_not_available_title;
+
+  /// M4 closed: offline or busy.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re offline or already on a job.'**
+  String get offer_not_available_body;
+
+  /// M4 closed: back to M3.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to dashboard'**
+  String get offer_back;
+
+  /// Offers notification title (full screen, like a call).
+  ///
+  /// In en, this message translates to:
+  /// **'New job nearby'**
+  String get offer_notification_title;
+
+  /// Offers notification body.
+  ///
+  /// In en, this message translates to:
+  /// **'Open within 30 seconds to accept.'**
+  String get offer_notification_body;
+
+  /// After accept, until M5 Navigate.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve got the job'**
+  String get job_accepted_title;
+
+  /// After accept, until M5 Navigate.
+  ///
+  /// In en, this message translates to:
+  /// **'The route to the customer opens here.'**
+  String get job_accepted_body;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

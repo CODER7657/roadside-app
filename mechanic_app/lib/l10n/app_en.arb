@@ -684,5 +684,90 @@
   "dashboard_no_jobs_yet": "No jobs yet today. Stay online and they'll come to you.",
   "@dashboard_no_jobs_yet": {
     "description": "M3 empty list."
+  },
+  "offer_title": "New job",
+  "@offer_title": {
+    "description": "M4 title."
+  },
+  "offer_distance": "Distance",
+  "@offer_distance": {
+    "description": "M4 row label."
+  },
+  "offer_distance_value": "{km} km",
+  "@offer_distance_value": {
+    "description": "M4 distance; km is already formatted.",
+    "placeholders": {
+      "km": {
+        "type": "String"
+      }
+    }
+  },
+  "offer_area": "Area",
+  "@offer_area": {
+    "description": "M4 row label (locality only, never the address)."
+  },
+  "offer_slide_accept": "Slide to accept",
+  "@offer_slide_accept": {
+    "description": "M4 slider."
+  },
+  "offer_decline": "Decline",
+  "@offer_decline": {
+    "description": "M4 decline."
+  },
+  "offer_failed": "Couldn't reach us. Check your connection and slide again.",
+  "@offer_failed": {
+    "description": "M4: network error, retry."
+  },
+  "offer_expired_title": "This job has timed out",
+  "@offer_expired_title": {
+    "description": "M4 closed: expired."
+  },
+  "offer_expired_body": "Offers last 30 seconds. We'll send you the next one nearby.",
+  "@offer_expired_body": {
+    "description": "M4 closed: expired."
+  },
+  "offer_withdrawn_title": "This job was taken back",
+  "@offer_withdrawn_title": {
+    "description": "M4 closed: withdrawn."
+  },
+  "offer_withdrawn_body": "The customer cancelled or no longer needs help.",
+  "@offer_withdrawn_body": {
+    "description": "M4 closed: withdrawn."
+  },
+  "offer_taken_title": "This job is no longer available",
+  "@offer_taken_title": {
+    "description": "M4 closed: taken or gone."
+  },
+  "offer_taken_body": "It went to another mechanic. Stay online for the next one.",
+  "@offer_taken_body": {
+    "description": "M4 closed: taken or gone."
+  },
+  "offer_not_available_title": "You can't take this job right now",
+  "@offer_not_available_title": {
+    "description": "M4 closed: offline or already on a job."
+  },
+  "offer_not_available_body": "You're offline or already on a job.",
+  "@offer_not_available_body": {
+    "description": "M4 closed: offline or busy."
+  },
+  "offer_back": "Back to dashboard",
+  "@offer_back": {
+    "description": "M4 closed: back to M3."
+  },
+  "offer_notification_title": "New job nearby",
+  "@offer_notification_title": {
+    "description": "Offers notification title (full screen, like a call)."
+  },
+  "offer_notification_body": "Open within 30 seconds to accept.",
+  "@offer_notification_body": {
+    "description": "Offers notification body."
+  },
+  "job_accepted_title": "You've got the job",
+  "@job_accepted_title": {
+    "description": "After accept, until M5 Navigate."
+  },
+  "job_accepted_body": "The route to the customer opens here.",
+  "@job_accepted_body": {
+    "description": "After accept, until M5 Navigate."
   }
 }

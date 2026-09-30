@@ -33,6 +33,10 @@ dependencies:
   cloud_firestore: ^6.10.0
   # M3: location for presence while online (same version as customer_app).
   geolocator: ^14.1.1
+  # M4: answer offers through respondToOffer (same version as customer_app), and the
+  # full-screen `offers` notification.
+  cloud_functions: ^6.5.0
+  flutter_local_notifications: ^22.3.1
 
 dev_dependencies:
   flutter_test:
