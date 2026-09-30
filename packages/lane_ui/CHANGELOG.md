@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-dev.14
+
+U14 Rate & review (#134).
+
+- `StarRating`: five 48 dp stars (0 = not rated), the chosen ones spring up (still with
+  reduced motion); one TalkBack slider ("3 of 5 stars", adjustable, kept within 1–5);
+  disabled without `onChanged`. Strings in en / hi / gu.
+
 ## 0.1.0-dev.13
 
 U13 Payment (#133).

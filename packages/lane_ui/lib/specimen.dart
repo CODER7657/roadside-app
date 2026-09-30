@@ -641,6 +641,8 @@ class LaneMapPartsSample extends StatelessWidget {
           gap,
           const PriceRange(min: 125000, max: 125000),
           gap,
+          const Center(child: StarRating(value: 3, label: 'Rating')),
+          gap,
           const Center(
             child: LaneQrCode(
               data: 'upi://pay?pa=kiran@okaxis&pn=Kiran%20Patel&am=450.00&cu=INR',

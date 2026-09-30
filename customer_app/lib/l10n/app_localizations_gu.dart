@@ -805,4 +805,70 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get cancel_keep_open => 'પાછા જાઓ';
+
+  @override
+  String review_rate(String name) {
+    return '$nameને રેટિંગ આપો';
+  }
+
+  @override
+  String get review_step => 'તમારી સમીક્ષા';
+
+  @override
+  String review_title(String name) {
+    return '$name કેવા રહ્યા?';
+  }
+
+  @override
+  String review_stars_label(String name) {
+    return '$name માટે રેટિંગ';
+  }
+
+  @override
+  String get review_tags_good => 'શું સારું રહ્યું?';
+
+  @override
+  String get review_tags_bad => 'શું ખોટું થયું?';
+
+  @override
+  String get review_tag_on_time => 'સમયસર';
+
+  @override
+  String get review_tag_friendly => 'મૈત્રીપૂર્ણ';
+
+  @override
+  String get review_tag_fixed_fast => 'ઝડપથી રિપેર કર્યું';
+
+  @override
+  String get review_tag_fair_price => 'યોગ્ય કિંમત';
+
+  @override
+  String get review_tag_late => 'મોડા આવ્યા';
+
+  @override
+  String get review_tag_rude => 'અસભ્ય';
+
+  @override
+  String get review_tag_overcharged => 'વધુ પૈસા લીધા';
+
+  @override
+  String get review_tag_not_fixed => 'રિપેર ન થયું';
+
+  @override
+  String get review_comment_label => 'બીજું કંઈ? (વૈકલ્પિક)';
+
+  @override
+  String get review_submit => 'સમીક્ષા મોકલો';
+
+  @override
+  String get review_thanks => 'તમારી સમીક્ષા બદલ આભાર!';
+
+  @override
+  String get review_error => 'સમીક્ષા મોકલી શકાઈ નહીં. તમારું કનેક્શન તપાસી ફરી પ્રયાસ કરો.';
+
+  @override
+  String get review_not_allowed => 'આ બુકિંગની સમીક્ષા થઈ શકે નહીં.';
+
+  @override
+  String get review_already => 'તમે આ બુકિંગને રેટિંગ આપી દીધું છે. આભાર!';
 }

@@ -95,4 +95,12 @@ class LaneLocalizationsEn extends LaneLocalizations {
 
   @override
   String get glare_turn_off => 'Turn off sunlight mode';
+
+  @override
+  String star_rating_value(int count) {
+    return '$count of 5 stars';
+  }
+
+  @override
+  String get star_rating_none => 'Not rated yet';
 }

@@ -156,8 +156,14 @@ class _PaymentViewState extends ConsumerState<PaymentView> {
               ? l10n.payment_confirmed_title_plain
               : l10n.payment_confirmed_title(ui.PriceRange.rupees(amount)),
           message: l10n.payment_confirmed_body(name),
-          // U14 Rate & review arrives with #134.
-          primary: home,
+          primary: LaneButton.primary(
+            label: l10n.review_rate(name),
+            onPressed: () => context.push(AppRoutes.review(widget.bookingId)),
+          ),
+          secondary: LaneButton.ghost(
+            label: l10n.booking_back_home,
+            onPressed: () => context.go(AppRoutes.home),
+          ),
         );
       case PaymentStatus.disputed:
         return LaneStatusScaffold(
