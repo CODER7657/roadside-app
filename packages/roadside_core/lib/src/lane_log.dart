@@ -7,12 +7,14 @@
 //   LaneLog.i('booking created', {'bookingId': id});
 //   LaneLog.e('createBooking failed', error: e, stackTrace: st, fields: {'bookingId': id});
 //
-// Apps route records to Crashlytics once at start-up:
+// Apps route records to Crashlytics once at start-up (roadside_core doesn't depend on Crashlytics,
+// which has no web support, so the app passes the two calls in):
 //
-//   LaneLog.sink = (r) {
-//     FirebaseCrashlytics.instance.log(r.format());
-//     if (r.error != null) FirebaseCrashlytics.instance.recordError(r.error!, r.stackTrace);
-//   };
+//   final crashlytics = FirebaseCrashlytics.instance;
+//   LaneLog.sink = LaneLog.crashReporterSink(
+//     log: crashlytics.log,
+//     recordError: (error, stack) => crashlytics.recordError(error, stack),
+//   );
 
 import 'dart:developer' as developer;
 
@@ -54,6 +56,18 @@ class LogRecord {
 
 typedef LogSink = void Function(LogRecord record);
 
+/// What a crash reporter receives instead of the original error: its redacted text. The original
+/// object never leaves the phone, because its `toString` or fields could hold personal data.
+@immutable
+class RedactedError implements Exception {
+  const RedactedError(this.message);
+
+  final String message;
+
+  @override
+  String toString() => message;
+}
+
 abstract final class LaneLog {
   /// Redaction is on in release builds. Tests may flip it.
   static bool redact = kReleaseMode;
@@ -65,6 +79,22 @@ abstract final class LaneLog {
   static LogSink sink = _developerSink;
 
   static const String redacted = '‹redacted›';
+
+  /// A sink for a crash reporter such as Crashlytics. Every record is added to the breadcrumb
+  /// [log]; error-level records are also reported as non-fatal issues through [recordError], as a
+  /// [RedactedError]. Records are redacted before they get here, so turn on [redact] in any build
+  /// that reports (it is on in release). [alsoTo] keeps a second sink, e.g. the developer console.
+  static LogSink crashReporterSink({
+    required void Function(String message) log,
+    required void Function(RedactedError error, StackTrace? stackTrace) recordError,
+    LogSink? alsoTo,
+  }) => (r) {
+    alsoTo?.call(r);
+    log(r.format());
+    if (r.level == LogLevel.error) {
+      recordError(RedactedError(r.error ?? r.message), r.stackTrace ?? StackTrace.empty);
+    }
+  };
 
   static void d(String message, [Map<String, Object?> fields = const {}]) =>
       _log(LogLevel.debug, message, fields);
@@ -121,9 +151,10 @@ abstract final class LaneLog {
 
   static const List<String> _sensitiveKeyParts = [
     'phone', 'otp', 'startcode', 'address', 'landmark', 'pluscode', 'latitude', 'longitude', //
-    'geopoint', 'geohash', 'location', 'pickup', 'coord', 'upi', 'email', 'token', 'password',
+    'latlng', 'lnglat', 'geopoint', 'geohash', 'location', 'pickup', 'coord', 'upi', 'email', //
+    'token', 'password', 'customername', 'mechanicname', 'displayname', 'fullname', 'regno',
   ];
-  static const Set<String> _sensitiveKeys = {'lat', 'lng', 'lon', 'code', 'pin'};
+  static const Set<String> _sensitiveKeys = {'lat', 'lng', 'lon', 'code', 'pin', 'name'};
 
   /// Whether a field named [key] holds personal data.
   static bool isSensitiveKey(String key) {
@@ -141,19 +172,22 @@ abstract final class LaneLog {
     null || bool() || int() => value,
     final double d => _coordinateLike.hasMatch(d.toString()) ? redacted : d,
     final String s => redactText(s),
-    final Map<String, Object?> m => redactFields(m),
+    // Maps from platform channels and plugins are often Map<dynamic, dynamic>: redact them by key too.
+    final Map<Object?, Object?> m => redactFields({
+      for (final MapEntry(:key, :value) in m.entries) key.toString(): value,
+    }),
     final Iterable<Object?> l => l.map(_redactValue).toList(growable: false),
     _ => redactText(value.toString()),
   };
 
-  /// A number with ≥ 4 decimals: precise enough to be a coordinate.
-  static final RegExp _coordinateLike = RegExp(r'\.\d{4,}');
+  /// A number with ≥ 3 decimals: precise enough to be a coordinate (3 decimals is about 100 m).
+  static final RegExp _coordinateLike = RegExp(r'\.\d{3,}');
 
   static final List<RegExp> _patterns = [
     RegExp(r'[\w.\-]+@[\w.\-]+'), // email and UPI IDs
     RegExp(r'\+\d[\d\s-]{7,16}\d'), // E.164 with separators
     RegExp(r'(?<!\d)(?:0|91[\s-]?)?[6-9]\d{4}[\s-]?\d{5}(?!\d)'), // Indian mobile, e.g. 98765 43210
-    RegExp(r'-?\d{1,3}\.\d{4,}'), // coordinates (≥ 4 decimals)
+    RegExp(r'-?\d{1,3}\.\d{3,}'), // coordinates (≥ 3 decimals, about 100 m)
   ];
   static final RegExp _codeAfterKeyword = RegExp(r'((?:otp|code|pin)\D{0,12})\d{4,6}', caseSensitive: false);
 
