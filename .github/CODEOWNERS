@@ -1,12 +1,13 @@
 # PLAN.md §2 / §14.
 
-# Owned folders
+# Owned folders. The LAST matching line wins, so broad paths go before the narrower ones inside them
+# (/firebase/ before /firebase/functions/).
 /customer_app/              @CODER7657
 /design/                    @CODER7657
 /mechanic_app/              @Hem60
-/firebase/functions/        @Hem60
 /admin_panel/               @Ayush3422
 /firebase/                  @Ayush3422
+/firebase/functions/        @Hem60
 /.github/                   @Ayush3422
 /docs/                      @Ayush3422
 /tool/                      @Ayush3422
