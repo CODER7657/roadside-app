@@ -12,10 +12,14 @@
 #
 # The Functions and SMS alerts only fire once those services run (Blaze). Needs gcloud signed in as a
 # project Owner, plus Billing Account Administrator for the budget. Windows (Git Bash):
-#   export PATH="$PATH:$(cygpath "$LOCALAPPDATA")/Google/Cloud SDK/google-cloud-sdk/bin" GCLOUD=gcloud.cmd
+#   nothing to set: in Git Bash the script uses tool/gcp/gcloud-win.sh, which runs gcloud through its
+#   bundled Python (gcloud.cmd breaks on arguments with spaces when the SDK is under "Cloud SDK").
 set -euo pipefail
 
-GCLOUD=${GCLOUD:-gcloud}
+case "$(uname -s)" in
+  MINGW*|MSYS*|CYGWIN*) GCLOUD=${GCLOUD:-"$(dirname "$0")/gcloud-win.sh"} ;;
+  *) GCLOUD=${GCLOUD:-gcloud} ;;
+esac
 project=${1:?usage: setup_monitoring.sh <project-id> <team email> [billing account id]}
 email=${2:?usage: setup_monitoring.sh <project-id> <team email> [billing account id]}
 billing=${3:-}

@@ -8,10 +8,14 @@
 #   Storage" in PLAN §12.13: same purpose, no bucket or scheduler to run, restorable to a new database.
 #
 # Needs the Blaze plan and gcloud signed in as a project Owner. Windows (Git Bash):
-#   export PATH="$PATH:$(cygpath "$LOCALAPPDATA")/Google/Cloud SDK/google-cloud-sdk/bin" GCLOUD=gcloud.cmd
+#   nothing to set: in Git Bash the script uses tool/gcp/gcloud-win.sh, which runs gcloud through its
+#   bundled Python (gcloud.cmd breaks on arguments with spaces when the SDK is under "Cloud SDK").
 set -euo pipefail
 
-GCLOUD=${GCLOUD:-gcloud}
+case "$(uname -s)" in
+  MINGW*|MSYS*|CYGWIN*) GCLOUD=${GCLOUD:-"$(dirname "$0")/gcloud-win.sh"} ;;
+  *) GCLOUD=${GCLOUD:-gcloud} ;;
+esac
 project=${1:?usage: setup_backups.sh <project-id>}
 
 echo "Point-in-time recovery on $project…"
