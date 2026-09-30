@@ -7,9 +7,9 @@ Bots request OTP SMS to premium or foreign numbers, or in bulk, and we pay for e
 
 ## Signs
 
-- The SMS success rate on the dashboard (A1) drops.
+- The SMS success rate drops (Firebase console → Authentication → Usage; A1 doesn't show it).
 - Firebase console → Authentication → Usage shows a spike in SMS sent without matching sign-ins.
-- A budget alert fires (₹500, ₹1,000, ₹2,000 on Blaze).
+- A budget alert fires (the thresholds set on Blaze in #42).
 - Many sign-in attempts to numbers outside +91, or to runs of consecutive numbers.
 
 ## First 15 minutes

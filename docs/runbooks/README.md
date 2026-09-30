@@ -26,10 +26,16 @@ If the incident lead can't be reached in 15 minutes, whoever noticed takes the l
 ## Every incident
 
 1. Post in the team group: **what** you see, **since when**, **who is affected**, and "I'm leading".
-2. Open a GitHub issue labelled `incident`. Booking IDs and uids only: no names, numbers or addresses.
-3. Keep a timeline in the issue: times in IST, what was done and by whom.
-4. Afterwards: a short report in the issue (cause, impact, fix, what stops it happening again) and a
-   follow-up issue for each action.
+2. Track it where it belongs. **The repo is public:** anything in an issue or PR is published.
+   - **Security incidents** (a breach, SMS abuse, a leaked key, an exploitable bug): a **draft security
+     advisory** (repo → Security → Advisories → New draft security advisory). Only repo admins and the
+     people you add can see it. Nothing about the hole goes in a public issue, PR or commit message
+     until it's fixed and the notices are sent.
+   - **Other incidents** (a dispatch outage, a bad release): a GitHub issue labelled `incident`.
+   - Either way: booking IDs and uids only, no names, numbers or addresses.
+3. Keep a timeline there: times in IST, what was done and by whom.
+4. Afterwards: a short report in the same place (cause, impact, fix, what stops it happening again)
+   and a follow-up issue for each action (for a security incident, worded neutrally until it's fixed).
 
 ## Levers
 

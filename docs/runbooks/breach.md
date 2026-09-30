@@ -33,7 +33,7 @@ Examples:
 
 ## Within 24 hours: assess
 
-Write down, in the incident issue (no personal data):
+Write down, in the draft security advisory (no personal data; never a public issue):
 - what data, how many people, customers or mechanics or both, which cities
 - when it started, when we noticed, when it was contained
 - how it happened
@@ -66,4 +66,4 @@ The client signs off the drafts. The incident lead keeps the sent copies in the 
 
 - A rule test for the exact case that failed (`firebase/rules_tests/`), so it can't come back.
 - Ask whether the data needed to exist at all (retention, PLAN §12.10).
-- The report in the issue. Update this runbook if a step was missing.
+- The report in the advisory. Update this runbook if a step was missing.

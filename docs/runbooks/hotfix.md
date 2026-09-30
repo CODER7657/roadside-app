@@ -9,7 +9,9 @@ The example fixes `v1.2.2` as `v1.2.3`.
 
 ## Steps
 
-1. Open an issue for the fix (label `incident` if it is one).
+1. Open an issue for the fix (label `incident` if it is one). For a **security** fix, the repo is
+   public: word the issue, PR and commits neutrally ("tighten bookings read rule"), or make the fix in
+   the draft security advisory's private fork, and describe the hole only after it's deployed.
 2. Create the hotfix branch from the **released tag**, not from `main`, and push it:
 
    ```bash
