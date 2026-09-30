@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.0-dev.13
+
+U13 Payment (#133).
+
+- `LaneQrCode`: a QR code for UPI apps, drawn with the maintained `qr` package (4.0.0,
+  May 2026; `qr_flutter` was last published in 2023). Always black on white with a
+  4-module quiet zone in every mode, medium error correction, one image node for TalkBack
+  with the app's label.
+- The component exports in `lane_ui.dart` are sorted again.
+
 ## 0.1.0-dev.12
 
 Ambient polish (#20), PLAN §6.5 ③.

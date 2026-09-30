@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lane_ui/lane_ui.dart' hide PriceRange;
-import 'package:roadside_core/roadside_core.dart' as core show JourneyStop;
 import 'package:roadside_core/roadside_core.dart' hide JourneyStop;
 
 import '../../../app/router.dart';
@@ -13,6 +12,8 @@ import '../application/booking_draft.dart';
 import '../application/estimate.dart';
 import '../application/live_booking.dart';
 import '../data/booking_service.dart';
+import 'booking_rail.dart';
+import 'finish_views.dart';
 import 'tracking_view.dart';
 
 /// The customer's live booking, one screen that follows `bookings/{id}`:
@@ -168,39 +169,12 @@ class _LiveBookingScreenState extends ConsumerState<LiveBookingScreen> {
         },
         primary: home,
       ),
-      // U12 Job in progress and after (#17).
-      _ => LaneStatusScaffold(
-        visual: LaneIcon(LaneIcons.wrench, size: lane.space.s64),
-        title: l10n.live_working_title,
-        primary: home,
-      ),
+      // U12 and U13 (#133).
+      BookingStatus.inProgress => WorkingView(booking: b),
+      BookingStatus.completed => PaymentView(bookingId: widget.bookingId, booking: b),
     };
   }
 }
-
-/// PLAN §9's six stops as a JourneyRail, in roadside_core's order; the booking says where it is.
-Widget bookingRail(AppLocalizations l10n, Booking booking) => JourneyRail(
-  stops: [
-    for (final stop in core.JourneyStop.values)
-      JourneyStop(
-        label: switch (stop) {
-          core.JourneyStop.requested => l10n.stop_requested,
-          core.JourneyStop.accepted => l10n.stop_accepted,
-          core.JourneyStop.onTheWay => l10n.stop_on_the_way,
-          core.JourneyStop.arrived => l10n.stop_arrived,
-          core.JourneyStop.working => l10n.stop_working,
-          core.JourneyStop.done => l10n.stop_done,
-        },
-        signal: switch (stop) {
-          core.JourneyStop.requested => LaneSignal.wait,
-          core.JourneyStop.accepted || core.JourneyStop.onTheWay => LaneSignal.route,
-          core.JourneyStop.arrived || core.JourneyStop.done => LaneSignal.go,
-          core.JourneyStop.working => LaneSignal.work,
-        },
-      ),
-  ],
-  current: booking.status.journeyStop?.index ?? 0,
-);
 
 /// U9: who's coming, as a TrustPass that slides up, with the start code and where the trip is.
 class _Assigned extends ConsumerWidget {

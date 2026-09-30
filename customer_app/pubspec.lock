@@ -635,7 +635,7 @@ packages:
       path: "../packages/lane_ui"
       relative: true
     source: path
-    version: "0.1.0-dev.12"
+    version: "0.1.0-dev.13"
   leak_tracker:
     dependency: transitive
     description:
@@ -876,6 +876,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.8"
+  qr:
+    dependency: transitive
+    description:
+      name: qr
+      sha256: "5adccca7f0274326125fcdbf97328f5d6b1b2d7fb8a52a01cef9f40d96a759d9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.0"
   riverpod:
     dependency: transitive
     description:

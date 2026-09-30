@@ -623,9 +623,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get live_not_found => 'We couldn\'t find this booking.';
 
   @override
-  String get live_working_title => 'Your mechanic is on the job';
-
-  @override
   String get assigned_title => 'A mechanic is coming';
 
   @override
@@ -700,4 +697,111 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tracking_start_code_hint => 'Share this code only when the mechanic is standing with you.';
+
+  @override
+  String working_title(String name) {
+    return '$name is working on it';
+  }
+
+  @override
+  String working_since(String time, int minutes) {
+    return 'Started at $time · $minutes min so far';
+  }
+
+  @override
+  String get working_started => 'Work has started.';
+
+  @override
+  String payment_title(String name) {
+    return 'Pay $name';
+  }
+
+  @override
+  String payment_estimate_was(String min, String max) {
+    return 'The estimate was $min–$max';
+  }
+
+  @override
+  String get payment_no_amount => 'Waiting for the mechanic to enter the final amount.';
+
+  @override
+  String get payment_pay_upi => 'Pay with UPI app';
+
+  @override
+  String payment_qr_label(String amount, String name) {
+    return 'QR code to pay $amount to $name';
+  }
+
+  @override
+  String get payment_qr_hint => 'Or scan this with any UPI app';
+
+  @override
+  String get payment_copy_upi => 'Copy UPI ID';
+
+  @override
+  String get payment_upi_copied => 'UPI ID copied';
+
+  @override
+  String get payment_no_upi_app => 'No UPI app opened. Scan the QR with another phone, or pay in cash.';
+
+  @override
+  String payment_cash(String name) {
+    return 'Pay $name in cash, or ask them for their UPI ID.';
+  }
+
+  @override
+  String get payment_i_have_paid => 'I have paid';
+
+  @override
+  String get payment_problem => 'Something\'s wrong';
+
+  @override
+  String get payment_error_network => 'Couldn\'t update the payment. Check your connection and try again.';
+
+  @override
+  String payment_waiting_title(String name) {
+    return 'Waiting for $name to confirm';
+  }
+
+  @override
+  String payment_waiting_body(String amount) {
+    return 'They check that $amount arrived in their UPI app.';
+  }
+
+  @override
+  String payment_confirmed_title(String amount) {
+    return 'Paid $amount';
+  }
+
+  @override
+  String get payment_confirmed_title_plain => 'Payment confirmed';
+
+  @override
+  String payment_confirmed_body(String name) {
+    return 'Thank you! $name confirmed your payment.';
+  }
+
+  @override
+  String get payment_disputed_title => 'We\'re looking into it';
+
+  @override
+  String get payment_disputed_body => 'Our team will contact you about this payment.';
+
+  @override
+  String get payment_dispute_title => 'What\'s wrong with the payment?';
+
+  @override
+  String get payment_dispute_label => 'Tell us what happened';
+
+  @override
+  String get payment_dispute_hint => 'For example: asked for more than the amount shown';
+
+  @override
+  String get payment_dispute_send => 'Report problem';
+
+  @override
+  String get payment_dispute_sent => 'Thanks. We\'ll look into it.';
+
+  @override
+  String get cancel_keep_open => 'Go back';
 }
