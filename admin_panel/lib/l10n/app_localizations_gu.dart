@@ -91,4 +91,106 @@ class AppLocalizationsGu extends AppLocalizations {
   String console_section_coming_body(String issue) {
     return 'આ સ્ક્રીન ઇશ્યૂ #$issue સાથે આવશે.';
   }
+
+  @override
+  String get vehicle_type_car => 'કાર';
+
+  @override
+  String get vehicle_type_bike => 'બાઇક';
+
+  @override
+  String get vehicle_type_scooter => 'સ્કૂટર';
+
+  @override
+  String get vehicle_type_ev => 'EV';
+
+  @override
+  String get problem_type_flat_tyre => 'ટાયર પંક્ચર';
+
+  @override
+  String get problem_type_battery => 'બેટરી';
+
+  @override
+  String get problem_type_wont_start => 'ચાલુ થતું નથી';
+
+  @override
+  String get problem_type_overheating => 'વધુ ગરમ';
+
+  @override
+  String get problem_type_accident => 'અકસ્માત';
+
+  @override
+  String get problem_type_fuel => 'ઈંધણ ખલાસ';
+
+  @override
+  String get problem_type_other => 'બીજું કંઈ';
+
+  @override
+  String get prices_scope_default => 'ડિફૉલ્ટ કિંમતો, બધાં શહેરો';
+
+  @override
+  String get prices_scope_default_help => 'ગ્રાહકોને આ જ ભાવ દેખાય છે, સિવાય કે તેમના શહેરના પોતાના ભાવ હોય.';
+
+  @override
+  String prices_scope_city(String city) {
+    return '$cityની કિંમતો';
+  }
+
+  @override
+  String get prices_scope_city_help => 'ફક્ત આ શહેર માટે. ડિફૉલ્ટ (ભૂખરો) ભાવ વાપરવા ખાનું ખાલી રાખો.';
+
+  @override
+  String get prices_column_problem => 'સમસ્યા';
+
+  @override
+  String prices_min_label(String vehicle, String problem) {
+    return '$vehicle, $problem: ઓછામાં ઓછું';
+  }
+
+  @override
+  String prices_max_label(String vehicle, String problem) {
+    return '$vehicle, $problem: વધુમાં વધુ';
+  }
+
+  @override
+  String prices_unsaved(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ફેરફાર સાચવવાના બાકી',
+      one: '1 ફેરફાર સાચવવાનો બાકી',
+      zero: 'સાચવવાના કોઈ ફેરફાર નથી',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prices_discard => 'રદ કરો';
+
+  @override
+  String get prices_save => 'ફેરફાર સાચવો';
+
+  @override
+  String get prices_saved_toast => 'કિંમતો સાચવી. નવી બુકિંગ હવે આનાથી થશે.';
+
+  @override
+  String get prices_save_failed => 'સાચવી શકાયું નહીં. કંઈ બદલાયું નથી. ફરી પ્રયાસ કરો.';
+
+  @override
+  String get prices_missing_default => 'પહેલાં બધાં શહેરોની કિંમત નક્કી કરો, પછી શહેરની પોતાની.';
+
+  @override
+  String get prices_load_failed => 'કિંમતો લોડ ન થઈ.';
+
+  @override
+  String get prices_error_required => 'બંને રકમ લખો';
+
+  @override
+  String get prices_error_number => 'ફક્ત પૂરા રૂપિયા';
+
+  @override
+  String get prices_error_range => '₹1 થી ₹1,00,000 વચ્ચે';
+
+  @override
+  String get prices_error_order => 'ઓછામાં ઓછું, વધુમાં વધુથી ઓછું હોવું જોઈએ';
 }
