@@ -100,8 +100,10 @@ describe('verifyStartOtp (emulator)', { skip: !emulatorRunning && 'no Firestore 
     for (let i = 1; i <= 5; i++) await guess();
     assert.ok((await otpOf(bookingId)).lockedUntil, 'first lock');
 
-    // Wait out the lock.
+    // Wait out the lock. Ten real minutes would also empty the 1-minute rate-limit window, so
+    // clear it too; otherwise the 11th call in a second is (correctly) rate limited instead.
     await db().doc(`bookings/${bookingId}/private/otp`).update({ lockedUntil: Timestamp.fromMillis(Date.now() - 1000) });
+    await db().doc('rateLimits/m-1').delete();
     for (let i = 1; i <= 4; i++) assert.equal((await guess()).message, 'error_code_wrong');
     assert.equal((await otpOf(bookingId)).lockedUntil, null, 'the expired lock is cleared');
     assert.equal((await otpOf(bookingId)).attempts, 4);
