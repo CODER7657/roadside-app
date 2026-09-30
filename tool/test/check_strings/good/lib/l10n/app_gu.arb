@@ -1,0 +1,6 @@
+{
+  "@@locale": "gu",
+  "home_title": "રસ્તા પર મદદ",
+  "flow_step_label": "{total} માંથી પગલું {step}",
+  "search_radius_label": "{count, plural, =1{1 કિમી} other{{count} કિમી}}"
+}

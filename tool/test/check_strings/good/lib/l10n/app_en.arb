@@ -1,0 +1,9 @@
+{
+  "@@locale": "en",
+  "home_title": "Help on the road",
+  "@home_title": { "description": "U1 title." },
+  "flow_step_label": "Step {step} of {total}",
+  "@flow_step_label": { "placeholders": { "step": { "type": "int" }, "total": { "type": "int" } } },
+  "search_radius_label": "{count, plural, =1{1 km} other{{count} km}}",
+  "@search_radius_label": { "placeholders": { "count": { "type": "int" } } }
+}

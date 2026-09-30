@@ -1,0 +1,6 @@
+{
+  "@@locale": "hi",
+  "home_title": "सड़क पर मदद",
+  "flow_step_label": "{total} में से चरण {step}",
+  "search_radius_label": "{count, plural, =1{1 किमी} other{{count} किमी}}"
+}
