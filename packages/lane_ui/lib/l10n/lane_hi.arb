@@ -19,5 +19,6 @@
   "accuracy_locating": "आपकी लोकेशन ढूँढ रहे हैं",
   "accuracy_meters": "±{meters} मी",
   "accuracy_adjust": "±{meters} मी · पिन ठीक करें",
-  "accuracy_semantics": "लोकेशन {meters} मीटर तक सटीक"
+  "accuracy_semantics": "लोकेशन {meters} मीटर तक सटीक",
+  "price_range_semantics": "{min} से {max}"
 }

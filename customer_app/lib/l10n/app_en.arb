@@ -656,5 +656,69 @@
   "location_retry": "Try again",
   "@location_retry": {
     "description": "U6: look for the phone's location again after no reading."
+  },
+  "price_title": "Your estimate",
+  "@price_title": {
+    "description": "U7 Price estimate: title."
+  },
+  "price_book": "Book mechanic",
+  "@price_book": {
+    "description": "U7: primary button (calls createBooking)."
+  },
+  "price_note": "You pay the mechanic directly after the job, by UPI or cash. The amount can change if parts are needed.",
+  "@price_note": {
+    "description": "U7: under the price range."
+  },
+  "price_error_out_of_area": "We're not in this area yet. We serve Ahmedabad, Ankleshwar and Bharuch.",
+  "@price_error_out_of_area": {
+    "description": "U7: pickup outside every active service area."
+  },
+  "price_change_pickup": "Change pickup",
+  "@price_change_pickup": {
+    "description": "U7: back to U6."
+  },
+  "price_error_active_booking": "You already have a booking in progress.",
+  "@price_error_active_booking": {
+    "description": "U7: createBooking found an active booking."
+  },
+  "price_open_booking": "Open my booking",
+  "@price_open_booking": {
+    "description": "U7: goes to the active booking."
+  },
+  "price_error_paused": "Bookings are paused for a short while. Please try again in a few minutes.",
+  "@price_error_paused": {
+    "description": "U7: dispatch switched off by admin."
+  },
+  "price_error_unavailable": "We can't price this problem yet. Our support team can help.",
+  "@price_error_unavailable": {
+    "description": "U7: no prices doc for this vehicle and problem."
+  },
+  "price_get_support": "Get support",
+  "@price_get_support": {
+    "description": "U7: opens Help & FAQ."
+  },
+  "price_error_vehicle": "This vehicle was removed. Choose another one.",
+  "@price_error_vehicle": {
+    "description": "U7: the draft vehicle no longer exists."
+  },
+  "price_choose_vehicle": "Choose vehicle",
+  "@price_choose_vehicle": {
+    "description": "U7: opens My vehicles."
+  },
+  "price_error_rate_limited": "Too many tries. Please wait a few minutes and try again.",
+  "@price_error_rate_limited": {
+    "description": "U7: createBooking rate limit."
+  },
+  "price_error_network": "Couldn't book. Check your connection and try again.",
+  "@price_error_network": {
+    "description": "U7: network or unknown error; Book retries with the same key."
+  },
+  "searching_title": "Booking sent",
+  "@searching_title": {
+    "description": "After createBooking, until U8 Searching (#16)."
+  },
+  "searching_body": "We're finding the nearest mechanic.",
+  "@searching_body": {
+    "description": "Under searching_title."
   }
 }

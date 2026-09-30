@@ -1,4 +1,4 @@
-// #107: CenterPin and AccuracyBadge.
+// #107: CenterPin and AccuracyBadge. #108: PriceRange.
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lane_ui/lane_ui.dart';
@@ -97,6 +97,48 @@ void main() {
       expect(dragged, isTrue);
       final semantics = tester.getSemantics(find.byType(CenterPin));
       expect(semantics.label, isEmpty);
+    });
+  });
+
+  group('PriceRange', () {
+    test('Indian digit grouping', () {
+      expect(PriceRange.rupees(350), '₹350');
+      expect(PriceRange.rupees(1250), '₹1,250');
+      expect(PriceRange.rupees(125000), '₹1,25,000');
+    });
+
+    testWidgets('a range in mono, read as "min to max", with what is included', (tester) async {
+      await pumpIn(tester, const Scaffold(body: PriceRange(min: 350, max: 600, includes: 'Puncture repair')));
+      expect(find.text('₹350–₹600'), findsOneWidget);
+      expect(find.text('Puncture repair'), findsOneWidget);
+      expect(find.bySemanticsLabel('₹350 to ₹600'), findsOneWidget);
+      final style = tester.widget<Text>(find.text('₹350–₹600')).style!;
+      expect(style.fontFamily, contains('JetBrains'));
+    });
+
+    testWidgets('one amount when min equals max; Hindi reading', (tester) async {
+      await pumpIn(tester, const Scaffold(body: PriceRange(min: 500, max: 500)));
+      expect(find.text('₹500'), findsOneWidget);
+      await pumpIn(tester, const Scaffold(body: PriceRange(min: 350, max: 600)), locale: const Locale('hi'));
+      expect(find.bySemanticsLabel('₹350 से ₹600'), findsOneWidget);
+    });
+
+    testWidgets('scales down instead of truncating at 200% on a narrow screen', (tester) async {
+      tester.view.physicalSize = const Size(200, 400);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.reset);
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: LanePreview(
+            mode: LaneMode.day,
+            textScale: 2,
+            size: Size(200, 400),
+            child: Scaffold(body: PriceRange(min: 125000, max: 250000)),
+          ),
+        ),
+      );
+      expect(tester.takeException(), isNull);
+      expect(find.text('₹1,25,000–₹2,50,000'), findsOneWidget);
     });
   });
 

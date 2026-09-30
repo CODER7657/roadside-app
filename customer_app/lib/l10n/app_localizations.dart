@@ -1004,6 +1004,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Try again'**
   String get location_retry;
+
+  /// U7 Price estimate: title.
+  ///
+  /// In en, this message translates to:
+  /// **'Your estimate'**
+  String get price_title;
+
+  /// U7: primary button (calls createBooking).
+  ///
+  /// In en, this message translates to:
+  /// **'Book mechanic'**
+  String get price_book;
+
+  /// U7: under the price range.
+  ///
+  /// In en, this message translates to:
+  /// **'You pay the mechanic directly after the job, by UPI or cash. The amount can change if parts are needed.'**
+  String get price_note;
+
+  /// U7: pickup outside every active service area.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'re not in this area yet. We serve Ahmedabad, Ankleshwar and Bharuch.'**
+  String get price_error_out_of_area;
+
+  /// U7: back to U6.
+  ///
+  /// In en, this message translates to:
+  /// **'Change pickup'**
+  String get price_change_pickup;
+
+  /// U7: createBooking found an active booking.
+  ///
+  /// In en, this message translates to:
+  /// **'You already have a booking in progress.'**
+  String get price_error_active_booking;
+
+  /// U7: goes to the active booking.
+  ///
+  /// In en, this message translates to:
+  /// **'Open my booking'**
+  String get price_open_booking;
+
+  /// U7: dispatch switched off by admin.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings are paused for a short while. Please try again in a few minutes.'**
+  String get price_error_paused;
+
+  /// U7: no prices doc for this vehicle and problem.
+  ///
+  /// In en, this message translates to:
+  /// **'We can\'t price this problem yet. Our support team can help.'**
+  String get price_error_unavailable;
+
+  /// U7: opens Help & FAQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Get support'**
+  String get price_get_support;
+
+  /// U7: the draft vehicle no longer exists.
+  ///
+  /// In en, this message translates to:
+  /// **'This vehicle was removed. Choose another one.'**
+  String get price_error_vehicle;
+
+  /// U7: opens My vehicles.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose vehicle'**
+  String get price_choose_vehicle;
+
+  /// U7: createBooking rate limit.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many tries. Please wait a few minutes and try again.'**
+  String get price_error_rate_limited;
+
+  /// U7: network or unknown error; Book retries with the same key.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t book. Check your connection and try again.'**
+  String get price_error_network;
+
+  /// After createBooking, until U8 Searching (#16).
+  ///
+  /// In en, this message translates to:
+  /// **'Booking sent'**
+  String get searching_title;
+
+  /// Under searching_title.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'re finding the nearest mechanic.'**
+  String get searching_body;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

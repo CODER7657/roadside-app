@@ -212,6 +212,12 @@ abstract class LaneLocalizations {
   /// In en, this message translates to:
   /// **'Location accurate to {meters} metres'**
   String accuracy_semantics(int meters);
+
+  /// PriceRange: what TalkBack reads, e.g. "₹350 to ₹600".
+  ///
+  /// In en, this message translates to:
+  /// **'{min} to {max}'**
+  String price_range_semantics(String min, String max);
 }
 
 class _LaneLocalizationsDelegate extends LocalizationsDelegate<LaneLocalizations> {

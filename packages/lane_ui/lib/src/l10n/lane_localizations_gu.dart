@@ -84,4 +84,9 @@ class LaneLocalizationsGu extends LaneLocalizations {
   String accuracy_semantics(int meters) {
     return 'લોકેશન $meters મીટર સુધી ચોક્કસ';
   }
+
+  @override
+  String price_range_semantics(String min, String max) {
+    return '$min થી $max';
+  }
 }

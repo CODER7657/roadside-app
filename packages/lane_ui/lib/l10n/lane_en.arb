@@ -125,5 +125,17 @@
         "type": "int"
       }
     }
+  },
+  "price_range_semantics": "{min} to {max}",
+  "@price_range_semantics": {
+    "description": "PriceRange: what TalkBack reads, e.g. \"₹350 to ₹600\".",
+    "placeholders": {
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
   }
 }

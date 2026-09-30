@@ -19,5 +19,6 @@
   "accuracy_locating": "તમારું લોકેશન શોધી રહ્યા છીએ",
   "accuracy_meters": "±{meters} મી",
   "accuracy_adjust": "±{meters} મી · પિન ગોઠવો",
-  "accuracy_semantics": "લોકેશન {meters} મીટર સુધી ચોક્કસ"
+  "accuracy_semantics": "લોકેશન {meters} મીટર સુધી ચોક્કસ",
+  "price_range_semantics": "{min} થી {max}"
 }

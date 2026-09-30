@@ -84,4 +84,9 @@ class LaneLocalizationsHi extends LaneLocalizations {
   String accuracy_semantics(int meters) {
     return 'लोकेशन $meters मीटर तक सटीक';
   }
+
+  @override
+  String price_range_semantics(String min, String max) {
+    return '$min से $max';
+  }
 }

@@ -619,7 +619,8 @@ class LaneSignatureSample extends StatelessWidget {
   }
 }
 
-/// CenterPin (resting and lifted) and every AccuracyBadge state, for goldens and Widgetbook (#107).
+/// CenterPin (resting and lifted), every AccuracyBadge state and PriceRange, for goldens and
+/// Widgetbook (#107, #108).
 class LaneMapPartsSample extends StatelessWidget {
   const LaneMapPartsSample({super.key});
 
@@ -635,6 +636,10 @@ class LaneMapPartsSample extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [CenterPin(), CenterPin(lifted: true)],
           ),
+          gap,
+          const PriceRange(min: 350, max: 600, includes: 'Puncture repair or spare fitting'),
+          gap,
+          const PriceRange(min: 125000, max: 125000),
           gap,
           for (final m in const [null, 8.0, 35.0, 120.0]) ...[
             Align(
