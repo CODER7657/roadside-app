@@ -97,6 +97,12 @@ class LaneWidgetbook extends StatelessWidget {
         name: 'Feedback',
         children: [
           WidgetbookComponent(
+            name: 'LaneSheet, LaneConfirmSheet',
+            useCases: [
+              WidgetbookUseCase(name: 'Confirm with a reason', builder: (context) => const LaneSheetSample()),
+            ],
+          ),
+          WidgetbookComponent(
             name: 'SkeletonBlock, EmptyState, ErrorState, OfflineStrip',
             useCases: [
               WidgetbookUseCase(name: 'All states', builder: (context) => const LaneFeedbackSample()),

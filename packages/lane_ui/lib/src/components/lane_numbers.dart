@@ -84,6 +84,9 @@ class LaneOtpDisplay extends StatelessWidget {
       child: _digits(context, code, lane.text.otp.copyWith(color: lane.color.ink)),
     );
     return Semantics(
+      // Its own node: inside a card (TrustPass) the code must not merge into the card's
+      // label, or TalkBack reads the whole card as one "Show large" button.
+      container: true,
       label: _spoken(code),
       button: fullscreenOnTap,
       hint: fullscreenOnTap ? laneStrings(context).otp_show_big : null,
@@ -491,6 +494,8 @@ class _CountdownRingState extends State<CountdownRing> with SingleTickerProvider
     final lane = context.lane;
     final seconds = _secondsLeft;
     return Semantics(
+      // Separate from the child (a slider or button), which keeps its own label and actions.
+      container: true,
       label: laneStrings(context).countdown_seconds_left(seconds),
       child: CustomPaint(
         foregroundPainter: _DrainPainter(

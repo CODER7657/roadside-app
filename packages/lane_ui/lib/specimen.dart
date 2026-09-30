@@ -653,3 +653,42 @@ class LaneMapPartsSample extends StatelessWidget {
     );
   }
 }
+
+/// LaneConfirmSheet as it looks open, for goldens and Widgetbook (#125).
+class LaneSheetSample extends StatelessWidget {
+  const LaneSheetSample({
+    super.key,
+    this.reasons = const ['Found help elsewhere', 'Taking too long', 'Something else'],
+  });
+
+  final List<String> reasons;
+
+  @override
+  Widget build(BuildContext context) {
+    final lane = context.lane;
+    return Scaffold(
+      backgroundColor: lane.color.bg,
+      body: Align(
+        alignment: Alignment.bottomCenter,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: lane.color.surface,
+            borderRadius: BorderRadius.vertical(top: lane.radius.r24.topLeft),
+          ),
+          child: Padding(
+            padding: EdgeInsets.only(top: lane.space.s24),
+            child: LaneConfirmSheet<int>(
+              title: 'Cancel this booking?',
+              message: 'The mechanic will be told straight away.',
+              reasons: [
+                for (final (i, r) in reasons.indexed) LaneReason(i, r, asksForText: i == reasons.length - 1),
+              ],
+              confirmLabel: 'Cancel booking',
+              keepLabel: 'Keep booking',
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

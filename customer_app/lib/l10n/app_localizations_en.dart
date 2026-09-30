@@ -546,8 +546,116 @@ class AppLocalizationsEn extends AppLocalizations {
   String get price_error_network => 'Couldn\'t book. Check your connection and try again.';
 
   @override
-  String get searching_title => 'Booking sent';
+  String get searching_title => 'Finding a mechanic';
 
   @override
   String get searching_body => 'We\'re finding the nearest mechanic.';
+
+  @override
+  String searching_radius(int km) {
+    return 'We\'re asking mechanics within $km km of you.';
+  }
+
+  @override
+  String get cancel_booking => 'Cancel booking';
+
+  @override
+  String get cancel_title => 'Cancel this booking?';
+
+  @override
+  String get cancel_body_searching => 'We stop looking for a mechanic straight away.';
+
+  @override
+  String get cancel_body_assigned => 'Your mechanic is told straight away. Please pick a reason.';
+
+  @override
+  String get cancel_confirm => 'Cancel booking';
+
+  @override
+  String get cancel_keep => 'Keep booking';
+
+  @override
+  String get cancel_reason_found_help => 'Found help elsewhere';
+
+  @override
+  String get cancel_reason_fixed_myself => 'Fixed it myself';
+
+  @override
+  String get cancel_reason_too_slow => 'Taking too long';
+
+  @override
+  String get cancel_reason_wrong_details => 'Wrong vehicle or place';
+
+  @override
+  String get cancel_reason_other => 'Something else';
+
+  @override
+  String get cancel_reason_text => 'Tell us more (optional)';
+
+  @override
+  String get cancel_error_too_late => 'It can\'t be cancelled now: the work has started.';
+
+  @override
+  String get cancel_error_network => 'Couldn\'t cancel. Check your connection and try again.';
+
+  @override
+  String get no_mechanic_title => 'No mechanic free right now';
+
+  @override
+  String get no_mechanic_body => 'Everyone nearby is busy. Try again in a few minutes, or talk to us.';
+
+  @override
+  String get no_mechanic_try_again => 'Try again';
+
+  @override
+  String get cancelled_title => 'Booking cancelled';
+
+  @override
+  String get cancelled_by_you => 'You cancelled this booking.';
+
+  @override
+  String get cancelled_by_mechanic => 'The mechanic had to cancel. You were not charged.';
+
+  @override
+  String get cancelled_by_support => 'Our support team cancelled this booking.';
+
+  @override
+  String get live_not_found => 'We couldn\'t find this booking.';
+
+  @override
+  String get live_working_title => 'Your mechanic is on the job';
+
+  @override
+  String get assigned_title => 'A mechanic is coming';
+
+  @override
+  String get assigned_on_the_way => 'Your mechanic is on the way';
+
+  @override
+  String get assigned_arrived => 'Your mechanic has arrived';
+
+  @override
+  String get stop_requested => 'Requested';
+
+  @override
+  String get stop_accepted => 'Accepted';
+
+  @override
+  String get stop_on_the_way => 'On the way';
+
+  @override
+  String get stop_arrived => 'Arrived';
+
+  @override
+  String get stop_working => 'Working';
+
+  @override
+  String get stop_done => 'Done';
+
+  @override
+  String get notif_start_code_locked_title => 'Someone tried your start code';
+
+  @override
+  String get notif_start_code_locked_body =>
+      'Someone tried your start code 5 times. Only read it out to your mechanic in person.';
 }

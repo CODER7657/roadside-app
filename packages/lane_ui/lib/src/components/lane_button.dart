@@ -212,6 +212,8 @@ class _LaneButtonState extends State<LaneButton> with SingleTickerProviderStateM
     };
 
     return Semantics(
+      // Always its own node, even inside a labelled parent (a CountdownRing, a card).
+      container: true,
       button: true,
       enabled: _enabled,
       label: widget.label,

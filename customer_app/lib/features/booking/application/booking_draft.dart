@@ -133,6 +133,18 @@ class BookingDraftNotifier extends Notifier<BookingDraft> {
   void setDescription(String text) => state = state.copyWith(description: text);
   void setPickup(PickupDraft pickup) => state = state.copyWith(pickup: pickup);
 
+  /// Book the same thing again after `no_mechanic_found`: a new idempotency key (so
+  /// `createBooking` makes a new booking) with everything else kept, photos included.
+  void renewKey() => state = BookingDraft(
+    draftId: state.draftId,
+    idempotencyKey: newDraftToken(),
+    vehicleId: state.vehicleId,
+    problem: state.problem,
+    photos: state.photos,
+    description: state.description,
+    pickup: state.pickup,
+  );
+
   /// Picks, compresses (EXIF stripped) and uploads a photo. Returns null on success or
   /// when the user backed out, else why it failed. The upload itself can fail and be
   /// retried from the thumbnail ([retryUpload]).

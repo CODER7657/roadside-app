@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.0-dev.11
+
+Sheets for U8 cancel (#125), PLAN §6.12, §6.5 ⑤.
+
+- `showLaneSheet` + `LaneSheet`: a Lane modal bottom sheet (surface, `r24` top, drag handle,
+  keyboard-aware); the content scrolls at 200% text and the actions stay pinned.
+- `LaneConfirmSheet<T>` (`LaneConfirmSheet.show` → `({T reason, String? text})` or null): a
+  **required** reason chip before a destructive action; the confirm is `LaneButton.danger`
+  and stays off until a reason is picked; a reason with `asksForText` shows an optional field
+  (≤ 300, trimmed, blank → null). Keep or drag-dismiss returns null.
+- **TalkBack fixes** (found building U9): `LaneButton`, `LaneOtpDisplay` and `CountdownRing`
+  are now semantics containers. Before, a start code inside a `TrustPass` in a list merged
+  into the card, so TalkBack read the whole card as one "Show large" button, and a button
+  inside a `CountdownRing` merged with "N seconds left".
+
 ## 0.1.0-dev.10
 
 U7 Price estimate (#108), PLAN §6.12, §6.5 ⑦.

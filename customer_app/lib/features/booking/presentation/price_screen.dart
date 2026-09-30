@@ -36,8 +36,8 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
       final booking = await ref.read(bookingServiceProvider).createBooking(ref.read(bookingDraftProvider));
       if (!mounted) return;
       ref.read(activeBookingProvider.notifier).set(booking);
-      // Replace the flow: back from Searching goes Home, never into a booked estimate.
-      context.go(AppRoutes.searching);
+      // Replace the flow: back from the booking goes Home, never into a booked estimate.
+      context.go(AppRoutes.booking(booking.bookingId));
     } on BookingException catch (e) {
       _errorHaptic();
       if (mounted) setState(() => _error = e);
@@ -61,7 +61,7 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
     BookingException.activeBookingExists => (
       l10n.price_error_active_booking,
       l10n.price_open_booking,
-      () => context.go(AppRoutes.searching),
+      () => context.go(e.activeBookingId == null ? AppRoutes.home : AppRoutes.booking(e.activeBookingId!)),
     ),
     BookingException.servicePaused => (l10n.price_error_paused, null, null),
     BookingException.priceUnavailable => (

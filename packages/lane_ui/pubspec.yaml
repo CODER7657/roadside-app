@@ -1,6 +1,6 @@
 name: lane_ui
 description: "Lane, the design system shared by the customer app, mechanic app and admin panel (PLAN.md §6)."
-version: 0.1.0-dev.10
+version: 0.1.0-dev.11
 publish_to: none
 
 environment:
