@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lane_ui/lane_ui.dart';
 
+import '../../../app/router.dart';
 import '../../../l10n/app_localizations.dart';
 
 /// Temporary home until M3 Dashboard (#27). Proves the app boots into Lane with ARB strings.
@@ -15,6 +17,7 @@ class HomeScreen extends StatelessWidget {
       visual: LaneIcon(LaneIcons.wrench, size: lane.space.s64 + lane.space.s32),
       title: l10n.home_placeholder_title,
       message: l10n.home_placeholder_body,
+      primary: LaneButton.secondary(label: l10n.home_help, onPressed: () => context.push(AppRoutes.help)),
     );
   }
 }

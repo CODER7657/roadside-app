@@ -133,4 +133,118 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get privacy_contact_body => 'મદદ અને FAQ માંથી અમારા ફરિયાદ અધિકારીનો સંપર્ક કરો.';
+
+  @override
+  String get home_help => 'મદદ અને FAQ';
+
+  @override
+  String get permission_location_title => 'લોકેશનની પરવાનગી આપો';
+
+  @override
+  String get permission_location_body =>
+      'જેથી અમે તમને નજીકના કામ મોકલી શકીએ અને ગ્રાહકોને બતાવી શકીએ કે તમે રસ્તામાં છો. ફક્ત જ્યારે તમે ઓનલાઇન હો કે કામ પર હો; કામ દરમિયાન એક સૂચના બતાવે છે કે તે ચાલુ છે.';
+
+  @override
+  String get permission_camera_title => 'કૅમેરાની પરવાનગી આપો';
+
+  @override
+  String get permission_camera_body =>
+      'તમારી પ્રોફાઇલ, દુકાન કે ઓજારોના ફોટા, તમારા ID દસ્તાવેજો, અને દરેક કામ પહેલાં અને પછીના ફોટા ઉમેરવા માટે.';
+
+  @override
+  String get permission_notifications_title => 'સૂચનાઓની પરવાનગી આપો';
+
+  @override
+  String get permission_notifications_body =>
+      'જેથી તમને નવા કામની ઓફર તરત મળે, અને એપ બંધ હોય ત્યારે પણ તમારા કામની માહિતી મળે.';
+
+  @override
+  String get permission_full_screen_title => 'લૉક સ્ક્રીન પર કામની ઓફર બતાવો';
+
+  @override
+  String get permission_full_screen_body =>
+      'નવું કામ આવતા કૉલની જેમ આખી સ્ક્રીન પર દેખાય છે, જેથી કોઈ ચૂકી ન જાય. આગલી સ્ક્રીન પર આ એપ માટે ફુલ-સ્ક્રીન સૂચનાઓ ચાલુ કરો.';
+
+  @override
+  String get permission_blocked_body =>
+      'તે તમારા ફોનના સેટિંગ્સમાં બંધ છે. સેટિંગ્સ ખોલો, પરવાનગીઓ પર ટેપ કરો અને તેને ચાલુ કરો.';
+
+  @override
+  String get permission_allow => 'પરવાનગી આપો';
+
+  @override
+  String get permission_open_settings => 'સેટિંગ્સ ખોલો';
+
+  @override
+  String get permission_not_now => 'હમણાં નહીં';
+
+  @override
+  String get help_title => 'મદદ';
+
+  @override
+  String get help_search_label => 'પ્રશ્નો શોધો';
+
+  @override
+  String get help_search_hint => 'જેમ કે ઓફર, શરૂ કરવાનો કોડ, ચૂકવણી';
+
+  @override
+  String get help_no_results_title => 'કોઈ મેળ ખાતો પ્રશ્ન નથી';
+
+  @override
+  String get help_no_results_body => 'બીજા શબ્દો અજમાવો, અથવા અમને કૉલ કરો.';
+
+  @override
+  String get help_call_support => 'સહાયને કૉલ કરો';
+
+  @override
+  String get help_whatsapp => 'WhatsApp';
+
+  @override
+  String get help_grievance_title => 'ફરિયાદ અધિકારી';
+
+  @override
+  String get help_grievance_body =>
+      'તમારા ડેટા કે ગોપનીયતા વિશેની ફરિયાદો માટે અમારા ફરિયાદ અધિકારીને લખો. અમે 7 દિવસમાં જવાબ આપીએ છીએ.';
+
+  @override
+  String get help_faq_jobs_q => 'મને કામ કેવી રીતે મળશે?';
+
+  @override
+  String get help_faq_jobs_a =>
+      'મંજૂરી મળ્યા પછી હોમ સ્ક્રીન પર ઓનલાઇન થાઓ. નજીકના બગડેલાં વાહનો તમને ઓફર તરીકે આવશે; 30 સેકન્ડમાં સ્લાઇડ કરીને સ્વીકારો.';
+
+  @override
+  String get help_faq_no_offers_q => 'મને ઓફર કેમ નથી મળતી?';
+
+  @override
+  String get help_faq_no_offers_a =>
+      'તપાસો કે તમે ઓનલાઇન છો, મંજૂર છો, તમારા શહેરમાં છો, અને તમારાં વાહનોના પ્રકાર અને સેવાઓ ભરેલી છે. લોકેશન ચાલુ રાખી એપ ખુલ્લી રાખો; ઓફર ફક્ત નજીકના મિકેનિકને જાય છે.';
+
+  @override
+  String get help_faq_verify_q => 'ચકાસણી કેવી રીતે થાય છે?';
+
+  @override
+  String get help_faq_verify_a =>
+      'કામ મળે તે પહેલાં અમે તમારી ID અને ફોટા તપાસીએ છીએ. જો તમે વર્કશોપ વગર કામ કરતા હો, તો અમે ટૂંકી ચકાસણી માટે કૉલ પણ કરીએ છીએ.';
+
+  @override
+  String get help_faq_code_q => 'શરૂ કરવાનો કોડ શું છે?';
+
+  @override
+  String get help_faq_code_a =>
+      'પહોંચો ત્યારે ગ્રાહક તમને 4 અંકનો કોડ કહેશે. કામ શરૂ કરવા તે દાખલ કરો. 5 વાર ખોટો થાય તો તે 10 મિનિટ માટે બંધ થઈ જાય છે.';
+
+  @override
+  String get help_faq_pay_q => 'મને પૈસા કેવી રીતે મળશે?';
+
+  @override
+  String get help_faq_pay_a =>
+      'ગ્રાહક તમને સીધા UPI થી ચૂકવે છે. તમારી UPI એપ તપાસો, પછી પુષ્ટિ કરો પર ટેપ કરો. જો પૈસા ન આવ્યા હોય, તો નથી મળ્યા પર ટેપ કરો અને અમે તપાસ કરીશું.';
+
+  @override
+  String get help_faq_cancel_q => 'શું હું કામ રદ કરી શકું?';
+
+  @override
+  String get help_faq_cancel_a =>
+      'હા, પણ તેની અસર તમારી વિશ્વસનીયતા પર પડે છે. પહોંચતા પહેલાં કામ બીજા મિકેનિકને જાય છે; પહોંચ્યા પછી કારણ જણાવો.';
 }

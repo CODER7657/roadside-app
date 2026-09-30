@@ -7,19 +7,25 @@ import '../features/first_run/presentation/language_screen.dart';
 import '../features/first_run/presentation/onboarding_screen.dart';
 import '../features/first_run/presentation/privacy_notice_screen.dart';
 import '../features/first_run/presentation/splash_screen.dart';
+import '../features/help/presentation/help_screen.dart';
 import '../features/home/presentation/home_screen.dart';
+import '../features/permissions/application/permission_service.dart';
+import '../features/permissions/presentation/permission_explainer_screen.dart';
 
 /// Route paths. Screens are added per issue (C7/C9 #122, login #123, M1 #26, M3 #27, …).
 abstract final class AppRoutes {
   static const splash = '/splash';
   static const home = '/';
   static const privacy = '/privacy';
+  static const help = '/help';
 }
 
 /// Keeps first run in order: home (and later everything else) waits until language,
 /// onboarding and consent are done. Splash and the privacy notice are always reachable.
 String? firstRunRedirect(FirstRunState firstRun, String location) {
   if (location == AppRoutes.splash || location == AppRoutes.privacy) return null;
+  // Asking for a permission is never blocked by first run.
+  if (location.startsWith('/permission/')) return null;
   final next = firstRun.nextStep;
   const steps = [FirstRunStep.language, FirstRunStep.onboarding, FirstRunStep.consent];
   if (next == null) return steps.contains(location) ? AppRoutes.home : null;
@@ -39,6 +45,12 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: FirstRunStep.consent, builder: (context, state) => const ConsentScreen()),
       GoRoute(path: AppRoutes.privacy, builder: (context, state) => const PrivacyNoticeScreen()),
       GoRoute(path: AppRoutes.home, builder: (context, state) => const HomeScreen()),
+      GoRoute(path: AppRoutes.help, builder: (context, state) => const HelpScreen()),
+      GoRoute(
+        path: '/permission/:kind',
+        builder: (context, state) =>
+            PermissionExplainerScreen(permission: AppPermission.values.byName(state.pathParameters['kind']!)),
+      ),
     ],
   );
   ref.onDispose(router.dispose);
