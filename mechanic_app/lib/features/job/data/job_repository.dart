@@ -30,12 +30,66 @@ TripOutcome tripOutcomeForError(String? messageKey) => switch (messageKey) {
   _ => TripOutcome.failed,
 };
 
+/// What `verifyStartOtp` (#116) said about a start code (M6).
+sealed class StartCodeResult {
+  const StartCodeResult();
+}
+
+/// The code matched: the job is `in_progress`.
+final class StartCodeAccepted extends StartCodeResult {
+  const StartCodeAccepted();
+}
+
+final class StartCodeWrong extends StartCodeResult {
+  const StartCodeWrong(this.attemptsLeft);
+
+  /// Before the 10-minute lock (PLAN §12.9: 5 tries).
+  final int attemptsLeft;
+}
+
+/// Too many wrong codes: no guesses until [until].
+final class StartCodeLocked extends StartCodeResult {
+  const StartCodeLocked(this.until);
+
+  final DateTime until;
+}
+
+/// The booking moved on (e.g. the customer cancelled): the booking stream shows what happened.
+final class StartCodeInvalidStatus extends StartCodeResult {
+  const StartCodeInvalidStatus();
+}
+
+/// Network or anything unexpected.
+final class StartCodeFailed extends StartCodeResult {
+  const StartCodeFailed();
+}
+
+/// Reads a `verifyStartOtp` error: its message key and `details`.
+StartCodeResult startCodeResultForError(String? messageKey, Object? details) {
+  final map = details is Map ? details : const <String, Object?>{};
+  switch (messageKey) {
+    case 'error_code_wrong':
+      final left = map['attemptsLeft'];
+      return StartCodeWrong(left is int ? left : 0);
+    case 'error_code_locked':
+      final until = DateTime.tryParse('${map['lockedUntil']}');
+      return until == null ? const StartCodeFailed() : StartCodeLocked(until.toLocal());
+    case 'error_invalid_status' || 'error_booking_not_found':
+      return const StartCodeInvalidStatus();
+    default:
+      return const StartCodeFailed();
+  }
+}
+
 /// The mechanic's active job: `bookings/{id}` (readable by the assigned mechanic, #99) and the
 /// status steps, which only callables may change.
 abstract interface class JobRepository {
   Stream<Booking?> watch(String bookingId);
   Future<TripOutcome> startTrip(String bookingId);
   Future<TripOutcome> markArrived(String bookingId);
+
+  /// M6: the customer's 4-digit start code. The app never reads the code itself (PLAN §12.9).
+  Future<StartCodeResult> verifyStartCode(String bookingId, String code);
 }
 
 /// Writes `liveLocations/{bookingId}` (PLAN §8, §11): the customer's map follows it.
@@ -84,6 +138,35 @@ class InMemoryJobRepository implements JobRepository {
   @override
   Future<TripOutcome> markArrived(String bookingId) =>
       _step('markArrived', bookingId, BookingStatus.arriving, BookingStatus.arrived);
+
+  /// The code the fake accepts (the server keeps the real one in `private/otp`).
+  String startCode = '1234';
+  int _wrong = 0;
+  DateTime? lockedUntil;
+
+  /// The fake's clock for the lock (tests).
+  DateTime Function() clock = DateTime.now;
+
+  @override
+  Future<StartCodeResult> verifyStartCode(String bookingId, String code) async {
+    calls.add('verifyStartCode:$bookingId');
+    final until = lockedUntil;
+    if (until != null && until.isAfter(clock())) return StartCodeLocked(until);
+    if (_bookings[bookingId]?.status != BookingStatus.arrived) return const StartCodeInvalidStatus();
+    if (code == startCode) {
+      _wrong = 0;
+      setStatus(bookingId, BookingStatus.inProgress);
+      return const StartCodeAccepted();
+    }
+    _wrong++;
+    // Same rule as the server: the 5th wrong code locks for 10 minutes.
+    if (_wrong >= 5) {
+      _wrong = 0;
+      lockedUntil = clock().add(const Duration(minutes: 10));
+      return StartCodeLocked(lockedUntil!);
+    }
+    return StartCodeWrong(5 - _wrong);
+  }
 }
 
 class InMemoryLiveLocationRepository implements LiveLocationRepository {
@@ -122,6 +205,18 @@ class FirebaseJobRepository implements JobRepository {
 
   @override
   Future<TripOutcome> markArrived(String bookingId) => _call('markArrived', bookingId);
+
+  @override
+  Future<StartCodeResult> verifyStartCode(String bookingId, String code) async {
+    try {
+      await _functions.httpsCallable('verifyStartOtp').call<Object?>({'bookingId': bookingId, 'code': code});
+      return const StartCodeAccepted();
+    } on FirebaseFunctionsException catch (e) {
+      return startCodeResultForError(e.message, e.details);
+    } catch (_) {
+      return const StartCodeFailed();
+    }
+  }
 }
 
 class FirestoreLiveLocationRepository implements LiveLocationRepository {

@@ -17,6 +17,7 @@ import '../../permissions/application/permission_service.dart';
 import '../../permissions/presentation/permission_explainer_screen.dart';
 import '../application/job.dart';
 import '../data/job_repository.dart';
+import 'start_code_screen.dart';
 
 /// Directions in the phone's maps app (the in-app map waits for the provider, PLAN §3).
 Uri directionsTo(GeoPoint p) => Uri.https('www.google.com', '/maps/dir/', {
@@ -138,6 +139,11 @@ class _JobScreenState extends ConsumerState<JobScreen> {
         critical: true,
         loading: _busy,
         onPressed: _busy ? null : () => _step(repo.markArrived),
+      ),
+      // M6: the customer's start code starts the work.
+      BookingStatus.arrived => LaneButton.primary(
+        label: l10n.job_enter_start_code,
+        onPressed: () => context.go(startCodeRoute(widget.bookingId)),
       ),
       _ => null,
     };
