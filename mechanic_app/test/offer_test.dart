@@ -10,6 +10,7 @@ import 'package:mechanic_app/app/flavor.dart';
 import 'package:mechanic_app/app/router.dart';
 import 'package:mechanic_app/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:mechanic_app/features/first_run/application/first_run.dart';
+import 'package:mechanic_app/features/job/presentation/job_screen.dart';
 import 'package:mechanic_app/features/offers/application/offers.dart';
 import 'package:mechanic_app/features/offers/data/offer_alerts.dart';
 import 'package:mechanic_app/features/offers/data/offer_repository.dart';
@@ -206,7 +207,7 @@ void main() {
       await slide(tester);
       await tester.pumpAndSettle();
       expect(offers.responses, [('o-1', true)]);
-      expect(find.byType(JobAcceptedScreen), findsOneWidget);
+      expect(find.byType(JobScreen), findsOneWidget);
       expect(alerts.lockScreen, [true, false]);
       expect(alerts.cancelled, ['o-1'], reason: 'the notification is cleared');
     });
@@ -272,7 +273,7 @@ void main() {
       await slide(tester);
       await tester.pumpAndSettle();
       expect(offers.responses, hasLength(2));
-      expect(find.byType(JobAcceptedScreen), findsOneWidget);
+      expect(find.byType(JobScreen), findsOneWidget);
     });
 
     testWidgets('fits at 320 px and 200% text in Gujarati', (tester) async {

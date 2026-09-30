@@ -243,22 +243,3 @@ class _ClosedView extends StatelessWidget {
     );
   }
 }
-
-/// M5 placeholder: where an accepted job lands until Navigate (#30).
-class JobAcceptedScreen extends StatelessWidget {
-  const JobAcceptedScreen({super.key, required this.bookingId});
-
-  final String bookingId;
-
-  @override
-  Widget build(BuildContext context) {
-    final lane = context.lane;
-    final l10n = AppLocalizations.of(context);
-    return LaneStatusScaffold(
-      visual: LaneIcon(LaneIcons.checkCircle, size: lane.space.s64 + lane.space.s32),
-      title: l10n.job_accepted_title,
-      message: l10n.job_accepted_body,
-      primary: LaneButton.secondary(label: l10n.offer_back, onPressed: () => context.go(AppRoutes.home)),
-    );
-  }
-}

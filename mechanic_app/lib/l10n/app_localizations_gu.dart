@@ -597,8 +597,86 @@ class AppLocalizationsGu extends AppLocalizations {
   String get offer_notification_body => 'સ્વીકારવા 30 સેકન્ડમાં ખોલો.';
 
   @override
-  String get job_accepted_title => 'કામ તમારું છે';
+  String get stop_requested => 'વિનંતી';
 
   @override
-  String get job_accepted_body => 'ગ્રાહક સુધીનો રસ્તો અહીં ખૂલશે.';
+  String get stop_accepted => 'સ્વીકાર્યું';
+
+  @override
+  String get stop_on_the_way => 'રસ્તામાં';
+
+  @override
+  String get stop_arrived => 'પહોંચ્યા';
+
+  @override
+  String get stop_working => 'કામ ચાલુ';
+
+  @override
+  String get stop_done => 'પૂર્ણ';
+
+  @override
+  String get job_headline_accepted => 'નીકળો ત્યારે મુસાફરી શરૂ કરો';
+
+  @override
+  String get job_headline_arriving => 'ગ્રાહક પાસે જઈ રહ્યા છો';
+
+  @override
+  String get job_headline_arrived => 'તમે ગ્રાહક પાસે છો';
+
+  @override
+  String get job_headline_working => 'કામ ચાલુ છે';
+
+  @override
+  String job_eta(int minutes) {
+    return 'આશરે $minutes મિનિટ દૂર';
+  }
+
+  @override
+  String get job_start_trip => 'મુસાફરી શરૂ કરો';
+
+  @override
+  String get job_arrived => 'હું પહોંચી ગયો';
+
+  @override
+  String get job_ask_start_code => 'શરૂ કરવા ગ્રાહક પાસેથી તેમનો 4 અંકનો કોડ માગો.';
+
+  @override
+  String get job_open_in_maps => 'મેપ્સમાં ખોલો';
+
+  @override
+  String get job_call => 'કૉલ કરો';
+
+  @override
+  String get job_error_not_at_pickup => 'તમે હજી પિકઅપ પર નથી. 100 મીટરની અંદર આવી ફરી પ્રયાસ કરો.';
+
+  @override
+  String get job_error_location =>
+      'અમે હમણાં તમારું લોકેશન જોઈ શકતા નથી. GPS ચાલુ રાખી એપ ખુલ્લી રાખો, પછી પ્રયાસ કરો.';
+
+  @override
+  String get job_error_failed => 'અમારા સુધી પહોંચી ન શક્યા. તમારું કનેક્શન તપાસો અને ફરી પ્રયાસ કરો.';
+
+  @override
+  String get job_tracking_title => 'તમારું લોકેશન શેર થઈ રહ્યું છે';
+
+  @override
+  String get job_tracking_text => 'તમારા ગ્રાહક સાથે, ફક્ત આ કામ દરમિયાન.';
+
+  @override
+  String get job_cancelled_title => 'આ કામ રદ થયું';
+
+  @override
+  String get job_cancelled_body => 'તમે આગલા કામ માટે ફ્રી છો.';
+
+  @override
+  String get job_done_title => 'કામ પૂરું';
+
+  @override
+  String get job_done_body => 'સરસ કામ.';
+
+  @override
+  String get job_missing_title => 'અમને આ કામ મળતું નથી';
+
+  @override
+  String get job_missing_body => 'કદાચ તે રદ થયું છે.';
 }

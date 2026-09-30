@@ -1,14 +1,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- PLAN §11 Android permissions. Each is asked only after the C7 explainer (§13 prominent
-         disclosure). No background location, SMS or contacts permissions. The foreground
-         service permissions (type location) arrive with the service itself (#30). -->
+         disclosure). No background location, SMS or contacts permissions. -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <!-- M4 full-screen job offers; declared in Play Console (PLAN §13). -->
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <!-- M5 (#30): location keeps going with the screen off during a job, as a foreground service
+         of type location with a visible notification (geolocator declares the service and
+         FOREGROUND_SERVICE_LOCATION). No background location. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <!-- PLAN §12.7: no backups, no cleartext. -->
     <application

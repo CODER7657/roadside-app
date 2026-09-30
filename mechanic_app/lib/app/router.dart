@@ -11,6 +11,7 @@ import '../features/first_run/presentation/privacy_notice_screen.dart';
 import '../features/first_run/presentation/splash_screen.dart';
 import '../features/dashboard/presentation/dashboard_screen.dart';
 import '../features/help/presentation/help_screen.dart';
+import '../features/job/presentation/job_screen.dart';
 import '../features/offers/presentation/offer_screen.dart';
 import '../features/permissions/application/permission_service.dart';
 import '../features/permissions/presentation/permission_explainer_screen.dart';
@@ -18,8 +19,8 @@ import '../features/registration/application/registration.dart';
 import '../features/registration/presentation/pending_screen.dart';
 import '../features/registration/presentation/registration_screen.dart';
 
-/// Route paths. Screens are added per issue (login #123, M5 #30, …). Home is M3 Dashboard;
-/// M4 is `/offer/:offerId` (offerRoute) and an accepted job `/job/:bookingId` (jobRoute).
+/// Route paths. Screens are added per issue (login #123, M6 #31, …). Home is M3 Dashboard;
+/// M4 is `/offer/:offerId` (offerRoute) and M5, the accepted job, `/job/:bookingId` (jobRoute).
 abstract final class AppRoutes {
   static const splash = '/splash';
   static const home = '/';
@@ -92,7 +93,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: '/job/:bookingId',
-        builder: (context, state) => JobAcceptedScreen(bookingId: state.pathParameters['bookingId']!),
+        builder: (context, state) => JobScreen(bookingId: state.pathParameters['bookingId']!),
       ),
       GoRoute(
         path: '/permission/:kind',
