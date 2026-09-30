@@ -1,5 +1,5 @@
 # Deploys Functions, Firestore/Storage rules, indexes and Hosting.
-#   push to main (firebase/** changed) → roadside-dev
+#   push to main (firebase/** changed) → dev (roadside-33282)
 #   tag vX.Y.Z                         → roadside-prod. Only repo admins can create v* tags (tag ruleset), which is the
 #                                        production gate. Required-reviewer environments need GitHub Enterprise for private repos.
 # Auth uses Workload Identity Federation (no long-lived service-account keys in GitHub).

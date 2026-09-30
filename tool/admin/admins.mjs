@@ -2,9 +2,9 @@
 // Grant, revoke and list console admins (PLAN.md §12.11). The ONLY way to make an admin: no app
 // or callable can grant the role. Run by the repo owner or P3 with that project's credentials.
 //
-//   npm --prefix tool/admin run grant  -- ops@example.com --project roadside-dev
-//   npm --prefix tool/admin run revoke -- ops@example.com --project roadside-dev
-//   npm --prefix tool/admin run list   -- --project roadside-dev
+//   npm --prefix tool/admin run grant  -- ops@example.com --project roadside-33282
+//   npm --prefix tool/admin run revoke -- ops@example.com --project roadside-33282
+//   npm --prefix tool/admin run list   -- --project roadside-33282
 //
 // Credentials: Application Default Credentials (`gcloud auth application-default login`).
 // Emulators: run inside `firebase emulators:exec` (no --project needed). roadside-prod also needs
@@ -34,7 +34,7 @@ const USAGE = 'Usage: admins.mjs grant|revoke <email> | list  [--project <id>] [
 
 const emulator = process.env.FIRESTORE_EMULATOR_HOST;
 const projectId = args.project ?? process.env.GCLOUD_PROJECT ?? (emulator ? 'demo-roadside' : undefined);
-if (!projectId) fail('No project. Run inside `firebase emulators:exec` or pass --project roadside-dev.');
+if (!projectId) fail('No project. Run inside `firebase emulators:exec` or pass --project roadside-33282.');
 if (!emulator && projectId.includes('prod') && !args['allow-prod']) fail(`Refusing to touch ${projectId} without --allow-prod.`);
 
 const app = initializeApp({ projectId });

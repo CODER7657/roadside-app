@@ -32,7 +32,7 @@ FIREBASE_AUTH_EMULATOR_HOST=127.0.0.1:9099 FIRESTORE_EMULATOR_HOST=127.0.0.1:808
 # 4. sign in again
 ```
 
-For `roadside-dev` / `roadside-prod`, fill `env/dev.json` / `env/prod.json` with the web app's
+For the dev project (`roadside-33282`) / `roadside-prod`, fill `env/dev.json` / `env/prod.json` with the web app's
 config (`USE_EMULATORS=false`). The files are git-ignored. Deploys build from the
 `ADMIN_WEB_ENV` environment variable instead (`.github/workflows/deploy-firebase.yml`).
 
@@ -40,9 +40,9 @@ config (`USE_EMULATORS=false`). The files are git-ignored. Deploys build from th
 
 ```bash
 npm ci --prefix tool/admin
-npm --prefix tool/admin run grant  -- ops@example.com --project roadside-dev
-npm --prefix tool/admin run revoke -- ops@example.com --project roadside-dev
-npm --prefix tool/admin run list   -- --project roadside-dev
+npm --prefix tool/admin run grant  -- ops@example.com --project roadside-33282
+npm --prefix tool/admin run revoke -- ops@example.com --project roadside-33282
+npm --prefix tool/admin run list   -- --project roadside-33282
 ```
 
 `grant` allow-lists the email; after that person's first Google sign-in, run it again to give
