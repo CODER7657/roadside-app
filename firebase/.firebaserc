@@ -1,0 +1,38 @@
+{
+  "projects": {
+    "dev": "roadside-dev",
+    "prod": "roadside-prod"
+  },
+  "targets": {
+    "roadside-dev": {
+      "hosting": {
+        "admin": [
+          "roadside-dev-admin"
+        ],
+        "share": [
+          "roadside-dev"
+        ]
+      }
+    },
+    "roadside-prod": {
+      "hosting": {
+        "admin": [
+          "roadside-prod-admin"
+        ],
+        "share": [
+          "roadside-prod"
+        ]
+      }
+    },
+    "demo-roadside": {
+      "hosting": {
+        "admin": [
+          "demo-roadside-admin"
+        ],
+        "share": [
+          "demo-roadside"
+        ]
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 # Secrets & signing: never commit (PLAN.md §12.8)
 .env*
-env/*.json
-!env/example.json
+**/env/*.json
+!**/env/example.json
 *.jks
 *.keystore
 key.properties
