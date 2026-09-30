@@ -90,6 +90,12 @@ jobs:
         if: steps.ready.outputs.ok == 'true' && hashFiles('firebase/functions/package-lock.json') != ''
         run: npm ci --prefix firebase/functions
 
+      # The public legal pages (share site) must be final before they reach production (#55).
+      - name: Legal pages have no placeholders (prod only)
+        if: steps.ready.outputs.ok == 'true' && env.IS_PROD == 'true'
+        shell: bash
+        run: bash tool/check_legal_placeholders.sh
+
       # Hosting serves admin_panel/build/web (firebase.json, target "admin").
       - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
         if: steps.ready.outputs.ok == 'true'
