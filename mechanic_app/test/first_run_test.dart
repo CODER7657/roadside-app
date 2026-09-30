@@ -15,7 +15,7 @@ import 'package:mechanic_app/features/first_run/presentation/language_screen.dar
 import 'package:mechanic_app/features/first_run/presentation/onboarding_screen.dart';
 import 'package:mechanic_app/features/first_run/presentation/privacy_notice_screen.dart';
 import 'package:mechanic_app/features/first_run/presentation/splash_screen.dart';
-import 'package:mechanic_app/features/home/presentation/home_screen.dart';
+import 'package:mechanic_app/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mechanic_app/features/registration/application/registration.dart';
 import 'package:mechanic_app/features/registration/data/registration_repository.dart';
@@ -195,8 +195,8 @@ void main() {
   testWidgets('a returning mechanic lands on home, in their language', (tester) async {
     await tester.pumpWidget(app(await prefsWith({...completed, 'first_run.language': 'gu'})));
     await pastSplash(tester);
-    expect(find.byType(HomeScreen), findsOneWidget);
-    expect(find.text('તમારી નજીકના કામ, જ્યારે તમે તૈયાર હો'), findsOneWidget);
+    expect(find.byType(DashboardScreen), findsOneWidget);
+    expect(find.text('તમે ઓફલાઇન છો'), findsOneWidget);
   });
 
   for (final (name, values) in [

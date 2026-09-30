@@ -9,7 +9,7 @@ import 'package:mechanic_app/app/app.dart';
 import 'package:mechanic_app/app/env.dart';
 import 'package:mechanic_app/app/flavor.dart';
 import 'package:mechanic_app/features/first_run/application/first_run.dart';
-import 'package:mechanic_app/features/home/presentation/home_screen.dart';
+import 'package:mechanic_app/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mechanic_app/features/registration/application/registration.dart';
 
@@ -58,8 +58,8 @@ void main() {
       await tester.pumpWidget(app(flavor));
       await pastSplash(tester);
       expect(find.byType(LaneApp), findsOneWidget);
-      expect(find.byType(HomeScreen), findsOneWidget);
-      expect(find.text("Jobs near you, when you're ready"), findsOneWidget);
+      expect(find.byType(DashboardScreen), findsOneWidget);
+      expect(find.text("You're offline"), findsOneWidget);
       expect(tester.takeException(), isNull);
     });
   }
@@ -73,8 +73,8 @@ void main() {
     await prefs.setString('first_run.language', 'hi');
     await tester.pumpWidget(app(AppFlavor.dev));
     await pastSplash(tester);
-    expect(find.text('आपके पास के काम, जब आप तैयार हों'), findsOneWidget);
-    expect(tester.element(find.byType(HomeScreen)).lane.script, LaneScript.devanagari);
+    expect(find.text('आप ऑफ़लाइन हैं'), findsOneWidget);
+    expect(tester.element(find.byType(DashboardScreen)).lane.script, LaneScript.devanagari);
     expect(tester.takeException(), isNull);
   });
 

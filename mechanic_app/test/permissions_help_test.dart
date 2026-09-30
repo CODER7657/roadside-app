@@ -9,6 +9,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lane_ui/lane_ui.dart';
 import 'package:mechanic_app/app/app.dart';
 import 'package:mechanic_app/app/flavor.dart';
+import 'package:mechanic_app/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:mechanic_app/features/first_run/application/first_run.dart';
 import 'package:mechanic_app/features/help/presentation/help_screen.dart';
 import 'package:mechanic_app/features/permissions/application/permission_service.dart';
@@ -311,8 +312,14 @@ void main() {
     }) async {
       await tester.pumpWidget(await app(language: language, contacts: contacts));
       await pastSplash(tester);
-      // Secondary buttons show their label in caps (ThreeUI Spinning Border).
-      await tester.tap(find.text((language == 'en' ? 'Help & FAQ' : 'मदद और FAQ').toUpperCase()));
+      // Secondary buttons show their label in caps (ThreeUI Spinning Border). Help sits at the
+      // bottom of the dashboard, so scroll to it first (a long way at 200% text).
+      final help = find.text((language == 'en' ? 'Help & FAQ' : 'मदद और FAQ').toUpperCase());
+      final dashboardList = find
+          .descendant(of: find.byType(DashboardScreen), matching: find.byType(Scrollable))
+          .first;
+      await tester.scrollUntilVisible(help, 200, scrollable: dashboardList);
+      await tester.tap(help);
       await tester.pumpAndSettle();
       expect(find.byType(HelpScreen), findsOneWidget);
     }

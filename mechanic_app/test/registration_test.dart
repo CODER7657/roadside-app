@@ -13,7 +13,7 @@ import 'package:mechanic_app/app/flavor.dart';
 import 'package:mechanic_app/app/router.dart';
 import 'package:mechanic_app/features/first_run/application/first_run.dart';
 import 'package:mechanic_app/features/help/presentation/help_screen.dart';
-import 'package:mechanic_app/features/home/presentation/home_screen.dart';
+import 'package:mechanic_app/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:mechanic_app/features/registration/application/registration.dart';
 import 'package:mechanic_app/features/registration/data/mechanic_photos.dart';
 import 'package:mechanic_app/features/registration/data/registration_repository.dart';
@@ -554,7 +554,7 @@ void main() {
 
       pending.setStatus(MechanicStatus.approved);
       await tester.pumpAndSettle();
-      expect(find.byType(HomeScreen), findsOneWidget);
+      expect(find.byType(DashboardScreen), findsOneWidget);
     });
 
     testWidgets('a blocked mechanic sees the on-hold wording with Call support', (tester) async {

@@ -9,15 +9,15 @@ import '../features/first_run/presentation/language_screen.dart';
 import '../features/first_run/presentation/onboarding_screen.dart';
 import '../features/first_run/presentation/privacy_notice_screen.dart';
 import '../features/first_run/presentation/splash_screen.dart';
+import '../features/dashboard/presentation/dashboard_screen.dart';
 import '../features/help/presentation/help_screen.dart';
-import '../features/home/presentation/home_screen.dart';
 import '../features/permissions/application/permission_service.dart';
 import '../features/permissions/presentation/permission_explainer_screen.dart';
 import '../features/registration/application/registration.dart';
 import '../features/registration/presentation/pending_screen.dart';
 import '../features/registration/presentation/registration_screen.dart';
 
-/// Route paths. Screens are added per issue (login #123, M3 #27, …).
+/// Route paths. Screens are added per issue (login #123, M4 #29, …). Home is M3 Dashboard.
 abstract final class AppRoutes {
   static const splash = '/splash';
   static const home = '/';
@@ -77,7 +77,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: FirstRunStep.onboarding, builder: (context, state) => const OnboardingScreen()),
       GoRoute(path: FirstRunStep.consent, builder: (context, state) => const ConsentScreen()),
       GoRoute(path: AppRoutes.privacy, builder: (context, state) => const PrivacyNoticeScreen()),
-      GoRoute(path: AppRoutes.home, builder: (context, state) => const HomeScreen()),
+      GoRoute(path: AppRoutes.home, builder: (context, state) => const DashboardScreen()),
       GoRoute(path: AppRoutes.help, builder: (context, state) => const HelpScreen()),
       GoRoute(path: AppRoutes.register, builder: (context, state) => const RegistrationScreen()),
       GoRoute(path: AppRoutes.pending, builder: (context, state) => const PendingScreen()),
