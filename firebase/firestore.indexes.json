@@ -115,6 +115,13 @@
     {
       "collectionGroup": "liveLocations",
       "fieldPath": "expireAt",
+      "ttl": true,
+      "indexes": []
+    },
+    {
+      "collectionGroup": "shareLinks",
+      "fieldPath": "expiresAt",
+      "ttl": true,
       "indexes": []
     },
     {
