@@ -90,7 +90,11 @@ void main() {
       ),
       'VehicleDoc': keys(RoadsideFakes.car.toJson()),
       'MechanicDoc': {
-        ...keys(RoadsideFakes.workshopMechanic.copyWith(fcmToken: 't').toJson()),
+        ...keys(
+          RoadsideFakes.workshopMechanic
+              .copyWith(fcmToken: 't', deletionRequestedAt: RoadsideFakes.now)
+              .toJson(),
+        ),
         ...keys(RoadsideFakes.independentMechanic.toJson()),
       },
       'MechanicKycDoc': keys(RoadsideFakes.independentKyc.toJson()),
