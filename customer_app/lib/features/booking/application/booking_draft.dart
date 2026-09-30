@@ -108,6 +108,7 @@ class BookingDraftNotifier extends Notifier<BookingDraft> {
   /// retried from the thumbnail ([retryUpload]).
   Future<PhotoAddError?> addPhoto(PhotoSource source) async {
     if (!state.canAddPhoto) return PhotoAddError.limit;
+    final draftId = state.draftId;
     final Uint8List? picked;
     final Uint8List bytes;
     try {
@@ -120,7 +121,9 @@ class BookingDraftNotifier extends Notifier<BookingDraft> {
       LaneLog.w('booking photo pick failed', error: e, stackTrace: s);
       return PhotoAddError.failed;
     }
-    if (!ref.mounted || !state.canAddPhoto) return PhotoAddError.limit;
+    // A new draft started while the picker or compressor ran: this photo isn't for it.
+    if (!ref.mounted || state.draftId != draftId) return null;
+    if (!state.canAddPhoto) return PhotoAddError.limit;
     final photo = DraftPhoto(id: newDraftToken(), bytes: bytes);
     state = state.copyWith(photos: [...state.photos, photo]);
     await _upload(photo);

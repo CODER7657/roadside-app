@@ -76,7 +76,8 @@ class PhotoCompressor {
 typedef JpegEncoder = Future<Uint8List> Function(Uint8List bytes, int quality);
 
 /// Uploads a prepared photo to `users/{uid}/bookings/{draftId}/{fileName}` (storage rules,
-/// #102) and returns its download URL for `createBooking`.
+/// #102) and returns its download URL for `createBooking`. The Firebase implementation (#92)
+/// must set `contentType: image/jpeg`: the rules only accept image content types.
 abstract interface class PhotoUploader {
   Future<String> upload({required String draftId, required String fileName, required Uint8List bytes});
 }

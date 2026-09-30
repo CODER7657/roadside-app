@@ -36,6 +36,15 @@ final png = Uint8List.fromList(const [
   0x4E, 0x44, 0xAE, 0x42, 0x60, 0x82,
 ]);
 
+class _SlowPicker implements PhotoPicker {
+  _SlowPicker(this.result);
+
+  final Completer<Uint8List?> result;
+
+  @override
+  Future<Uint8List?> pick(PhotoSource source) => result.future;
+}
+
 class FakePicker implements PhotoPicker {
   final sources = <PhotoSource>[];
   Uint8List? next;
@@ -228,6 +237,32 @@ void main() {
 
       notifier().removePhoto(id);
       expect(draft().photos, isEmpty);
+    });
+
+    test('a photo picked while a new draft started is dropped, not added to it', () async {
+      final slowPick = Completer<Uint8List?>();
+      container = ProviderContainer(
+        overrides: [
+          photoPickerProvider.overrideWithValue(_SlowPicker(slowPick)),
+          photoCompressorProvider.overrideWithValue(PhotoCompressor(encode: (b, q) async => b)),
+          photoUploaderProvider.overrideWithValue(uploader),
+        ],
+      );
+      final adding = notifier().addPhoto(PhotoSource.gallery);
+      notifier().start(vehicleId: 'v2');
+      slowPick.complete(png);
+      expect(await adding, isNull);
+      expect(draft().photos, isEmpty);
+      expect(uploader.names, isEmpty, reason: 'nothing uploaded under either draft');
+      container.dispose();
+    });
+
+    test('the uploaded file name fits the storage rules pattern', () async {
+      unawaited(notifier().addPhoto(PhotoSource.gallery));
+      await pumpEventQueue();
+      final file = uploader.names.single.split('/').last;
+      expect(file, matches(RegExp(r'^[A-Za-z0-9._-]{1,100}$')));
+      uploader.finishAll();
     });
 
     test('an upload finishing after a new draft started does not leak into it', () async {
