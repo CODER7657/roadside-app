@@ -1250,6 +1250,99 @@
   "@home_booking_open": {
     "description": "U1: under home_booking_active."
   },
+  "contacts_title": "Emergency contacts",
+  "@contacts_title": {
+    "description": "U17: title."
+  },
+  "contacts_body": "SOS sends these people your live location. Up to 3.",
+  "@contacts_body": {
+    "description": "U17: what the list is for."
+  },
+  "contacts_empty": "No contacts yet. Add someone who can help in an emergency.",
+  "@contacts_empty": {
+    "description": "U17: shown when the list is empty."
+  },
+  "contacts_add_picker": "Add from contacts",
+  "@contacts_add_picker": {
+    "description": "U17: opens the phone's contact picker (no contacts permission)."
+  },
+  "contacts_add_manual": "Enter a number",
+  "@contacts_add_manual": {
+    "description": "U17: type a contact in instead."
+  },
+  "contacts_full": "You can save up to 3 contacts.",
+  "@contacts_full": {
+    "description": "U17: shown when 3 are saved."
+  },
+  "contacts_remove": "Remove {name}",
+  "@contacts_remove": {
+    "description": "U17: remove button tooltip / TalkBack.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "contacts_save": "Save",
+  "@contacts_save": {
+    "description": "U17: sticky save."
+  },
+  "contacts_saved": "Contacts saved.",
+  "@contacts_saved": {
+    "description": "U17: toast after saving."
+  },
+  "contacts_save_failed": "Couldn't save your contacts. Try again.",
+  "@contacts_save_failed": {
+    "description": "U17: toast when saving failed."
+  },
+  "contacts_error_invalid": "That number can't be used. Use a mobile number.",
+  "@contacts_error_invalid": {
+    "description": "U17: the picked or typed number isn't a valid phone number."
+  },
+  "contacts_error_duplicate": "That number is already on the list.",
+  "@contacts_error_duplicate": {
+    "description": "U17: the same number twice."
+  },
+  "contacts_picker_failed": "Couldn't open your contacts. Enter the number instead.",
+  "@contacts_picker_failed": {
+    "description": "U17: the picker is missing or failed."
+  },
+  "contacts_manual_title": "Add a contact",
+  "@contacts_manual_title": {
+    "description": "U17: sheet title for typing a contact."
+  },
+  "contacts_name_label": "Name",
+  "@contacts_name_label": {
+    "description": "U17: name field."
+  },
+  "contacts_phone_label": "Mobile number",
+  "@contacts_phone_label": {
+    "description": "U17: phone field."
+  },
+  "contacts_manual_add": "Add",
+  "@contacts_manual_add": {
+    "description": "U17: adds the typed contact."
+  },
+  "contacts_discard_title": "Discard your changes?",
+  "@contacts_discard_title": {
+    "description": "U17: leaving with unsaved changes."
+  },
+  "contacts_discard": "Discard",
+  "@contacts_discard": {
+    "description": "U17: leave without saving."
+  },
+  "contacts_keep_editing": "Keep editing",
+  "@contacts_keep_editing": {
+    "description": "U17: stay on the screen."
+  },
+  "contacts_error": "Couldn't load your contacts.",
+  "@contacts_error": {
+    "description": "U17: error state."
+  },
+  "contacts_retry": "Try again",
+  "@contacts_retry": {
+    "description": "U17: error state action."
+  },
   "chat_open": "Chat",
   "@chat_open": {
     "description": "U10/U12: button that opens U11 Chat."

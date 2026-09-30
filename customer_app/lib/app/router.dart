@@ -8,6 +8,7 @@ import '../features/booking/presentation/price_screen.dart';
 import '../features/booking/presentation/problem_screen.dart';
 import '../features/booking/presentation/review_screen.dart';
 import '../features/chat/presentation/chat_screen.dart';
+import '../features/contacts/presentation/contacts_screen.dart';
 import '../features/first_run/application/first_run.dart';
 import '../features/first_run/presentation/consent_screen.dart';
 import '../features/first_run/presentation/language_screen.dart';
@@ -27,6 +28,9 @@ abstract final class AppRoutes {
   static const home = '/';
   static const privacy = '/privacy';
   static const help = '/help';
+
+  /// U17 Emergency contacts (linked from U18 and the SOS sheet).
+  static const emergencyContacts = '/profile/contacts';
   static const vehicles = '/vehicles';
   static const addVehicle = '/vehicles/add';
 
@@ -72,6 +76,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: AppRoutes.privacy, builder: (context, state) => const PrivacyNoticeScreen()),
       GoRoute(path: AppRoutes.home, builder: (context, state) => const HomeScreen()),
       GoRoute(path: AppRoutes.help, builder: (context, state) => const HelpScreen()),
+      GoRoute(
+        path: AppRoutes.emergencyContacts,
+        builder: (context, state) => const EmergencyContactsScreen(),
+      ),
       GoRoute(path: AppRoutes.vehicles, builder: (context, state) => const MyVehiclesScreen()),
       GoRoute(path: AppRoutes.addVehicle, builder: (context, state) => const AddVehicleScreen()),
       GoRoute(path: AppRoutes.bookProblem, builder: (context, state) => const ProblemScreen()),

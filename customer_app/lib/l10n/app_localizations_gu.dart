@@ -905,6 +905,74 @@ class AppLocalizationsGu extends AppLocalizations {
   String get home_booking_open => 'ખોલવા ટેપ કરો';
 
   @override
+  String get contacts_title => 'કટોકટી સંપર્કો';
+
+  @override
+  String get contacts_body => 'SOS આ લોકોને તમારું લાઇવ લોકેશન મોકલે છે. વધુમાં વધુ 3.';
+
+  @override
+  String get contacts_empty => 'હજી કોઈ સંપર્ક નથી. કટોકટીમાં મદદ કરી શકે તેવા કોઈને ઉમેરો.';
+
+  @override
+  String get contacts_add_picker => 'સંપર્કોમાંથી ઉમેરો';
+
+  @override
+  String get contacts_add_manual => 'નંબર લખો';
+
+  @override
+  String get contacts_full => 'તમે વધુમાં વધુ 3 સંપર્કો સેવ કરી શકો છો.';
+
+  @override
+  String contacts_remove(String name) {
+    return '$nameને દૂર કરો';
+  }
+
+  @override
+  String get contacts_save => 'સેવ કરો';
+
+  @override
+  String get contacts_saved => 'સંપર્કો સેવ થયા.';
+
+  @override
+  String get contacts_save_failed => 'તમારા સંપર્કો સેવ થઈ શક્યા નહીં. ફરી પ્રયાસ કરો.';
+
+  @override
+  String get contacts_error_invalid => 'આ નંબર વાપરી શકાય નહીં. મોબાઇલ નંબર નાખો.';
+
+  @override
+  String get contacts_error_duplicate => 'આ નંબર પહેલેથી યાદીમાં છે.';
+
+  @override
+  String get contacts_picker_failed => 'તમારા સંપર્કો ખૂલી શક્યા નહીં. નંબર લખીને ઉમેરો.';
+
+  @override
+  String get contacts_manual_title => 'સંપર્ક ઉમેરો';
+
+  @override
+  String get contacts_name_label => 'નામ';
+
+  @override
+  String get contacts_phone_label => 'મોબાઇલ નંબર';
+
+  @override
+  String get contacts_manual_add => 'ઉમેરો';
+
+  @override
+  String get contacts_discard_title => 'ફેરફારો છોડી દેવા છે?';
+
+  @override
+  String get contacts_discard => 'છોડી દો';
+
+  @override
+  String get contacts_keep_editing => 'ફેરફાર ચાલુ રાખો';
+
+  @override
+  String get contacts_error => 'તમારા સંપર્કો લોડ થઈ શક્યા નહીં.';
+
+  @override
+  String get contacts_retry => 'ફરી પ્રયાસ કરો';
+
+  @override
   String get chat_open => 'ચેટ';
 
   @override

@@ -1719,6 +1719,138 @@ abstract class AppLocalizations {
   /// **'Tap to open it'**
   String get home_booking_open;
 
+  /// U17: title.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency contacts'**
+  String get contacts_title;
+
+  /// U17: what the list is for.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS sends these people your live location. Up to 3.'**
+  String get contacts_body;
+
+  /// U17: shown when the list is empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No contacts yet. Add someone who can help in an emergency.'**
+  String get contacts_empty;
+
+  /// U17: opens the phone's contact picker (no contacts permission).
+  ///
+  /// In en, this message translates to:
+  /// **'Add from contacts'**
+  String get contacts_add_picker;
+
+  /// U17: type a contact in instead.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a number'**
+  String get contacts_add_manual;
+
+  /// U17: shown when 3 are saved.
+  ///
+  /// In en, this message translates to:
+  /// **'You can save up to 3 contacts.'**
+  String get contacts_full;
+
+  /// U17: remove button tooltip / TalkBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {name}'**
+  String contacts_remove(String name);
+
+  /// U17: sticky save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get contacts_save;
+
+  /// U17: toast after saving.
+  ///
+  /// In en, this message translates to:
+  /// **'Contacts saved.'**
+  String get contacts_saved;
+
+  /// U17: toast when saving failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save your contacts. Try again.'**
+  String get contacts_save_failed;
+
+  /// U17: the picked or typed number isn't a valid phone number.
+  ///
+  /// In en, this message translates to:
+  /// **'That number can\'t be used. Use a mobile number.'**
+  String get contacts_error_invalid;
+
+  /// U17: the same number twice.
+  ///
+  /// In en, this message translates to:
+  /// **'That number is already on the list.'**
+  String get contacts_error_duplicate;
+
+  /// U17: the picker is missing or failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t open your contacts. Enter the number instead.'**
+  String get contacts_picker_failed;
+
+  /// U17: sheet title for typing a contact.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a contact'**
+  String get contacts_manual_title;
+
+  /// U17: name field.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get contacts_name_label;
+
+  /// U17: phone field.
+  ///
+  /// In en, this message translates to:
+  /// **'Mobile number'**
+  String get contacts_phone_label;
+
+  /// U17: adds the typed contact.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get contacts_manual_add;
+
+  /// U17: leaving with unsaved changes.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard your changes?'**
+  String get contacts_discard_title;
+
+  /// U17: leave without saving.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard'**
+  String get contacts_discard;
+
+  /// U17: stay on the screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep editing'**
+  String get contacts_keep_editing;
+
+  /// U17: error state.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your contacts.'**
+  String get contacts_error;
+
+  /// U17: error state action.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get contacts_retry;
+
   /// U10/U12: button that opens U11 Chat.
   ///
   /// In en, this message translates to:

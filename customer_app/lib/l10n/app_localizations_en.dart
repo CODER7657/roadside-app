@@ -906,6 +906,74 @@ class AppLocalizationsEn extends AppLocalizations {
   String get home_booking_open => 'Tap to open it';
 
   @override
+  String get contacts_title => 'Emergency contacts';
+
+  @override
+  String get contacts_body => 'SOS sends these people your live location. Up to 3.';
+
+  @override
+  String get contacts_empty => 'No contacts yet. Add someone who can help in an emergency.';
+
+  @override
+  String get contacts_add_picker => 'Add from contacts';
+
+  @override
+  String get contacts_add_manual => 'Enter a number';
+
+  @override
+  String get contacts_full => 'You can save up to 3 contacts.';
+
+  @override
+  String contacts_remove(String name) {
+    return 'Remove $name';
+  }
+
+  @override
+  String get contacts_save => 'Save';
+
+  @override
+  String get contacts_saved => 'Contacts saved.';
+
+  @override
+  String get contacts_save_failed => 'Couldn\'t save your contacts. Try again.';
+
+  @override
+  String get contacts_error_invalid => 'That number can\'t be used. Use a mobile number.';
+
+  @override
+  String get contacts_error_duplicate => 'That number is already on the list.';
+
+  @override
+  String get contacts_picker_failed => 'Couldn\'t open your contacts. Enter the number instead.';
+
+  @override
+  String get contacts_manual_title => 'Add a contact';
+
+  @override
+  String get contacts_name_label => 'Name';
+
+  @override
+  String get contacts_phone_label => 'Mobile number';
+
+  @override
+  String get contacts_manual_add => 'Add';
+
+  @override
+  String get contacts_discard_title => 'Discard your changes?';
+
+  @override
+  String get contacts_discard => 'Discard';
+
+  @override
+  String get contacts_keep_editing => 'Keep editing';
+
+  @override
+  String get contacts_error => 'Couldn\'t load your contacts.';
+
+  @override
+  String get contacts_retry => 'Try again';
+
+  @override
   String get chat_open => 'Chat';
 
   @override
