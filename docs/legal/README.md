@@ -16,7 +16,8 @@ prod = the production project's site. The pages are plain HTML with `legal.css`,
 strict CSP (`default-src 'none'; style-src 'self'`). They deploy with every Firebase deploy.
 
 **Production guard:** `tool/check_legal_placeholders.sh` runs in the production deploy and fails
-while any `[[PLACEHOLDER]]` remains. Dev deploys skip it so the drafts can be previewed.
+while any `[[PLACEHOLDER]]` or "Draft for review" banner (`<p class="draft">`) remains. Dev deploys
+skip it so the drafts can be previewed.
 
 ## What the client must provide
 
