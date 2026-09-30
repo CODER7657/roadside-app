@@ -32,6 +32,7 @@ jobs:
       functions: ${{ steps.filter.outputs.functions }}
       rules: ${{ steps.filter.outputs.rules }}
       workflows: ${{ steps.filter.outputs.workflows }}
+      tools: ${{ steps.filter.outputs.tools }}
     steps:
       - uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
@@ -52,6 +53,7 @@ jobs:
             functions: ['firebase/functions/**']
             rules:     ['firebase/*.rules', 'firebase/rules_tests/**', 'firebase/firestore.indexes.json']
             workflows: ['.github/workflows/**']
+            tools:     ['tool/**']
 
   lane_ui:
     needs: changes
@@ -170,6 +172,32 @@ jobs:
         working-directory: firebase
         run: npx --yes firebase-tools@latest emulators:exec --project demo-roadside --only firestore,storage "npm --prefix rules_tests test"
 
+  tools:
+    name: Tool self-tests (check_strings, scripts)
+    needs: changes
+    if: needs.changes.outputs.tools == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
+        with:
+          channel: stable
+          cache: true
+      - name: Shell syntax
+        shell: bash
+        run: for f in tool/*.sh tool/test/*.sh; do bash -n "$f"; done
+      - name: Analyze check_strings
+        run: dart analyze --fatal-infos tool/check_strings.dart
+      - name: check_strings self-test
+        shell: bash
+        run: bash tool/test/check_strings_test.sh
+
   secrets:
     name: Secret scan (gitleaks)
     runs-on: ubuntu-latest
@@ -209,7 +237,7 @@ jobs:
   ci-result:
     name: CI result
     if: always()
-    needs: [changes, lane_ui, roadside_core, customer_app, mechanic_app, admin_panel, functions, rules, secrets, actionlint]
+    needs: [changes, lane_ui, roadside_core, customer_app, mechanic_app, admin_panel, functions, rules, tools, secrets, actionlint]
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:

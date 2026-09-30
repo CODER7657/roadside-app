@@ -1,0 +1,7 @@
+{
+  "@@locale": "en",
+  "home_title": "Help on the road",
+  "flow_step_label": "Step {step} of {total}",
+  "@flow_step_label": { "placeholders": { "step": { "type": "int" }, "total": { "type": "int" } } },
+  "Title": "Bad key"
+}

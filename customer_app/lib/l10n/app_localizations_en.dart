@@ -336,4 +336,113 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get error_reg_no_invalid => 'Check the number, e.g. GJ 01 AB 1234 or 22 BH 1234 AA';
+
+  @override
+  String get home_get_help => 'Get help';
+
+  @override
+  String booking_step(int step, int total) {
+    return 'Step $step of $total';
+  }
+
+  @override
+  String get booking_next => 'Next';
+
+  @override
+  String get problem_title => 'What\'s wrong?';
+
+  @override
+  String get problem_vehicle_label => 'Vehicle';
+
+  @override
+  String get problem_no_vehicle_title => 'Add your vehicle first';
+
+  @override
+  String get problem_no_vehicle_body => 'The mechanic needs to know what they are fixing.';
+
+  @override
+  String get problem_add_vehicle => 'Add vehicle';
+
+  @override
+  String get problem_type_flat_tyre => 'Flat tyre';
+
+  @override
+  String get problem_type_battery => 'Battery';
+
+  @override
+  String get problem_type_wont_start => 'Won\'t start';
+
+  @override
+  String get problem_type_overheating => 'Overheating';
+
+  @override
+  String get problem_type_accident => 'Accident';
+
+  @override
+  String get problem_type_fuel => 'Out of fuel';
+
+  @override
+  String get problem_type_other => 'Something else';
+
+  @override
+  String get photos_title => 'Photos and details';
+
+  @override
+  String get photos_body =>
+      'Optional. Photos help the mechanic bring the right parts. We remove the location from every photo.';
+
+  @override
+  String get photos_take => 'Take photo';
+
+  @override
+  String get photos_gallery => 'Choose from gallery';
+
+  @override
+  String photos_count(int count, int max) {
+    return '$count of $max photos';
+  }
+
+  @override
+  String photos_remove(int n) {
+    return 'Remove photo $n';
+  }
+
+  @override
+  String photos_uploading(int n) {
+    return 'Uploading photo $n';
+  }
+
+  @override
+  String photos_retry(int n) {
+    return 'Photo $n did not upload. Try again';
+  }
+
+  @override
+  String get photos_error_limit => 'You can add up to 4 photos.';
+
+  @override
+  String get photos_error_too_large => 'That photo is too large. Try another one.';
+
+  @override
+  String get photos_error_failed => 'Couldn\'t add that photo. Try again.';
+
+  @override
+  String get photos_error_upload => 'Some photos did not upload. Retry them or remove them to continue.';
+
+  @override
+  String get description_label => 'What happened?';
+
+  @override
+  String get description_hint => 'For example: rear tyre went flat near the toll plaza';
+
+  @override
+  String get photos_skip => 'Skip';
+
+  @override
+  String photos_item(int n) {
+    return 'Photo $n';
+  }
+
+  @override
+  String get booking_back_home => 'Back to home';
 }

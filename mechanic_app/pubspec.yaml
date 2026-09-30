@@ -1,0 +1,31 @@
+name: mechanic_app
+description: "Roadside mechanic app (PLAN.md §10, P2)."
+publish_to: 'none'
+
+# versionName+versionCode; bumped by the release PR (P2 guide §8).
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.13.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_riverpod: ^3.4.3
+  go_router: ^18.0.2
+  intl: ^0.20.3
+  lane_ui:
+    path: ../packages/lane_ui
+  roadside_core:
+    path: ../packages/roadside_core
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  generate: true
+  uses-material-design: true
