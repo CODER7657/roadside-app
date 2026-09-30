@@ -8,7 +8,10 @@ import 'package:roadside_core/roadside_core.dart';
 import '../../../_local_ui/first_run_widgets.dart';
 import '../../../_local_ui/photo_slot.dart';
 import '../../../app/router.dart';
+import '../../../app/secure_window.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../permissions/application/permission_service.dart';
+import '../../permissions/presentation/permission_explainer_screen.dart';
 import '../application/registration.dart';
 import '../data/mechanic_photos.dart';
 import 'registration_labels.dart';
@@ -46,7 +49,7 @@ class RegistrationScreen extends ConsumerWidget {
       RegistrationStep.idAndPay => const _IdStep(),
     };
 
-    return LaneFlowScaffold(
+    final flow = LaneFlowScaffold(
       // A fresh scaffold per step, so each step opens scrolled to the top.
       key: ValueKey(state.step),
       step: index + 1,
@@ -71,6 +74,8 @@ class RegistrationScreen extends ConsumerWidget {
         body,
       ],
     );
+    // PLAN §12.7: the ID proof and UPI details never show in screenshots or the recents preview.
+    return state.step == RegistrationStep.idAndPay ? SecureScreen(child: flow) : flow;
   }
 }
 
@@ -195,6 +200,11 @@ Future<void> _pickPhoto(BuildContext context, WidgetRef ref, {RegistrationPhoto?
     ),
   );
   if (source == null) return;
+  // PLAN §13: the C7 explainer comes before Android's camera prompt. The gallery needs no
+  // permission (Android's photo picker).
+  if (source == PhotoSource.camera) {
+    if (!context.mounted || !await ensurePermission(context, ref, AppPermission.camera)) return;
+  }
   final c = ref.read(registrationProvider.notifier);
   try {
     if (slot == null) {

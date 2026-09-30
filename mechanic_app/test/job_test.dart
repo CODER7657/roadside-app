@@ -19,6 +19,8 @@ import 'package:mechanic_app/features/job/application/job.dart';
 import 'package:mechanic_app/features/job/data/job_repository.dart';
 import 'package:mechanic_app/features/job/presentation/job_screen.dart';
 import 'package:mechanic_app/features/offers/application/offers.dart';
+import 'package:mechanic_app/features/permissions/application/permission_service.dart';
+import 'package:mechanic_app/features/permissions/presentation/permission_explainer_screen.dart';
 import 'package:mechanic_app/features/registration/application/registration.dart';
 import 'package:roadside_core/roadside_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -42,8 +44,11 @@ class FakeLocation implements LocationService {
   void move(double lat, double lng) =>
       _c!.add(LocationFix(lat: lat, lng: lng, accuracyMeters: 5, heading: 90, speed: 6));
 
+  /// The phone's location switch.
+  bool gpsOn = true;
+
   @override
-  Future<bool> serviceEnabled() async => true;
+  Future<bool> serviceEnabled() async => gpsOn;
 
   @override
   Future<bool> openSettings() async => true;
@@ -61,6 +66,28 @@ class FakeLocation implements LocationService {
     _c = StreamController<LocationFix>();
     return _c!.stream;
   }
+}
+
+/// Location permission as the phone has it; asking grants it.
+class FakePermissions implements PermissionService {
+  FakePermissions([this.location = PermissionAccess.granted]);
+
+  PermissionAccess location;
+  final requested = <AppPermission>[];
+
+  @override
+  Future<PermissionAccess> status(AppPermission permission) async =>
+      permission == AppPermission.location ? location : PermissionAccess.granted;
+
+  @override
+  Future<PermissionAccess> request(AppPermission permission) async {
+    requested.add(permission);
+    if (permission == AppPermission.location) location = PermissionAccess.granted;
+    return PermissionAccess.granted;
+  }
+
+  @override
+  Future<bool> openSettings() async => true;
 }
 
 const pickup = GeoPoint(23.0225, 72.5714);
@@ -117,15 +144,18 @@ void main() {
   group('JobTrackingController', () {
     late FakeLocation location;
     late InMemoryLiveLocationRepository live;
+    late FakePermissions permissions;
     late ProviderContainer c;
 
     setUp(() {
       location = FakeLocation();
       live = InMemoryLiveLocationRepository();
+      permissions = FakePermissions();
       c = ProviderContainer(
         overrides: [
           locationServiceProvider.overrideWithValue(location),
           liveLocationRepositoryProvider.overrideWithValue(live),
+          permissionServiceProvider.overrideWithValue(permissions),
         ],
       );
       addTearDown(c.dispose);
@@ -134,7 +164,7 @@ void main() {
     const note = ForegroundTracking(title: 'Sharing your location', text: 'With your customer');
 
     test('every 5 s / 10 m as a foreground service; each fix written with an ETA', () async {
-      c.read(jobTrackingProvider.notifier).start(bookingId: 'b-1', pickup: pickup, notification: note);
+      await c.read(jobTrackingProvider.notifier).start(bookingId: 'b-1', pickup: pickup, notification: note);
       expect(location.distance, 10);
       expect(location.interval, const Duration(seconds: 5));
       expect(location.foreground?.title, 'Sharing your location', reason: 'keeps going with the screen off');
@@ -148,13 +178,43 @@ void main() {
 
     test('starting the same job again keeps the one stream; stop ends it', () async {
       final t = c.read(jobTrackingProvider.notifier);
-      t.start(bookingId: 'b-1', pickup: pickup, notification: note);
-      t.start(bookingId: 'b-1', pickup: pickup, notification: note);
+      // The second start comes while the first is still checking: still one stream.
+      final first = t.start(bookingId: 'b-1', pickup: pickup, notification: note);
+      final second = t.start(bookingId: 'b-1', pickup: pickup, notification: note);
+      await (first, second).wait;
       expect(location.streams, 1);
       t.stop();
       await pumpEventQueue();
       expect(location.listening, isFalse);
       expect(c.read(jobTrackingProvider).isTracking, isFalse);
+    });
+
+    test('no location permission: no foreground service, says why; retry after allowing', () async {
+      permissions.location = PermissionAccess.askable;
+      final t = c.read(jobTrackingProvider.notifier);
+      await t.start(bookingId: 'b-1', pickup: pickup, notification: note);
+      expect(location.streams, 0);
+      expect(c.read(jobTrackingProvider).problem, JobLocationProblem.permission);
+      expect(c.read(jobTrackingProvider).isTracking, isTrue, reason: 'still the active job');
+
+      permissions.location = PermissionAccess.granted;
+      await t.retry();
+      expect(location.streams, 1);
+      expect(c.read(jobTrackingProvider).problem, isNull);
+    });
+
+    test("phone's location off: says so; retry once it's on", () async {
+      location.gpsOn = false;
+      final t = c.read(jobTrackingProvider.notifier);
+      await t.start(bookingId: 'b-1', pickup: pickup, notification: note);
+      expect(c.read(jobTrackingProvider).problem, JobLocationProblem.gpsOff);
+      expect(location.streams, 0);
+      await t.retry();
+      expect(location.streams, 0, reason: 'still off');
+      location.gpsOn = true;
+      await t.retry();
+      expect(location.streams, 1);
+      expect(c.read(jobTrackingProvider).problem, isNull);
     });
   });
 
@@ -188,6 +248,7 @@ void main() {
     late InMemoryJobRepository jobs;
     late FakeLocation location;
     late InMemoryLiveLocationRepository live;
+    late FakePermissions permissions;
     final launched = <Uri>[];
 
     Future<Widget> app(BookingStatus status, {String language = 'en'}) async {
@@ -207,6 +268,7 @@ void main() {
           jobRepositoryProvider.overrideWithValue(jobs),
           locationServiceProvider.overrideWithValue(location),
           liveLocationRepositoryProvider.overrideWithValue(live),
+          permissionServiceProvider.overrideWithValue(permissions),
           launchLinkProvider.overrideWithValue((uri) async {
             launched.add(uri);
             return true;
@@ -237,7 +299,35 @@ void main() {
     setUp(() {
       location = FakeLocation();
       live = InMemoryLiveLocationRepository();
+      permissions = FakePermissions();
       launched.clear();
+    });
+
+    testWidgets('no location permission: the banner explains, Allow → C7 explainer → sharing starts', (
+      tester,
+    ) async {
+      permissions.location = PermissionAccess.askable;
+      await tester.pumpWidget(await app(BookingStatus.accepted));
+      await openJob(tester);
+      expect(find.textContaining("can't see you coming"), findsOneWidget);
+      expect(location.streams, 0);
+
+      await tapText(tester, 'ALLOW LOCATION');
+      expect(find.byType(PermissionExplainerScreen), findsOneWidget, reason: 'explainer before the prompt');
+      await tester.tap(find.widgetWithText(LaneButton, 'Allow'));
+      await tester.pumpAndSettle();
+      expect(permissions.requested, [AppPermission.location]);
+      expect(find.byType(JobScreen), findsOneWidget);
+      expect(find.textContaining("can't see you coming"), findsNothing);
+      expect(location.streams, 1);
+    });
+
+    testWidgets("phone's location off: the banner offers to turn it on", (tester) async {
+      location.gpsOn = false;
+      await tester.pumpWidget(await app(BookingStatus.arriving));
+      await openJob(tester);
+      expect(find.textContaining('location is switched off'), findsOneWidget);
+      expect(find.text('TURN ON LOCATION'), findsOneWidget);
     });
 
     testWidgets('accepted: address, customer, plate; Start trip → on the way; tracking runs', (tester) async {

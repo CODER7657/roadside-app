@@ -750,4 +750,17 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get login_error_failed => 'કંઈક ખોટું થયું. ફરી પ્રયાસ કરો.';
+
+  @override
+  String get job_location_needed =>
+      'ગ્રાહક તમને આવતા જોઈ શકતા નથી. લોકેશનની મંજૂરી આપો જેથી તેઓ તમને જોઈ શકે.';
+
+  @override
+  String get job_allow_location => 'લોકેશનની મંજૂરી આપો';
+
+  @override
+  String get job_gps_off => 'તમારા ફોનનું લોકેશન બંધ છે. તેને ચાલુ કરો જેથી ગ્રાહક તમને આવતા જોઈ શકે.';
+
+  @override
+  String get job_turn_on_location => 'લોકેશન ચાલુ કરો';
 }

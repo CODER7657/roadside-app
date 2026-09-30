@@ -974,5 +974,21 @@
   "login_error_failed": "Something went wrong. Try again.",
   "@login_error_failed": {
     "description": "C5/C6 error: anything else."
+  },
+  "job_location_needed": "The customer can't see you coming. Allow location so they can follow you.",
+  "@job_location_needed": {
+    "description": "M5 banner: no location permission."
+  },
+  "job_allow_location": "Allow location",
+  "@job_allow_location": {
+    "description": "M5 banner button: opens the C7 explainer."
+  },
+  "job_gps_off": "Your phone's location is switched off. Turn it on so the customer can see you coming.",
+  "@job_gps_off": {
+    "description": "M5 banner: GPS off."
+  },
+  "job_turn_on_location": "Turn on location",
+  "@job_turn_on_location": {
+    "description": "M5 banner button: opens the phone's location settings."
   }
 }
