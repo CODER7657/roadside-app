@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
@@ -29,6 +30,7 @@ Future<void> bootstrap(AppFlavor flavor) async {
   };
 
   AdminAuth? auth;
+  FirebaseFunctions? functions;
   final options = AppEnv.firebaseOptions;
   if (options != null) {
     await Firebase.initializeApp(options: options);
@@ -37,6 +39,8 @@ Future<void> bootstrap(AppFlavor flavor) async {
       await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
       FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
     }
+    functions = FirebaseFunctions.instanceFor(region: 'asia-south1');
+    if (AppEnv.useEmulators) functions.useFunctionsEmulator('localhost', 5001);
     auth = FirebaseAdminAuth(FirebaseAuth.instance);
   }
 
@@ -47,6 +51,7 @@ Future<void> bootstrap(AppFlavor flavor) async {
           flavorProvider.overrideWithValue(flavor),
           adminAuthProvider.overrideWithValue(auth),
           if (options != null) firestoreProvider.overrideWithValue(FirebaseFirestore.instance),
+          if (functions != null) functionsProvider.overrideWithValue(functions),
         ],
       ),
       child: const AdminApp(),

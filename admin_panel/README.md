@@ -69,6 +69,7 @@ lib/
 ├── app/            bootstrap, env, flavour, router (A0 outside, A1–A6 inside ConsoleShell)
 ├── features/
 │   ├── auth/       AdminAuth (Google), session gate, A0 sign-in
+│   ├── approvals/  A2 mechanic approvals (per-type checklist, admin callables #130, signed URLs)
 │   ├── console/    sections A1–A6, city filter, enum labels
 │   └── prices/     A4 price editor (defaults + per-city overrides, audited batch save)
 ├── l10n/           en / hi / gu

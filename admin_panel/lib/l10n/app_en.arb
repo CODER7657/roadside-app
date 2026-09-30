@@ -255,5 +255,282 @@
   "prices_error_order": "Minimum must be less than maximum",
   "@prices_error_order": {
     "description": "A4 cell error."
+  },
+  "mechanic_status_pending": "Pending",
+  "@mechanic_status_pending": {
+    "description": "Mechanic status."
+  },
+  "mechanic_status_approved": "Approved",
+  "@mechanic_status_approved": {
+    "description": "Mechanic status."
+  },
+  "mechanic_status_blocked": "Blocked",
+  "@mechanic_status_blocked": {
+    "description": "Mechanic status."
+  },
+  "mechanic_type_workshop": "Workshop",
+  "@mechanic_type_workshop": {
+    "description": "Mechanic type (PLAN §10.0)."
+  },
+  "mechanic_type_independent": "Independent",
+  "@mechanic_type_independent": {
+    "description": "Mechanic type (PLAN §10.0)."
+  },
+  "approvals_type_all": "All types",
+  "@approvals_type_all": {
+    "description": "A2 type filter."
+  },
+  "approvals_search_label": "Search",
+  "@approvals_search_label": {
+    "description": "A2 search field label."
+  },
+  "approvals_search_hint": "Mechanic name",
+  "@approvals_search_hint": {
+    "description": "A2 search hint."
+  },
+  "approvals_empty": "Nothing here: no mechanics with status {status}.",
+  "@approvals_empty": {
+    "description": "A2 empty list. {status} is a status name.",
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "approvals_load_failed": "Couldn't load mechanics.",
+  "@approvals_load_failed": {
+    "description": "A2 load error."
+  },
+  "approvals_experience": "{years, plural, =1{1 year} other{{years} years}}",
+  "@approvals_experience": {
+    "description": "Independent mechanic's experience.",
+    "placeholders": {
+      "years": {
+        "type": "int"
+      }
+    }
+  },
+  "approvals_registered": "registered {date}",
+  "@approvals_registered": {
+    "description": "A2: when the mechanic registered.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "approvals_base_area": "Base area",
+  "@approvals_base_area": {
+    "description": "Independent: where they start from."
+  },
+  "approvals_travel_vehicle": "Travel vehicle ({vehicle})",
+  "@approvals_travel_vehicle": {
+    "description": "Independent: vehicle they arrive on.",
+    "placeholders": {
+      "vehicle": {
+        "type": "String"
+      }
+    }
+  },
+  "approvals_shop_name": "Shop",
+  "@approvals_shop_name": {
+    "description": "Workshop name."
+  },
+  "approvals_shop_address": "Address",
+  "@approvals_shop_address": {
+    "description": "Workshop address."
+  },
+  "approvals_services": "Services",
+  "@approvals_services": {
+    "description": "Problem types they fix."
+  },
+  "approvals_vehicle_types": "Vehicles",
+  "@approvals_vehicle_types": {
+    "description": "Vehicle types they work on."
+  },
+  "approvals_photos": "Photos",
+  "@approvals_photos": {
+    "description": "A2 section title."
+  },
+  "approvals_photo_profile": "Profile photo",
+  "@approvals_photo_profile": {
+    "description": "Photo label."
+  },
+  "approvals_photo_shop": "Shop photo",
+  "@approvals_photo_shop": {
+    "description": "Photo label."
+  },
+  "approvals_photo_toolkit": "Toolkit photo {n}",
+  "@approvals_photo_toolkit": {
+    "description": "Photo label.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "approvals_kyc": "Identity and payment",
+  "@approvals_kyc": {
+    "description": "A2 KYC section title."
+  },
+  "approvals_kyc_missing": "KYC not submitted yet.",
+  "@approvals_kyc_missing": {
+    "description": "A2: no KYC document."
+  },
+  "approvals_upi": "UPI",
+  "@approvals_upi": {
+    "description": "KYC field."
+  },
+  "approvals_phone": "Phone",
+  "@approvals_phone": {
+    "description": "KYC field."
+  },
+  "approvals_reference": "Reference",
+  "@approvals_reference": {
+    "description": "Independent: optional reference."
+  },
+  "approvals_document_id": "Open ID proof",
+  "@approvals_document_id": {
+    "description": "Opens a signed URL."
+  },
+  "approvals_document_selfie": "Open selfie with ID",
+  "@approvals_document_selfie": {
+    "description": "Opens a signed URL."
+  },
+  "approvals_document_address": "Open address proof",
+  "@approvals_document_address": {
+    "description": "Opens a signed URL."
+  },
+  "approvals_documents_note": "Documents open in a new tab through a link that expires in minutes. Don't download them.",
+  "@approvals_documents_note": {
+    "description": "A2 KYC note (PLAN §12.11)."
+  },
+  "approvals_document_missing": "That document isn't available.",
+  "@approvals_document_missing": {
+    "description": "A2: no signed URL returned."
+  },
+  "approvals_checklist": "Checklist",
+  "@approvals_checklist": {
+    "description": "A2 section title."
+  },
+  "approvals_check_shop_photo": "Shop photo shows a real workshop",
+  "@approvals_check_shop_photo": {
+    "description": "Workshop checklist."
+  },
+  "approvals_check_id_proof": "ID proof matches the name",
+  "@approvals_check_id_proof": {
+    "description": "Workshop checklist."
+  },
+  "approvals_check_services": "Services and vehicles make sense",
+  "@approvals_check_services": {
+    "description": "Workshop checklist."
+  },
+  "approvals_check_selfie": "Selfie matches the ID",
+  "@approvals_check_selfie": {
+    "description": "Independent checklist."
+  },
+  "approvals_check_address": "Address proof checked",
+  "@approvals_check_address": {
+    "description": "Independent checklist."
+  },
+  "approvals_check_toolkit": "Toolkit photos show real tools",
+  "@approvals_check_toolkit": {
+    "description": "Independent checklist."
+  },
+  "approvals_call_notes_label": "Verification call notes",
+  "@approvals_call_notes_label": {
+    "description": "Independent: before logging the call."
+  },
+  "approvals_call_notes_hint": "Video call, ID matched, 6 years at Patel Motors confirmed.",
+  "@approvals_call_notes_hint": {
+    "description": "Example notes."
+  },
+  "approvals_call_log": "Log verification call",
+  "@approvals_call_log": {
+    "description": "Records the call (admin callable)."
+  },
+  "approvals_call_logged": "Verification call logged.",
+  "@approvals_call_logged": {
+    "description": "Toast."
+  },
+  "approvals_call_done": "Call logged {date}: {notes}",
+  "@approvals_call_done": {
+    "description": "Independent: the logged call.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "notes": {
+        "type": "String"
+      }
+    }
+  },
+  "approvals_approve": "Approve",
+  "@approvals_approve": {
+    "description": "A2 primary action."
+  },
+  "approvals_approved": "Approved. They can go online now.",
+  "@approvals_approved": {
+    "description": "Toast."
+  },
+  "approvals_block": "Block",
+  "@approvals_block": {
+    "description": "A2 destructive action."
+  },
+  "approvals_block_reason_label": "Why are you blocking them?",
+  "@approvals_block_reason_label": {
+    "description": "Block reason, required."
+  },
+  "approvals_block_reason_hint": "For example: ID proof doesn't match",
+  "@approvals_block_reason_hint": {
+    "description": "Block reason hint."
+  },
+  "approvals_block_confirm": "Block mechanic",
+  "@approvals_block_confirm": {
+    "description": "Confirms the block."
+  },
+  "approvals_block_cancel": "Cancel",
+  "@approvals_block_cancel": {
+    "description": "Cancels blocking."
+  },
+  "approvals_blocked": "Blocked. They're signed out everywhere.",
+  "@approvals_blocked": {
+    "description": "Toast."
+  },
+  "approvals_blocked_note": "This mechanic is blocked and can't receive jobs.",
+  "@approvals_blocked_note": {
+    "description": "A2 detail for blocked mechanics."
+  },
+  "approvals_audit_note": "Every approval, block and call is recorded in the audit log.",
+  "@approvals_audit_note": {
+    "description": "A2 footer."
+  },
+  "approvals_why_kyc": "Approve needs the KYC documents first.",
+  "@approvals_why_kyc": {
+    "description": "Why Approve is disabled."
+  },
+  "approvals_why_checklist": "Tick every checklist item to approve.",
+  "@approvals_why_checklist": {
+    "description": "Why Approve is disabled."
+  },
+  "approvals_why_call": "Log the verification call to approve an independent mechanic.",
+  "@approvals_why_call": {
+    "description": "Why Approve is disabled (PLAN §10.0)."
+  },
+  "approvals_error_unavailable": "That action isn't available yet. Try again later.",
+  "@approvals_error_unavailable": {
+    "description": "The callable isn't deployed or reachable."
+  },
+  "approvals_error_precondition": "The server refused: check the mechanic's status and the verification call.",
+  "@approvals_error_precondition": {
+    "description": "failed-precondition."
+  },
+  "approvals_error_not_allowed": "Your admin access has changed. Sign in again.",
+  "@approvals_error_not_allowed": {
+    "description": "permission-denied."
+  },
+  "approvals_error_unknown": "Something went wrong. Nothing was changed.",
+  "@approvals_error_unknown": {
+    "description": "Other errors."
   }
 }
