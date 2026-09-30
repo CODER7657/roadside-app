@@ -29,6 +29,7 @@ export 'src/components/lane_badges.dart' show LaneSignal, PlateChip, SignalBadge
 export 'src/components/lane_button.dart' show LaneButton;
 export 'src/components/lane_feedback.dart'
     show EmptyState, ErrorState, LaneToast, OfflineStrip, SkeletonBlock, SkeletonGroup, laneStrings;
+export 'src/components/lane_glare_button.dart' show LaneGlareButton;
 export 'src/components/lane_gestures.dart' show LaneHoldButton, LaneSlideToConfirm;
 export 'src/components/lane_icons.dart' show LaneIcon, LaneIcons, LaneTileGrid, ProblemTile, VehicleTile;
 export 'src/components/lane_inputs.dart' show LaneChip, LaneListTile, LaneSwitch, LaneTextField;

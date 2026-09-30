@@ -89,4 +89,10 @@ class LaneLocalizationsEn extends LaneLocalizations {
   String price_range_semantics(String min, String max) {
     return '$min to $max';
   }
+
+  @override
+  String get glare_turn_on => 'Sunlight mode: high contrast for bright light';
+
+  @override
+  String get glare_turn_off => 'Turn off sunlight mode';
 }
