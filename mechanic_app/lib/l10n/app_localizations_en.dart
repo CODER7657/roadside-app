@@ -247,4 +247,262 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get help_faq_cancel_a =>
       'Yes, but it counts against your reliability. Before you arrive, the job goes to another mechanic; after you arrive, tell us why.';
+
+  @override
+  String get register_type_title => 'Join as a mechanic';
+
+  @override
+  String get register_about_title => 'About you';
+
+  @override
+  String get register_work_title => 'Your work';
+
+  @override
+  String get register_id_title => 'ID and payment';
+
+  @override
+  String get register_next => 'Next';
+
+  @override
+  String get register_submit => 'Send for approval';
+
+  @override
+  String get register_error_upload =>
+      'A photo didn\'t upload. Check your connection and send again; photos already sent won\'t upload twice.';
+
+  @override
+  String get register_error_save => 'We couldn\'t save your details. Check your connection and send again.';
+
+  @override
+  String get register_type_question => 'Do you have a workshop?';
+
+  @override
+  String get register_type_workshop => 'Yes, I have a workshop';
+
+  @override
+  String get register_type_independent => 'No, I work independently';
+
+  @override
+  String get register_city_label => 'Your city';
+
+  @override
+  String get register_city_help => 'You get jobs in this city. Only our team can change it later.';
+
+  @override
+  String get city_ahmedabad => 'Ahmedabad';
+
+  @override
+  String get city_ankleshwar => 'Ankleshwar';
+
+  @override
+  String get city_bharuch => 'Bharuch';
+
+  @override
+  String get register_photo_source_title => 'Add a photo';
+
+  @override
+  String get register_photo_camera => 'Take a photo';
+
+  @override
+  String get register_photo_gallery => 'Choose from gallery';
+
+  @override
+  String get register_photo_too_large => 'That photo is too large. Try another one.';
+
+  @override
+  String get register_photo_add => 'Add photo';
+
+  @override
+  String get register_photo_remove => 'Remove photo';
+
+  @override
+  String get register_name_label => 'Your name';
+
+  @override
+  String get register_photo_profile => 'Your photo (customers see it)';
+
+  @override
+  String get register_shop_heading => 'Your shop';
+
+  @override
+  String get register_shop_name_label => 'Shop name';
+
+  @override
+  String get register_shop_address_label => 'Shop address';
+
+  @override
+  String get register_photo_shop => 'Shop photo';
+
+  @override
+  String get register_independent_heading => 'How you work';
+
+  @override
+  String get register_experience_label => 'Years of experience';
+
+  @override
+  String get register_base_area_label => 'Where you usually start from';
+
+  @override
+  String get register_base_area_hint => 'e.g. GIDC Ankleshwar';
+
+  @override
+  String get register_travel_heading => 'What you travel on';
+
+  @override
+  String get register_travel_reg_label => 'Its number plate';
+
+  @override
+  String get register_travel_reg_hint => 'e.g. GJ 16 CK 4471';
+
+  @override
+  String get register_toolkit_heading => 'Your tools';
+
+  @override
+  String get register_toolkit_help => 'Add at least 2 photos of the tools you carry.';
+
+  @override
+  String register_photo_toolkit(int number) {
+    return 'Tools $number';
+  }
+
+  @override
+  String get vehicle_type_car => 'Car';
+
+  @override
+  String get vehicle_type_bike => 'Bike';
+
+  @override
+  String get vehicle_type_scooter => 'Scooter';
+
+  @override
+  String get vehicle_type_ev => 'EV';
+
+  @override
+  String get register_vehicles_label => 'Vehicles you work on';
+
+  @override
+  String get register_services_label => 'What you can fix';
+
+  @override
+  String get problem_type_flat_tyre => 'Flat tyre';
+
+  @override
+  String get problem_type_battery => 'Battery';
+
+  @override
+  String get problem_type_wont_start => 'Won\'t start';
+
+  @override
+  String get problem_type_overheating => 'Overheating';
+
+  @override
+  String get problem_type_accident => 'Accident';
+
+  @override
+  String get problem_type_fuel => 'Out of fuel';
+
+  @override
+  String get problem_type_other => 'Something else';
+
+  @override
+  String get register_id_private => 'Only our verification team sees these. Customers never do.';
+
+  @override
+  String get register_photo_id_proof => 'ID proof';
+
+  @override
+  String get register_photo_selfie => 'Selfie holding your ID';
+
+  @override
+  String get register_photo_address_proof => 'Address proof';
+
+  @override
+  String get register_upi_heading => 'Where customers pay you';
+
+  @override
+  String get register_upi_id_label => 'UPI ID';
+
+  @override
+  String get register_upi_id_hint => 'e.g. name@bank';
+
+  @override
+  String get register_upi_name_label => 'Name on the UPI account';
+
+  @override
+  String get register_reference_heading => 'Someone who knows your work (optional)';
+
+  @override
+  String get register_reference_help => 'For example a workshop you trained at.';
+
+  @override
+  String get register_reference_name_label => 'Their name';
+
+  @override
+  String get register_reference_phone_label => 'Their phone';
+
+  @override
+  String get register_reference_phone_hint => '+91…';
+
+  @override
+  String get error_field_required => 'Please fill this in';
+
+  @override
+  String get error_field_too_long => 'That is too long';
+
+  @override
+  String get error_field_invalid => 'Please check this';
+
+  @override
+  String get error_reg_no_invalid => 'Check the number, e.g. GJ 01 AB 1234 or 22 BH 1234 AA';
+
+  @override
+  String get error_phone_invalid => 'Check the number, e.g. +91 98765 43210';
+
+  @override
+  String get error_upi_invalid => 'Check the UPI ID, e.g. name@bank';
+
+  @override
+  String get error_experience_invalid => 'Enter years as a number, 0 to 60';
+
+  @override
+  String get error_toolkit_photos_too_few => 'Add at least 2 photos of your tools';
+
+  @override
+  String get pending_title => 'We\'re checking your details';
+
+  @override
+  String get pending_body_workshop => 'Usually within 24 hours. We\'ll let you know.';
+
+  @override
+  String get pending_body_independent => 'We\'ll call you for a short verification, usually within 24 hours.';
+
+  @override
+  String get pending_blocked_title => 'Your account is on hold';
+
+  @override
+  String get pending_blocked_body => 'Please call support to find out more.';
+
+  @override
+  String get pending_item_shop => 'Shop details';
+
+  @override
+  String get pending_item_details => 'Your details and tools';
+
+  @override
+  String get pending_item_id => 'ID proof';
+
+  @override
+  String get pending_item_id_selfie => 'ID, selfie and address proof';
+
+  @override
+  String get pending_item_call => 'Verification call';
+
+  @override
+  String get pending_received => 'Received';
+
+  @override
+  String get pending_checking => 'Checking…';
+
+  @override
+  String get pending_call_waiting => 'We\'ll call you';
 }

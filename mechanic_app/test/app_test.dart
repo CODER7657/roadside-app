@@ -11,6 +11,9 @@ import 'package:mechanic_app/app/flavor.dart';
 import 'package:mechanic_app/features/first_run/application/first_run.dart';
 import 'package:mechanic_app/features/home/presentation/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mechanic_app/features/registration/application/registration.dart';
+
+import 'support.dart';
 
 class _NoBattery implements LaneBatterySource {
   @override
@@ -34,6 +37,7 @@ Widget app(AppFlavor flavor) => ProviderScope(
   overrides: [
     flavorProvider.overrideWithValue(flavor),
     sharedPreferencesProvider.overrideWithValue(prefs),
+    registrationRepositoryProvider.overrideWithValue(approvedMechanic()),
     laneBatterySourceProvider.overrideWithValue(_NoBattery()),
     laneClockProvider.overrideWithValue(() => DateTime.utc(2026, 9, 29, 6, 30)),
   ],

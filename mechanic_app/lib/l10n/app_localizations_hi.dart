@@ -248,4 +248,262 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get help_faq_cancel_a =>
       'हाँ, लेकिन इससे आपकी विश्वसनीयता पर असर पड़ता है। पहुँचने से पहले काम दूसरे मैकेनिक को जाता है; पहुँचने के बाद कारण बताएँ।';
+
+  @override
+  String get register_type_title => 'मैकेनिक के रूप में जुड़ें';
+
+  @override
+  String get register_about_title => 'आपके बारे में';
+
+  @override
+  String get register_work_title => 'आपका काम';
+
+  @override
+  String get register_id_title => 'पहचान और भुगतान';
+
+  @override
+  String get register_next => 'आगे';
+
+  @override
+  String get register_submit => 'मंज़ूरी के लिए भेजें';
+
+  @override
+  String get register_error_upload =>
+      'एक फ़ोटो अपलोड नहीं हुई। अपना कनेक्शन जाँचें और फिर से भेजें; भेजी जा चुकी फ़ोटो दोबारा अपलोड नहीं होंगी।';
+
+  @override
+  String get register_error_save => 'हम आपकी जानकारी सेव नहीं कर पाए। अपना कनेक्शन जाँचें और फिर से भेजें।';
+
+  @override
+  String get register_type_question => 'क्या आपकी वर्कशॉप है?';
+
+  @override
+  String get register_type_workshop => 'हाँ, मेरी वर्कशॉप है';
+
+  @override
+  String get register_type_independent => 'नहीं, मैं अकेले काम करता हूँ';
+
+  @override
+  String get register_city_label => 'आपका शहर';
+
+  @override
+  String get register_city_help => 'आपको इसी शहर में काम मिलेंगे। बाद में इसे सिर्फ़ हमारी टीम बदल सकती है।';
+
+  @override
+  String get city_ahmedabad => 'अहमदाबाद';
+
+  @override
+  String get city_ankleshwar => 'अंकलेश्वर';
+
+  @override
+  String get city_bharuch => 'भरूच';
+
+  @override
+  String get register_photo_source_title => 'फ़ोटो जोड़ें';
+
+  @override
+  String get register_photo_camera => 'फ़ोटो खींचें';
+
+  @override
+  String get register_photo_gallery => 'गैलरी से चुनें';
+
+  @override
+  String get register_photo_too_large => 'यह फ़ोटो बहुत बड़ी है। कोई दूसरी आज़माएँ।';
+
+  @override
+  String get register_photo_add => 'फ़ोटो जोड़ें';
+
+  @override
+  String get register_photo_remove => 'फ़ोटो हटाएँ';
+
+  @override
+  String get register_name_label => 'आपका नाम';
+
+  @override
+  String get register_photo_profile => 'आपकी फ़ोटो (ग्राहक देखते हैं)';
+
+  @override
+  String get register_shop_heading => 'आपकी दुकान';
+
+  @override
+  String get register_shop_name_label => 'दुकान का नाम';
+
+  @override
+  String get register_shop_address_label => 'दुकान का पता';
+
+  @override
+  String get register_photo_shop => 'दुकान की फ़ोटो';
+
+  @override
+  String get register_independent_heading => 'आप कैसे काम करते हैं';
+
+  @override
+  String get register_experience_label => 'अनुभव के साल';
+
+  @override
+  String get register_base_area_label => 'आप आमतौर पर कहाँ से निकलते हैं';
+
+  @override
+  String get register_base_area_hint => 'जैसे GIDC अंकलेश्वर';
+
+  @override
+  String get register_travel_heading => 'आप किस पर आते-जाते हैं';
+
+  @override
+  String get register_travel_reg_label => 'उसकी नंबर प्लेट';
+
+  @override
+  String get register_travel_reg_hint => 'जैसे GJ 16 CK 4471';
+
+  @override
+  String get register_toolkit_heading => 'आपके औज़ार';
+
+  @override
+  String get register_toolkit_help => 'आप जो औज़ार साथ रखते हैं उनकी कम से कम 2 फ़ोटो जोड़ें।';
+
+  @override
+  String register_photo_toolkit(int number) {
+    return 'औज़ार $number';
+  }
+
+  @override
+  String get vehicle_type_car => 'कार';
+
+  @override
+  String get vehicle_type_bike => 'बाइक';
+
+  @override
+  String get vehicle_type_scooter => 'स्कूटर';
+
+  @override
+  String get vehicle_type_ev => 'EV';
+
+  @override
+  String get register_vehicles_label => 'आप किन गाड़ियों पर काम करते हैं';
+
+  @override
+  String get register_services_label => 'आप क्या ठीक कर सकते हैं';
+
+  @override
+  String get problem_type_flat_tyre => 'टायर पंचर';
+
+  @override
+  String get problem_type_battery => 'बैटरी';
+
+  @override
+  String get problem_type_wont_start => 'स्टार्ट नहीं हो रही';
+
+  @override
+  String get problem_type_overheating => 'ज़्यादा गरम';
+
+  @override
+  String get problem_type_accident => 'दुर्घटना';
+
+  @override
+  String get problem_type_fuel => 'ईंधन खत्म';
+
+  @override
+  String get problem_type_other => 'कुछ और';
+
+  @override
+  String get register_id_private => 'इन्हें सिर्फ़ हमारी जाँच टीम देखती है। ग्राहक कभी नहीं देखते।';
+
+  @override
+  String get register_photo_id_proof => 'पहचान पत्र';
+
+  @override
+  String get register_photo_selfie => 'पहचान पत्र पकड़े हुए सेल्फ़ी';
+
+  @override
+  String get register_photo_address_proof => 'पते का प्रमाण';
+
+  @override
+  String get register_upi_heading => 'ग्राहक आपको कहाँ भुगतान करें';
+
+  @override
+  String get register_upi_id_label => 'UPI ID';
+
+  @override
+  String get register_upi_id_hint => 'जैसे name@bank';
+
+  @override
+  String get register_upi_name_label => 'UPI खाते पर नाम';
+
+  @override
+  String get register_reference_heading => 'कोई जो आपका काम जानता हो (वैकल्पिक)';
+
+  @override
+  String get register_reference_help => 'जैसे कोई वर्कशॉप जहाँ आपने सीखा।';
+
+  @override
+  String get register_reference_name_label => 'उनका नाम';
+
+  @override
+  String get register_reference_phone_label => 'उनका फ़ोन';
+
+  @override
+  String get register_reference_phone_hint => '+91…';
+
+  @override
+  String get error_field_required => 'कृपया इसे भरें';
+
+  @override
+  String get error_field_too_long => 'यह बहुत लंबा है';
+
+  @override
+  String get error_field_invalid => 'कृपया इसे जाँचें';
+
+  @override
+  String get error_reg_no_invalid => 'नंबर जाँचें, जैसे GJ 01 AB 1234 या 22 BH 1234 AA';
+
+  @override
+  String get error_phone_invalid => 'नंबर जाँचें, जैसे +91 98765 43210';
+
+  @override
+  String get error_upi_invalid => 'UPI ID जाँचें, जैसे name@bank';
+
+  @override
+  String get error_experience_invalid => 'साल अंकों में लिखें, 0 से 60';
+
+  @override
+  String get error_toolkit_photos_too_few => 'अपने औज़ारों की कम से कम 2 फ़ोटो जोड़ें';
+
+  @override
+  String get pending_title => 'हम आपकी जानकारी जाँच रहे हैं';
+
+  @override
+  String get pending_body_workshop => 'आमतौर पर 24 घंटे में। हम आपको बताएँगे।';
+
+  @override
+  String get pending_body_independent => 'एक छोटी जाँच के लिए हम आपको कॉल करेंगे, आमतौर पर 24 घंटे में।';
+
+  @override
+  String get pending_blocked_title => 'आपका खाता रोका गया है';
+
+  @override
+  String get pending_blocked_body => 'ज़्यादा जानने के लिए कृपया सहायता को कॉल करें।';
+
+  @override
+  String get pending_item_shop => 'दुकान की जानकारी';
+
+  @override
+  String get pending_item_details => 'आपकी जानकारी और औज़ार';
+
+  @override
+  String get pending_item_id => 'पहचान पत्र';
+
+  @override
+  String get pending_item_id_selfie => 'पहचान, सेल्फ़ी और पते का प्रमाण';
+
+  @override
+  String get pending_item_call => 'जाँच कॉल';
+
+  @override
+  String get pending_received => 'मिल गया';
+
+  @override
+  String get pending_checking => 'जाँच हो रही है…';
+
+  @override
+  String get pending_call_waiting => 'हम कॉल करेंगे';
 }

@@ -524,6 +524,516 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Yes, but it counts against your reliability. Before you arrive, the job goes to another mechanic; after you arrive, tell us why.'**
   String get help_faq_cancel_a;
+
+  /// M1 step 1 title.
+  ///
+  /// In en, this message translates to:
+  /// **'Join as a mechanic'**
+  String get register_type_title;
+
+  /// M1 step 2 title.
+  ///
+  /// In en, this message translates to:
+  /// **'About you'**
+  String get register_about_title;
+
+  /// M1 step 3 title.
+  ///
+  /// In en, this message translates to:
+  /// **'Your work'**
+  String get register_work_title;
+
+  /// M1 step 4 title.
+  ///
+  /// In en, this message translates to:
+  /// **'ID and payment'**
+  String get register_id_title;
+
+  /// M1: next step.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get register_next;
+
+  /// M1: last step, submits the registration.
+  ///
+  /// In en, this message translates to:
+  /// **'Send for approval'**
+  String get register_submit;
+
+  /// M1: photo upload failed.
+  ///
+  /// In en, this message translates to:
+  /// **'A photo didn\'t upload. Check your connection and send again; photos already sent won\'t upload twice.'**
+  String get register_error_upload;
+
+  /// M1: saving the profile failed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t save your details. Check your connection and send again.'**
+  String get register_error_save;
+
+  /// M1 step 1: the first question (PLAN §10.0).
+  ///
+  /// In en, this message translates to:
+  /// **'Do you have a workshop?'**
+  String get register_type_question;
+
+  /// M1: workshop path.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, I have a workshop'**
+  String get register_type_workshop;
+
+  /// M1: independent path (M1·Ind).
+  ///
+  /// In en, this message translates to:
+  /// **'No, I work independently'**
+  String get register_type_independent;
+
+  /// M1: city heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Your city'**
+  String get register_city_label;
+
+  /// M1: city note (cityId is changed only by admin).
+  ///
+  /// In en, this message translates to:
+  /// **'You get jobs in this city. Only our team can change it later.'**
+  String get register_city_help;
+
+  /// City name.
+  ///
+  /// In en, this message translates to:
+  /// **'Ahmedabad'**
+  String get city_ahmedabad;
+
+  /// City name.
+  ///
+  /// In en, this message translates to:
+  /// **'Ankleshwar'**
+  String get city_ankleshwar;
+
+  /// City name.
+  ///
+  /// In en, this message translates to:
+  /// **'Bharuch'**
+  String get city_bharuch;
+
+  /// M1: camera or gallery sheet title.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a photo'**
+  String get register_photo_source_title;
+
+  /// M1: use the camera.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo'**
+  String get register_photo_camera;
+
+  /// M1: pick from gallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from gallery'**
+  String get register_photo_gallery;
+
+  /// M1: photo can't be made small enough.
+  ///
+  /// In en, this message translates to:
+  /// **'That photo is too large. Try another one.'**
+  String get register_photo_too_large;
+
+  /// M1: empty photo slot.
+  ///
+  /// In en, this message translates to:
+  /// **'Add photo'**
+  String get register_photo_add;
+
+  /// M1: remove a toolkit photo.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove photo'**
+  String get register_photo_remove;
+
+  /// M1: name field.
+  ///
+  /// In en, this message translates to:
+  /// **'Your name'**
+  String get register_name_label;
+
+  /// M1: profile photo slot.
+  ///
+  /// In en, this message translates to:
+  /// **'Your photo (customers see it)'**
+  String get register_photo_profile;
+
+  /// M1 workshop: heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Your shop'**
+  String get register_shop_heading;
+
+  /// M1 workshop: shop name.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop name'**
+  String get register_shop_name_label;
+
+  /// M1 workshop: shop address.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop address'**
+  String get register_shop_address_label;
+
+  /// M1 workshop: shop photo slot.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop photo'**
+  String get register_photo_shop;
+
+  /// M1·Ind: heading.
+  ///
+  /// In en, this message translates to:
+  /// **'How you work'**
+  String get register_independent_heading;
+
+  /// M1·Ind: experience.
+  ///
+  /// In en, this message translates to:
+  /// **'Years of experience'**
+  String get register_experience_label;
+
+  /// M1·Ind: base area locality.
+  ///
+  /// In en, this message translates to:
+  /// **'Where you usually start from'**
+  String get register_base_area_label;
+
+  /// M1·Ind: base area hint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. GIDC Ankleshwar'**
+  String get register_base_area_hint;
+
+  /// M1·Ind: travel vehicle heading (shown to customers).
+  ///
+  /// In en, this message translates to:
+  /// **'What you travel on'**
+  String get register_travel_heading;
+
+  /// M1·Ind: travel vehicle plate.
+  ///
+  /// In en, this message translates to:
+  /// **'Its number plate'**
+  String get register_travel_reg_label;
+
+  /// M1·Ind: plate hint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. GJ 16 CK 4471'**
+  String get register_travel_reg_hint;
+
+  /// M1·Ind: toolkit photos heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Your tools'**
+  String get register_toolkit_heading;
+
+  /// M1·Ind: toolkit photos help (2–5).
+  ///
+  /// In en, this message translates to:
+  /// **'Add at least 2 photos of the tools you carry.'**
+  String get register_toolkit_help;
+
+  /// M1·Ind: toolkit photo slot.
+  ///
+  /// In en, this message translates to:
+  /// **'Tools {number}'**
+  String register_photo_toolkit(int number);
+
+  /// Vehicle type.
+  ///
+  /// In en, this message translates to:
+  /// **'Car'**
+  String get vehicle_type_car;
+
+  /// Vehicle type.
+  ///
+  /// In en, this message translates to:
+  /// **'Bike'**
+  String get vehicle_type_bike;
+
+  /// Vehicle type.
+  ///
+  /// In en, this message translates to:
+  /// **'Scooter'**
+  String get vehicle_type_scooter;
+
+  /// Vehicle type.
+  ///
+  /// In en, this message translates to:
+  /// **'EV'**
+  String get vehicle_type_ev;
+
+  /// M1 step 3: vehicle types.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicles you work on'**
+  String get register_vehicles_label;
+
+  /// M1 step 3: services.
+  ///
+  /// In en, this message translates to:
+  /// **'What you can fix'**
+  String get register_services_label;
+
+  /// Problem type.
+  ///
+  /// In en, this message translates to:
+  /// **'Flat tyre'**
+  String get problem_type_flat_tyre;
+
+  /// Problem type.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery'**
+  String get problem_type_battery;
+
+  /// Problem type.
+  ///
+  /// In en, this message translates to:
+  /// **'Won\'t start'**
+  String get problem_type_wont_start;
+
+  /// Problem type.
+  ///
+  /// In en, this message translates to:
+  /// **'Overheating'**
+  String get problem_type_overheating;
+
+  /// Problem type.
+  ///
+  /// In en, this message translates to:
+  /// **'Accident'**
+  String get problem_type_accident;
+
+  /// Problem type.
+  ///
+  /// In en, this message translates to:
+  /// **'Out of fuel'**
+  String get problem_type_fuel;
+
+  /// Problem type.
+  ///
+  /// In en, this message translates to:
+  /// **'Something else'**
+  String get problem_type_other;
+
+  /// M1 step 4: KYC privacy note.
+  ///
+  /// In en, this message translates to:
+  /// **'Only our verification team sees these. Customers never do.'**
+  String get register_id_private;
+
+  /// M1: ID proof slot.
+  ///
+  /// In en, this message translates to:
+  /// **'ID proof'**
+  String get register_photo_id_proof;
+
+  /// M1·Ind: selfie with ID slot.
+  ///
+  /// In en, this message translates to:
+  /// **'Selfie holding your ID'**
+  String get register_photo_selfie;
+
+  /// M1·Ind: address proof slot.
+  ///
+  /// In en, this message translates to:
+  /// **'Address proof'**
+  String get register_photo_address_proof;
+
+  /// M1: UPI heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Where customers pay you'**
+  String get register_upi_heading;
+
+  /// M1: UPI ID.
+  ///
+  /// In en, this message translates to:
+  /// **'UPI ID'**
+  String get register_upi_id_label;
+
+  /// M1: UPI ID hint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. name@bank'**
+  String get register_upi_id_hint;
+
+  /// M1: UPI name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name on the UPI account'**
+  String get register_upi_name_label;
+
+  /// M1·Ind: reference heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Someone who knows your work (optional)'**
+  String get register_reference_heading;
+
+  /// M1·Ind: reference help.
+  ///
+  /// In en, this message translates to:
+  /// **'For example a workshop you trained at.'**
+  String get register_reference_help;
+
+  /// M1·Ind: reference name.
+  ///
+  /// In en, this message translates to:
+  /// **'Their name'**
+  String get register_reference_name_label;
+
+  /// M1·Ind: reference phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Their phone'**
+  String get register_reference_phone_label;
+
+  /// M1·Ind: phone hint (E.164).
+  ///
+  /// In en, this message translates to:
+  /// **'+91…'**
+  String get register_reference_phone_hint;
+
+  /// Validation.
+  ///
+  /// In en, this message translates to:
+  /// **'Please fill this in'**
+  String get error_field_required;
+
+  /// Validation.
+  ///
+  /// In en, this message translates to:
+  /// **'That is too long'**
+  String get error_field_too_long;
+
+  /// Validation.
+  ///
+  /// In en, this message translates to:
+  /// **'Please check this'**
+  String get error_field_invalid;
+
+  /// Validation.
+  ///
+  /// In en, this message translates to:
+  /// **'Check the number, e.g. GJ 01 AB 1234 or 22 BH 1234 AA'**
+  String get error_reg_no_invalid;
+
+  /// Validation.
+  ///
+  /// In en, this message translates to:
+  /// **'Check the number, e.g. +91 98765 43210'**
+  String get error_phone_invalid;
+
+  /// Validation.
+  ///
+  /// In en, this message translates to:
+  /// **'Check the UPI ID, e.g. name@bank'**
+  String get error_upi_invalid;
+
+  /// Validation.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter years as a number, 0 to 60'**
+  String get error_experience_invalid;
+
+  /// Validation.
+  ///
+  /// In en, this message translates to:
+  /// **'Add at least 2 photos of your tools'**
+  String get error_toolkit_photos_too_few;
+
+  /// M2 title.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'re checking your details'**
+  String get pending_title;
+
+  /// M2 body, workshop.
+  ///
+  /// In en, this message translates to:
+  /// **'Usually within 24 hours. We\'ll let you know.'**
+  String get pending_body_workshop;
+
+  /// M2 body, independent (PLAN §10.0).
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll call you for a short verification, usually within 24 hours.'**
+  String get pending_body_independent;
+
+  /// M2 blocked title.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is on hold'**
+  String get pending_blocked_title;
+
+  /// M2 blocked body.
+  ///
+  /// In en, this message translates to:
+  /// **'Please call support to find out more.'**
+  String get pending_blocked_body;
+
+  /// M2 checklist, workshop.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop details'**
+  String get pending_item_shop;
+
+  /// M2 checklist, independent.
+  ///
+  /// In en, this message translates to:
+  /// **'Your details and tools'**
+  String get pending_item_details;
+
+  /// M2 checklist.
+  ///
+  /// In en, this message translates to:
+  /// **'ID proof'**
+  String get pending_item_id;
+
+  /// M2 checklist, independent.
+  ///
+  /// In en, this message translates to:
+  /// **'ID, selfie and address proof'**
+  String get pending_item_id_selfie;
+
+  /// M2 checklist, independent.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification call'**
+  String get pending_item_call;
+
+  /// M2 checklist state.
+  ///
+  /// In en, this message translates to:
+  /// **'Received'**
+  String get pending_received;
+
+  /// M2 checklist state.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking…'**
+  String get pending_checking;
+
+  /// M2 checklist state.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll call you'**
+  String get pending_call_waiting;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

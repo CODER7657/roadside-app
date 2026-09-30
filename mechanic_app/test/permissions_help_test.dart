@@ -15,6 +15,9 @@ import 'package:mechanic_app/features/permissions/application/permission_service
 import 'package:mechanic_app/features/permissions/presentation/permission_explainer_screen.dart';
 import 'package:mechanic_app/l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mechanic_app/features/registration/application/registration.dart';
+
+import 'support.dart';
 
 class _NoBattery implements LaneBatterySource {
   @override
@@ -63,6 +66,7 @@ Future<Widget> app({String language = 'en', ({String phone, String grievanceEmai
     overrides: [
       flavorProvider.overrideWithValue(AppFlavor.dev),
       sharedPreferencesProvider.overrideWithValue(prefs),
+      registrationRepositoryProvider.overrideWithValue(approvedMechanic()),
       permissionServiceProvider.overrideWithValue(permissions),
       launchLinkProvider.overrideWithValue((uri) async {
         launched.add(uri);
