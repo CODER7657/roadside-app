@@ -9,8 +9,10 @@ setGlobalOptions({ region: REGION, maxInstances: 10 });
 
 export { assignDefaultRole } from './auth/beforeUserCreated.js';
 export { cancelBooking } from './callables/cancelBooking.js';
+export { completeJob } from './callables/completeJob.js';
 export { createBooking } from './callables/createBooking.js';
 export { respondToOffer } from './callables/respondToOffer.js';
+export { confirmPayment, disputePayment, markPaid } from './callables/payments.js';
 export { markArrived, startTrip } from './callables/tripSteps.js';
 export { dispatchOnBookingCreated, dispatchSweep, offerTimeout } from './dispatch/functions.js';
 export { onBookingStatusChange } from './notifications/onBookingStatusChange.js';
