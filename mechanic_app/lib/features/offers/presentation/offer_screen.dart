@@ -14,12 +14,16 @@ import '../data/offer_alerts.dart';
 import '../data/offer_repository.dart';
 
 /// Why M4 closed without the mechanic getting the job.
-enum OfferClosed { expired, withdrawn, taken, notAvailable }
+enum OfferClosed { expired, withdrawn, taken, notAvailable, profileIncomplete, notApproved }
 
 /// M4 Incoming offer (PLAN §10, §11; wireframe M4): full screen, like an incoming call. Problem,
 /// vehicle and plate, distance, area and price; **never the exact address or the customer's
 /// phone** (those come with the job, after accept). A 30 s `CountdownRing` wraps
 /// `LaneSlideToConfirm` (works with gloves), with Decline below.
+///
+/// Expiry is the server's call: M4 closes as timed out only when the offer's `state` says so or
+/// `respondToOffer` answers `error_offer_expired`. The phone's clock only draws the ring, so a
+/// phone whose clock is off can still take jobs.
 class OfferScreen extends ConsumerStatefulWidget {
   const OfferScreen({super.key, required this.offerId});
 
@@ -33,6 +37,9 @@ class _OfferScreenState extends ConsumerState<OfferScreen> {
   bool _responding = false;
   bool _failed = false;
   OfferClosed? _closed;
+
+  /// Ring time already gone, fixed when M4 first sees the offer.
+  Duration? _elapsed;
 
   /// Bumped to reset the slider after a failed attempt.
   int _attempt = 0;
@@ -78,6 +85,10 @@ class _OfferScreenState extends ConsumerState<OfferScreen> {
         setState(() => _closed = OfferClosed.taken);
       case OfferOutcome.notAvailable:
         setState(() => _closed = OfferClosed.notAvailable);
+      case OfferOutcome.profileIncomplete:
+        setState(() => _closed = OfferClosed.profileIncomplete);
+      case OfferOutcome.notApproved:
+        setState(() => _closed = OfferClosed.notApproved);
       case OfferOutcome.failed:
         unawaited(LaneHaptics.error());
         setState(() {
@@ -106,20 +117,16 @@ class _OfferScreenState extends ConsumerState<OfferScreen> {
     final o = offer.value;
     if (o == null) return Scaffold(body: Center(child: SkeletonGroup.lines()));
 
-    final now = ref.read(offerClockProvider)();
-    if (!o.expiresAt.isAfter(now)) return _ClosedView(reason: OfferClosed.expired, onBack: _leave);
-
+    // When the ring runs out but the offer is still pending, Accept stays on until the offer
+    // or the callable says otherwise.
     return _PendingView(
       offer: o,
-      elapsed: elapsedOf(o, now),
+      elapsed: _elapsed ??= elapsedOf(o, ref.read(offerClockProvider)()),
       attempt: _attempt,
       responding: _responding,
       failedMessage: _failed ? l10n.offer_failed : null,
       onAccept: () => _respond(accept: true),
       onDecline: () => _respond(accept: false),
-      onExpired: () {
-        if (mounted && !_responding) setState(() => _closed = OfferClosed.expired);
-      },
     );
   }
 }
@@ -133,7 +140,6 @@ class _PendingView extends StatelessWidget {
     required this.failedMessage,
     required this.onAccept,
     required this.onDecline,
-    required this.onExpired,
   });
 
   final Offer offer;
@@ -143,7 +149,6 @@ class _PendingView extends StatelessWidget {
   final String? failedMessage;
   final VoidCallback onAccept;
   final VoidCallback onDecline;
-  final VoidCallback onExpired;
 
   @override
   Widget build(BuildContext context) {
@@ -206,8 +211,8 @@ class _PendingView extends StatelessWidget {
       ),
       title: l10n.offer_title,
       primary: CountdownRing(
+        duration: offerWindow(offer),
         elapsed: elapsed,
-        onExpired: onExpired,
         child: LaneSlideToConfirm(
           key: ValueKey(attempt),
           label: l10n.offer_slide_accept,
@@ -234,6 +239,11 @@ class _ClosedView extends StatelessWidget {
       OfferClosed.withdrawn => (l10n.offer_withdrawn_title, l10n.offer_withdrawn_body),
       OfferClosed.taken => (l10n.offer_taken_title, l10n.offer_taken_body),
       OfferClosed.notAvailable => (l10n.offer_not_available_title, l10n.offer_not_available_body),
+      OfferClosed.profileIncomplete => (
+        l10n.offer_profile_incomplete_title,
+        l10n.offer_profile_incomplete_body,
+      ),
+      OfferClosed.notApproved => (l10n.offer_not_approved_title, l10n.offer_not_approved_body),
     };
     return LaneStatusScaffold(
       visual: LaneIcon(LaneIcons.hourglass, size: lane.space.s64 + lane.space.s32),

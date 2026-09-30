@@ -27,8 +27,12 @@ class _NoBattery implements LaneBatterySource {
 
 final now = DateTime(2026, 9, 30, 12);
 
-/// An offer made [ago] before [now] (30 s window).
-Offer offer({Duration ago = const Duration(seconds: 6), OfferState state = OfferState.pending}) => Offer(
+/// An offer the server made [ago] before [now] (30 s window, server timestamps).
+Offer offer({
+  Duration ago = const Duration(seconds: 6),
+  OfferState state = OfferState.pending,
+  bool withCreatedAt = true,
+}) => Offer(
   bookingId: 'b-1',
   mechanicId: 'mech-1',
   vehicleType: VehicleType.car,
@@ -38,6 +42,7 @@ Offer offer({Duration ago = const Duration(seconds: 6), OfferState state = Offer
   areaName: 'Thaltej',
   priceEstimate: const PriceRange(min: 350, max: 600),
   expiresAt: now.subtract(ago).add(const Duration(seconds: 30)),
+  createdAt: withCreatedAt ? now.subtract(ago) : null,
   state: state,
 );
 
@@ -65,14 +70,29 @@ void main() {
       expect(outcomeForError('error_offer_unavailable'), OfferOutcome.unavailable);
       expect(outcomeForError('error_offer_expired'), OfferOutcome.expired);
       expect(outcomeForError('error_not_available'), OfferOutcome.notAvailable);
+      expect(outcomeForError('error_profile_incomplete'), OfferOutcome.profileIncomplete);
+      expect(outcomeForError('error_mechanic_not_approved'), OfferOutcome.notApproved);
       expect(outcomeForError('error_internal'), OfferOutcome.failed);
       expect(outcomeForError(null), OfferOutcome.failed);
+    });
+
+    test("window: the server's expiresAt − createdAt", () {
+      expect(offerWindow(offer()), const Duration(seconds: 30));
+      expect(offerWindow(offer(withCreatedAt: false)), kOfferWindow);
     });
 
     test('elapsed: a late push starts the ring part-drained', () {
       expect(elapsedOf(offer(ago: Duration.zero), now), Duration.zero);
       expect(elapsedOf(offer(), now), const Duration(seconds: 6));
-      expect(elapsedOf(offer(ago: const Duration(seconds: 40)), now), const Duration(seconds: 30));
+    });
+
+    test('elapsed: a phone clock that is off is ignored', () {
+      // 60 s fast: outside the window, so the ring starts full.
+      expect(elapsedOf(offer(ago: Duration.zero), now.add(const Duration(seconds: 60))), Duration.zero);
+      // Slow: the offer looks like it's from the future.
+      expect(elapsedOf(offer(ago: Duration.zero), now.subtract(const Duration(seconds: 20))), Duration.zero);
+      // No server createdAt yet.
+      expect(elapsedOf(offer(withCreatedAt: false), now), Duration.zero);
     });
 
     test('notification ids are stable per offer', () {
@@ -138,7 +158,8 @@ void main() {
     late InMemoryOfferRepository offers;
     late SilentOfferAlerts alerts;
 
-    Future<Widget> app({String language = 'en', Offer? o}) async {
+    /// [clock] is the phone's clock; [now] is the server's.
+    Future<Widget> app({String language = 'en', Offer? o, DateTime? clock}) async {
       SharedPreferences.setMockInitialValues({
         'first_run.language': language,
         'first_run.onboarded': true,
@@ -154,7 +175,7 @@ void main() {
           registrationRepositoryProvider.overrideWithValue(approvedMechanic()),
           offerRepositoryProvider.overrideWithValue(offers),
           offerAlertsProvider.overrideWithValue(alerts),
-          offerClockProvider.overrideWithValue(() => now),
+          offerClockProvider.overrideWithValue(() => clock ?? now),
           laneBatterySourceProvider.overrideWithValue(_NoBattery()),
           laneClockProvider.overrideWithValue(() => DateTime.utc(2026, 9, 30, 6, 30)),
         ],
@@ -220,37 +241,55 @@ void main() {
       expect(find.byType(DashboardScreen), findsOneWidget);
     });
 
-    testWidgets('the ring runs out → timed out', (tester) async {
+    testWidgets('the ring runs out but the offer is still pending → Accept still works', (tester) async {
       await tester.pumpWidget(await app());
       await openOffer(tester);
-      await tester.pump(const Duration(seconds: 25));
+      await tester.pump(const Duration(seconds: 30));
       await tester.pumpAndSettle();
-      expect(find.text('This job has timed out'), findsOneWidget);
-      await tester.tap(find.text('Back to dashboard'));
+      expect(find.text('This job has timed out'), findsNothing);
+      await slide(tester);
       await tester.pumpAndSettle();
-      expect(find.byType(DashboardScreen), findsOneWidget);
+      expect(offers.responses, [('o-1', true)]);
+      expect(find.byType(JobAcceptedScreen), findsOneWidget);
     });
 
-    testWidgets('an offer that already expired opens as timed out', (tester) async {
-      await tester.pumpWidget(await app(o: offer(ago: const Duration(seconds: 45))));
-      await openOffer(tester);
-      await tester.pumpAndSettle();
-      expect(find.text('This job has timed out'), findsOneWidget);
-      expect(find.byType(LaneSlideToConfirm), findsNothing);
-    });
+    for (final ahead in const [Duration(seconds: 60), Duration(seconds: 15)]) {
+      testWidgets('phone clock ${ahead.inSeconds} s fast: the offer stays acceptable', (tester) async {
+        await tester.pumpWidget(
+          await app(
+            o: offer(ago: Duration.zero),
+            clock: now.add(ahead),
+          ),
+        );
+        await openOffer(tester);
+        await tester.pumpAndSettle();
+        expect(find.text('This job has timed out'), findsNothing);
+        expect(find.byType(LaneSlideToConfirm), findsOneWidget);
+        await slide(tester);
+        await tester.pumpAndSettle();
+        expect(offers.responses, [('o-1', true)]);
+        expect(find.byType(JobAcceptedScreen), findsOneWidget);
+      });
+    }
 
-    testWidgets('the customer cancels while M4 is open → taken back', (tester) async {
+    testWidgets('the server expires the offer while M4 is open → timed out', (tester) async {
       await tester.pumpWidget(await app());
       await openOffer(tester);
       offers.setState('o-1', OfferState.expired);
       await tester.pumpAndSettle();
       expect(find.text('This job has timed out'), findsOneWidget);
+      expect(find.byType(LaneSlideToConfirm), findsNothing);
+      await tester.tap(find.text('Back to dashboard'));
+      await tester.pumpAndSettle();
+      expect(find.byType(DashboardScreen), findsOneWidget);
     });
 
     for (final (outcome, title) in [
       (OfferOutcome.expired, 'This job has timed out'),
       (OfferOutcome.unavailable, 'This job is no longer available'),
       (OfferOutcome.notAvailable, "You can't take this job right now"),
+      (OfferOutcome.profileIncomplete, 'Finish your profile first'),
+      (OfferOutcome.notApproved, "You're not approved yet"),
     ]) {
       testWidgets('accept answered ${outcome.name} → "$title"', (tester) async {
         await tester.pumpWidget(await app());

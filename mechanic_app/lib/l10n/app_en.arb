@@ -750,6 +750,22 @@
   "@offer_not_available_body": {
     "description": "M4 closed: offline or busy."
   },
+  "offer_profile_incomplete_title": "Finish your profile first",
+  "@offer_profile_incomplete_title": {
+    "description": "M4 closed: the callable said the mechanic's profile or KYC is missing."
+  },
+  "offer_profile_incomplete_body": "Some details are missing. Complete your profile to take jobs.",
+  "@offer_profile_incomplete_body": {
+    "description": "M4 closed: profile incomplete."
+  },
+  "offer_not_approved_title": "You're not approved yet",
+  "@offer_not_approved_title": {
+    "description": "M4 closed: the callable said the mechanic isn't approved."
+  },
+  "offer_not_approved_body": "We're still checking your documents. You can take jobs once you're approved.",
+  "@offer_not_approved_body": {
+    "description": "M4 closed: not approved."
+  },
   "offer_back": "Back to dashboard",
   "@offer_back": {
     "description": "M4 closed: back to M3."

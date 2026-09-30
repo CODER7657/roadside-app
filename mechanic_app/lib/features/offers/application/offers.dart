@@ -15,7 +15,7 @@ String jobRoute(String bookingId) => '/job/$bookingId';
 final offerRepositoryProvider = Provider<OfferRepository>((ref) => InMemoryOfferRepository());
 final offerAlertsProvider = Provider<OfferAlerts>((ref) => SilentOfferAlerts());
 
-/// The clock offers count down against. Tests override it.
+/// The phone's clock, used only to draw the countdown ring. Tests override it.
 final offerClockProvider = Provider<DateTime Function()>((ref) => DateTime.now);
 
 final offerProvider = StreamProvider.family<Offer?, String>(
@@ -44,10 +44,25 @@ Future<void> handleOfferPush(
   }
 }
 
-/// How much of the 30 s is already gone (the push can arrive late).
-Duration elapsedOf(Offer offer, DateTime now, {Duration window = const Duration(seconds: 30)}) {
-  final left = offer.expiresAt.difference(now);
-  if (left <= Duration.zero) return window;
-  final gone = window - left;
-  return gone < Duration.zero ? Duration.zero : gone;
+/// PLAN §11: offers last 30 s. Used when the offer doesn't carry its own window.
+const kOfferWindow = Duration(seconds: 30);
+
+/// The server's window for [offer]: `expiresAt − createdAt`, both server timestamps, so the
+/// phone's clock doesn't come into it.
+Duration offerWindow(Offer offer) {
+  final created = offer.createdAt;
+  if (created == null) return kOfferWindow;
+  final window = offer.expiresAt.difference(created);
+  return window > Duration.zero ? window : kOfferWindow;
+}
+
+/// How much of the window the push delay already used, for drawing the ring only. The phone's
+/// clock may be off: a delay outside 0…window means it is, so the ring starts full instead.
+/// Whether the offer has expired is the server's call (the offer's `state`, or
+/// `error_offer_expired`), never this.
+Duration elapsedOf(Offer offer, DateTime seenAt) {
+  final created = offer.createdAt;
+  if (created == null) return Duration.zero;
+  final delay = seenAt.difference(created);
+  return delay < Duration.zero || delay > offerWindow(offer) ? Duration.zero : delay;
 }
