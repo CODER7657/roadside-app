@@ -2,8 +2,11 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { HttpsError } from 'firebase-functions/v2/https';
 import { z } from 'zod';
-import { secureCall } from '../src/lib/secureCall.js';
+import { secureCall, setDeletionCheck } from '../src/lib/secureCall.js';
 import { emulatorRunning, fakeRequest, rejection } from './helpers.js';
+
+// No Firestore here: nobody has asked to delete their account, except `gone-1`.
+setDeletionCheck(async (_role, uid) => uid === 'gone-1');
 
 // A sample callable that only customers may call.
 const sample = secureCall(
@@ -90,6 +93,13 @@ describe('secureCall', () => {
 
     const approved = { uid: 'm-3', claims: { role: 'mechanic', mechanicStatus: 'approved' } };
     assert.equal(await approvedOnly.run(fakeRequest(approved)), 'ok');
+  });
+
+  it('refuses a caller whose account deletion is pending (their token lives up to an hour)', async () => {
+    const err = await rejection(
+      sample.run(fakeRequest({ uid: 'gone-1', claims: { role: 'customer' }, data: { note: 'hi' } })),
+    );
+    assert.deepEqual(err, { code: 'permission-denied', message: 'error_account_deleted' });
   });
 
   it('turns unexpected errors into a safe internal error', async () => {

@@ -7,10 +7,12 @@ import { REGION } from './lib/admin.js';
 // Cost guard; raise per function when load tests show it's needed.
 setGlobalOptions({ region: REGION, maxInstances: 10 });
 
+export { purgeDeletedAccounts } from './account/purgeAccounts.js';
 export { assignDefaultRole } from './auth/beforeUserCreated.js';
 export { cancelBooking } from './callables/cancelBooking.js';
 export { completeJob } from './callables/completeJob.js';
 export { createBooking } from './callables/createBooking.js';
+export { requestAccountDeletion } from './callables/requestAccountDeletion.js';
 export { respondToOffer } from './callables/respondToOffer.js';
 export { confirmPayment, disputePayment, markPaid } from './callables/payments.js';
 export { markArrived, startTrip } from './callables/tripSteps.js';
