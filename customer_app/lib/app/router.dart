@@ -6,6 +6,7 @@ import '../features/booking/presentation/live_booking_screen.dart';
 import '../features/booking/presentation/photos_screen.dart';
 import '../features/booking/presentation/price_screen.dart';
 import '../features/booking/presentation/problem_screen.dart';
+import '../features/booking/presentation/review_screen.dart';
 import '../features/first_run/application/first_run.dart';
 import '../features/first_run/presentation/consent_screen.dart';
 import '../features/first_run/presentation/language_screen.dart';
@@ -36,6 +37,9 @@ abstract final class AppRoutes {
 
   /// The live booking (U8 Searching, U9 Assigned, …).
   static String booking(String bookingId) => '/booking/$bookingId';
+
+  /// U14 Rate & review.
+  static String review(String bookingId) => '/booking/$bookingId/review';
 }
 
 /// Keeps first run in order: home (and later everything else) waits until language,
@@ -73,6 +77,12 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/booking/:id',
         builder: (context, state) => LiveBookingScreen(bookingId: state.pathParameters['id']!),
+        routes: [
+          GoRoute(
+            path: 'review',
+            builder: (context, state) => ReviewScreen(bookingId: state.pathParameters['id']!),
+          ),
+        ],
       ),
       GoRoute(
         path: '/permission/:kind',

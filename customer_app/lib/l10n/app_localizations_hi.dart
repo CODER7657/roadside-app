@@ -13,13 +13,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get app_title => 'Roadside';
 
   @override
-  String get home_placeholder_title => 'सड़क पर मदद, मिनटों में';
-
-  @override
-  String get home_placeholder_body =>
-      'हम सब कुछ तैयार कर रहे हैं। मैकेनिक बुक करने की सुविधा अगले अपडेट में आएगी।';
-
-  @override
   String flow_step_label(int step, int total) {
     return '$total में से चरण $step';
   }
@@ -625,9 +618,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get live_not_found => 'यह बुकिंग नहीं मिली।';
 
   @override
-  String get live_working_title => 'आपका मैकेनिक काम कर रहा है';
-
-  @override
   String get assigned_title => 'एक मैकेनिक आ रहा है';
 
   @override
@@ -660,4 +650,258 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get notif_start_code_locked_body =>
       'किसी ने आपका स्टार्ट कोड 5 बार आज़माया। इसे केवल अपने मैकेनिक को सामने से बताएँ।';
+
+  @override
+  String tracking_on_the_way(String name) {
+    return '$name रास्ते में हैं';
+  }
+
+  @override
+  String tracking_arrived(String name) {
+    return '$name पहुँच गए हैं';
+  }
+
+  @override
+  String tracking_eta(int minutes) {
+    return '$minutes मिनट';
+  }
+
+  @override
+  String get tracking_away => 'दूर';
+
+  @override
+  String tracking_waiting(String name) {
+    return '$name की लोकेशन का इंतज़ार…';
+  }
+
+  @override
+  String tracking_stale(int minutes) {
+    return 'लोकेशन $minutes मिनट पहले अपडेट हुई। शायद नेटवर्क नहीं है।';
+  }
+
+  @override
+  String tracking_call(String name) {
+    return '$name को कॉल करें';
+  }
+
+  @override
+  String get tracking_call_failed => 'फ़ोन ऐप नहीं खुल सका।';
+
+  @override
+  String get tracking_start_code => 'शुरू करने का कोड';
+
+  @override
+  String get tracking_start_code_hint => 'यह कोड केवल तब बताएँ जब मैकेनिक आपके पास खड़ा हो।';
+
+  @override
+  String working_title(String name) {
+    return '$name काम कर रहे हैं';
+  }
+
+  @override
+  String working_since(String time, int minutes) {
+    return '$time बजे शुरू · अब तक $minutes मिनट';
+  }
+
+  @override
+  String get working_started => 'काम शुरू हो गया है।';
+
+  @override
+  String payment_title(String name) {
+    return '$name को भुगतान करें';
+  }
+
+  @override
+  String payment_estimate_was(String min, String max) {
+    return 'अनुमान $min–$max था';
+  }
+
+  @override
+  String get payment_no_amount => 'मैकेनिक के अंतिम राशि डालने का इंतज़ार है।';
+
+  @override
+  String get payment_pay_upi => 'UPI ऐप से भुगतान करें';
+
+  @override
+  String payment_qr_label(String amount, String name) {
+    return '$name को $amount भुगतान करने का QR कोड';
+  }
+
+  @override
+  String get payment_qr_hint => 'या किसी भी UPI ऐप से स्कैन करें';
+
+  @override
+  String get payment_copy_upi => 'UPI ID कॉपी करें';
+
+  @override
+  String get payment_upi_copied => 'UPI ID कॉपी हो गई';
+
+  @override
+  String get payment_no_upi_app => 'कोई UPI ऐप नहीं खुला। दूसरे फ़ोन से QR स्कैन करें, या नकद दें।';
+
+  @override
+  String payment_cash(String name) {
+    return '$name को नकद दें, या उनसे UPI ID पूछें।';
+  }
+
+  @override
+  String get payment_i_have_paid => 'मैंने भुगतान कर दिया';
+
+  @override
+  String get payment_problem => 'कुछ गड़बड़ है';
+
+  @override
+  String get payment_error_network => 'भुगतान अपडेट नहीं हो सका। अपना कनेक्शन जाँचें और फिर कोशिश करें।';
+
+  @override
+  String payment_waiting_title(String name) {
+    return '$name की पुष्टि का इंतज़ार';
+  }
+
+  @override
+  String payment_waiting_body(String amount) {
+    return 'वे देखेंगे कि $amount उनके UPI ऐप में आ गए।';
+  }
+
+  @override
+  String payment_confirmed_title(String amount) {
+    return '$amount का भुगतान हुआ';
+  }
+
+  @override
+  String get payment_confirmed_title_plain => 'भुगतान की पुष्टि हुई';
+
+  @override
+  String payment_confirmed_body(String name) {
+    return 'धन्यवाद! $name ने आपके भुगतान की पुष्टि की।';
+  }
+
+  @override
+  String get payment_disputed_title => 'हम इसे देख रहे हैं';
+
+  @override
+  String get payment_disputed_body => 'हमारी टीम इस भुगतान के बारे में आपसे संपर्क करेगी।';
+
+  @override
+  String get payment_dispute_title => 'भुगतान में क्या गड़बड़ है?';
+
+  @override
+  String get payment_dispute_label => 'बताएँ क्या हुआ';
+
+  @override
+  String get payment_dispute_hint => 'जैसे: दिखाई गई राशि से ज़्यादा माँगा';
+
+  @override
+  String get payment_dispute_send => 'समस्या बताएँ';
+
+  @override
+  String get payment_dispute_sent => 'धन्यवाद। हम इसे देखेंगे।';
+
+  @override
+  String get cancel_keep_open => 'वापस जाएँ';
+
+  @override
+  String review_rate(String name) {
+    return '$name को रेटिंग दें';
+  }
+
+  @override
+  String get review_step => 'आपकी समीक्षा';
+
+  @override
+  String review_title(String name) {
+    return '$name कैसे रहे?';
+  }
+
+  @override
+  String review_stars_label(String name) {
+    return '$name के लिए रेटिंग';
+  }
+
+  @override
+  String get review_tags_good => 'क्या अच्छा रहा?';
+
+  @override
+  String get review_tags_bad => 'क्या गलत हुआ?';
+
+  @override
+  String get review_tag_on_time => 'समय पर';
+
+  @override
+  String get review_tag_friendly => 'विनम्र';
+
+  @override
+  String get review_tag_fixed_fast => 'जल्दी ठीक किया';
+
+  @override
+  String get review_tag_fair_price => 'सही कीमत';
+
+  @override
+  String get review_tag_late => 'देर से आए';
+
+  @override
+  String get review_tag_rude => 'बदतमीज़';
+
+  @override
+  String get review_tag_overcharged => 'ज़्यादा पैसे लिए';
+
+  @override
+  String get review_tag_not_fixed => 'ठीक नहीं हुआ';
+
+  @override
+  String get review_comment_label => 'और कुछ? (वैकल्पिक)';
+
+  @override
+  String get review_submit => 'समीक्षा भेजें';
+
+  @override
+  String get review_thanks => 'आपकी समीक्षा के लिए धन्यवाद!';
+
+  @override
+  String get review_error => 'समीक्षा नहीं भेजी जा सकी। अपना कनेक्शन जाँचें और फिर कोशिश करें।';
+
+  @override
+  String get review_not_allowed => 'इस बुकिंग की समीक्षा नहीं की जा सकती।';
+
+  @override
+  String get review_already => 'आपने इस बुकिंग को रेटिंग दे दी है। धन्यवाद!';
+
+  @override
+  String get home_city_outside => 'हमारे क्षेत्र से बाहर';
+
+  @override
+  String get home_locating => 'आपकी लोकेशन ढूँढ रहे हैं…';
+
+  @override
+  String get home_no_location => 'पास की मदद देखने के लिए अपनी लोकेशन दें। इसके बिना भी मदद ले सकते हैं।';
+
+  @override
+  String get home_show_location => 'मेरी लोकेशन दिखाएँ';
+
+  @override
+  String get home_no_fix => 'हम आपकी लोकेशन नहीं ढूँढ पाए। फिर भी मदद ले सकते हैं और पिन खुद लगा सकते हैं।';
+
+  @override
+  String get home_outside_title => 'हम अभी आपके क्षेत्र में नहीं हैं';
+
+  @override
+  String get home_outside_body =>
+      'हम अहमदाबाद, अंकलेश्वर और भरूच में सेवा देते हैं। SMS से अपनी लोकेशन भेजें, हमारी टीम मदद ढूँढने में सहायता करेगी।';
+
+  @override
+  String get home_sms_location => 'SMS से मेरी लोकेशन भेजें';
+
+  @override
+  String home_sms_body(String link, String code) {
+    return 'मुझे सड़क पर मदद चाहिए। मेरी लोकेशन: $link (प्लस कोड $code)';
+  }
+
+  @override
+  String get home_sms_failed => 'SMS ऐप नहीं खुल सका।';
+
+  @override
+  String get home_booking_active => 'आपकी बुकिंग चल रही है';
+
+  @override
+  String get home_booking_open => 'खोलने के लिए टैप करें';
 }

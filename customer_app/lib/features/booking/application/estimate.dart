@@ -5,6 +5,7 @@ import 'package:roadside_core/roadside_core.dart';
 import '../../vehicles/application/vehicles.dart';
 import '../data/booking_repository.dart';
 import '../data/booking_service.dart';
+import '../data/review_repository.dart';
 import 'booking_draft.dart';
 
 /// In memory until #92 wires Firebase: then `FirestorePriceCatalog(RoadsideRefs(FirebaseFirestore.instance))`.
@@ -69,3 +70,9 @@ class ActiveBookingNotifier extends Notifier<CreatedBooking?> {
 final activeBookingProvider = NotifierProvider<ActiveBookingNotifier, CreatedBooking?>(
   ActiveBookingNotifier.new,
 );
+
+/// The signed-in customer. The fake one until sign-in (#96): then `FirebaseAuth.currentUser.uid`.
+final customerIdProvider = Provider<String>((ref) => FakeBookingService.customerId);
+
+/// In memory until #92: then `FirestoreReviewRepository(RoadsideRefs(FirebaseFirestore.instance))`.
+final reviewRepositoryProvider = Provider<ReviewRepository>((ref) => InMemoryReviewRepository());

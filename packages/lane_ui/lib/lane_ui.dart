@@ -29,15 +29,18 @@ export 'src/components/lane_badges.dart' show LaneSignal, PlateChip, SignalBadge
 export 'src/components/lane_button.dart' show LaneButton;
 export 'src/components/lane_feedback.dart'
     show EmptyState, ErrorState, LaneToast, OfflineStrip, SkeletonBlock, SkeletonGroup, laneStrings;
+export 'src/components/lane_glare_button.dart' show LaneGlareButton;
 export 'src/components/lane_gestures.dart' show LaneHoldButton, LaneSlideToConfirm;
 export 'src/components/lane_icons.dart' show LaneIcon, LaneIcons, LaneTileGrid, ProblemTile, VehicleTile;
 export 'src/components/lane_inputs.dart' show LaneChip, LaneListTile, LaneSwitch, LaneTextField;
 export 'src/components/lane_map_parts.dart' show AccuracyBadge, CenterPin;
-export 'src/components/lane_sheet.dart'
-    show LaneConfirmResult, LaneConfirmSheet, LaneReason, LaneSheet, showLaneSheet;
 export 'src/components/lane_numbers.dart'
     show BreathingPulse, CountdownRing, LaneBrightness, LaneOtpDisplay, LaneOtpInput, LaneRollingNumber;
+export 'src/components/lane_qr_code.dart' show LaneQrCode;
+export 'src/components/lane_sheet.dart'
+    show LaneConfirmResult, LaneConfirmSheet, LaneReason, LaneSheet, showLaneSheet;
 export 'src/components/price_range.dart' show PriceRange;
+export 'src/components/star_rating.dart' show StarRating;
 export 'src/components/trust_pass.dart' show TrustPass;
 export 'src/templates/lane_action_bar.dart' show LaneActionBar, LaneBackButton;
 export 'src/templates/lane_map_scaffold.dart' show LaneDock, LaneDockSnap, LaneMapButton, LaneMapScaffold;

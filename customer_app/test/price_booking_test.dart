@@ -92,6 +92,12 @@ class ScriptedBookingService implements BookingService {
 
   @override
   Future<void> cancelBooking(String bookingId, CancelReason reason) async {}
+
+  @override
+  Future<void> markPaid(String bookingId) async {}
+
+  @override
+  Future<void> disputePayment(String bookingId, String text) async {}
 }
 
 const created = CreatedBooking(bookingId: 'b1', cityId: CityId.ahmedabad, min: 350, max: 600);

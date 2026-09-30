@@ -169,7 +169,7 @@ void main() {
     await tester.pumpWidget(app(prefs));
     await pastSplash(tester);
     expect(find.byType(HomeScreen), findsOneWidget);
-    expect(find.text('રસ્તા પર મદદ, મિનિટોમાં'), findsOneWidget);
+    expect(find.widgetWithText(LaneButton, 'મદદ મેળવો'), findsOneWidget);
   });
 
   for (final (name, values) in [

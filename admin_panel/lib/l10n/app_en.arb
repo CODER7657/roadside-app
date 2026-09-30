@@ -101,17 +101,874 @@
   "@console_sign_out": {
     "description": "Top bar: signs the admin out."
   },
-  "console_section_coming_title": "Coming next",
-  "@console_section_coming_title": {
-    "description": "Placeholder for a screen not built yet."
+  "vehicle_type_car": "Car",
+  "@vehicle_type_car": {
+    "description": "Vehicle type."
   },
-  "console_section_coming_body": "This screen arrives with issue #{issue}.",
-  "@console_section_coming_body": {
-    "description": "Placeholder body. {issue} is a GitHub issue number.",
+  "vehicle_type_bike": "Bike",
+  "@vehicle_type_bike": {
+    "description": "Vehicle type (motorcycle)."
+  },
+  "vehicle_type_scooter": "Scooter",
+  "@vehicle_type_scooter": {
+    "description": "Vehicle type."
+  },
+  "vehicle_type_ev": "EV",
+  "@vehicle_type_ev": {
+    "description": "Vehicle type (electric vehicle)."
+  },
+  "problem_type_flat_tyre": "Flat tyre",
+  "@problem_type_flat_tyre": {
+    "description": "Problem type flat_tyre."
+  },
+  "problem_type_battery": "Battery",
+  "@problem_type_battery": {
+    "description": "Problem type battery."
+  },
+  "problem_type_wont_start": "Won't start",
+  "@problem_type_wont_start": {
+    "description": "Problem type wont_start."
+  },
+  "problem_type_overheating": "Overheating",
+  "@problem_type_overheating": {
+    "description": "Problem type overheating."
+  },
+  "problem_type_accident": "Accident",
+  "@problem_type_accident": {
+    "description": "Problem type accident."
+  },
+  "problem_type_fuel": "Out of fuel",
+  "@problem_type_fuel": {
+    "description": "Problem type fuel."
+  },
+  "problem_type_other": "Something else",
+  "@problem_type_other": {
+    "description": "Problem type other."
+  },
+  "prices_scope_default": "Default prices, all cities",
+  "@prices_scope_default": {
+    "description": "A4: heading when the city filter is All."
+  },
+  "prices_scope_default_help": "Customers see these ranges unless their city has its own.",
+  "@prices_scope_default_help": {
+    "description": "A4: under the default heading."
+  },
+  "prices_scope_city": "{city} prices",
+  "@prices_scope_city": {
+    "description": "A4: heading when a city is picked. {city} is the city name.",
     "placeholders": {
-      "issue": {
+      "city": {
         "type": "String"
       }
     }
+  },
+  "prices_scope_city_help": "Only for this city. Leave a cell blank to use the default shown in grey.",
+  "@prices_scope_city_help": {
+    "description": "A4: under the city heading."
+  },
+  "prices_column_problem": "Problem",
+  "@prices_column_problem": {
+    "description": "A4: first column header."
+  },
+  "prices_min_label": "{vehicle}, {problem}: minimum",
+  "@prices_min_label": {
+    "description": "A4: screen-reader label of a min field.",
+    "placeholders": {
+      "vehicle": {
+        "type": "String"
+      },
+      "problem": {
+        "type": "String"
+      }
+    }
+  },
+  "prices_max_label": "{vehicle}, {problem}: maximum",
+  "@prices_max_label": {
+    "description": "A4: screen-reader label of a max field.",
+    "placeholders": {
+      "vehicle": {
+        "type": "String"
+      },
+      "problem": {
+        "type": "String"
+      }
+    }
+  },
+  "prices_unsaved": "{count, plural, =0{No unsaved changes} =1{1 unsaved change} other{{count} unsaved changes}}",
+  "@prices_unsaved": {
+    "description": "A4: count of edited cells.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "prices_discard": "Discard",
+  "@prices_discard": {
+    "description": "A4: drops unsaved edits."
+  },
+  "prices_save": "Save changes",
+  "@prices_save": {
+    "description": "A4: saves all edits at once."
+  },
+  "prices_saved_toast": "Prices saved. New bookings use them now.",
+  "@prices_saved_toast": {
+    "description": "A4: after a successful save."
+  },
+  "prices_save_failed": "Couldn't save. Nothing was changed. Try again.",
+  "@prices_save_failed": {
+    "description": "A4: the save failed as a whole."
+  },
+  "prices_missing_default": "Set the price for All cities first, then the city's own.",
+  "@prices_missing_default": {
+    "description": "A4: a city override for a price that has no default yet."
+  },
+  "prices_load_failed": "Couldn't load the prices.",
+  "@prices_load_failed": {
+    "description": "A4: loading failed."
+  },
+  "prices_error_required": "Enter both amounts",
+  "@prices_error_required": {
+    "description": "A4 cell error."
+  },
+  "prices_error_number": "Whole rupees only",
+  "@prices_error_number": {
+    "description": "A4 cell error."
+  },
+  "prices_error_range": "Between ₹1 and ₹1,00,000",
+  "@prices_error_range": {
+    "description": "A4 cell error."
+  },
+  "prices_error_order": "Minimum must be less than maximum",
+  "@prices_error_order": {
+    "description": "A4 cell error."
+  },
+  "mechanic_status_pending": "Pending",
+  "@mechanic_status_pending": {
+    "description": "Mechanic status."
+  },
+  "mechanic_status_approved": "Approved",
+  "@mechanic_status_approved": {
+    "description": "Mechanic status."
+  },
+  "mechanic_status_blocked": "Blocked",
+  "@mechanic_status_blocked": {
+    "description": "Mechanic status."
+  },
+  "mechanic_type_workshop": "Workshop",
+  "@mechanic_type_workshop": {
+    "description": "Mechanic type (PLAN §10.0)."
+  },
+  "mechanic_type_independent": "Independent",
+  "@mechanic_type_independent": {
+    "description": "Mechanic type (PLAN §10.0)."
+  },
+  "approvals_type_all": "All types",
+  "@approvals_type_all": {
+    "description": "A2 type filter."
+  },
+  "approvals_search_label": "Search",
+  "@approvals_search_label": {
+    "description": "A2 search field label."
+  },
+  "approvals_search_hint": "Mechanic name",
+  "@approvals_search_hint": {
+    "description": "A2 search hint."
+  },
+  "approvals_empty": "Nothing here: no mechanics with status {status}.",
+  "@approvals_empty": {
+    "description": "A2 empty list. {status} is a status name.",
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "approvals_load_failed": "Couldn't load mechanics.",
+  "@approvals_load_failed": {
+    "description": "A2 load error."
+  },
+  "approvals_experience": "{years, plural, =1{1 year} other{{years} years}}",
+  "@approvals_experience": {
+    "description": "Independent mechanic's experience.",
+    "placeholders": {
+      "years": {
+        "type": "int"
+      }
+    }
+  },
+  "approvals_registered": "registered {date}",
+  "@approvals_registered": {
+    "description": "A2: when the mechanic registered.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "approvals_base_area": "Base area",
+  "@approvals_base_area": {
+    "description": "Independent: where they start from."
+  },
+  "approvals_travel_vehicle": "Travel vehicle ({vehicle})",
+  "@approvals_travel_vehicle": {
+    "description": "Independent: vehicle they arrive on.",
+    "placeholders": {
+      "vehicle": {
+        "type": "String"
+      }
+    }
+  },
+  "approvals_shop_name": "Shop",
+  "@approvals_shop_name": {
+    "description": "Workshop name."
+  },
+  "approvals_shop_address": "Address",
+  "@approvals_shop_address": {
+    "description": "Workshop address."
+  },
+  "approvals_services": "Services",
+  "@approvals_services": {
+    "description": "Problem types they fix."
+  },
+  "approvals_vehicle_types": "Vehicles",
+  "@approvals_vehicle_types": {
+    "description": "Vehicle types they work on."
+  },
+  "approvals_photos": "Photos",
+  "@approvals_photos": {
+    "description": "A2 section title."
+  },
+  "approvals_photo_profile": "Profile photo",
+  "@approvals_photo_profile": {
+    "description": "Photo label."
+  },
+  "approvals_photo_shop": "Shop photo",
+  "@approvals_photo_shop": {
+    "description": "Photo label."
+  },
+  "approvals_photo_toolkit": "Toolkit photo {n}",
+  "@approvals_photo_toolkit": {
+    "description": "Photo label.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "approvals_kyc": "Identity and payment",
+  "@approvals_kyc": {
+    "description": "A2 KYC section title."
+  },
+  "approvals_kyc_missing": "KYC not submitted yet.",
+  "@approvals_kyc_missing": {
+    "description": "A2: no KYC document."
+  },
+  "approvals_upi": "UPI",
+  "@approvals_upi": {
+    "description": "KYC field."
+  },
+  "approvals_phone": "Phone",
+  "@approvals_phone": {
+    "description": "KYC field."
+  },
+  "approvals_reference": "Reference",
+  "@approvals_reference": {
+    "description": "Independent: optional reference."
+  },
+  "approvals_document_id": "Open ID proof",
+  "@approvals_document_id": {
+    "description": "Opens a signed URL."
+  },
+  "approvals_document_selfie": "Open selfie with ID",
+  "@approvals_document_selfie": {
+    "description": "Opens a signed URL."
+  },
+  "approvals_document_address": "Open address proof",
+  "@approvals_document_address": {
+    "description": "Opens a signed URL."
+  },
+  "approvals_documents_note": "Documents open in a new tab through a link that expires in minutes. Don't download them.",
+  "@approvals_documents_note": {
+    "description": "A2 KYC note (PLAN §12.11)."
+  },
+  "approvals_document_missing": "That document isn't available.",
+  "@approvals_document_missing": {
+    "description": "A2: no signed URL returned."
+  },
+  "approvals_checklist": "Checklist",
+  "@approvals_checklist": {
+    "description": "A2 section title."
+  },
+  "approvals_check_shop_photo": "Shop photo shows a real workshop",
+  "@approvals_check_shop_photo": {
+    "description": "Workshop checklist."
+  },
+  "approvals_check_id_proof": "ID proof matches the name",
+  "@approvals_check_id_proof": {
+    "description": "Workshop checklist."
+  },
+  "approvals_check_services": "Services and vehicles make sense",
+  "@approvals_check_services": {
+    "description": "Workshop checklist."
+  },
+  "approvals_check_selfie": "Selfie matches the ID",
+  "@approvals_check_selfie": {
+    "description": "Independent checklist."
+  },
+  "approvals_check_address": "Address proof checked",
+  "@approvals_check_address": {
+    "description": "Independent checklist."
+  },
+  "approvals_check_toolkit": "Toolkit photos show real tools",
+  "@approvals_check_toolkit": {
+    "description": "Independent checklist."
+  },
+  "approvals_call_notes_label": "Verification call notes",
+  "@approvals_call_notes_label": {
+    "description": "Independent: before logging the call."
+  },
+  "approvals_call_notes_hint": "Video call, ID matched, 6 years at Patel Motors confirmed.",
+  "@approvals_call_notes_hint": {
+    "description": "Example notes."
+  },
+  "approvals_call_log": "Log verification call",
+  "@approvals_call_log": {
+    "description": "Records the call (admin callable)."
+  },
+  "approvals_call_logged": "Verification call logged.",
+  "@approvals_call_logged": {
+    "description": "Toast."
+  },
+  "approvals_call_done": "Call logged {date}: {notes}",
+  "@approvals_call_done": {
+    "description": "Independent: the logged call.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "notes": {
+        "type": "String"
+      }
+    }
+  },
+  "approvals_approve": "Approve",
+  "@approvals_approve": {
+    "description": "A2 primary action."
+  },
+  "approvals_approved": "Approved. They can go online now.",
+  "@approvals_approved": {
+    "description": "Toast."
+  },
+  "approvals_block": "Block",
+  "@approvals_block": {
+    "description": "A2 destructive action."
+  },
+  "approvals_block_reason_label": "Why are you blocking them?",
+  "@approvals_block_reason_label": {
+    "description": "Block reason, required."
+  },
+  "approvals_block_reason_hint": "For example: ID proof doesn't match",
+  "@approvals_block_reason_hint": {
+    "description": "Block reason hint."
+  },
+  "approvals_block_confirm": "Block mechanic",
+  "@approvals_block_confirm": {
+    "description": "Confirms the block."
+  },
+  "approvals_block_cancel": "Cancel",
+  "@approvals_block_cancel": {
+    "description": "Cancels blocking."
+  },
+  "approvals_blocked": "Blocked. They're signed out everywhere.",
+  "@approvals_blocked": {
+    "description": "Toast."
+  },
+  "approvals_blocked_note": "This mechanic is blocked and can't receive jobs.",
+  "@approvals_blocked_note": {
+    "description": "A2 detail for blocked mechanics."
+  },
+  "approvals_audit_note": "Every approval, block and call is recorded in the audit log.",
+  "@approvals_audit_note": {
+    "description": "A2 footer."
+  },
+  "approvals_why_kyc": "Approve needs the KYC documents first.",
+  "@approvals_why_kyc": {
+    "description": "Why Approve is disabled."
+  },
+  "approvals_why_checklist": "Tick every checklist item to approve.",
+  "@approvals_why_checklist": {
+    "description": "Why Approve is disabled."
+  },
+  "approvals_why_call": "Log the verification call to approve an independent mechanic.",
+  "@approvals_why_call": {
+    "description": "Why Approve is disabled (PLAN §10.0)."
+  },
+  "approvals_error_unavailable": "That action isn't available yet. Try again later.",
+  "@approvals_error_unavailable": {
+    "description": "The callable isn't deployed or reachable."
+  },
+  "approvals_error_precondition": "The server refused: check the mechanic's status and the verification call.",
+  "@approvals_error_precondition": {
+    "description": "failed-precondition."
+  },
+  "approvals_error_not_allowed": "Your admin access has changed. Sign in again.",
+  "@approvals_error_not_allowed": {
+    "description": "permission-denied."
+  },
+  "approvals_error_unknown": "Something went wrong. Nothing was changed.",
+  "@approvals_error_unknown": {
+    "description": "Other errors."
+  },
+  "booking_status_requested": "Searching",
+  "@booking_status_requested": {
+    "description": "Booking status: requested (rail: Requested)."
+  },
+  "booking_status_accepted": "Accepted",
+  "@booking_status_accepted": {
+    "description": "Booking status."
+  },
+  "booking_status_arriving": "On the way",
+  "@booking_status_arriving": {
+    "description": "Booking status: arriving."
+  },
+  "booking_status_arrived": "Arrived",
+  "@booking_status_arrived": {
+    "description": "Booking status."
+  },
+  "booking_status_in_progress": "Working",
+  "@booking_status_in_progress": {
+    "description": "Booking status: in progress."
+  },
+  "booking_status_completed": "Done",
+  "@booking_status_completed": {
+    "description": "Booking status: completed."
+  },
+  "booking_status_cancelled": "Cancelled",
+  "@booking_status_cancelled": {
+    "description": "Booking status."
+  },
+  "booking_status_no_mechanic": "No mechanic",
+  "@booking_status_no_mechanic": {
+    "description": "Booking status: no mechanic found."
+  },
+  "dashboard_today": "Today, {date}",
+  "@dashboard_today": {
+    "description": "A1 heading for today.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "dashboard_previous_day": "Previous day",
+  "@dashboard_previous_day": {
+    "description": "A1 day stepper."
+  },
+  "dashboard_next_day": "Next day",
+  "@dashboard_next_day": {
+    "description": "A1 day stepper."
+  },
+  "dashboard_load_failed": "Couldn't load the dashboard.",
+  "@dashboard_load_failed": {
+    "description": "A1 error."
+  },
+  "dashboard_stat_bookings": "Bookings",
+  "@dashboard_stat_bookings": {
+    "description": "Stat card."
+  },
+  "dashboard_stat_active_mechanics": "Mechanics online",
+  "@dashboard_stat_active_mechanics": {
+    "description": "Stat card."
+  },
+  "dashboard_stat_active_mechanics_note": "Right now",
+  "@dashboard_stat_active_mechanics_note": {
+    "description": "Under the online count."
+  },
+  "dashboard_stat_completion": "Completion",
+  "@dashboard_stat_completion": {
+    "description": "Stat card: completed / ended bookings."
+  },
+  "dashboard_stat_median_arrival": "Median arrival",
+  "@dashboard_stat_median_arrival": {
+    "description": "Stat card: accept to arrive."
+  },
+  "dashboard_stat_median_arrival_note": "Accepted to arrived",
+  "@dashboard_stat_median_arrival_note": {
+    "description": "Under the arrival stat."
+  },
+  "dashboard_minutes": "{minutes} min",
+  "@dashboard_minutes": {
+    "description": "Duration in minutes.",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "dashboard_stat_sms": "SMS success",
+  "@dashboard_stat_sms": {
+    "description": "Stat card: OTP SMS success rate."
+  },
+  "dashboard_stat_sms_note": "From monitoring (#62)",
+  "@dashboard_stat_sms_note": {
+    "description": "SMS rate comes from Cloud Monitoring, not Firestore."
+  },
+  "dashboard_bookings_title": "Bookings this day",
+  "@dashboard_bookings_title": {
+    "description": "A1 table title."
+  },
+  "dashboard_bookings_empty": "No bookings this day.",
+  "@dashboard_bookings_empty": {
+    "description": "A1 empty table."
+  },
+  "dashboard_column_booking": "Booking",
+  "@dashboard_column_booking": {
+    "description": "Table column."
+  },
+  "dashboard_column_customer": "Customer",
+  "@dashboard_column_customer": {
+    "description": "Table column."
+  },
+  "dashboard_column_mechanic": "Mechanic",
+  "@dashboard_column_mechanic": {
+    "description": "Table column."
+  },
+  "dashboard_column_status": "Status",
+  "@dashboard_column_status": {
+    "description": "Table column."
+  },
+  "dashboard_column_amount": "Amount",
+  "@dashboard_column_amount": {
+    "description": "Table column."
+  },
+  "live_load_failed": "Couldn't load live bookings.",
+  "@live_load_failed": {
+    "description": "A3 error."
+  },
+  "live_empty": "No active bookings right now.",
+  "@live_empty": {
+    "description": "A3 empty."
+  },
+  "live_status_all": "All active",
+  "@live_status_all": {
+    "description": "A3 status filter."
+  },
+  "live_vehicle_all": "All vehicles",
+  "@live_vehicle_all": {
+    "description": "A3 vehicle filter."
+  },
+  "live_map_label": "{count, plural, =0{Map with no active bookings} =1{Map with 1 active booking} other{Map with {count} active bookings}}",
+  "@live_map_label": {
+    "description": "Screen-reader label of the map.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "live_customer": "Customer: {details}",
+  "@live_customer": {
+    "description": "A3 detail. {details} is name and phone.",
+    "placeholders": {
+      "details": {
+        "type": "String"
+      }
+    }
+  },
+  "live_mechanic": "Mechanic: {details}",
+  "@live_mechanic": {
+    "description": "A3 detail. {details} is name and phone.",
+    "placeholders": {
+      "details": {
+        "type": "String"
+      }
+    }
+  },
+  "live_searching": "Searching within {km} km",
+  "@live_searching": {
+    "description": "A3 detail before accept.",
+    "placeholders": {
+      "km": {
+        "type": "int"
+      }
+    }
+  },
+  "live_cancel": "Cancel as admin",
+  "@live_cancel": {
+    "description": "A3 action."
+  },
+  "live_cancel_reason_label": "Why are you cancelling?",
+  "@live_cancel_reason_label": {
+    "description": "Reason, required (PLAN §9)."
+  },
+  "live_cancel_reason_hint": "For example: customer asked by phone",
+  "@live_cancel_reason_hint": {
+    "description": "Reason hint."
+  },
+  "live_cancel_confirm": "Cancel booking",
+  "@live_cancel_confirm": {
+    "description": "Confirms the admin cancel."
+  },
+  "live_cancel_note": "Customer and mechanic are notified. The cancel is recorded with your account.",
+  "@live_cancel_note": {
+    "description": "A3 footer."
+  },
+  "live_cancelled": "Booking cancelled.",
+  "@live_cancelled": {
+    "description": "Toast."
+  },
+  "live_cancel_refused": "This booking can't be cancelled any more.",
+  "@live_cancel_refused": {
+    "description": "failed-precondition on cancel."
+  },
+  "complaints_tab_open": "Open",
+  "@complaints_tab_open": {
+    "description": "A5 tab."
+  },
+  "complaints_tab_open_count": "Open ({count})",
+  "@complaints_tab_open_count": {
+    "description": "A5 tab with count.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "complaints_tab_resolved": "Resolved",
+  "@complaints_tab_resolved": {
+    "description": "A5 tab."
+  },
+  "complaints_tab_reviews": "Reviews",
+  "@complaints_tab_reviews": {
+    "description": "A5 tab."
+  },
+  "complaints_load_failed": "Couldn't load complaints.",
+  "@complaints_load_failed": {
+    "description": "A5 error."
+  },
+  "complaints_empty_open": "No open complaints.",
+  "@complaints_empty_open": {
+    "description": "A5 empty."
+  },
+  "complaints_empty_resolved": "No resolved complaints yet.",
+  "@complaints_empty_resolved": {
+    "description": "A5 empty."
+  },
+  "complaints_empty_reviews": "No reviews yet.",
+  "@complaints_empty_reviews": {
+    "description": "A5 empty."
+  },
+  "complaints_title": "{category} · {ref}",
+  "@complaints_title": {
+    "description": "A5 detail title, e.g. Payment dispute · #K3F9QA.",
+    "placeholders": {
+      "category": {
+        "type": "String"
+      },
+      "ref": {
+        "type": "String"
+      }
+    }
+  },
+  "complaints_raised_by_customer": "Raised by the customer, {name}",
+  "@complaints_raised_by_customer": {
+    "description": "A5 detail.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "complaints_raised_by_mechanic": "Raised by the mechanic, {name}",
+  "@complaints_raised_by_mechanic": {
+    "description": "A5 detail.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "complaints_resolution": "Resolution: {text}",
+  "@complaints_resolution": {
+    "description": "A5 resolved complaint.",
+    "placeholders": {
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "complaints_resolution_label": "Resolution note",
+  "@complaints_resolution_label": {
+    "description": "A5: note before resolving."
+  },
+  "complaints_resolution_hint": "For example: called both, UPI transfer found, confirmed with the mechanic.",
+  "@complaints_resolution_hint": {
+    "description": "A5 hint."
+  },
+  "complaints_resolve": "Resolve",
+  "@complaints_resolve": {
+    "description": "A5 action."
+  },
+  "complaints_resolved": "Complaint resolved.",
+  "@complaints_resolved": {
+    "description": "Toast."
+  },
+  "complaints_stars": "{stars, plural, =1{1 star} other{{stars} stars}}",
+  "@complaints_stars": {
+    "description": "Review rating.",
+    "placeholders": {
+      "stars": {
+        "type": "int"
+      }
+    }
+  },
+  "complaints_category_payment": "Payment dispute",
+  "@complaints_category_payment": {
+    "description": "Complaint category."
+  },
+  "complaints_category_service": "Service",
+  "@complaints_category_service": {
+    "description": "Complaint category."
+  },
+  "complaints_category_safety": "Safety",
+  "@complaints_category_safety": {
+    "description": "Complaint category."
+  },
+  "complaints_category_other": "Other",
+  "@complaints_category_other": {
+    "description": "Complaint category."
+  },
+  "payment_status_pending": "Not paid yet",
+  "@payment_status_pending": {
+    "description": "Payment status."
+  },
+  "payment_status_marked_paid": "Customer says paid",
+  "@payment_status_marked_paid": {
+    "description": "Payment status."
+  },
+  "payment_status_confirmed": "Paid, confirmed",
+  "@payment_status_confirmed": {
+    "description": "Payment status."
+  },
+  "payment_status_disputed": "Disputed",
+  "@payment_status_disputed": {
+    "description": "Payment status."
+  },
+  "settings_load_failed": "Couldn't load settings.",
+  "@settings_load_failed": {
+    "description": "A6 error."
+  },
+  "settings_app_title": "App",
+  "@settings_app_title": {
+    "description": "A6 section: appConfig/public."
+  },
+  "settings_min_build_label": "Minimum supported build",
+  "@settings_min_build_label": {
+    "description": "A6 field."
+  },
+  "settings_min_build_help": "Older app builds must update before they can be used.",
+  "@settings_min_build_help": {
+    "description": "A6 help."
+  },
+  "settings_maintenance_label": "Maintenance message",
+  "@settings_maintenance_label": {
+    "description": "A6 field."
+  },
+  "settings_maintenance_help": "Shown to everyone in the apps. Leave empty for none.",
+  "@settings_maintenance_help": {
+    "description": "A6 help."
+  },
+  "settings_support_phone_label": "Support phone",
+  "@settings_support_phone_label": {
+    "description": "A6 field."
+  },
+  "settings_support_phone_hint": "+91 98XXX XXXXX",
+  "@settings_support_phone_hint": {
+    "description": "A6 phone hint."
+  },
+  "settings_phone_invalid": "Enter a phone number with its country code, e.g. +91…",
+  "@settings_phone_invalid": {
+    "description": "A6 phone error."
+  },
+  "settings_dispatch_label": "Take new bookings",
+  "@settings_dispatch_label": {
+    "description": "A6: dispatch kill switch."
+  },
+  "settings_dispatch_on": "On: customers can book.",
+  "@settings_dispatch_on": {
+    "description": "Kill switch on."
+  },
+  "settings_dispatch_off": "Off: every new booking is refused until you turn it back on.",
+  "@settings_dispatch_off": {
+    "description": "Kill switch off."
+  },
+  "settings_save": "Save",
+  "@settings_save": {
+    "description": "A6 app save."
+  },
+  "settings_saved": "Saved. The apps pick it up within a minute.",
+  "@settings_saved": {
+    "description": "Toast."
+  },
+  "settings_areas_title": "Service areas",
+  "@settings_areas_title": {
+    "description": "A6 section."
+  },
+  "settings_area_missing": "{city} isn't set up yet (run the seed).",
+  "@settings_area_missing": {
+    "description": "A6: missing serviceAreas doc.",
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_area_on": "On: bookings accepted here.",
+  "@settings_area_on": {
+    "description": "City on."
+  },
+  "settings_area_off": "Off: new bookings in {city} get \"not in your area yet\".",
+  "@settings_area_off": {
+    "description": "City off.",
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_area_radius_label": "{city} radius (km)",
+  "@settings_area_radius_label": {
+    "description": "A6 radius field.",
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_area_radius_invalid": "Between 1 and 100 km",
+  "@settings_area_radius_invalid": {
+    "description": "Radius error."
+  },
+  "settings_area_save": "Save {city}",
+  "@settings_area_save": {
+    "description": "Saves one city.",
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_admins_title": "Admins",
+  "@settings_admins_title": {
+    "description": "A6 section."
+  },
+  "settings_admins_note": "Read only. Admins are added and removed with tool/admin (PLAN §12.11).",
+  "@settings_admins_note": {
+    "description": "A6 note."
+  },
+  "complaints_audit_note": "The resolution is recorded with your account in the audit log.",
+  "@complaints_audit_note": {
+    "description": "A5 footer under Resolve."
   }
 }
