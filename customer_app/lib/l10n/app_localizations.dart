@@ -1089,10 +1089,10 @@ abstract class AppLocalizations {
   /// **'Couldn\'t book. Check your connection and try again.'**
   String get price_error_network;
 
-  /// After createBooking, until U8 Searching (#16).
+  /// U8 Searching: title.
   ///
   /// In en, this message translates to:
-  /// **'Booking sent'**
+  /// **'Finding a mechanic'**
   String get searching_title;
 
   /// Under searching_title.
@@ -1100,6 +1100,216 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'We\'re finding the nearest mechanic.'**
   String get searching_body;
+
+  /// U8: the booking's real search radius.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'re asking mechanics within {km} km of you.'**
+  String searching_radius(int km);
+
+  /// U8/U9: opens the cancel confirm sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel booking'**
+  String get cancel_booking;
+
+  /// Cancel sheet: title.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel this booking?'**
+  String get cancel_title;
+
+  /// Cancel sheet while searching.
+  ///
+  /// In en, this message translates to:
+  /// **'We stop looking for a mechanic straight away.'**
+  String get cancel_body_searching;
+
+  /// Cancel sheet once a mechanic is assigned.
+  ///
+  /// In en, this message translates to:
+  /// **'Your mechanic is told straight away. Please pick a reason.'**
+  String get cancel_body_assigned;
+
+  /// Cancel sheet: the red confirm button.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel booking'**
+  String get cancel_confirm;
+
+  /// Cancel sheet: keep it.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep booking'**
+  String get cancel_keep;
+
+  /// Cancel reason found_help.
+  ///
+  /// In en, this message translates to:
+  /// **'Found help elsewhere'**
+  String get cancel_reason_found_help;
+
+  /// Cancel reason fixed_myself.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed it myself'**
+  String get cancel_reason_fixed_myself;
+
+  /// Cancel reason too_slow.
+  ///
+  /// In en, this message translates to:
+  /// **'Taking too long'**
+  String get cancel_reason_too_slow;
+
+  /// Cancel reason wrong_details.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong vehicle or place'**
+  String get cancel_reason_wrong_details;
+
+  /// Cancel reason other (asks for text).
+  ///
+  /// In en, this message translates to:
+  /// **'Something else'**
+  String get cancel_reason_other;
+
+  /// Cancel sheet: text for "Something else".
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us more (optional)'**
+  String get cancel_reason_text;
+
+  /// Toast: cancelBooking error_invalid_status.
+  ///
+  /// In en, this message translates to:
+  /// **'It can\'t be cancelled now: the work has started.'**
+  String get cancel_error_too_late;
+
+  /// Toast: cancelBooking failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t cancel. Check your connection and try again.'**
+  String get cancel_error_network;
+
+  /// no_mechanic_found: title.
+  ///
+  /// In en, this message translates to:
+  /// **'No mechanic free right now'**
+  String get no_mechanic_title;
+
+  /// no_mechanic_found: message.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyone nearby is busy. Try again in a few minutes, or talk to us.'**
+  String get no_mechanic_body;
+
+  /// no_mechanic_found: book the same again.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get no_mechanic_try_again;
+
+  /// Cancelled: title.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking cancelled'**
+  String get cancelled_title;
+
+  /// Cancelled by the customer.
+  ///
+  /// In en, this message translates to:
+  /// **'You cancelled this booking.'**
+  String get cancelled_by_you;
+
+  /// Cancelled by the mechanic after arrival.
+  ///
+  /// In en, this message translates to:
+  /// **'The mechanic had to cancel. You were not charged.'**
+  String get cancelled_by_mechanic;
+
+  /// Cancelled by admin or the system.
+  ///
+  /// In en, this message translates to:
+  /// **'Our support team cancelled this booking.'**
+  String get cancelled_by_support;
+
+  /// Booking missing or not the customer's.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t find this booking.'**
+  String get live_not_found;
+
+  /// in_progress and later, until U12 (#17).
+  ///
+  /// In en, this message translates to:
+  /// **'Your mechanic is on the job'**
+  String get live_working_title;
+
+  /// U9: accepted.
+  ///
+  /// In en, this message translates to:
+  /// **'A mechanic is coming'**
+  String get assigned_title;
+
+  /// U9: arriving.
+  ///
+  /// In en, this message translates to:
+  /// **'Your mechanic is on the way'**
+  String get assigned_on_the_way;
+
+  /// U9: arrived.
+  ///
+  /// In en, this message translates to:
+  /// **'Your mechanic has arrived'**
+  String get assigned_arrived;
+
+  /// JourneyRail stop.
+  ///
+  /// In en, this message translates to:
+  /// **'Requested'**
+  String get stop_requested;
+
+  /// JourneyRail stop.
+  ///
+  /// In en, this message translates to:
+  /// **'Accepted'**
+  String get stop_accepted;
+
+  /// JourneyRail stop.
+  ///
+  /// In en, this message translates to:
+  /// **'On the way'**
+  String get stop_on_the_way;
+
+  /// JourneyRail stop.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrived'**
+  String get stop_arrived;
+
+  /// JourneyRail stop.
+  ///
+  /// In en, this message translates to:
+  /// **'Working'**
+  String get stop_working;
+
+  /// JourneyRail stop.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get stop_done;
+
+  /// Push/inbox: verifyStartOtp locked after 5 wrong codes (#124).
+  ///
+  /// In en, this message translates to:
+  /// **'Someone tried your start code'**
+  String get notif_start_code_locked_title;
+
+  /// Push/inbox body for start_code_locked.
+  ///
+  /// In en, this message translates to:
+  /// **'Someone tried your start code 5 times. Only read it out to your mechanic in person.'**
+  String get notif_start_code_locked_body;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

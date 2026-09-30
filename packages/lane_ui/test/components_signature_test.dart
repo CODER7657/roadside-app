@@ -321,6 +321,29 @@ void main() {
       handle.dispose();
     });
 
+    testWidgets('inside a card in a list, the code is its own node; the card is not a button', (
+      tester,
+    ) async {
+      final handle = tester.ensureSemantics();
+      await pumpIn(
+        tester,
+        Scaffold(
+          body: ListView(
+            children: const [
+              TrustPass.independent(name: 'Kiran', years: 6, travelRegNo: 'GJ01AB1234', startCode: '4821'),
+            ],
+          ),
+        ),
+      );
+      final code = tester.getSemantics(find.byType(LaneOtpDisplay));
+      expect(code.label, '4 8 2 1');
+      expect(code.hint, 'Show large');
+      final card = tester.getSemantics(find.text('Kiran'));
+      expect(card.label, isNot(contains('4 8 2 1')));
+      expect(card.flagsCollection.isButton, isFalse);
+      handle.dispose();
+    });
+
     testWidgets('fullscreenOnTap: false is just the digits', (tester) async {
       await pumpIn(
         tester,
@@ -476,6 +499,25 @@ void main() {
       expect(expired, 1);
       await tester.pump(const Duration(seconds: 5));
       expect(expired, 1);
+    });
+
+    testWidgets('the countdown is its own node; the wrapped button keeps its label', (tester) async {
+      final handle = tester.ensureSemantics();
+      await pumpIn(
+        tester,
+        Scaffold(
+          body: Center(
+            child: CountdownRing(
+              child: LaneButton.primary(label: 'Accept', onPressed: () {}),
+            ),
+          ),
+        ),
+      );
+      expect(tester.getSemantics(find.byType(CountdownRing)).label, '30 seconds left');
+      final button = tester.getSemantics(find.byType(LaneButton));
+      expect(button.label, 'Accept');
+      expect(button.flagsCollection.isButton, isTrue);
+      handle.dispose();
     });
 
     testWidgets('a late push starts part-drained', (tester) async {

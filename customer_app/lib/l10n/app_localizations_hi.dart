@@ -547,8 +547,117 @@ class AppLocalizationsHi extends AppLocalizations {
   String get price_error_network => 'बुक नहीं हो सका। अपना कनेक्शन जाँचें और फिर कोशिश करें।';
 
   @override
-  String get searching_title => 'बुकिंग भेज दी गई';
+  String get searching_title => 'मैकेनिक ढूँढ रहे हैं';
 
   @override
   String get searching_body => 'हम सबसे पास का मैकेनिक ढूँढ रहे हैं।';
+
+  @override
+  String searching_radius(int km) {
+    return 'हम आपसे $km किमी के अंदर के मैकेनिकों से पूछ रहे हैं।';
+  }
+
+  @override
+  String get cancel_booking => 'बुकिंग रद्द करें';
+
+  @override
+  String get cancel_title => 'यह बुकिंग रद्द करें?';
+
+  @override
+  String get cancel_body_searching => 'हम तुरंत मैकेनिक ढूँढना बंद कर देंगे।';
+
+  @override
+  String get cancel_body_assigned => 'आपके मैकेनिक को तुरंत बताया जाएगा। कृपया कारण चुनें।';
+
+  @override
+  String get cancel_confirm => 'बुकिंग रद्द करें';
+
+  @override
+  String get cancel_keep => 'बुकिंग रखें';
+
+  @override
+  String get cancel_reason_found_help => 'कहीं और मदद मिल गई';
+
+  @override
+  String get cancel_reason_fixed_myself => 'खुद ठीक कर लिया';
+
+  @override
+  String get cancel_reason_too_slow => 'बहुत देर हो रही है';
+
+  @override
+  String get cancel_reason_wrong_details => 'गलत वाहन या जगह';
+
+  @override
+  String get cancel_reason_other => 'कुछ और';
+
+  @override
+  String get cancel_reason_text => 'और बताएँ (वैकल्पिक)';
+
+  @override
+  String get cancel_error_too_late => 'अब रद्द नहीं हो सकता: काम शुरू हो चुका है।';
+
+  @override
+  String get cancel_error_network => 'रद्द नहीं हो सका। अपना कनेक्शन जाँचें और फिर कोशिश करें।';
+
+  @override
+  String get no_mechanic_title => 'अभी कोई मैकेनिक खाली नहीं है';
+
+  @override
+  String get no_mechanic_body =>
+      'पास के सभी मैकेनिक व्यस्त हैं। कुछ मिनट बाद फिर कोशिश करें, या हमसे बात करें।';
+
+  @override
+  String get no_mechanic_try_again => 'फिर से कोशिश करें';
+
+  @override
+  String get cancelled_title => 'बुकिंग रद्द हो गई';
+
+  @override
+  String get cancelled_by_you => 'आपने यह बुकिंग रद्द की।';
+
+  @override
+  String get cancelled_by_mechanic => 'मैकेनिक को रद्द करना पड़ा। आपसे कोई शुल्क नहीं लिया गया।';
+
+  @override
+  String get cancelled_by_support => 'हमारी सहायता टीम ने यह बुकिंग रद्द की।';
+
+  @override
+  String get live_not_found => 'यह बुकिंग नहीं मिली।';
+
+  @override
+  String get live_working_title => 'आपका मैकेनिक काम कर रहा है';
+
+  @override
+  String get assigned_title => 'एक मैकेनिक आ रहा है';
+
+  @override
+  String get assigned_on_the_way => 'आपका मैकेनिक रास्ते में है';
+
+  @override
+  String get assigned_arrived => 'आपका मैकेनिक पहुँच गया है';
+
+  @override
+  String get stop_requested => 'अनुरोध';
+
+  @override
+  String get stop_accepted => 'स्वीकार';
+
+  @override
+  String get stop_on_the_way => 'रास्ते में';
+
+  @override
+  String get stop_arrived => 'पहुँच गए';
+
+  @override
+  String get stop_working => 'काम जारी';
+
+  @override
+  String get stop_done => 'पूरा';
+
+  @override
+  String get notif_start_code_locked_title => 'किसी ने आपका स्टार्ट कोड आज़माया';
+
+  @override
+  String get notif_start_code_locked_body =>
+      'किसी ने आपका स्टार्ट कोड 5 बार आज़माया। इसे केवल अपने मैकेनिक को सामने से बताएँ।';
 }

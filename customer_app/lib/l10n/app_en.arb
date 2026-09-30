@@ -713,12 +713,157 @@
   "@price_error_network": {
     "description": "U7: network or unknown error; Book retries with the same key."
   },
-  "searching_title": "Booking sent",
+  "searching_title": "Finding a mechanic",
   "@searching_title": {
-    "description": "After createBooking, until U8 Searching (#16)."
+    "description": "U8 Searching: title."
   },
   "searching_body": "We're finding the nearest mechanic.",
   "@searching_body": {
     "description": "Under searching_title."
+  },
+  "searching_radius": "We're asking mechanics within {km} km of you.",
+  "@searching_radius": {
+    "description": "U8: the booking's real search radius.",
+    "placeholders": {
+      "km": {
+        "type": "int"
+      }
+    }
+  },
+  "cancel_booking": "Cancel booking",
+  "@cancel_booking": {
+    "description": "U8/U9: opens the cancel confirm sheet."
+  },
+  "cancel_title": "Cancel this booking?",
+  "@cancel_title": {
+    "description": "Cancel sheet: title."
+  },
+  "cancel_body_searching": "We stop looking for a mechanic straight away.",
+  "@cancel_body_searching": {
+    "description": "Cancel sheet while searching."
+  },
+  "cancel_body_assigned": "Your mechanic is told straight away. Please pick a reason.",
+  "@cancel_body_assigned": {
+    "description": "Cancel sheet once a mechanic is assigned."
+  },
+  "cancel_confirm": "Cancel booking",
+  "@cancel_confirm": {
+    "description": "Cancel sheet: the red confirm button."
+  },
+  "cancel_keep": "Keep booking",
+  "@cancel_keep": {
+    "description": "Cancel sheet: keep it."
+  },
+  "cancel_reason_found_help": "Found help elsewhere",
+  "@cancel_reason_found_help": {
+    "description": "Cancel reason found_help."
+  },
+  "cancel_reason_fixed_myself": "Fixed it myself",
+  "@cancel_reason_fixed_myself": {
+    "description": "Cancel reason fixed_myself."
+  },
+  "cancel_reason_too_slow": "Taking too long",
+  "@cancel_reason_too_slow": {
+    "description": "Cancel reason too_slow."
+  },
+  "cancel_reason_wrong_details": "Wrong vehicle or place",
+  "@cancel_reason_wrong_details": {
+    "description": "Cancel reason wrong_details."
+  },
+  "cancel_reason_other": "Something else",
+  "@cancel_reason_other": {
+    "description": "Cancel reason other (asks for text)."
+  },
+  "cancel_reason_text": "Tell us more (optional)",
+  "@cancel_reason_text": {
+    "description": "Cancel sheet: text for \"Something else\"."
+  },
+  "cancel_error_too_late": "It can't be cancelled now: the work has started.",
+  "@cancel_error_too_late": {
+    "description": "Toast: cancelBooking error_invalid_status."
+  },
+  "cancel_error_network": "Couldn't cancel. Check your connection and try again.",
+  "@cancel_error_network": {
+    "description": "Toast: cancelBooking failed."
+  },
+  "no_mechanic_title": "No mechanic free right now",
+  "@no_mechanic_title": {
+    "description": "no_mechanic_found: title."
+  },
+  "no_mechanic_body": "Everyone nearby is busy. Try again in a few minutes, or talk to us.",
+  "@no_mechanic_body": {
+    "description": "no_mechanic_found: message."
+  },
+  "no_mechanic_try_again": "Try again",
+  "@no_mechanic_try_again": {
+    "description": "no_mechanic_found: book the same again."
+  },
+  "cancelled_title": "Booking cancelled",
+  "@cancelled_title": {
+    "description": "Cancelled: title."
+  },
+  "cancelled_by_you": "You cancelled this booking.",
+  "@cancelled_by_you": {
+    "description": "Cancelled by the customer."
+  },
+  "cancelled_by_mechanic": "The mechanic had to cancel. You were not charged.",
+  "@cancelled_by_mechanic": {
+    "description": "Cancelled by the mechanic after arrival."
+  },
+  "cancelled_by_support": "Our support team cancelled this booking.",
+  "@cancelled_by_support": {
+    "description": "Cancelled by admin or the system."
+  },
+  "live_not_found": "We couldn't find this booking.",
+  "@live_not_found": {
+    "description": "Booking missing or not the customer's."
+  },
+  "live_working_title": "Your mechanic is on the job",
+  "@live_working_title": {
+    "description": "in_progress and later, until U12 (#17)."
+  },
+  "assigned_title": "A mechanic is coming",
+  "@assigned_title": {
+    "description": "U9: accepted."
+  },
+  "assigned_on_the_way": "Your mechanic is on the way",
+  "@assigned_on_the_way": {
+    "description": "U9: arriving."
+  },
+  "assigned_arrived": "Your mechanic has arrived",
+  "@assigned_arrived": {
+    "description": "U9: arrived."
+  },
+  "stop_requested": "Requested",
+  "@stop_requested": {
+    "description": "JourneyRail stop."
+  },
+  "stop_accepted": "Accepted",
+  "@stop_accepted": {
+    "description": "JourneyRail stop."
+  },
+  "stop_on_the_way": "On the way",
+  "@stop_on_the_way": {
+    "description": "JourneyRail stop."
+  },
+  "stop_arrived": "Arrived",
+  "@stop_arrived": {
+    "description": "JourneyRail stop."
+  },
+  "stop_working": "Working",
+  "@stop_working": {
+    "description": "JourneyRail stop."
+  },
+  "stop_done": "Done",
+  "@stop_done": {
+    "description": "JourneyRail stop."
+  },
+  "notif_start_code_locked_title": "Someone tried your start code",
+  "@notif_start_code_locked_title": {
+    "description": "Push/inbox: verifyStartOtp locked after 5 wrong codes (#124)."
+  },
+  "notif_start_code_locked_body": "Someone tried your start code 5 times. Only read it out to your mechanic in person.",
+  "@notif_start_code_locked_body": {
+    "description": "Push/inbox body for start_code_locked."
   }
 }

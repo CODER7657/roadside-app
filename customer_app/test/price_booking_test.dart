@@ -10,8 +10,8 @@ import 'package:customer_app/app/router.dart';
 import 'package:customer_app/features/booking/application/booking_draft.dart';
 import 'package:customer_app/features/booking/application/estimate.dart';
 import 'package:customer_app/features/booking/data/booking_service.dart';
+import 'package:customer_app/features/booking/presentation/live_booking_screen.dart';
 import 'package:customer_app/features/booking/presentation/price_screen.dart';
-import 'package:customer_app/features/booking/presentation/searching_pending_screen.dart';
 import 'package:customer_app/features/first_run/application/first_run.dart';
 import 'package:customer_app/features/help/presentation/help_screen.dart';
 import 'package:customer_app/features/vehicles/application/vehicles.dart';
@@ -20,6 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lane_ui/lane_ui.dart' hide PriceRange;
+import 'package:roadside_core/fakes.dart';
 import 'package:roadside_core/roadside_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -88,6 +89,9 @@ class ScriptedBookingService implements BookingService {
     keys.add(draft.idempotencyKey);
     return answers.removeAt(0)();
   }
+
+  @override
+  Future<void> cancelBooking(String bookingId, CancelReason reason) async {}
 }
 
 const created = CreatedBooking(bookingId: 'b1', cityId: CityId.ahmedabad, min: 350, max: 600);
@@ -200,7 +204,7 @@ void main() {
     setUp(() {
       service = FakeBookingService(
         InMemoryPriceCatalog(prices: {Price.idFor(VehicleType.car, ProblemType.flatTyre): carFlatTyre}),
-        (id) async => id == 'v1' ? VehicleType.car : null,
+        (id) async => id == 'v1' ? RoadsideFakes.car : null,
       );
     });
 
@@ -233,7 +237,7 @@ void main() {
         service.createBooking(draftWith(vehicleId: 'gone')),
         throwsA(isA<BookingException>().having((e) => e.code, 'code', BookingException.vehicleNotFound)),
       );
-      final noPrices = FakeBookingService(InMemoryPriceCatalog(), (id) async => VehicleType.car);
+      final noPrices = FakeBookingService(InMemoryPriceCatalog(), (id) async => RoadsideFakes.car);
       await expectLater(
         noPrices.createBooking(draftWith()),
         throwsA(isA<BookingException>().having((e) => e.code, 'code', BookingException.priceUnavailable)),
@@ -319,7 +323,7 @@ void main() {
 
       await tester.tap(find.text('Book mechanic'));
       await pumpAWhile(tester);
-      expect(find.byType(SearchingPendingScreen), findsOneWidget);
+      expect(find.byType(LiveBookingScreen), findsOneWidget);
       expect(container.read(activeBookingProvider)?.bookingId, 'b1');
       expect(
         container.read(routerProvider).canPop(),
@@ -347,7 +351,7 @@ void main() {
       expect(service.keys, hasLength(1));
       slow.complete(created);
       await pumpAWhile(tester);
-      expect(find.byType(SearchingPendingScreen), findsOneWidget);
+      expect(find.byType(LiveBookingScreen), findsOneWidget);
     });
 
     testWidgets('a network error keeps the key: the retry is the same booking', (tester) async {
@@ -364,7 +368,7 @@ void main() {
       await pumpAWhile(tester);
       expect(service.keys, hasLength(2));
       expect(service.keys.toSet(), hasLength(1), reason: 'same idempotencyKey both times');
-      expect(find.byType(SearchingPendingScreen), findsOneWidget);
+      expect(find.byType(LiveBookingScreen), findsOneWidget);
     });
 
     testWidgets('out of area: said up front, Book is off, Change pickup goes back', (tester) async {
@@ -389,7 +393,7 @@ void main() {
       expect(find.text('You already have a booking in progress.'), findsOneWidget);
       await tester.tap(find.text('OPEN MY BOOKING'));
       await pumpAWhile(tester);
-      expect(find.byType(SearchingPendingScreen), findsOneWidget);
+      expect(find.byType(LiveBookingScreen), findsOneWidget);
     });
 
     testWidgets('paused, then retried successfully; rate limited says wait', (tester) async {
@@ -408,7 +412,7 @@ void main() {
       expect(find.textContaining('Bookings are paused'), findsNothing, reason: 'old error cleared');
       await tester.tap(find.text('Book mechanic'));
       await pumpAWhile(tester);
-      expect(find.byType(SearchingPendingScreen), findsOneWidget);
+      expect(find.byType(LiveBookingScreen), findsOneWidget);
     });
 
     testWidgets('no price for this problem: Get support opens Help', (tester) async {

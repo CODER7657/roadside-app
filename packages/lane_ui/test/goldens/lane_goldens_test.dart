@@ -89,6 +89,16 @@ void main() {
     builder: () => _group((_) => const LaneMapPartsSample()),
   );
 
+  goldenTest(
+    'confirm sheet in every mode',
+    fileName: 'components_sheet',
+    builder: () => _group(
+      (locale) => locale.languageCode == 'hi'
+          ? const LaneSheetSample(reasons: ['कहीं और मदद मिल गई', 'बहुत देर हो रही है', 'कुछ और'])
+          : const LaneSheetSample(),
+    ),
+  );
+
   for (final page in [0, 1]) {
     goldenTest(
       'signature components (page ${page + 1}) in every mode',

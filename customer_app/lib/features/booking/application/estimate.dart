@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roadside_core/roadside_core.dart';
 
 import '../../vehicles/application/vehicles.dart';
+import '../data/booking_repository.dart';
 import '../data/booking_service.dart';
 import 'booking_draft.dart';
 
@@ -13,9 +14,15 @@ final priceCatalogProvider = Provider<PriceCatalog>((ref) => InMemoryPriceCatalo
 final bookingServiceProvider = Provider<BookingService>(
   (ref) => FakeBookingService(ref.watch(priceCatalogProvider), (vehicleId) async {
     final list = await ref.read(vehiclesProvider.future);
-    return list.where((v) => v.id == vehicleId).firstOrNull?.vehicle.type;
-  }),
+    return list.where((v) => v.id == vehicleId).firstOrNull?.vehicle;
+  }, store: ref.watch(bookingStoreProvider)),
 );
+
+/// In memory until #92: the fake `createBooking` writes here and U8/U9 watch it.
+final bookingStoreProvider = Provider<InMemoryBookingStore>((ref) => InMemoryBookingStore());
+
+/// Then `FirestoreBookingRepository(RoadsideRefs(FirebaseFirestore.instance))`.
+final bookingRepositoryProvider = Provider<BookingRepository>((ref) => ref.watch(bookingStoreProvider));
 
 /// What U7 shows before booking: the range for this vehicle and problem in the pickup's city.
 @immutable
