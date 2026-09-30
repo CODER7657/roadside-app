@@ -336,4 +336,113 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get error_reg_no_invalid => 'નંબર તપાસો, જેમ કે GJ 01 AB 1234 અથવા 22 BH 1234 AA';
+
+  @override
+  String get home_get_help => 'મદદ મેળવો';
+
+  @override
+  String booking_step(int step, int total) {
+    return 'પગલું $step / $total';
+  }
+
+  @override
+  String get booking_next => 'આગળ';
+
+  @override
+  String get problem_title => 'શું તકલીફ છે?';
+
+  @override
+  String get problem_vehicle_label => 'વાહન';
+
+  @override
+  String get problem_no_vehicle_title => 'પહેલાં તમારું વાહન ઉમેરો';
+
+  @override
+  String get problem_no_vehicle_body => 'મિકેનિકને ખબર હોવી જોઈએ કે શું રિપેર કરવાનું છે.';
+
+  @override
+  String get problem_add_vehicle => 'વાહન ઉમેરો';
+
+  @override
+  String get problem_type_flat_tyre => 'ટાયર પંક્ચર';
+
+  @override
+  String get problem_type_battery => 'બેટરી';
+
+  @override
+  String get problem_type_wont_start => 'ચાલુ થતું નથી';
+
+  @override
+  String get problem_type_overheating => 'વધુ ગરમ';
+
+  @override
+  String get problem_type_accident => 'અકસ્માત';
+
+  @override
+  String get problem_type_fuel => 'ઈંધણ ખલાસ';
+
+  @override
+  String get problem_type_other => 'બીજું કંઈ';
+
+  @override
+  String get photos_title => 'ફોટા અને વિગત';
+
+  @override
+  String get photos_body =>
+      'વૈકલ્પિક. ફોટાથી મિકેનિક સાચા પાર્ટ્સ લાવી શકે છે. અમે દરેક ફોટામાંથી લોકેશન દૂર કરીએ છીએ.';
+
+  @override
+  String get photos_take => 'ફોટો લો';
+
+  @override
+  String get photos_gallery => 'ગેલેરીમાંથી પસંદ કરો';
+
+  @override
+  String photos_count(int count, int max) {
+    return '$max માંથી $count ફોટા';
+  }
+
+  @override
+  String photos_remove(int n) {
+    return 'ફોટો $n દૂર કરો';
+  }
+
+  @override
+  String photos_uploading(int n) {
+    return 'ફોટો $n અપલોડ થઈ રહ્યો છે';
+  }
+
+  @override
+  String photos_retry(int n) {
+    return 'ફોટો $n અપલોડ ન થયો. ફરી પ્રયાસ કરો';
+  }
+
+  @override
+  String get photos_error_limit => 'તમે 4 ફોટા સુધી ઉમેરી શકો છો.';
+
+  @override
+  String get photos_error_too_large => 'આ ફોટો ખૂબ મોટો છે. બીજો અજમાવો.';
+
+  @override
+  String get photos_error_failed => 'ફોટો ઉમેરી શકાયો નહીં. ફરી પ્રયાસ કરો.';
+
+  @override
+  String get photos_error_upload => 'કેટલાક ફોટા અપલોડ ન થયા. આગળ વધવા ફરી પ્રયાસ કરો અથવા તેમને દૂર કરો.';
+
+  @override
+  String get description_label => 'શું થયું?';
+
+  @override
+  String get description_hint => 'જેમ કે: ટોલ પ્લાઝા પાસે પાછળનું ટાયર પંક્ચર થયું';
+
+  @override
+  String get photos_skip => 'છોડો';
+
+  @override
+  String photos_item(int n) {
+    return 'ફોટો $n';
+  }
+
+  @override
+  String get booking_back_home => 'હોમ પર પાછા';
 }

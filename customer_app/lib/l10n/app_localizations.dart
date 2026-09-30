@@ -710,6 +710,198 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Check the number, e.g. GJ 01 AB 1234 or 22 BH 1234 AA'**
   String get error_reg_no_invalid;
+
+  /// Home: the Beacon button that starts a booking (U4).
+  ///
+  /// In en, this message translates to:
+  /// **'Get help'**
+  String get home_get_help;
+
+  /// Booking flow U4–U7: step label above the title.
+  ///
+  /// In en, this message translates to:
+  /// **'Step {step} of {total}'**
+  String booking_step(int step, int total);
+
+  /// Booking flow: primary button to the next step.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get booking_next;
+
+  /// U4 Problem picker: title.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s wrong?'**
+  String get problem_title;
+
+  /// U4: label above the vehicle being fixed (tap to change).
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle'**
+  String get problem_vehicle_label;
+
+  /// U4: shown when the customer has no vehicle yet.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your vehicle first'**
+  String get problem_no_vehicle_title;
+
+  /// U4: under problem_no_vehicle_title.
+  ///
+  /// In en, this message translates to:
+  /// **'The mechanic needs to know what they are fixing.'**
+  String get problem_no_vehicle_body;
+
+  /// U4: button to U2 when there is no vehicle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add vehicle'**
+  String get problem_add_vehicle;
+
+  /// Problem type flat_tyre.
+  ///
+  /// In en, this message translates to:
+  /// **'Flat tyre'**
+  String get problem_type_flat_tyre;
+
+  /// Problem type battery.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery'**
+  String get problem_type_battery;
+
+  /// Problem type wont_start.
+  ///
+  /// In en, this message translates to:
+  /// **'Won\'t start'**
+  String get problem_type_wont_start;
+
+  /// Problem type overheating.
+  ///
+  /// In en, this message translates to:
+  /// **'Overheating'**
+  String get problem_type_overheating;
+
+  /// Problem type accident.
+  ///
+  /// In en, this message translates to:
+  /// **'Accident'**
+  String get problem_type_accident;
+
+  /// Problem type fuel.
+  ///
+  /// In en, this message translates to:
+  /// **'Out of fuel'**
+  String get problem_type_fuel;
+
+  /// Problem type other.
+  ///
+  /// In en, this message translates to:
+  /// **'Something else'**
+  String get problem_type_other;
+
+  /// U5: title (the step is optional).
+  ///
+  /// In en, this message translates to:
+  /// **'Photos and details'**
+  String get photos_title;
+
+  /// U5: explainer under the title.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional. Photos help the mechanic bring the right parts. We remove the location from every photo.'**
+  String get photos_body;
+
+  /// U5: opens the camera.
+  ///
+  /// In en, this message translates to:
+  /// **'Take photo'**
+  String get photos_take;
+
+  /// U5: opens the photo picker.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from gallery'**
+  String get photos_gallery;
+
+  /// U5: how many photos are added.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} of {max} photos'**
+  String photos_count(int count, int max);
+
+  /// U5: remove button on a thumbnail (screen reader).
+  ///
+  /// In en, this message translates to:
+  /// **'Remove photo {n}'**
+  String photos_remove(int n);
+
+  /// U5: thumbnail while uploading (screen reader).
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading photo {n}'**
+  String photos_uploading(int n);
+
+  /// U5: failed thumbnail, tap to retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo {n} did not upload. Try again'**
+  String photos_retry(int n);
+
+  /// U5: toast at the photo limit.
+  ///
+  /// In en, this message translates to:
+  /// **'You can add up to 4 photos.'**
+  String get photos_error_limit;
+
+  /// U5: toast when a photo cannot be compressed under 500 KB.
+  ///
+  /// In en, this message translates to:
+  /// **'That photo is too large. Try another one.'**
+  String get photos_error_too_large;
+
+  /// U5: toast when picking or compressing fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t add that photo. Try again.'**
+  String get photos_error_failed;
+
+  /// U5: shown when Next is blocked by a failed upload.
+  ///
+  /// In en, this message translates to:
+  /// **'Some photos did not upload. Retry them or remove them to continue.'**
+  String get photos_error_upload;
+
+  /// U5: description field label.
+  ///
+  /// In en, this message translates to:
+  /// **'What happened?'**
+  String get description_label;
+
+  /// U5: description hint.
+  ///
+  /// In en, this message translates to:
+  /// **'For example: rear tyre went flat near the toll plaza'**
+  String get description_hint;
+
+  /// U5: continue without photos or details.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get photos_skip;
+
+  /// U5: an uploaded photo in the list.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo {n}'**
+  String photos_item(int n);
+
+  /// Returns to Home from a booking step that is not ready yet.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to home'**
+  String get booking_back_home;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
