@@ -39,7 +39,8 @@ same until you clear the app's storage or reinstall.
 **Admin console on localhost.** Set `"APP_CHECK": "debug"` in `admin_panel/env/dev.json` (git-ignored), run the
 panel, and copy the token the browser console prints (`Firebase App Check debug token: …`). Register it
 under the **web** app the same way. To keep the same token across browsers, put it in
-`APP_CHECK_DEBUG_TOKEN` in the same env file.
+`APP_CHECK_DEBUG_TOKEN` in the same env file. Release builds ignore `debug` (and the token): env values are compiled into
+the public JavaScript, so a deployed console never carries a debug provider.
 
 When a device is lost or someone leaves the team, delete their tokens from the same screen.
 

@@ -38,7 +38,9 @@ config (`USE_EMULATORS=false`). The files are git-ignored. Deploys build from th
 
 App Check (PLAN §12.3): `APP_CHECK` is `v3` (dev), `enterprise` (prod), `debug` (localhost against a real
 project) or empty for off, with `RECAPTCHA_SITE_KEY` for the reCAPTCHA modes and an optional
-`APP_CHECK_DEBUG_TOKEN`. Setup and enforcement: `docs/runbooks/app-check-and-monitoring.md`.
+`APP_CHECK_DEBUG_TOKEN`. `debug` works only in debug builds (`flutter run`); release builds ignore it,
+because the env values end up in the public JavaScript. Setup and enforcement:
+`docs/runbooks/app-check-and-monitoring.md`.
 
 ## Admins
 

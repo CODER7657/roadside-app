@@ -19,6 +19,8 @@ abstract final class AppEnv {
   /// App Check provider (PLAN §12.3): `v3` (reCAPTCHA v3, free: dev), `enterprise` (reCAPTCHA
   /// Enterprise: prod), `debug` (a local run against a real project; register the token the
   /// browser console prints, and never commit it) or empty for off. Off with the emulators.
+  /// `debug` is ignored in release builds: anything in the env file is compiled into the public
+  /// JavaScript, so a deployed console must never carry a debug provider or token.
   static const appCheck = String.fromEnvironment('APP_CHECK');
   static const recaptchaSiteKey = String.fromEnvironment('RECAPTCHA_SITE_KEY');
   static const appCheckDebugToken = String.fromEnvironment('APP_CHECK_DEBUG_TOKEN');
@@ -29,6 +31,7 @@ abstract final class AppEnv {
     mode: appCheck,
     siteKey: recaptchaSiteKey,
     debugToken: appCheckDebugToken,
+    release: kReleaseMode,
   );
 
   @visibleForTesting
@@ -37,12 +40,13 @@ abstract final class AppEnv {
     required String mode,
     required String siteKey,
     required String debugToken,
+    required bool release,
   }) {
     if (useEmulators) return null;
     return switch (mode) {
       'v3' when siteKey.isNotEmpty => ReCaptchaV3Provider(siteKey),
       'enterprise' when siteKey.isNotEmpty => ReCaptchaEnterpriseProvider(siteKey),
-      'debug' => WebDebugProvider(debugToken: debugToken.isEmpty ? null : debugToken),
+      'debug' when !release => WebDebugProvider(debugToken: debugToken.isEmpty ? null : debugToken),
       _ => null,
     };
   }
