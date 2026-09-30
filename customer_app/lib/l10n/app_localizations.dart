@@ -2054,6 +2054,216 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Open-source licenses'**
   String get profile_licenses;
+
+  /// U1: opens U15 booking history.
+  ///
+  /// In en, this message translates to:
+  /// **'Your bookings'**
+  String get home_history;
+
+  /// U15: title.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings'**
+  String get history_title;
+
+  /// U15: filter chip.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get history_filter_all;
+
+  /// U15: filter chip, bookings still going on.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get history_filter_active;
+
+  /// U15: filter chip, finished or cancelled bookings.
+  ///
+  /// In en, this message translates to:
+  /// **'Past'**
+  String get history_filter_past;
+
+  /// U15/U16: badge while a mechanic is being found.
+  ///
+  /// In en, this message translates to:
+  /// **'Searching'**
+  String get history_status_searching;
+
+  /// U15/U16: badge for a cancelled booking (grey, never red).
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get history_status_cancelled;
+
+  /// U15/U16: badge when no mechanic was found.
+  ///
+  /// In en, this message translates to:
+  /// **'No mechanic'**
+  String get history_status_no_mechanic;
+
+  /// U15/U16: the day of a booking.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get history_today;
+
+  /// U15/U16: the day of a booking.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get history_yesterday;
+
+  /// U15: empty state title.
+  ///
+  /// In en, this message translates to:
+  /// **'No bookings yet'**
+  String get history_empty_title;
+
+  /// U15: empty state body.
+  ///
+  /// In en, this message translates to:
+  /// **'When you get help, the booking and its receipt show up here.'**
+  String get history_empty_body;
+
+  /// U15: empty state action, back to Home.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to the map'**
+  String get history_empty_action;
+
+  /// U15: the Active filter has no bookings.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing going on right now'**
+  String get history_none_active;
+
+  /// U15: the Past filter has no bookings.
+  ///
+  /// In en, this message translates to:
+  /// **'No past bookings'**
+  String get history_none_past;
+
+  /// U15: action on an empty filter.
+  ///
+  /// In en, this message translates to:
+  /// **'Show all'**
+  String get history_show_all;
+
+  /// U15/U16: error state.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your bookings. Check your connection.'**
+  String get history_error;
+
+  /// U16: title while the booking loads.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking'**
+  String get detail_title;
+
+  /// U16: the booking does not exist or is not yours.
+  ///
+  /// In en, this message translates to:
+  /// **'This booking isn\'t available.'**
+  String get detail_missing;
+
+  /// U16: action when the booking is missing.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to bookings'**
+  String get detail_back_to_history;
+
+  /// U16: opens Help & FAQ (support and grievance officer).
+  ///
+  /// In en, this message translates to:
+  /// **'Report an issue'**
+  String get detail_report;
+
+  /// U16: under the rail when no mechanic was found.
+  ///
+  /// In en, this message translates to:
+  /// **'No mechanic was free nearby. Nothing was charged.'**
+  String get detail_no_mechanic;
+
+  /// U16: under the rail.
+  ///
+  /// In en, this message translates to:
+  /// **'You cancelled at {time}.'**
+  String detail_cancelled_by_you(String time);
+
+  /// U16: under the rail, cancelled by the mechanic or support.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled at {time}.'**
+  String detail_cancelled_at(String time);
+
+  /// U16: receipt row label.
+  ///
+  /// In en, this message translates to:
+  /// **'Mechanic'**
+  String get detail_mechanic;
+
+  /// U16: receipt row label.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get detail_amount;
+
+  /// U16: receipt row label.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid by'**
+  String get detail_paid_by;
+
+  /// U16: how it was paid.
+  ///
+  /// In en, this message translates to:
+  /// **'UPI'**
+  String get detail_upi;
+
+  /// U16: how it was paid and to whom (the name on their UPI account).
+  ///
+  /// In en, this message translates to:
+  /// **'UPI to {name}'**
+  String detail_upi_to(String name);
+
+  /// U16: receipt row label.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment'**
+  String get detail_payment;
+
+  /// U16: payment state.
+  ///
+  /// In en, this message translates to:
+  /// **'Not paid yet'**
+  String get detail_payment_pending;
+
+  /// U16: the customer marked it paid.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for the mechanic to confirm'**
+  String get detail_payment_marked;
+
+  /// U16: payment state.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid, confirmed by the mechanic'**
+  String get detail_payment_confirmed;
+
+  /// U16: payment disputed; support is looking at it.
+  ///
+  /// In en, this message translates to:
+  /// **'Under review'**
+  String get detail_payment_disputed;
+
+  /// U16: amount for a cancelled booking.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing to pay'**
+  String get detail_nothing_to_pay;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

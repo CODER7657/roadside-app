@@ -2,7 +2,13 @@ import 'dart:async';
 
 import 'package:roadside_core/roadside_core.dart';
 
-/// The customer's view of one booking (PLAN §8: customers read their own bookings, the
+/// A booking and its document id.
+typedef BookingEntry = ({String id, Booking booking});
+
+/// How many bookings U15 lists (newest first). Older ones stay in Firestore.
+const kHistoryLimit = 50;
+
+/// The customer's view of their bookings (PLAN §8: customers read their own bookings, the
 /// start code in `private/otp` and the trip's `liveLocations`; they never write them).
 abstract interface class BookingRepository {
   /// The booking as it changes; null if it doesn't exist (or isn't the caller's).
@@ -13,6 +19,10 @@ abstract interface class BookingRepository {
 
   /// The mechanic's position during the trip (`liveLocations/{id}`, every 5 s / 10 m).
   Stream<LiveLocation?> watchLive(String bookingId);
+
+  /// U15: the customer's newest [kHistoryLimit] bookings, newest first. Uses the
+  /// `customerId` + `createdAt desc` index; the rules only allow queries on one's own id.
+  Stream<List<BookingEntry>> watchHistory(String customerId);
 }
 
 class FirestoreBookingRepository implements BookingRepository {
@@ -30,6 +40,14 @@ class FirestoreBookingRepository implements BookingRepository {
   @override
   Stream<LiveLocation?> watchLive(String bookingId) =>
       _refs.liveLocation(bookingId).snapshots().map((s) => s.data());
+
+  @override
+  Stream<List<BookingEntry>> watchHistory(String customerId) => _refs.bookings
+      .where('customerId', isEqualTo: customerId)
+      .orderBy('createdAt', descending: true)
+      .limit(kHistoryLimit)
+      .snapshots()
+      .map((q) => [for (final d in q.docs) (id: d.id, booking: d.data())]);
 }
 
 /// Bookings kept in memory until #92 wires Firebase. The fake `createBooking` /
@@ -97,4 +115,36 @@ class InMemoryBookingStore implements BookingRepository {
   @override
   Stream<LiveLocation?> watchLive(String bookingId) =>
       _watch(bookingId, () => _lives[bookingId], _liveChanges.stream);
+
+  /// Makes [watchHistory] fail while set (for the error state).
+  Object? failHistory;
+
+  List<BookingEntry> _history(String customerId) {
+    final mine = [
+      for (final MapEntry(key: id, value: b) in _bookings.entries)
+        if (b.customerId == customerId) (id: id, booking: b),
+    ];
+    // Newest first; a booking still waiting for its server time sorts to the top, as in Firestore.
+    final far = DateTime.utc(9999);
+    mine.sort((a, b) => (b.booking.createdAt ?? far).compareTo(a.booking.createdAt ?? far));
+    return mine.take(kHistoryLimit).toList();
+  }
+
+  @override
+  Stream<List<BookingEntry>> watchHistory(String customerId) {
+    StreamSubscription<void>? sub;
+    late final StreamController<List<BookingEntry>> out;
+    out = StreamController<List<BookingEntry>>(
+      onListen: () {
+        if (failHistory case final error?) {
+          out.addError(error);
+          return;
+        }
+        out.add(_history(customerId));
+        sub = _bookingChanges.stream.listen((_) => out.add(_history(customerId)));
+      },
+      onCancel: () => sub?.cancel(),
+    );
+    return out.stream;
+  }
 }

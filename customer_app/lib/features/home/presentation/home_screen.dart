@@ -172,6 +172,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               onPressed: () => context.push(AppRoutes.addVehicle),
             ),
           SizedBox(height: lane.space.s8),
+          LaneButton.ghost(label: l10n.home_history, onPressed: () => context.push(AppRoutes.history)),
           LaneButton.ghost(label: l10n.home_help, onPressed: () => context.push(AppRoutes.help)),
         ],
       ),
