@@ -113,7 +113,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
     return LaneMapScaffold(
       map: mapBuilder(pickup: position),
-      actions: const [LaneGlareButton()],
+      actions: [
+        const LaneGlareButton(),
+        LaneMapButton(
+          icon: LaneIcons.userCircle,
+          tooltip: l10n.home_profile,
+          onPressed: () => context.push(AppRoutes.profile),
+        ),
+      ],
       dock: LaneDock(
         header: chip == null ? null : Align(alignment: Alignment.centerLeft, child: chip),
         primary: primary,

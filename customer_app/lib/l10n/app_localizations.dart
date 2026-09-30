@@ -1934,6 +1934,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Try again'**
   String get chat_error_retry;
+
+  /// U1: tooltip and screen-reader label of the map button that opens U18.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile & settings'**
+  String get home_profile;
+
+  /// U18: title.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile & settings'**
+  String get profile_title;
+
+  /// U18: error state for the name and number; the settings below are kept on the phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your profile. Your settings still work.'**
+  String get profile_error;
+
+  /// U18: row that opens the language choice.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get profile_language;
+
+  /// U18: title of the language sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your language'**
+  String get profile_language_title;
+
+  /// U18: row and sheet title for Auto / Day / Night / Glare.
+  ///
+  /// In en, this message translates to:
+  /// **'Display mode'**
+  String get profile_display_mode;
+
+  /// U18: display mode chosen by the app.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto'**
+  String get profile_display_auto;
+
+  /// U18: explains Auto.
+  ///
+  /// In en, this message translates to:
+  /// **'Day or Night by local sunset. Saver when the battery is low.'**
+  String get profile_display_auto_hint;
+
+  /// U18: display mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get profile_display_day;
+
+  /// U18: explains Day.
+  ///
+  /// In en, this message translates to:
+  /// **'A light screen, all the time.'**
+  String get profile_display_day_hint;
+
+  /// U18: display mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Night'**
+  String get profile_display_night;
+
+  /// U18: explains Night.
+  ///
+  /// In en, this message translates to:
+  /// **'A dark screen, all the time.'**
+  String get profile_display_night_hint;
+
+  /// U18: display mode for bright sunlight (the ☀ button on the map).
+  ///
+  /// In en, this message translates to:
+  /// **'Glare'**
+  String get profile_display_glare;
+
+  /// U18: explains Glare.
+  ///
+  /// In en, this message translates to:
+  /// **'Black on white with bigger text, for bright sun.'**
+  String get profile_display_glare_hint;
+
+  /// U18: switch for the one sound the app plays.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrival chime'**
+  String get profile_chime;
+
+  /// U18: explains the arrival chime.
+  ///
+  /// In en, this message translates to:
+  /// **'A short sound when your mechanic arrives.'**
+  String get profile_chime_hint;
+
+  /// U18: row that opens U17.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency contacts'**
+  String get profile_contacts;
+
+  /// U18: how many emergency contacts are saved.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{None saved yet} =1{1 saved} other{{count} saved}}'**
+  String profile_contacts_count(int count);
+
+  /// U18: row that opens the privacy notice.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy & data'**
+  String get profile_privacy;
+
+  /// U18: row that opens the licenses page.
+  ///
+  /// In en, this message translates to:
+  /// **'Open-source licenses'**
+  String get profile_licenses;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

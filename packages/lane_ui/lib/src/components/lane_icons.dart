@@ -3,7 +3,7 @@
 // Rendered from SVGs in assets/icons/ with flutter_svg rather than phosphor_flutter: that
 // package hasn't been updated since May 2024, which fails the PLAN §3 "maintained in the
 // last 12 months" rule. The shapes are identical: each file is a Phosphor core icon.
-// glyph_camera and glyph_paper_plane_right were converted from the duotone font in
+// glyph_camera, glyph_paper_plane_right and glyph_user_circle were converted from the duotone font in
 // phosphor_flutter 2.1.0 (same icons, MIT), with quadratic instead of cubic curves.
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -110,7 +110,10 @@ enum LaneIcons {
   wrench('glyph_wrench'),
   close('glyph_x'),
   star('glyph_star'),
-  sun('glyph_sun');
+  sun('glyph_sun'),
+
+  /// user-circle
+  userCircle('glyph_user_circle');
 
   const LaneIcons(this.file, {this.tinted = false});
 
