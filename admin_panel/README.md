@@ -36,6 +36,10 @@ For the dev project (`roadside-33282`) / `roadside-prod`, fill `env/dev.json` / 
 config (`USE_EMULATORS=false`). The files are git-ignored. Deploys build from the
 `ADMIN_WEB_ENV` environment variable instead (`.github/workflows/deploy-firebase.yml`).
 
+App Check (PLAN §12.3): `APP_CHECK` is `v3` (dev), `enterprise` (prod), `debug` (localhost against a real
+project) or empty for off, with `RECAPTCHA_SITE_KEY` for the reCAPTCHA modes and an optional
+`APP_CHECK_DEBUG_TOKEN`. Setup and enforcement: `docs/runbooks/app-check-and-monitoring.md`.
+
 ## Admins
 
 ```bash

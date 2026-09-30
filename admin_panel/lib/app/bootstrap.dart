@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
@@ -17,7 +18,8 @@ import 'flavor.dart';
 
 /// Starts the panel for a flavour. Firebase comes from `env/*.json`, or the local emulators when
 /// `USE_EMULATORS=true`. Without either, A0 says the console isn't connected.
-/// App Check (reCAPTCHA Enterprise) and Crashlytics are wired in #48 once the projects (#42) exist.
+/// App Check (PLAN §12.3) is activated before anything talks to Firebase. Crashlytics has no web
+/// support, so the panel keeps logging to the browser console.
 Future<void> bootstrap(AppFlavor flavor) async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -34,6 +36,14 @@ Future<void> bootstrap(AppFlavor flavor) async {
   final options = AppEnv.firebaseOptions;
   if (options != null) {
     await Firebase.initializeApp(options: options);
+    final appCheck = AppEnv.appCheckProvider;
+    if (appCheck != null) {
+      await FirebaseAppCheck.instance.activate(providerWeb: appCheck);
+    } else if (!AppEnv.useEmulators) {
+      // Once enforcement is on, every request without App Check is rejected.
+      final message = 'App Check is off: set APP_CHECK and RECAPTCHA_SITE_KEY in the env file';
+      flavor == AppFlavor.prod ? LaneLog.e(message) : LaneLog.w(message);
+    }
     if (AppEnv.useEmulators) {
       assert(flavor == AppFlavor.dev, 'Emulators are for the dev flavour only');
       await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
