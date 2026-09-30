@@ -17,6 +17,8 @@ import '../../permissions/application/permission_service.dart';
 import '../../permissions/presentation/permission_explainer_screen.dart';
 import '../application/job.dart';
 import '../data/job_repository.dart';
+import 'complete_job_screen.dart';
+import 'payment_view.dart';
 import 'start_code_screen.dart';
 
 /// Directions in the phone's maps app (the in-app map waits for the provider, PLAN §3).
@@ -121,7 +123,8 @@ class _JobScreenState extends ConsumerState<JobScreen> {
       return _Ended(title: l10n.job_cancelled_title, body: l10n.job_cancelled_body);
     }
     if (b.status == BookingStatus.completed) {
-      return _Ended(title: l10n.job_done_title, body: l10n.job_done_body);
+      // M8: payment, until it's confirmed or disputed.
+      return PaymentView(bookingId: widget.bookingId, booking: b);
     }
 
     final problem = ref.watch(
@@ -144,6 +147,11 @@ class _JobScreenState extends ConsumerState<JobScreen> {
       BookingStatus.arrived => LaneButton.primary(
         label: l10n.job_enter_start_code,
         onPressed: () => context.go(startCodeRoute(widget.bookingId)),
+      ),
+      // M7: photos, amount, slide to finish.
+      BookingStatus.inProgress => LaneButton.primary(
+        label: l10n.job_finish,
+        onPressed: () => context.go(completeJobRoute(widget.bookingId)),
       ),
       _ => null,
     };

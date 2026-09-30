@@ -43,6 +43,12 @@ final jobRepositoryProvider = Provider<JobRepository>((ref) {
   final (firebase, _) = signedIn;
   return FirebaseJobRepository(firebase.firestore, firebase.functions);
 });
+final workPhotoUploaderProvider = Provider<WorkPhotoUploader>((ref) {
+  final signedIn = ref.watch(signedInFirebaseProvider);
+  if (signedIn == null) return FakeWorkPhotoUploader();
+  final (firebase, _) = signedIn;
+  return FirebaseWorkPhotoUploader(firebase.storage);
+});
 final liveLocationRepositoryProvider = Provider<LiveLocationRepository>((ref) {
   final signedIn = ref.watch(signedInFirebaseProvider);
   if (signedIn == null) return InMemoryLiveLocationRepository();
