@@ -66,6 +66,9 @@ Both link "Read the full notice" to `/privacy/` and "Terms" to `/terms/`.
 
 ## Google Play Data safety (for #58)
 
+**Superseded by the per-app tables in `docs/play/README.md`**, which add Address and user-generated
+content. Kept here as the summary the legal pages were written against.
+
 What these pages commit to, so the form matches them:
 
 | Data type (Play) | Collected | Shared | Purpose | Optional? |

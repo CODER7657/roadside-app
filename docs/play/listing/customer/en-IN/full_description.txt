@@ -1,0 +1,25 @@
+Car, bike, scooter or EV broken down in Ahmedabad, Ankleshwar or Bharuch? [[APP_NAME]] finds the nearest verified mechanic and sends them to you.
+
+HOW IT WORKS
+• Pick your vehicle and the problem: flat tyre, battery, won't start, overheating, accident, fuel or other.
+• Confirm where you are on the map. Drag the pin if the address isn't right.
+• See the estimated price range before you book.
+• The nearest free mechanic accepts. You see their name, photo, rating and phone.
+• Track them on the map as they come to you.
+• When they arrive, give them your start code. The job starts only then.
+• Pay the mechanic directly by UPI.
+
+SAFE BY DESIGN
+• Our team checks every mechanic's identity before they get jobs.
+• The start code makes sure the right mechanic starts the right job.
+• Share a live trip link with family, and use SOS to alert your emergency contacts.
+• We never ask for your bank, card or UPI PIN.
+
+MADE FOR YOU
+• English, हिन्दी and ગુજરાતી.
+• Big buttons and clear steps, readable in bright sunlight and at night.
+• Rate the job, and raise a complaint from the app.
+
+In danger? Call 112 first.
+
+Available now in Ahmedabad, Ankleshwar and Bharuch.
