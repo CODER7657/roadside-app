@@ -1,0 +1,9 @@
+{
+  "@@locale": "en",
+  "app_title": "Roadside Mechanic",
+  "@app_title": { "description": "App name in the task switcher. Placeholder until the client names the app (HANDOFF §4.6)." },
+  "home_placeholder_title": "Jobs near you, when you're ready",
+  "@home_placeholder_title": { "description": "Temporary home screen until M3 Dashboard (#27) lands." },
+  "home_placeholder_body": "We're getting everything ready. Registration and going online arrive in the next update.",
+  "@home_placeholder_body": { "description": "Temporary home screen body until M3 Dashboard (#27) lands." }
+}
