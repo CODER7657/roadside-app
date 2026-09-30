@@ -11,13 +11,15 @@ import '../features/first_run/presentation/privacy_notice_screen.dart';
 import '../features/first_run/presentation/splash_screen.dart';
 import '../features/dashboard/presentation/dashboard_screen.dart';
 import '../features/help/presentation/help_screen.dart';
+import '../features/offers/presentation/offer_screen.dart';
 import '../features/permissions/application/permission_service.dart';
 import '../features/permissions/presentation/permission_explainer_screen.dart';
 import '../features/registration/application/registration.dart';
 import '../features/registration/presentation/pending_screen.dart';
 import '../features/registration/presentation/registration_screen.dart';
 
-/// Route paths. Screens are added per issue (login #123, M4 #29, …). Home is M3 Dashboard.
+/// Route paths. Screens are added per issue (login #123, M5 #30, …). Home is M3 Dashboard;
+/// M4 is `/offer/:offerId` (offerRoute) and an accepted job `/job/:bookingId` (jobRoute).
 abstract final class AppRoutes {
   static const splash = '/splash';
   static const home = '/';
@@ -48,12 +50,15 @@ String? registrationRedirect(AsyncValue<MechanicStatus?> status, String location
   const open = [AppRoutes.splash, AppRoutes.privacy, AppRoutes.help];
   if (open.contains(location) || location.startsWith('/permission/')) return null;
   if (!status.hasValue) return null;
-  final target = switch (status.value) {
-    null => AppRoutes.register,
-    MechanicStatus.pending || MechanicStatus.blocked => AppRoutes.pending,
-    MechanicStatus.approved => AppRoutes.home,
-  };
-  return location == target ? null : target;
+  switch (status.value) {
+    case null:
+      return location == AppRoutes.register ? null : AppRoutes.register;
+    case MechanicStatus.pending || MechanicStatus.blocked:
+      return location == AppRoutes.pending ? null : AppRoutes.pending;
+    case MechanicStatus.approved:
+      // Everything else (home, offers, jobs) is theirs; only registration is behind them.
+      return location == AppRoutes.register || location == AppRoutes.pending ? AppRoutes.home : null;
+  }
 }
 
 final routerProvider = Provider<GoRouter>((ref) {
@@ -81,6 +86,14 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: AppRoutes.help, builder: (context, state) => const HelpScreen()),
       GoRoute(path: AppRoutes.register, builder: (context, state) => const RegistrationScreen()),
       GoRoute(path: AppRoutes.pending, builder: (context, state) => const PendingScreen()),
+      GoRoute(
+        path: '/offer/:offerId',
+        builder: (context, state) => OfferScreen(offerId: state.pathParameters['offerId']!),
+      ),
+      GoRoute(
+        path: '/job/:bookingId',
+        builder: (context, state) => JobAcceptedScreen(bookingId: state.pathParameters['bookingId']!),
+      ),
       GoRoute(
         path: '/permission/:kind',
         builder: (context, state) =>

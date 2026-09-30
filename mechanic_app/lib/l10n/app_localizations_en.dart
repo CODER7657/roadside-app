@@ -539,4 +539,79 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dashboard_no_jobs_yet => 'No jobs yet today. Stay online and they\'ll come to you.';
+
+  @override
+  String get offer_title => 'New job';
+
+  @override
+  String get offer_distance => 'Distance';
+
+  @override
+  String offer_distance_value(String km) {
+    return '$km km';
+  }
+
+  @override
+  String get offer_area => 'Area';
+
+  @override
+  String get offer_slide_accept => 'Slide to accept';
+
+  @override
+  String get offer_decline => 'Decline';
+
+  @override
+  String get offer_failed => 'Couldn\'t reach us. Check your connection and slide again.';
+
+  @override
+  String get offer_expired_title => 'This job has timed out';
+
+  @override
+  String get offer_expired_body => 'Offers last 30 seconds. We\'ll send you the next one nearby.';
+
+  @override
+  String get offer_withdrawn_title => 'This job was taken back';
+
+  @override
+  String get offer_withdrawn_body => 'The customer cancelled or no longer needs help.';
+
+  @override
+  String get offer_taken_title => 'This job is no longer available';
+
+  @override
+  String get offer_taken_body => 'It went to another mechanic. Stay online for the next one.';
+
+  @override
+  String get offer_not_available_title => 'You can\'t take this job right now';
+
+  @override
+  String get offer_not_available_body => 'You\'re offline or already on a job.';
+
+  @override
+  String get offer_profile_incomplete_title => 'Finish your profile first';
+
+  @override
+  String get offer_profile_incomplete_body => 'Some details are missing. Complete your profile to take jobs.';
+
+  @override
+  String get offer_not_approved_title => 'You\'re not approved yet';
+
+  @override
+  String get offer_not_approved_body =>
+      'We\'re still checking your documents. You can take jobs once you\'re approved.';
+
+  @override
+  String get offer_back => 'Back to dashboard';
+
+  @override
+  String get offer_notification_title => 'New job nearby';
+
+  @override
+  String get offer_notification_body => 'Open within 30 seconds to accept.';
+
+  @override
+  String get job_accepted_title => 'You\'ve got the job';
+
+  @override
+  String get job_accepted_body => 'The route to the customer opens here.';
 }

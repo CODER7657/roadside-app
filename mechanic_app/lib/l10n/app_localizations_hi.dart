@@ -540,4 +540,80 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get dashboard_no_jobs_yet => 'आज अभी तक कोई काम नहीं। ऑनलाइन रहें, काम आपके पास आएँगे।';
+
+  @override
+  String get offer_title => 'नया काम';
+
+  @override
+  String get offer_distance => 'दूरी';
+
+  @override
+  String offer_distance_value(String km) {
+    return '$km किमी';
+  }
+
+  @override
+  String get offer_area => 'इलाका';
+
+  @override
+  String get offer_slide_accept => 'स्वीकार करने के लिए स्लाइड करें';
+
+  @override
+  String get offer_decline => 'मना करें';
+
+  @override
+  String get offer_failed => 'हम तक नहीं पहुँच सके। अपना कनेक्शन जाँचें और फिर से स्लाइड करें।';
+
+  @override
+  String get offer_expired_title => 'इस काम का समय खत्म हो गया';
+
+  @override
+  String get offer_expired_body => 'ऑफ़र 30 सेकंड के होते हैं। हम आपको अगला पास का काम भेजेंगे।';
+
+  @override
+  String get offer_withdrawn_title => 'यह काम वापस ले लिया गया';
+
+  @override
+  String get offer_withdrawn_body => 'ग्राहक ने रद्द कर दिया या अब मदद की ज़रूरत नहीं है।';
+
+  @override
+  String get offer_taken_title => 'यह काम अब उपलब्ध नहीं है';
+
+  @override
+  String get offer_taken_body => 'यह किसी और मैकेनिक को मिल गया। अगले के लिए ऑनलाइन रहें।';
+
+  @override
+  String get offer_not_available_title => 'आप अभी यह काम नहीं ले सकते';
+
+  @override
+  String get offer_not_available_body => 'आप ऑफ़लाइन हैं या पहले से किसी काम पर हैं।';
+
+  @override
+  String get offer_profile_incomplete_title => 'पहले अपनी प्रोफ़ाइल पूरी करें';
+
+  @override
+  String get offer_profile_incomplete_body =>
+      'कुछ जानकारी बाकी है। काम लेने के लिए अपनी प्रोफ़ाइल पूरी करें।';
+
+  @override
+  String get offer_not_approved_title => 'आप अभी स्वीकृत नहीं हैं';
+
+  @override
+  String get offer_not_approved_body =>
+      'हम अभी आपके दस्तावेज़ जाँच रहे हैं। स्वीकृति मिलने के बाद आप काम ले सकेंगे।';
+
+  @override
+  String get offer_back => 'डैशबोर्ड पर वापस';
+
+  @override
+  String get offer_notification_title => 'पास में नया काम';
+
+  @override
+  String get offer_notification_body => 'स्वीकार करने के लिए 30 सेकंड में खोलें।';
+
+  @override
+  String get job_accepted_title => 'काम आपका है';
+
+  @override
+  String get job_accepted_body => 'ग्राहक तक का रास्ता यहाँ खुलेगा।';
 }
