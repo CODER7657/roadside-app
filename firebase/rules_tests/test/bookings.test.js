@@ -218,6 +218,17 @@ describe('reviews', () => {
     await assertFails(setDoc(doc(h.as('cust1'), 'reviews/bDone'), review({ comment: 'x'.repeat(501) })));
   });
 
+  test('tags come from the U14 list only (#57)', async () => {
+    await assertSucceeds(setDoc(doc(h.as('cust1'), 'reviews/bDone'), review({ stars: 2, tags: ['late', 'overcharged'] })));
+  });
+
+  test('unknown, oversized or too many tags are rejected (#57)', async () => {
+    await assertFails(setDoc(doc(h.as('cust1'), 'reviews/bDone'), review({ tags: ['great'] })));
+    await assertFails(setDoc(doc(h.as('cust1'), 'reviews/bDone'), review({ tags: ['x'.repeat(5000)] })));
+    await assertFails(setDoc(doc(h.as('cust1'), 'reviews/bDone'), review({ tags: [42] })));
+    await assertFails(setDoc(doc(h.as('cust1'), 'reviews/bDone'), review({ tags: Array(9).fill('late') })));
+  });
+
   test('customer and reviewed mechanic read; others cannot; nobody edits', async () => {
     await assertSucceeds(getDoc(doc(h.as('cust1'), 'reviews/bOld')));
     await assertSucceeds(getDoc(doc(h.as('mech1'), 'reviews/bOld')));
@@ -246,6 +257,8 @@ describe('complaints', () => {
     await assertFails(addDoc(collection(h.as('cust2'), 'complaints'), complaint({ raisedBy: 'cust2' })));
     await assertFails(addDoc(collection(h.as('mech1'), 'complaints'), complaint({ status: 'resolved' })));
     await assertFails(addDoc(collection(h.as('mech1'), 'complaints'), complaint({ raisedBy: 'cust1' })));
+    await assertFails(addDoc(collection(h.as('mech1'), 'complaints'), complaint({ category: 'refund please' }))); // #57
+    await assertSucceeds(addDoc(collection(h.as('mech1'), 'complaints'), complaint({ category: 'safety' })));
   });
 
   test('raiser and admins read; admins resolve', async () => {
