@@ -65,9 +65,98 @@ void main() {
 
     test('ordinary numbers survive', () {
       expect(
-        LaneLog.redactText('radius widened to 10 km after 30 s, ₹450, year 2026'),
-        'radius widened to 10 km after 30 s, ₹450, year 2026',
+        LaneLog.redactText('radius widened to 10 km after 30 s, ₹450, year 2026, rating 4.67, v3.13.4'),
+        'radius widened to 10 km after 30 s, ₹450, year 2026, rating 4.67, v3.13.4',
       );
+    });
+
+    test('loosely typed maps are redacted by key (#90 review)', () {
+      final Map<dynamic, dynamic> fromPlugin = {
+        'booking': <dynamic, dynamic>{'landmark': 'opp. temple', 'status': 'enRoute', 1: 'x'},
+      };
+      LaneLog.i('platform event', {'event': fromPlugin});
+      final booking = (records.single.fields['event']! as Map)['booking']! as Map;
+      expect(booking['landmark'], LaneLog.redacted);
+      expect(booking['status'], 'enRoute');
+      expect(booking['1'], 'x');
+    });
+
+    test('3-decimal coordinates are redacted (#90 review)', () {
+      LaneLog.i('mechanic at 23.022, 72.571', {
+        'latLng': [23.022, 72.571],
+        'point': [23.022, 72.571],
+      });
+      final r = records.single;
+      expect(r.message, isNot(anyOf(contains('23.022'), contains('72.571'))));
+      expect(r.fields['latLng'], LaneLog.redacted);
+      expect(r.fields['point'], [LaneLog.redacted, LaneLog.redacted]);
+    });
+
+    test('names and registration numbers are redacted (#90 review)', () {
+      LaneLog.i('assigned', {
+        'name': 'Kiran Patel',
+        'customerName': 'Kiran Patel',
+        'mechanic_name': 'Ravi',
+        'regNo': 'GJ01AB1234',
+        'cityName': 'Ahmedabad',
+        'fileName': 'before.jpg',
+      });
+      final f = records.single.fields;
+      for (final k in ['name', 'customerName', 'mechanic_name', 'regNo']) {
+        expect(f[k], LaneLog.redacted, reason: k);
+      }
+      expect(f['fileName'], 'before.jpg');
+    });
+  });
+
+  group('crashReporterSink', () {
+    late List<String> breadcrumbs;
+    late List<(RedactedError, StackTrace?)> reported;
+    late List<LogRecord> console;
+
+    setUp(() {
+      breadcrumbs = [];
+      reported = [];
+      console = [];
+      LaneLog.redact = true;
+      LaneLog.sink = LaneLog.crashReporterSink(
+        log: breadcrumbs.add,
+        recordError: (e, st) => reported.add((e, st)),
+        alsoTo: console.add,
+      );
+    });
+
+    test('every record is a breadcrumb; only errors are reported', () {
+      LaneLog.i('booking created', {'bookingId': 'b1'});
+      LaneLog.w('retrying', error: Exception('timeout'));
+      expect(breadcrumbs, hasLength(2));
+      expect(reported, isEmpty);
+      expect(console, hasLength(2));
+    });
+
+    test('errors are reported redacted, never as the original object', () {
+      final original = Exception('OTP 4821 rejected for +91 98765 43210');
+      LaneLog.e('verifyStartOtp failed', error: original, stackTrace: StackTrace.current);
+      final (error, stack) = reported.single;
+      expect(error, isA<RedactedError>());
+      expect(error.message, isNot(anyOf(contains('4821'), contains('98765'))));
+      expect(stack, isNotNull);
+      expect(breadcrumbs.single, contains('verifyStartOtp failed'));
+    });
+
+    test('with redaction off, nothing reaches the crash reporter', () {
+      LaneLog.redact = false;
+      LaneLog.e('createBooking failed for +91 98765 43210', fields: {'phone': '+919876543210'});
+      expect(breadcrumbs, isEmpty);
+      expect(reported, isEmpty);
+      expect(console.single.fields['phone'], '+919876543210'); // the local console still sees it
+    });
+
+    test('an error without an error object reports its message', () {
+      LaneLog.e('dispatch stalled for 98765 43210');
+      final (error, stack) = reported.single;
+      expect(error.message, 'dispatch stalled for ${LaneLog.redacted}');
+      expect(stack, StackTrace.empty);
     });
   });
 
@@ -91,5 +180,7 @@ void main() {
     expect(LaneLog.isSensitiveKey('plus_code'), isTrue);
     expect(LaneLog.isSensitiveKey('bookingId'), isFalse);
     expect(LaneLog.isSensitiveKey('status'), isFalse);
+    expect(LaneLog.isSensitiveKey('lnglat'), isTrue);
+    expect(LaneLog.isSensitiveKey('routeName'), isFalse);
   });
 }
