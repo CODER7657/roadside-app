@@ -1,0 +1,21 @@
+{
+  "displayName": "Roadside: Firestore reads spike",
+  "combiner": "OR",
+  "severity": "WARNING",
+  "conditions": [
+    {
+      "displayName": "More than 20,000 document reads in an hour",
+      "conditionPrometheusQueryLanguage": {
+        "query": "sum(increase(firestore_googleapis_com:document_read_ops_count[1h])) > 20000",
+        "duration": "0s",
+        "evaluationInterval": "300s"
+      }
+    }
+  ],
+  "alertStrategy": { "autoClose": "7200s" },
+  "documentation": {
+    "mimeType": "text/markdown",
+    "subject": "Roadside: Firestore reads spike",
+    "content": "Firestore served more than 20,000 document reads in an hour. The free tier is 50,000 a day, so this pace costs money and usually means a listener in a loop (an app rebuilding a stream), a missing `limit()`, or scraping.\n\nCheck Firebase console, Firestore, Usage, for the collection, and whether a release just went out (docs/runbooks/rollback.md). Tune the threshold after launch week (#62)."
+  }
+}

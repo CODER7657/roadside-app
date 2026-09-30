@@ -1,0 +1,22 @@
+{
+  "displayName": "Roadside: dispatch sweep failing",
+  "combiner": "OR",
+  "severity": "CRITICAL",
+  "conditions": [
+    {
+      "displayName": "dispatchSweep logged an error, or its Cloud Scheduler job failed",
+      "conditionMatchedLog": {
+        "filter": "(resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"dispatchsweep\" AND severity>=ERROR) OR (resource.type=\"cloud_scheduler_job\" AND severity>=ERROR)"
+      }
+    }
+  ],
+  "alertStrategy": {
+    "notificationRateLimit": { "period": "900s" },
+    "autoClose": "3600s"
+  },
+  "documentation": {
+    "mimeType": "text/markdown",
+    "subject": "Roadside: dispatch sweep failing",
+    "content": "The every-minute sweep that moves expired offers to the next mechanic (PLAN §11) is failing, so bookings can get stuck in `requested`.\n\nFollow docs/runbooks/dispatch-outage.md: check A3 for stuck bookings first, then the logs of `dispatchSweep`."
+  }
+}
