@@ -11,9 +11,11 @@ import '../features/console/application/city_filter.dart';
 import '../features/console/presentation/console_sections.dart';
 import '../features/console/presentation/labels.dart';
 import '../features/approvals/presentation/approvals_screen.dart';
+import '../features/complaints/presentation/complaints_screen.dart';
 import '../features/dashboard/presentation/dashboard_screen.dart';
 import '../features/live/presentation/live_screen.dart';
 import '../features/prices/presentation/prices_screen.dart';
+import '../features/settings/presentation/settings_screen.dart';
 import '../l10n/app_localizations.dart';
 
 const signInPath = '/sign-in';
@@ -48,7 +50,8 @@ final routerProvider = Provider<GoRouter>((ref) {
                   ConsoleSection.approvals => const ApprovalsScreen(),
                   ConsoleSection.live => const LiveScreen(),
                   ConsoleSection.prices => const PricesScreen(),
-                  _ => SectionPlaceholder(section: section),
+                  ConsoleSection.complaints => const ComplaintsScreen(),
+                  ConsoleSection.settings => const SettingsScreen(),
                 },
               ),
             ),

@@ -1,6 +1,5 @@
 // A1 Dashboard + A3 Live bookings (#53). "Done when: admin sees the day-10 demo booking live."
 
-import 'package:admin_panel/app/firebase_providers.dart';
 import 'package:admin_panel/app/router.dart';
 import 'package:admin_panel/features/bookings/data/bookings_repository.dart';
 import 'package:admin_panel/features/dashboard/application/dashboard.dart';
@@ -107,8 +106,8 @@ void main() {
       api = FakeBookingAdminApi();
       await pumpPanel(
         tester,
+        firestore: db,
         overrides: [
-          firestoreProvider.overrideWithValue(db),
           bookingAdminApiProvider.overrideWithValue(api),
           laneClockProvider.overrideWithValue(() => now),
         ],

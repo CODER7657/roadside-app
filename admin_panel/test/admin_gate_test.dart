@@ -139,7 +139,6 @@ void main() {
     await tester.tap(find.text('Complaints & reviews').first);
     await settle(tester);
     expect(container.read(routerProvider).state.matchedLocation, '/complaints');
-    expect(find.textContaining('#54'), findsOneWidget);
     expect(container.read(cityFilterProvider), CityId.bharuch);
 
     await tester.tap(find.text('All cities'));

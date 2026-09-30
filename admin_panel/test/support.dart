@@ -4,9 +4,11 @@
 import 'dart:async';
 
 import 'package:admin_panel/app/app.dart';
+import 'package:admin_panel/app/firebase_providers.dart';
 import 'package:admin_panel/app/flavor.dart';
 import 'package:admin_panel/features/auth/application/admin_session.dart';
 import 'package:admin_panel/features/auth/data/admin_auth.dart';
+import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/misc.dart' show Override;
@@ -62,6 +64,7 @@ late ProviderContainer container;
 Future<void> pumpPanel(
   WidgetTester tester, {
   bool configured = true,
+  FakeFirebaseFirestore? firestore,
   List<Override> overrides = const [],
 }) async {
   tester.view.physicalSize = const Size(1440, 900);
@@ -72,6 +75,8 @@ Future<void> pumpPanel(
       flavorProvider.overrideWithValue(AppFlavor.dev),
       adminAuthProvider.overrideWithValue(configured ? auth : null),
       laneBatterySourceProvider.overrideWithValue(const NoBattery()),
+      // Screens read Firestore; tests that care pass their own seeded fake.
+      firestoreProvider.overrideWithValue(firestore ?? FakeFirebaseFirestore()),
       ...overrides,
     ],
   );

@@ -85,14 +85,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get console_sign_out => 'साइन आउट';
 
   @override
-  String get console_section_coming_title => 'जल्द आ रहा है';
-
-  @override
-  String console_section_coming_body(String issue) {
-    return 'यह स्क्रीन इश्यू #$issue के साथ आएगी।';
-  }
-
-  @override
   String get vehicle_type_car => 'कार';
 
   @override
@@ -541,4 +533,173 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get live_cancel_refused => 'यह बुकिंग अब रद्द नहीं हो सकती।';
+
+  @override
+  String get complaints_tab_open => 'खुली';
+
+  @override
+  String complaints_tab_open_count(int count) {
+    return 'खुली ($count)';
+  }
+
+  @override
+  String get complaints_tab_resolved => 'सुलझी';
+
+  @override
+  String get complaints_tab_reviews => 'रिव्यू';
+
+  @override
+  String get complaints_load_failed => 'शिकायतें लोड नहीं हो सकीं।';
+
+  @override
+  String get complaints_empty_open => 'कोई खुली शिकायत नहीं।';
+
+  @override
+  String get complaints_empty_resolved => 'अभी कोई सुलझी शिकायत नहीं।';
+
+  @override
+  String get complaints_empty_reviews => 'अभी कोई रिव्यू नहीं।';
+
+  @override
+  String complaints_title(String category, String ref) {
+    return '$category · $ref';
+  }
+
+  @override
+  String complaints_raised_by_customer(String name) {
+    return 'ग्राहक $name ने दर्ज की';
+  }
+
+  @override
+  String complaints_raised_by_mechanic(String name) {
+    return 'मैकेनिक $name ने दर्ज की';
+  }
+
+  @override
+  String complaints_resolution(String text) {
+    return 'समाधान: $text';
+  }
+
+  @override
+  String get complaints_resolution_label => 'समाधान नोट';
+
+  @override
+  String get complaints_resolution_hint =>
+      'जैसे: दोनों को कॉल किया, UPI ट्रांसफ़र मिला, मैकेनिक से पुष्टि की।';
+
+  @override
+  String get complaints_resolve => 'सुलझाएँ';
+
+  @override
+  String get complaints_resolved => 'शिकायत सुलझ गई।';
+
+  @override
+  String complaints_stars(int stars) {
+    String _temp0 = intl.Intl.pluralLogic(stars, locale: localeName, other: '$stars स्टार', one: '1 स्टार');
+    return '$_temp0';
+  }
+
+  @override
+  String get complaints_category_payment => 'भुगतान विवाद';
+
+  @override
+  String get complaints_category_service => 'सेवा';
+
+  @override
+  String get complaints_category_safety => 'सुरक्षा';
+
+  @override
+  String get complaints_category_other => 'अन्य';
+
+  @override
+  String get payment_status_pending => 'अभी भुगतान नहीं';
+
+  @override
+  String get payment_status_marked_paid => 'ग्राहक कहता है भुगतान किया';
+
+  @override
+  String get payment_status_confirmed => 'भुगतान, पुष्टि हुई';
+
+  @override
+  String get payment_status_disputed => 'विवादित';
+
+  @override
+  String get settings_load_failed => 'सेटिंग्स लोड नहीं हो सकीं।';
+
+  @override
+  String get settings_app_title => 'ऐप';
+
+  @override
+  String get settings_min_build_label => 'न्यूनतम समर्थित बिल्ड';
+
+  @override
+  String get settings_min_build_help => 'पुराने बिल्ड को इस्तेमाल से पहले अपडेट करना होगा।';
+
+  @override
+  String get settings_maintenance_label => 'रखरखाव संदेश';
+
+  @override
+  String get settings_maintenance_help => 'ऐप में सबको दिखता है। न दिखाना हो तो खाली छोड़ें।';
+
+  @override
+  String get settings_support_phone_label => 'सहायता फ़ोन';
+
+  @override
+  String get settings_support_phone_hint => '+91 98XXX XXXXX';
+
+  @override
+  String get settings_phone_invalid => 'देश कोड के साथ फ़ोन नंबर डालें, जैसे +91…';
+
+  @override
+  String get settings_dispatch_label => 'नई बुकिंग लें';
+
+  @override
+  String get settings_dispatch_on => 'चालू: ग्राहक बुक कर सकते हैं।';
+
+  @override
+  String get settings_dispatch_off => 'बंद: वापस चालू करने तक हर नई बुकिंग मना होगी।';
+
+  @override
+  String get settings_save => 'सहेजें';
+
+  @override
+  String get settings_saved => 'सहेजा गया। ऐप एक मिनट में इसे ले लेंगे।';
+
+  @override
+  String get settings_areas_title => 'सेवा क्षेत्र';
+
+  @override
+  String settings_area_missing(String city) {
+    return '$city अभी सेट नहीं है (सीड चलाएँ)।';
+  }
+
+  @override
+  String get settings_area_on => 'चालू: यहाँ बुकिंग ली जाती हैं।';
+
+  @override
+  String settings_area_off(String city) {
+    return 'बंद: $city में नई बुकिंग को \"अभी आपके इलाके में नहीं\" दिखेगा।';
+  }
+
+  @override
+  String settings_area_radius_label(String city) {
+    return '$city दायरा (किमी)';
+  }
+
+  @override
+  String get settings_area_radius_invalid => '1 से 100 किमी के बीच';
+
+  @override
+  String settings_area_save(String city) {
+    return '$city सहेजें';
+  }
+
+  @override
+  String get settings_admins_title => 'एडमिन';
+
+  @override
+  String get settings_admins_note => 'सिर्फ़ पढ़ने के लिए। एडमिन tool/admin से जोड़े और हटाए जाते हैं।';
+
+  @override
+  String get complaints_audit_note => 'समाधान आपके खाते के साथ ऑडिट लॉग में दर्ज होता है।';
 }

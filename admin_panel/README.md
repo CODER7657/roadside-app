@@ -71,6 +71,7 @@ lib/
 │   ├── auth/       AdminAuth (Google), session gate, A0 sign-in
 │   ├── approvals/  A2 mechanic approvals (per-type checklist, admin callables #130, signed URLs)
 │   ├── bookings/   bookings / presence / live-location reads, admin cancel
+│   ├── complaints/ A5 complaints (resolve + audit) and reviews
 │   ├── console/    sections A1–A6, city filter, enum labels
 │   ├── dashboard/  A1 stat cards (IST day) and the day's bookings
 │   ├── live/       A3 live bookings: schematic map, list, vertical rail, admin cancel

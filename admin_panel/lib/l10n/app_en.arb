@@ -101,19 +101,6 @@
   "@console_sign_out": {
     "description": "Top bar: signs the admin out."
   },
-  "console_section_coming_title": "Coming next",
-  "@console_section_coming_title": {
-    "description": "Placeholder for a screen not built yet."
-  },
-  "console_section_coming_body": "This screen arrives with issue #{issue}.",
-  "@console_section_coming_body": {
-    "description": "Placeholder body. {issue} is a GitHub issue number.",
-    "placeholders": {
-      "issue": {
-        "type": "String"
-      }
-    }
-  },
   "vehicle_type_car": "Car",
   "@vehicle_type_car": {
     "description": "Vehicle type."
@@ -734,5 +721,254 @@
   "live_cancel_refused": "This booking can't be cancelled any more.",
   "@live_cancel_refused": {
     "description": "failed-precondition on cancel."
+  },
+  "complaints_tab_open": "Open",
+  "@complaints_tab_open": {
+    "description": "A5 tab."
+  },
+  "complaints_tab_open_count": "Open ({count})",
+  "@complaints_tab_open_count": {
+    "description": "A5 tab with count.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "complaints_tab_resolved": "Resolved",
+  "@complaints_tab_resolved": {
+    "description": "A5 tab."
+  },
+  "complaints_tab_reviews": "Reviews",
+  "@complaints_tab_reviews": {
+    "description": "A5 tab."
+  },
+  "complaints_load_failed": "Couldn't load complaints.",
+  "@complaints_load_failed": {
+    "description": "A5 error."
+  },
+  "complaints_empty_open": "No open complaints.",
+  "@complaints_empty_open": {
+    "description": "A5 empty."
+  },
+  "complaints_empty_resolved": "No resolved complaints yet.",
+  "@complaints_empty_resolved": {
+    "description": "A5 empty."
+  },
+  "complaints_empty_reviews": "No reviews yet.",
+  "@complaints_empty_reviews": {
+    "description": "A5 empty."
+  },
+  "complaints_title": "{category} · {ref}",
+  "@complaints_title": {
+    "description": "A5 detail title, e.g. Payment dispute · #K3F9QA.",
+    "placeholders": {
+      "category": {
+        "type": "String"
+      },
+      "ref": {
+        "type": "String"
+      }
+    }
+  },
+  "complaints_raised_by_customer": "Raised by the customer, {name}",
+  "@complaints_raised_by_customer": {
+    "description": "A5 detail.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "complaints_raised_by_mechanic": "Raised by the mechanic, {name}",
+  "@complaints_raised_by_mechanic": {
+    "description": "A5 detail.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "complaints_resolution": "Resolution: {text}",
+  "@complaints_resolution": {
+    "description": "A5 resolved complaint.",
+    "placeholders": {
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "complaints_resolution_label": "Resolution note",
+  "@complaints_resolution_label": {
+    "description": "A5: note before resolving."
+  },
+  "complaints_resolution_hint": "For example: called both, UPI transfer found, confirmed with the mechanic.",
+  "@complaints_resolution_hint": {
+    "description": "A5 hint."
+  },
+  "complaints_resolve": "Resolve",
+  "@complaints_resolve": {
+    "description": "A5 action."
+  },
+  "complaints_resolved": "Complaint resolved.",
+  "@complaints_resolved": {
+    "description": "Toast."
+  },
+  "complaints_stars": "{stars, plural, =1{1 star} other{{stars} stars}}",
+  "@complaints_stars": {
+    "description": "Review rating.",
+    "placeholders": {
+      "stars": {
+        "type": "int"
+      }
+    }
+  },
+  "complaints_category_payment": "Payment dispute",
+  "@complaints_category_payment": {
+    "description": "Complaint category."
+  },
+  "complaints_category_service": "Service",
+  "@complaints_category_service": {
+    "description": "Complaint category."
+  },
+  "complaints_category_safety": "Safety",
+  "@complaints_category_safety": {
+    "description": "Complaint category."
+  },
+  "complaints_category_other": "Other",
+  "@complaints_category_other": {
+    "description": "Complaint category."
+  },
+  "payment_status_pending": "Not paid yet",
+  "@payment_status_pending": {
+    "description": "Payment status."
+  },
+  "payment_status_marked_paid": "Customer says paid",
+  "@payment_status_marked_paid": {
+    "description": "Payment status."
+  },
+  "payment_status_confirmed": "Paid, confirmed",
+  "@payment_status_confirmed": {
+    "description": "Payment status."
+  },
+  "payment_status_disputed": "Disputed",
+  "@payment_status_disputed": {
+    "description": "Payment status."
+  },
+  "settings_load_failed": "Couldn't load settings.",
+  "@settings_load_failed": {
+    "description": "A6 error."
+  },
+  "settings_app_title": "App",
+  "@settings_app_title": {
+    "description": "A6 section: appConfig/public."
+  },
+  "settings_min_build_label": "Minimum supported build",
+  "@settings_min_build_label": {
+    "description": "A6 field."
+  },
+  "settings_min_build_help": "Older app builds must update before they can be used.",
+  "@settings_min_build_help": {
+    "description": "A6 help."
+  },
+  "settings_maintenance_label": "Maintenance message",
+  "@settings_maintenance_label": {
+    "description": "A6 field."
+  },
+  "settings_maintenance_help": "Shown to everyone in the apps. Leave empty for none.",
+  "@settings_maintenance_help": {
+    "description": "A6 help."
+  },
+  "settings_support_phone_label": "Support phone",
+  "@settings_support_phone_label": {
+    "description": "A6 field."
+  },
+  "settings_support_phone_hint": "+91 98XXX XXXXX",
+  "@settings_support_phone_hint": {
+    "description": "A6 phone hint."
+  },
+  "settings_phone_invalid": "Enter a phone number with its country code, e.g. +91…",
+  "@settings_phone_invalid": {
+    "description": "A6 phone error."
+  },
+  "settings_dispatch_label": "Take new bookings",
+  "@settings_dispatch_label": {
+    "description": "A6: dispatch kill switch."
+  },
+  "settings_dispatch_on": "On: customers can book.",
+  "@settings_dispatch_on": {
+    "description": "Kill switch on."
+  },
+  "settings_dispatch_off": "Off: every new booking is refused until you turn it back on.",
+  "@settings_dispatch_off": {
+    "description": "Kill switch off."
+  },
+  "settings_save": "Save",
+  "@settings_save": {
+    "description": "A6 app save."
+  },
+  "settings_saved": "Saved. The apps pick it up within a minute.",
+  "@settings_saved": {
+    "description": "Toast."
+  },
+  "settings_areas_title": "Service areas",
+  "@settings_areas_title": {
+    "description": "A6 section."
+  },
+  "settings_area_missing": "{city} isn't set up yet (run the seed).",
+  "@settings_area_missing": {
+    "description": "A6: missing serviceAreas doc.",
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_area_on": "On: bookings accepted here.",
+  "@settings_area_on": {
+    "description": "City on."
+  },
+  "settings_area_off": "Off: new bookings in {city} get \"not in your area yet\".",
+  "@settings_area_off": {
+    "description": "City off.",
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_area_radius_label": "{city} radius (km)",
+  "@settings_area_radius_label": {
+    "description": "A6 radius field.",
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_area_radius_invalid": "Between 1 and 100 km",
+  "@settings_area_radius_invalid": {
+    "description": "Radius error."
+  },
+  "settings_area_save": "Save {city}",
+  "@settings_area_save": {
+    "description": "Saves one city.",
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_admins_title": "Admins",
+  "@settings_admins_title": {
+    "description": "A6 section."
+  },
+  "settings_admins_note": "Read only. Admins are added and removed with tool/admin (PLAN §12.11).",
+  "@settings_admins_note": {
+    "description": "A6 note."
+  },
+  "complaints_audit_note": "The resolution is recorded with your account in the audit log.",
+  "@complaints_audit_note": {
+    "description": "A5 footer under Resolve."
   }
 }

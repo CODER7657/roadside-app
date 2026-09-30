@@ -1,7 +1,6 @@
 // A2 Mechanic approvals (#50): per-type checklist, the independent-mechanic verification call,
 // approve / block through the admin callables (#130), KYC documents via signed URLs.
 
-import 'package:admin_panel/app/firebase_providers.dart';
 import 'package:admin_panel/app/router.dart';
 import 'package:admin_panel/features/approvals/application/approvals.dart';
 import 'package:admin_panel/features/approvals/data/mechanic_admin_api.dart';
@@ -116,8 +115,8 @@ void main() {
       opened = [];
       await pumpPanel(
         tester,
+        firestore: db,
         overrides: [
-          firestoreProvider.overrideWithValue(db),
           mechanicAdminApiProvider.overrideWithValue(api),
           documentOpenerProvider.overrideWithValue((url) async => opened.add(url)),
         ],
