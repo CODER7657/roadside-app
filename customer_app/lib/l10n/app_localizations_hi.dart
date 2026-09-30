@@ -13,13 +13,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get app_title => 'Roadside';
 
   @override
-  String get home_placeholder_title => 'सड़क पर मदद, मिनटों में';
-
-  @override
-  String get home_placeholder_body =>
-      'हम सब कुछ तैयार कर रहे हैं। मैकेनिक बुक करने की सुविधा अगले अपडेट में आएगी।';
-
-  @override
   String flow_step_label(int step, int total) {
     return '$total में से चरण $step';
   }
@@ -872,4 +865,43 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get review_already => 'आपने इस बुकिंग को रेटिंग दे दी है। धन्यवाद!';
+
+  @override
+  String get home_city_outside => 'हमारे क्षेत्र से बाहर';
+
+  @override
+  String get home_locating => 'आपकी लोकेशन ढूँढ रहे हैं…';
+
+  @override
+  String get home_no_location => 'पास की मदद देखने के लिए अपनी लोकेशन दें। इसके बिना भी मदद ले सकते हैं।';
+
+  @override
+  String get home_show_location => 'मेरी लोकेशन दिखाएँ';
+
+  @override
+  String get home_no_fix => 'हम आपकी लोकेशन नहीं ढूँढ पाए। फिर भी मदद ले सकते हैं और पिन खुद लगा सकते हैं।';
+
+  @override
+  String get home_outside_title => 'हम अभी आपके क्षेत्र में नहीं हैं';
+
+  @override
+  String get home_outside_body =>
+      'हम अहमदाबाद, अंकलेश्वर और भरूच में सेवा देते हैं। SMS से अपनी लोकेशन भेजें, हमारी टीम मदद ढूँढने में सहायता करेगी।';
+
+  @override
+  String get home_sms_location => 'SMS से मेरी लोकेशन भेजें';
+
+  @override
+  String home_sms_body(String link, String code) {
+    return 'मुझे सड़क पर मदद चाहिए। मेरी लोकेशन: $link (प्लस कोड $code)';
+  }
+
+  @override
+  String get home_sms_failed => 'SMS ऐप नहीं खुल सका।';
+
+  @override
+  String get home_booking_active => 'आपकी बुकिंग चल रही है';
+
+  @override
+  String get home_booking_open => 'खोलने के लिए टैप करें';
 }

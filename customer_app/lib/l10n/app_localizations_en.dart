@@ -13,13 +13,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_title => 'Roadside';
 
   @override
-  String get home_placeholder_title => 'Help on the road, in minutes';
-
-  @override
-  String get home_placeholder_body =>
-      'We\'re getting everything ready. Booking a mechanic arrives in the next update.';
-
-  @override
   String flow_step_label(int step, int total) {
     return 'Step $step of $total';
   }
@@ -870,4 +863,45 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get review_already => 'You have rated this booking. Thank you!';
+
+  @override
+  String get home_city_outside => 'Outside our area';
+
+  @override
+  String get home_locating => 'Finding your location…';
+
+  @override
+  String get home_no_location =>
+      'Share your location to see help near you. You can still get help without it.';
+
+  @override
+  String get home_show_location => 'Show my location';
+
+  @override
+  String get home_no_fix =>
+      'We couldn\'t find your location. You can still get help and place the pin yourself.';
+
+  @override
+  String get home_outside_title => 'We\'re not in your area yet';
+
+  @override
+  String get home_outside_body =>
+      'We serve Ahmedabad, Ankleshwar and Bharuch. Send us your location by SMS and our team will help you find someone.';
+
+  @override
+  String get home_sms_location => 'Send my location by SMS';
+
+  @override
+  String home_sms_body(String link, String code) {
+    return 'I need roadside help. My location: $link (Plus Code $code)';
+  }
+
+  @override
+  String get home_sms_failed => 'Couldn\'t open the SMS app.';
+
+  @override
+  String get home_booking_active => 'Your booking is in progress';
+
+  @override
+  String get home_booking_open => 'Tap to open it';
 }

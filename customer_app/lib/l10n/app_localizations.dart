@@ -99,18 +99,6 @@ abstract class AppLocalizations {
   /// **'Roadside'**
   String get app_title;
 
-  /// Temporary home screen until U1 Home (#12) lands.
-  ///
-  /// In en, this message translates to:
-  /// **'Help on the road, in minutes'**
-  String get home_placeholder_title;
-
-  /// Temporary home screen body until U1 Home (#12) lands.
-  ///
-  /// In en, this message translates to:
-  /// **'We\'re getting everything ready. Booking a mechanic arrives in the next update.'**
-  String get home_placeholder_body;
-
   /// Progress label on multi-step flows.
   ///
   /// In en, this message translates to:
@@ -1658,6 +1646,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You have rated this booking. Thank you!'**
   String get review_already;
+
+  /// U1 chip when no service area covers the customer.
+  ///
+  /// In en, this message translates to:
+  /// **'Outside our area'**
+  String get home_city_outside;
+
+  /// U1 while locating.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding your location…'**
+  String get home_locating;
+
+  /// U1 before location is allowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Share your location to see help near you. You can still get help without it.'**
+  String get home_no_location;
+
+  /// U1: opens the C7 explainer for location.
+  ///
+  /// In en, this message translates to:
+  /// **'Show my location'**
+  String get home_show_location;
+
+  /// U1: no GPS reading in 15 s.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t find your location. You can still get help and place the pin yourself.'**
+  String get home_no_fix;
+
+  /// U1·Area: title.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'re not in your area yet'**
+  String get home_outside_title;
+
+  /// U1·Area: message.
+  ///
+  /// In en, this message translates to:
+  /// **'We serve Ahmedabad, Ankleshwar and Bharuch. Send us your location by SMS and our team will help you find someone.'**
+  String get home_outside_body;
+
+  /// U1·Area: primary; opens the SMS app to the helpline.
+  ///
+  /// In en, this message translates to:
+  /// **'Send my location by SMS'**
+  String get home_sms_location;
+
+  /// SMS body to the helpline.
+  ///
+  /// In en, this message translates to:
+  /// **'I need roadside help. My location: {link} (Plus Code {code})'**
+  String home_sms_body(String link, String code);
+
+  /// U1·Area: SMS app failed to open.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t open the SMS app.'**
+  String get home_sms_failed;
+
+  /// U1: card for a booking still active.
+  ///
+  /// In en, this message translates to:
+  /// **'Your booking is in progress'**
+  String get home_booking_active;
+
+  /// U1: under home_booking_active.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to open it'**
+  String get home_booking_open;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

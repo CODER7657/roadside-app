@@ -255,8 +255,18 @@ void main() {
     }) async {
       await tester.pumpWidget(await app(language: language, contacts: contacts));
       await pastSplash(tester);
-      // Secondary buttons show their label in caps (ThreeUI Spinning Border).
-      await tester.tap(find.text((language == 'en' ? 'Help & FAQ' : 'मदद और FAQ').toUpperCase()));
+      // It's low in Home's dock: pull the dock up to full height first, as a customer would.
+      await tester.drag(find.byType(LaneDock), const Offset(0, -600));
+      await tester.pumpAndSettle();
+      // At full height the dock's list scrolls (needed at 200% text).
+      final link = find.text(language == 'en' ? 'Help & FAQ' : 'मदद और FAQ');
+      await tester.scrollUntilVisible(
+        link,
+        100,
+        scrollable: find.descendant(of: find.byType(LaneDock), matching: find.byType(Scrollable)).first,
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(link);
       await tester.pumpAndSettle();
       expect(find.byType(HelpScreen), findsOneWidget);
     }
