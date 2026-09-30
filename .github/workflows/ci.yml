@@ -53,7 +53,7 @@ jobs:
             functions: ['firebase/functions/**']
             rules:     ['firebase/*.rules', 'firebase/rules_tests/**', 'firebase/firestore.indexes.json']
             workflows: ['.github/workflows/**']
-            tools:     ['tool/**']
+            tools:     ['tool/**', 'docs/play/**']
 
   lane_ui:
     needs: changes
@@ -191,7 +191,7 @@ jobs:
           cache: true
       - name: Shell syntax
         shell: bash
-        run: for f in tool/*.sh tool/test/*.sh; do bash -n "$f"; done
+        run: shopt -s nullglob; for f in tool/*.sh tool/*/*.sh; do bash -n "$f"; done
       - name: Analyze check_strings
         run: dart analyze --fatal-infos tool/check_strings.dart
       - name: check_strings self-test
@@ -200,6 +200,9 @@ jobs:
       - name: lint_design self-test
         shell: bash
         run: bash tool/test/lint_design_test.sh
+      - name: Store listing fits Play's limits
+        shell: bash
+        run: bash tool/check_store_listing.sh
 
   secrets:
     name: Secret scan (gitleaks)
