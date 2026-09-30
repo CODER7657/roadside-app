@@ -94,6 +94,21 @@ describe('verifyStartOtp (emulator)', { skip: !emulatorRunning && 'no Firestore 
     assert.equal((await otpOf(bookingId)).lockedUntil, null);
   });
 
+  it('locks again after the first lock has run out (regression, #124 review)', async () => {
+    const { bookingId } = await arrived();
+    const guess = () => details(verifyStartOtp.run(asMechanic('m-1', { bookingId, code: '1111' })));
+    for (let i = 1; i <= 5; i++) await guess();
+    assert.ok((await otpOf(bookingId)).lockedUntil, 'first lock');
+
+    // Wait out the lock.
+    await db().doc(`bookings/${bookingId}/private/otp`).update({ lockedUntil: Timestamp.fromMillis(Date.now() - 1000) });
+    for (let i = 1; i <= 4; i++) assert.equal((await guess()).message, 'error_code_wrong');
+    assert.equal((await otpOf(bookingId)).lockedUntil, null, 'the expired lock is cleared');
+    assert.equal((await otpOf(bookingId)).attempts, 4);
+    assert.equal((await guess()).message, 'error_code_locked');
+    assert.equal((await guess()).message, 'error_code_locked');
+  });
+
   it('only from arrived, only by the assigned mechanic', async () => {
     const { bookingId: onTheWay } = await arrived('arriving');
     assert.equal(

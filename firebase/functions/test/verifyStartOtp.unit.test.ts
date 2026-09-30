@@ -41,6 +41,27 @@ describe('judge', () => {
     assert.equal(judge(otp(0, now + 60_000), '0427', now).result, 'locked');
   });
 
+  it('locks again after 5 more wrong codes once a lock has run out (regression, #124 review)', () => {
+    // Apply exactly the writes verifyStartOtp makes for each outcome.
+    let state = otp(0);
+    const write = (v: ReturnType<typeof judge>) => {
+      if (v.result === 'wrong') state = { ...state, attempts: v.attempts, lockedUntil: null };
+      if (v.result === 'locked_now') {
+        state = { ...state, attempts: 0, lockedUntil: Timestamp.fromMillis(v.lockedUntilMs!) };
+      }
+    };
+    for (let i = 0; i < MAX_OTP_ATTEMPTS; i++) write(judge(state, '1111', now));
+    assert.ok(state.lockedUntil, 'first lock');
+
+    const later = now + OTP_LOCK_MS + 1;
+    const results = Array.from({ length: MAX_OTP_ATTEMPTS + 1 }, () => {
+      const v = judge(state, '1111', later);
+      write(v);
+      return v.result;
+    });
+    assert.deepEqual(results, ['wrong', 'wrong', 'wrong', 'wrong', 'locked_now', 'locked']);
+  });
+
   it('after the lock runs out there are 5 fresh attempts', () => {
     assert.deepEqual(judge(otp(0, now - 1), '1111', now), { result: 'wrong', attempts: 1, lockedUntilMs: null });
     assert.equal(judge(otp(0, now - 1), '0427', now).result, 'started');

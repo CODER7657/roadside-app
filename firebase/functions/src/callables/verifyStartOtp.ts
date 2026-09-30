@@ -107,7 +107,9 @@ export const verifyStartOtp = secureCall(
           tx.update(otpRef, { attempts: 0, lockedUntil: Timestamp.fromMillis(verdict.lockedUntilMs!) });
           return { kind: 'locked_now', lockedUntilMs: verdict.lockedUntilMs!, customerId: booking.customerId };
         case 'wrong':
-          tx.update(otpRef, { attempts: verdict.attempts });
+          // Clear any expired lock too: left in place, judge() would reset attempts to 0 on every
+          // guess and the code could never lock again (review on #124).
+          tx.update(otpRef, { attempts: verdict.attempts, lockedUntil: null });
           return { kind: 'wrong', attemptsLeft: MAX_OTP_ATTEMPTS - verdict.attempts };
       }
     });
