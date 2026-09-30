@@ -1,9 +1,20 @@
+import com.google.firebase.crashlytics.buildtools.gradle.CrashlyticsExtension
 import java.util.Properties
 
 plugins {
     id("com.android.application")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
+    // #120: Firebase config per flavour, and the build ID Crashlytics needs to start.
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
+}
+
+// google-services.json per flavour (src/dev/, src/prod/) is git-ignored (PLAN §12.8). Without
+// it (CI, a fresh checkout) the build still works and the app runs on its in-memory fakes.
+googleServices {
+    missingGoogleServicesStrategy =
+        com.google.gms.googleservices.GoogleServicesPlugin.MissingGoogleServicesStrategy.WARN
 }
 
 // Upload key for Play (PLAN §12.7). Restored from secrets by release-android.yml; never in git.
@@ -68,6 +79,10 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            // The R8 mapping goes to Crashlytics only when the prod project is configured.
+            configure<CrashlyticsExtension> {
+                mappingFileUploadEnabled = file("src/prod/google-services.json").exists()
+            }
         }
     }
 }

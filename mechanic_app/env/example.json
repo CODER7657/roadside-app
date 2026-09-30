@@ -1,5 +1,9 @@
 {
   "OLA_MAPS_API_KEY": "",
   "SUPPORT_PHONE": "",
-  "GRIEVANCE_EMAIL": ""
+  "GRIEVANCE_EMAIL": "",
+  "USE_EMULATORS": "false",
+  "EMULATOR_HOST": "localhost",
+  "APP_CHECK_DEBUG_TOKEN": "",
+  "CRASHLYTICS_TEST": "false"
 }

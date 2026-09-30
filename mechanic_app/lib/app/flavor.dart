@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Which Firebase project and build the app runs against (PLAN §5 Environments).
 enum AppFlavor {
-  /// `roadside-dev` + emulators. Test phone numbers, debug App Check.
+  /// `roadside-33282` (dev) or the emulators. Test phone numbers, debug App Check.
   dev,
 
   /// `roadside-prod` (client-owned).
