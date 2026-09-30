@@ -63,6 +63,30 @@ void main() {
     expect(c.read(laneModeProvider), LaneMode.day);
   });
 
+  testWidgets('off again restores a mode chosen in settings, not Auto', (tester) async {
+    final battery = FakeBattery();
+    final c = await pump(tester, battery);
+    c.read(ambientControllerProvider.notifier).setManual(LaneMode.night);
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byType(LaneGlareButton));
+    await tester.pumpAndSettle();
+    expect(c.read(laneModeProvider), LaneMode.glare);
+
+    await tester.tap(find.byType(LaneGlareButton));
+    await tester.pumpAndSettle();
+    expect(c.read(laneModeProvider), LaneMode.night);
+    expect(c.read(ambientControllerProvider).manual, LaneMode.night);
+
+    // A settings change while Glare is on wins; the ☀ button then goes to Auto.
+    await tester.tap(find.byType(LaneGlareButton));
+    await tester.pumpAndSettle();
+    c.read(ambientControllerProvider.notifier).setManual(LaneMode.glare);
+    await tester.tap(find.byType(LaneGlareButton));
+    await tester.pumpAndSettle();
+    expect(c.read(ambientControllerProvider).manual, isNull);
+  });
+
   testWidgets('beats Saver: low battery in bright sun still gets a readable screen', (tester) async {
     final battery = FakeBattery();
     final c = await pump(tester, battery);

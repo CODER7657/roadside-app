@@ -310,11 +310,18 @@ void main() {
       expect(c.read(sharedPreferencesProvider).getString('settings.display_mode'), 'day');
     });
 
-    screenTest('Glare switched on from the map shows as the mode in effect', (tester) async {
-      final c = await open(tester);
-      c.read(ambientControllerProvider.notifier).setManual(LaneMode.glare);
+    screenTest('☀ on the map shows as the mode in effect; off again, the saved Night is back', (
+      tester,
+    ) async {
+      final c = await open(tester, saved: {'settings.display_mode': 'night'});
+      expect(find.text('Night'), findsOneWidget);
+      c.read(ambientControllerProvider.notifier).toggleManualGlare();
       await settle(tester);
       expect(find.text('Glare'), findsOneWidget);
+      c.read(ambientControllerProvider.notifier).toggleManualGlare();
+      await settle(tester);
+      expect(find.text('Night'), findsOneWidget);
+      expect(c.read(laneModeProvider), LaneMode.night);
     });
 
     screenTest('arrival chime switches off and stays off', (tester) async {
