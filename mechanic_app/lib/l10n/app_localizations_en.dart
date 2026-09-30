@@ -610,8 +610,86 @@ class AppLocalizationsEn extends AppLocalizations {
   String get offer_notification_body => 'Open within 30 seconds to accept.';
 
   @override
-  String get job_accepted_title => 'You\'ve got the job';
+  String get stop_requested => 'Requested';
 
   @override
-  String get job_accepted_body => 'The route to the customer opens here.';
+  String get stop_accepted => 'Accepted';
+
+  @override
+  String get stop_on_the_way => 'On the way';
+
+  @override
+  String get stop_arrived => 'Arrived';
+
+  @override
+  String get stop_working => 'Working';
+
+  @override
+  String get stop_done => 'Done';
+
+  @override
+  String get job_headline_accepted => 'Start the trip when you set off';
+
+  @override
+  String get job_headline_arriving => 'On your way to the customer';
+
+  @override
+  String get job_headline_arrived => 'You\'re at the customer';
+
+  @override
+  String get job_headline_working => 'Job in progress';
+
+  @override
+  String job_eta(int minutes) {
+    return 'About $minutes min away';
+  }
+
+  @override
+  String get job_start_trip => 'Start trip';
+
+  @override
+  String get job_arrived => 'I\'ve arrived';
+
+  @override
+  String get job_ask_start_code => 'Ask the customer for their 4-digit start code to begin.';
+
+  @override
+  String get job_open_in_maps => 'Open in Maps';
+
+  @override
+  String get job_call => 'Call';
+
+  @override
+  String get job_error_not_at_pickup => 'You\'re not at the pickup yet. Get within 100 m and try again.';
+
+  @override
+  String get job_error_location =>
+      'We can\'t see your location right now. Keep the app open with GPS on, then try again.';
+
+  @override
+  String get job_error_failed => 'Couldn\'t reach us. Check your connection and try again.';
+
+  @override
+  String get job_tracking_title => 'Sharing your location';
+
+  @override
+  String get job_tracking_text => 'With your customer, only while you\'re on this job.';
+
+  @override
+  String get job_cancelled_title => 'This job was cancelled';
+
+  @override
+  String get job_cancelled_body => 'You\'re free for the next one.';
+
+  @override
+  String get job_done_title => 'Job done';
+
+  @override
+  String get job_done_body => 'Nice work.';
+
+  @override
+  String get job_missing_title => 'We can\'t find this job';
+
+  @override
+  String get job_missing_body => 'It may have been cancelled.';
 }

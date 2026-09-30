@@ -1233,17 +1233,167 @@ abstract class AppLocalizations {
   /// **'Open within 30 seconds to accept.'**
   String get offer_notification_body;
 
-  /// After accept, until M5 Navigate.
+  /// Journey rail stop (same as customer_app).
   ///
   /// In en, this message translates to:
-  /// **'You\'ve got the job'**
-  String get job_accepted_title;
+  /// **'Requested'**
+  String get stop_requested;
 
-  /// After accept, until M5 Navigate.
+  /// Journey rail stop.
   ///
   /// In en, this message translates to:
-  /// **'The route to the customer opens here.'**
-  String get job_accepted_body;
+  /// **'Accepted'**
+  String get stop_accepted;
+
+  /// Journey rail stop.
+  ///
+  /// In en, this message translates to:
+  /// **'On the way'**
+  String get stop_on_the_way;
+
+  /// Journey rail stop.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrived'**
+  String get stop_arrived;
+
+  /// Journey rail stop.
+  ///
+  /// In en, this message translates to:
+  /// **'Working'**
+  String get stop_working;
+
+  /// Journey rail stop.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get stop_done;
+
+  /// M5 headline, accepted.
+  ///
+  /// In en, this message translates to:
+  /// **'Start the trip when you set off'**
+  String get job_headline_accepted;
+
+  /// M5 headline, arriving.
+  ///
+  /// In en, this message translates to:
+  /// **'On your way to the customer'**
+  String get job_headline_arriving;
+
+  /// M5 headline, arrived.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re at the customer'**
+  String get job_headline_arrived;
+
+  /// M5 headline, in progress.
+  ///
+  /// In en, this message translates to:
+  /// **'Job in progress'**
+  String get job_headline_working;
+
+  /// M5 straight-line ETA.
+  ///
+  /// In en, this message translates to:
+  /// **'About {minutes} min away'**
+  String job_eta(int minutes);
+
+  /// M5 primary, accepted -> arriving.
+  ///
+  /// In en, this message translates to:
+  /// **'Start trip'**
+  String get job_start_trip;
+
+  /// M5 primary, arriving -> arrived.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'ve arrived'**
+  String get job_arrived;
+
+  /// M5, arrived: next is M6.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask the customer for their 4-digit start code to begin.'**
+  String get job_ask_start_code;
+
+  /// M5: directions in the maps app.
+  ///
+  /// In en, this message translates to:
+  /// **'Open in Maps'**
+  String get job_open_in_maps;
+
+  /// M5: call the customer.
+  ///
+  /// In en, this message translates to:
+  /// **'Call'**
+  String get job_call;
+
+  /// M5: markArrived too far.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re not at the pickup yet. Get within 100 m and try again.'**
+  String get job_error_not_at_pickup;
+
+  /// M5: markArrived with no fresh position.
+  ///
+  /// In en, this message translates to:
+  /// **'We can\'t see your location right now. Keep the app open with GPS on, then try again.'**
+  String get job_error_location;
+
+  /// M5: network error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t reach us. Check your connection and try again.'**
+  String get job_error_failed;
+
+  /// Foreground-service notification title during a job.
+  ///
+  /// In en, this message translates to:
+  /// **'Sharing your location'**
+  String get job_tracking_title;
+
+  /// Foreground-service notification text.
+  ///
+  /// In en, this message translates to:
+  /// **'With your customer, only while you\'re on this job.'**
+  String get job_tracking_text;
+
+  /// M5 ended: cancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'This job was cancelled'**
+  String get job_cancelled_title;
+
+  /// M5 ended: cancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re free for the next one.'**
+  String get job_cancelled_body;
+
+  /// M5 ended: completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Job done'**
+  String get job_done_title;
+
+  /// M5 ended: completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Nice work.'**
+  String get job_done_body;
+
+  /// M5: booking not readable.
+  ///
+  /// In en, this message translates to:
+  /// **'We can\'t find this job'**
+  String get job_missing_title;
+
+  /// M5: booking not readable.
+  ///
+  /// In en, this message translates to:
+  /// **'It may have been cancelled.'**
+  String get job_missing_body;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

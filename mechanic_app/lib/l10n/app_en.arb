@@ -778,12 +778,117 @@
   "@offer_notification_body": {
     "description": "Offers notification body."
   },
-  "job_accepted_title": "You've got the job",
-  "@job_accepted_title": {
-    "description": "After accept, until M5 Navigate."
+  "stop_requested": "Requested",
+  "@stop_requested": {
+    "description": "Journey rail stop (same as customer_app)."
   },
-  "job_accepted_body": "The route to the customer opens here.",
-  "@job_accepted_body": {
-    "description": "After accept, until M5 Navigate."
+  "stop_accepted": "Accepted",
+  "@stop_accepted": {
+    "description": "Journey rail stop."
+  },
+  "stop_on_the_way": "On the way",
+  "@stop_on_the_way": {
+    "description": "Journey rail stop."
+  },
+  "stop_arrived": "Arrived",
+  "@stop_arrived": {
+    "description": "Journey rail stop."
+  },
+  "stop_working": "Working",
+  "@stop_working": {
+    "description": "Journey rail stop."
+  },
+  "stop_done": "Done",
+  "@stop_done": {
+    "description": "Journey rail stop."
+  },
+  "job_headline_accepted": "Start the trip when you set off",
+  "@job_headline_accepted": {
+    "description": "M5 headline, accepted."
+  },
+  "job_headline_arriving": "On your way to the customer",
+  "@job_headline_arriving": {
+    "description": "M5 headline, arriving."
+  },
+  "job_headline_arrived": "You're at the customer",
+  "@job_headline_arrived": {
+    "description": "M5 headline, arrived."
+  },
+  "job_headline_working": "Job in progress",
+  "@job_headline_working": {
+    "description": "M5 headline, in progress."
+  },
+  "job_eta": "About {minutes} min away",
+  "@job_eta": {
+    "description": "M5 straight-line ETA.",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "job_start_trip": "Start trip",
+  "@job_start_trip": {
+    "description": "M5 primary, accepted -> arriving."
+  },
+  "job_arrived": "I've arrived",
+  "@job_arrived": {
+    "description": "M5 primary, arriving -> arrived."
+  },
+  "job_ask_start_code": "Ask the customer for their 4-digit start code to begin.",
+  "@job_ask_start_code": {
+    "description": "M5, arrived: next is M6."
+  },
+  "job_open_in_maps": "Open in Maps",
+  "@job_open_in_maps": {
+    "description": "M5: directions in the maps app."
+  },
+  "job_call": "Call",
+  "@job_call": {
+    "description": "M5: call the customer."
+  },
+  "job_error_not_at_pickup": "You're not at the pickup yet. Get within 100 m and try again.",
+  "@job_error_not_at_pickup": {
+    "description": "M5: markArrived too far."
+  },
+  "job_error_location": "We can't see your location right now. Keep the app open with GPS on, then try again.",
+  "@job_error_location": {
+    "description": "M5: markArrived with no fresh position."
+  },
+  "job_error_failed": "Couldn't reach us. Check your connection and try again.",
+  "@job_error_failed": {
+    "description": "M5: network error."
+  },
+  "job_tracking_title": "Sharing your location",
+  "@job_tracking_title": {
+    "description": "Foreground-service notification title during a job."
+  },
+  "job_tracking_text": "With your customer, only while you're on this job.",
+  "@job_tracking_text": {
+    "description": "Foreground-service notification text."
+  },
+  "job_cancelled_title": "This job was cancelled",
+  "@job_cancelled_title": {
+    "description": "M5 ended: cancelled."
+  },
+  "job_cancelled_body": "You're free for the next one.",
+  "@job_cancelled_body": {
+    "description": "M5 ended: cancelled."
+  },
+  "job_done_title": "Job done",
+  "@job_done_title": {
+    "description": "M5 ended: completed."
+  },
+  "job_done_body": "Nice work.",
+  "@job_done_body": {
+    "description": "M5 ended: completed."
+  },
+  "job_missing_title": "We can't find this job",
+  "@job_missing_title": {
+    "description": "M5: booking not readable."
+  },
+  "job_missing_body": "It may have been cancelled.",
+  "@job_missing_body": {
+    "description": "M5: booking not readable."
   }
 }

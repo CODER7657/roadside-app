@@ -35,6 +35,8 @@ class FakeLocation implements LocationService {
   bool enabled;
   int settingsOpened = 0;
   int? lastDistanceFilter;
+  Duration? lastInterval;
+  ForegroundTracking? lastForeground;
   StreamController<LocationFix>? _fixes;
 
   bool get listening => _fixes != null && _fixes!.hasListener;
@@ -51,8 +53,14 @@ class FakeLocation implements LocationService {
   }
 
   @override
-  Stream<LocationFix> fixes({required int distanceFilterMeters}) {
+  Stream<LocationFix> fixes({
+    required int distanceFilterMeters,
+    Duration? interval,
+    ForegroundTracking? foreground,
+  }) {
     lastDistanceFilter = distanceFilterMeters;
+    lastInterval = interval;
+    lastForeground = foreground;
     _fixes = StreamController<LocationFix>();
     return _fixes!.stream;
   }
