@@ -6,6 +6,7 @@
 # Setup (P3): repo variables GCP_WIF_PROVIDER_DEV/PROD, GCP_DEPLOY_SA_DEV/PROD, FIREBASE_PROJECT_DEV/PROD, and on each
 # environment (development / production) ADMIN_WEB_ENV: the admin panel's web config as JSON, shaped like
 # admin_panel/env/example.json with USE_EMULATORS=false. Hosting targets and sites: firebase/.firebaserc.
+# FIREBASE_BLAZE=true (repo variable) adds Functions and Storage, which need the Blaze plan.
 name: Deploy Firebase
 
 on:
@@ -120,4 +121,12 @@ jobs:
       - name: firebase deploy
         if: steps.ready.outputs.ok == 'true'
         working-directory: firebase
-        run: npx --yes firebase-tools@latest deploy --non-interactive --project "${{ steps.t.outputs.project }}" --only functions,firestore,storage,hosting
+        env:
+          # Functions and Storage need the Blaze plan. Until the project is on Blaze, only rules,
+          # indexes and Hosting deploy; set the repo variable FIREBASE_BLAZE=true once it is.
+          BLAZE: ${{ vars.FIREBASE_BLAZE }}
+        run: |
+          only=firestore,hosting
+          if [ "$BLAZE" = "true" ]; then only=functions,firestore,storage,hosting; fi
+          echo "Deploying: $only"
+          npx --yes firebase-tools@latest deploy --non-interactive --project "${{ steps.t.outputs.project }}" --only "$only"
