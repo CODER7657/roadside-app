@@ -1526,6 +1526,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Turn on location'**
   String get job_turn_on_location;
+
+  /// M5: instead of an ETA once within ~50 m of the pickup.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re at the pickup'**
+  String get job_eta_here;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

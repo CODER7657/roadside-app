@@ -345,6 +345,12 @@ void main() {
       expect(live.writes, hasLength(1));
       expect(find.text('About 6 min away'), findsOneWidget);
 
+      // Within ~50 m: no "About 0 min away".
+      location.move(pickup.latitude, pickup.longitude);
+      await tester.pumpAndSettle();
+      expect(find.text("You're at the pickup"), findsOneWidget);
+      expect(find.textContaining('0 min'), findsNothing);
+
       await tapText(tester, 'Start trip');
       expect(jobs.calls, ['startTrip:b-1']);
       expect(find.text('On your way to the customer'), findsOneWidget);

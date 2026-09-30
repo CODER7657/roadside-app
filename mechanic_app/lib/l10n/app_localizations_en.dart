@@ -764,4 +764,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get job_turn_on_location => 'Turn on location';
+
+  @override
+  String get job_eta_here => 'You\'re at the pickup';
 }
