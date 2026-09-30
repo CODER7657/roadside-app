@@ -170,7 +170,7 @@ class _LiveBookingScreenState extends ConsumerState<LiveBookingScreen> {
         primary: home,
       ),
       // U12 and U13 (#133).
-      BookingStatus.inProgress => WorkingView(booking: b),
+      BookingStatus.inProgress => WorkingView(bookingId: widget.bookingId, booking: b),
       BookingStatus.completed => PaymentView(bookingId: widget.bookingId, booking: b),
     };
   }

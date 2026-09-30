@@ -27,6 +27,7 @@ export 'src/app/lane_licenses.dart' show LaneLicenses;
 export 'src/components/journey_rail.dart' show JourneyRail, JourneyStop;
 export 'src/components/lane_badges.dart' show LaneSignal, PlateChip, SignalBadge;
 export 'src/components/lane_button.dart' show LaneButton;
+export 'src/components/lane_chat.dart' show ChatBubble, ChatComposer, ChatDelivery;
 export 'src/components/lane_feedback.dart'
     show EmptyState, ErrorState, LaneToast, OfflineStrip, SkeletonBlock, SkeletonGroup, laneStrings;
 export 'src/components/lane_glare_button.dart' show LaneGlareButton;

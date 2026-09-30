@@ -24,5 +24,12 @@
   "glare_turn_on": "તડકા મોડ: તેજ પ્રકાશ માટે ઊંચો કોન્ટ્રાસ્ટ",
   "glare_turn_off": "તડકા મોડ બંધ કરો",
   "star_rating_value": "5 માંથી {count} સ્ટાર",
-  "star_rating_none": "હજી રેટિંગ નથી આપ્યું"
+  "star_rating_none": "હજી રેટિંગ નથી આપ્યું",
+  "chat_hint": "સંદેશ",
+  "chat_send": "મોકલો",
+  "chat_add_photo": "ફોટો ઉમેરો",
+  "chat_chars_left": "{count} અક્ષર બાકી",
+  "chat_sending": "મોકલાઈ રહ્યું છે…",
+  "chat_failed": "મોકલાયું નથી. ફરી પ્રયાસ કરવા ટેપ કરો.",
+  "chat_photo": "ફોટો"
 }

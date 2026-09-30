@@ -1249,5 +1249,79 @@
   "home_booking_open": "Tap to open it",
   "@home_booking_open": {
     "description": "U1: under home_booking_active."
+  },
+  "chat_open": "Chat",
+  "@chat_open": {
+    "description": "U10/U12: button that opens U11 Chat."
+  },
+  "chat_title": "Chat",
+  "@chat_title": {
+    "description": "U11: title when the mechanic's name isn't known yet."
+  },
+  "chat_empty_title": "No messages yet",
+  "@chat_empty_title": {
+    "description": "U11: empty state title."
+  },
+  "chat_empty_body": "Tell {name} anything that helps them find you or your vehicle.",
+  "@chat_empty_body": {
+    "description": "U11: empty state message.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "chat_closed": "This chat has closed. You can still read it for 30 days.",
+  "@chat_closed": {
+    "description": "U11: shown instead of the composer once the booking has ended (PLAN §8: read for 30 days)."
+  },
+  "chat_you": "You: {text}",
+  "@chat_you": {
+    "description": "U11: TalkBack for one of my messages.",
+    "placeholders": {
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "chat_from": "{name}: {text}",
+  "@chat_from": {
+    "description": "U11: TalkBack for the mechanic's message.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "chat_photo_title": "Send a photo",
+  "@chat_photo_title": {
+    "description": "U11: sheet title for choosing camera or gallery."
+  },
+  "chat_photo_take": "Take a photo",
+  "@chat_photo_take": {
+    "description": "U11: sheet option, opens the camera."
+  },
+  "chat_photo_gallery": "Choose from gallery",
+  "@chat_photo_gallery": {
+    "description": "U11: sheet option, opens the gallery."
+  },
+  "chat_photo_too_large": "That photo is too large. Try another one.",
+  "@chat_photo_too_large": {
+    "description": "U11: toast when a photo can't be made small enough."
+  },
+  "chat_photo_failed": "Couldn't add that photo. Try again.",
+  "@chat_photo_failed": {
+    "description": "U11: toast when picking or preparing a photo failed."
+  },
+  "chat_error": "Couldn't load the chat. Check your connection.",
+  "@chat_error": {
+    "description": "U11: error state."
+  },
+  "chat_error_retry": "Try again",
+  "@chat_error_retry": {
+    "description": "U11: error state action."
   }
 }

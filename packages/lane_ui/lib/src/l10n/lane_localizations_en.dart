@@ -103,4 +103,27 @@ class LaneLocalizationsEn extends LaneLocalizations {
 
   @override
   String get star_rating_none => 'Not rated yet';
+
+  @override
+  String get chat_hint => 'Message';
+
+  @override
+  String get chat_send => 'Send';
+
+  @override
+  String get chat_add_photo => 'Add a photo';
+
+  @override
+  String chat_chars_left(int count) {
+    return '$count characters left';
+  }
+
+  @override
+  String get chat_sending => 'Sending…';
+
+  @override
+  String get chat_failed => 'Not sent. Tap to try again.';
+
+  @override
+  String get chat_photo => 'Photo';
 }

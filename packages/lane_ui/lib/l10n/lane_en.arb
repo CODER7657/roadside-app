@@ -158,5 +158,38 @@
   "star_rating_none": "Not rated yet",
   "@star_rating_none": {
     "description": "StarRating: TalkBack value at 0."
+  },
+  "chat_hint": "Message",
+  "@chat_hint": {
+    "description": "ChatComposer: placeholder in the text field."
+  },
+  "chat_send": "Send",
+  "@chat_send": {
+    "description": "ChatComposer: send button (TalkBack)."
+  },
+  "chat_add_photo": "Add a photo",
+  "@chat_add_photo": {
+    "description": "ChatComposer: camera button tooltip."
+  },
+  "chat_chars_left": "{count} characters left",
+  "@chat_chars_left": {
+    "description": "ChatComposer: shown near the 500-character limit.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "chat_sending": "Sending…",
+  "@chat_sending": {
+    "description": "ChatBubble: my message is still on its way."
+  },
+  "chat_failed": "Not sent. Tap to try again.",
+  "@chat_failed": {
+    "description": "ChatBubble: my message failed; tapping it retries."
+  },
+  "chat_photo": "Photo",
+  "@chat_photo": {
+    "description": "ChatBubble: TalkBack for a message with a photo."
   }
 }

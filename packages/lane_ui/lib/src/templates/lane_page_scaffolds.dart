@@ -224,9 +224,17 @@ class LaneListScaffold extends StatelessWidget {
     this.onRefresh,
     this.showBack = false,
     this.onBack,
+    this.subtitle,
+    this.controller,
   });
 
   final String title;
+
+  /// A line under the title, e.g. who a chat is with and where they are.
+  final String? subtitle;
+
+  /// For lists that follow their newest item, like the chat.
+  final ScrollController? controller;
   final int itemCount;
   final IndexedWidgetBuilder itemBuilder;
 
@@ -245,6 +253,7 @@ class LaneListScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     final lane = context.lane;
     final scroll = CustomScrollView(
+      controller: controller,
       slivers: [
         SliverToBoxAdapter(
           child: Padding(
@@ -261,6 +270,10 @@ class LaneListScaffold extends StatelessWidget {
                     ),
                   ),
                 Text(title, style: lane.text.headline),
+                if (subtitle != null) ...[
+                  SizedBox(height: lane.space.s4),
+                  Text(subtitle!, style: lane.text.body.copyWith(color: lane.color.inkMuted)),
+                ],
               ],
             ),
           ),

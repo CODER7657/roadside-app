@@ -904,4 +904,52 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get home_booking_open => 'Tap to open it';
+
+  @override
+  String get chat_open => 'Chat';
+
+  @override
+  String get chat_title => 'Chat';
+
+  @override
+  String get chat_empty_title => 'No messages yet';
+
+  @override
+  String chat_empty_body(String name) {
+    return 'Tell $name anything that helps them find you or your vehicle.';
+  }
+
+  @override
+  String get chat_closed => 'This chat has closed. You can still read it for 30 days.';
+
+  @override
+  String chat_you(String text) {
+    return 'You: $text';
+  }
+
+  @override
+  String chat_from(String name, String text) {
+    return '$name: $text';
+  }
+
+  @override
+  String get chat_photo_title => 'Send a photo';
+
+  @override
+  String get chat_photo_take => 'Take a photo';
+
+  @override
+  String get chat_photo_gallery => 'Choose from gallery';
+
+  @override
+  String get chat_photo_too_large => 'That photo is too large. Try another one.';
+
+  @override
+  String get chat_photo_failed => 'Couldn\'t add that photo. Try again.';
+
+  @override
+  String get chat_error => 'Couldn\'t load the chat. Check your connection.';
+
+  @override
+  String get chat_error_retry => 'Try again';
 }
