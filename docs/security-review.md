@@ -28,7 +28,7 @@ or waiting on another issue.
 2. **A2's callables don't exist yet:** `approveMechanic`, `blockMechanic`, `getKycDocumentUrls` and
    `logVerificationCall`. The console calls them and shows an error today. **#130 (P2)**.
 3. **`requestAccountDeletion` isn't built** (the privacy policy, the web deletion page and Play all
-   promise deletion). Listed in `docs/retention.md`; needs a P2 issue.
+   promise deletion). Tracked in **#167 (P2)**; the mechanic app screen is #169.
 4. **`cancelBooking` doesn't set `liveLocations.expireAt`,** so a cancelled job's track can live 48 h, not
    24 h (`docs/retention.md`).
 
