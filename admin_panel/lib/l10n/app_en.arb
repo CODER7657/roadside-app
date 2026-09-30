@@ -1,0 +1,117 @@
+{
+  "@@locale": "en",
+  "app_title": "Roadside Console",
+  "@app_title": {
+    "description": "Browser tab title of the admin panel."
+  },
+  "signin_title": "Roadside console",
+  "@signin_title": {
+    "description": "A0: title on the sign-in screen."
+  },
+  "signin_body": "For Roadside admins only. Sign in with your approved Google account.",
+  "@signin_body": {
+    "description": "A0: who can sign in."
+  },
+  "signin_google_button": "Sign in with Google",
+  "@signin_google_button": {
+    "description": "A0: primary button."
+  },
+  "signin_checking_title": "Checking your access",
+  "@signin_checking_title": {
+    "description": "A0: while Google sign-in and the admin check run."
+  },
+  "signin_error_message": "Sign-in didn't work. Try again.",
+  "@signin_error_message": {
+    "description": "A0: the Google popup failed or was closed."
+  },
+  "signin_not_authorised_title": "Not authorised",
+  "@signin_not_authorised_title": {
+    "description": "A0: a signed-in account without the admin role."
+  },
+  "signin_not_authorised_body": "{account} isn't an admin account, so we signed it out. Ask the Roadside team if you need access.",
+  "@signin_not_authorised_body": {
+    "description": "A0: explains the sign-out. {account} is the Google email.",
+    "placeholders": {
+      "account": {
+        "type": "String"
+      }
+    }
+  },
+  "signin_not_authorised_retry": "Use another account",
+  "@signin_not_authorised_retry": {
+    "description": "A0: signs in again with a different Google account."
+  },
+  "signin_unknown_account": "This account",
+  "@signin_unknown_account": {
+    "description": "A0: stands in for the email when Google didn't give one."
+  },
+  "signin_unconfigured_title": "Console not connected",
+  "@signin_unconfigured_title": {
+    "description": "A0: this build has no Firebase project."
+  },
+  "signin_unconfigured_body": "This build isn't linked to a Firebase project yet. Build it with the env file for dev or prod.",
+  "@signin_unconfigured_body": {
+    "description": "A0: for developers; shown only in a misconfigured build."
+  },
+  "console_nav_dashboard": "Dashboard",
+  "@console_nav_dashboard": {
+    "description": "Rail: A1."
+  },
+  "console_nav_approvals": "Approvals",
+  "@console_nav_approvals": {
+    "description": "Rail: A2 mechanic approvals."
+  },
+  "console_nav_live": "Live bookings",
+  "@console_nav_live": {
+    "description": "Rail: A3 live map and list."
+  },
+  "console_nav_prices": "Prices",
+  "@console_nav_prices": {
+    "description": "Rail: A4 price chart."
+  },
+  "console_nav_complaints": "Complaints & reviews",
+  "@console_nav_complaints": {
+    "description": "Rail: A5."
+  },
+  "console_nav_settings": "Settings",
+  "@console_nav_settings": {
+    "description": "Rail: A6."
+  },
+  "console_filter_label": "City",
+  "@console_filter_label": {
+    "description": "Accessibility label of the city filter chips."
+  },
+  "console_city_all": "All cities",
+  "@console_city_all": {
+    "description": "City filter: no filter."
+  },
+  "console_city_ahmedabad": "Ahmedabad",
+  "@console_city_ahmedabad": {
+    "description": "City filter chip."
+  },
+  "console_city_ankleshwar": "Ankleshwar",
+  "@console_city_ankleshwar": {
+    "description": "City filter chip."
+  },
+  "console_city_bharuch": "Bharuch",
+  "@console_city_bharuch": {
+    "description": "City filter chip."
+  },
+  "console_sign_out": "Sign out",
+  "@console_sign_out": {
+    "description": "Top bar: signs the admin out."
+  },
+  "console_section_coming_title": "Coming next",
+  "@console_section_coming_title": {
+    "description": "Placeholder for a screen not built yet."
+  },
+  "console_section_coming_body": "This screen arrives with issue #{issue}.",
+  "@console_section_coming_body": {
+    "description": "Placeholder body. {issue} is a GitHub issue number.",
+    "placeholders": {
+      "issue": {
+        "type": "String"
+      }
+    }
+  }
+}

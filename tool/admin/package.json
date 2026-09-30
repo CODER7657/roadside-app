@@ -1,0 +1,17 @@
+{
+  "name": "roadside-admin-tools",
+  "private": true,
+  "description": "Grant and revoke console admins (PLAN.md §12.11). Admin SDK, run by the repo owner or P3.",
+  "type": "module",
+  "engines": {
+    "node": "22"
+  },
+  "scripts": {
+    "grant": "node admins.mjs grant",
+    "revoke": "node admins.mjs revoke",
+    "list": "node admins.mjs list"
+  },
+  "dependencies": {
+    "firebase-admin": "^14.5.0"
+  }
+}

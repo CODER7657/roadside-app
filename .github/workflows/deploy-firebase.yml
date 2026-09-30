@@ -3,13 +3,15 @@
 #   tag vX.Y.Z                         → roadside-prod. Only repo admins can create v* tags (tag ruleset), which is the
 #                                        production gate. Required-reviewer environments need GitHub Enterprise for private repos.
 # Auth uses Workload Identity Federation (no long-lived service-account keys in GitHub).
-# Setup (P3): repo variables GCP_WIF_PROVIDER_DEV/PROD, GCP_DEPLOY_SA_DEV/PROD, FIREBASE_PROJECT_DEV/PROD.
+# Setup (P3): repo variables GCP_WIF_PROVIDER_DEV/PROD, GCP_DEPLOY_SA_DEV/PROD, FIREBASE_PROJECT_DEV/PROD, and on each
+# environment (development / production) ADMIN_WEB_ENV: the admin panel's web config as JSON, shaped like
+# admin_panel/env/example.json with USE_EMULATORS=false. Hosting targets and sites: firebase/.firebaserc.
 name: Deploy Firebase
 
 on:
   push:
     branches: [main]
-    paths: ['firebase/**']
+    paths: ['firebase/**', 'admin_panel/**', 'packages/**']
     tags: ['v*.*.*']
   workflow_dispatch:
     inputs:
@@ -87,6 +89,27 @@ jobs:
       - name: Install function deps
         if: steps.ready.outputs.ok == 'true' && hashFiles('firebase/functions/package-lock.json') != ''
         run: npm ci --prefix firebase/functions
+
+      # Hosting serves admin_panel/build/web (firebase.json, target "admin").
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
+        if: steps.ready.outputs.ok == 'true'
+        with:
+          channel: stable
+          cache: true
+
+      - name: Build admin panel
+        if: steps.ready.outputs.ok == 'true'
+        working-directory: admin_panel
+        shell: bash
+        env:
+          ADMIN_WEB_ENV: ${{ vars.ADMIN_WEB_ENV }}
+        run: |
+          if [ -z "$ADMIN_WEB_ENV" ]; then echo "::error::Set the ADMIN_WEB_ENV variable on this environment."; exit 1; fi
+          printf '%s' "$ADMIN_WEB_ENV" > env/deploy.json
+          entry=lib/main_dev.dart; [ "$IS_PROD" = "true" ] && entry=lib/main_prod.dart
+          flutter pub get
+          flutter build web --release --no-web-resources-cdn -t "$entry" --dart-define-from-file=env/deploy.json
+          rm env/deploy.json
 
       - name: firebase deploy
         if: steps.ready.outputs.ok == 'true'
