@@ -29,7 +29,7 @@ cd firebase
 # emulator
 firebase emulators:exec --project demo-roadside --only firestore "npm --prefix seed run seed"
 # dev project (Application Default Credentials)
-npm --prefix seed run seed -- --project roadside-dev --support-phone +91XXXXXXXXXX
+npm --prefix seed run seed -- --project roadside-33282 --support-phone +91XXXXXXXXXX
 ```
 
 Existing documents are kept; `--overwrite` replaces them. `roadside-prod` also needs `--allow-prod`.
