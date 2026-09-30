@@ -52,6 +52,43 @@ async function tokenOf(notice: Notice): Promise<string | null> {
   return ((await db().doc(path).get()).get('fcmToken') as string | null | undefined) ?? null;
 }
 
+/**
+ * Writes one inbox item and pushes it. `eventKey` makes the item id stable, so a retry with the
+ * same key does nothing. Returns false when the item already existed.
+ */
+export async function deliverNotice(eventKey: string, bookingId: string, notice: Notice): Promise<boolean> {
+  const ref = db().doc(`inbox/${notice.uid}/items/${inboxItemId(eventKey, notice)}`);
+  try {
+    await ref.create({
+      type: notice.type,
+      titleKey: notice.titleKey,
+      bodyKey: notice.bodyKey,
+      args: notice.args,
+      bookingId,
+      read: false,
+      schemaVersion: SCHEMA_VERSION,
+      createdAt: FieldValue.serverTimestamp(),
+      updatedAt: FieldValue.serverTimestamp(),
+    });
+  } catch (err) {
+    if ((err as { code?: number }).code === 6 /* ALREADY_EXISTS */) return false; // retry
+    throw err;
+  }
+
+  const token = await tokenOf(notice);
+  if (!token) return true; // inbox only; the app shows it next time it opens
+  await deps.push(token, notice, bookingId).catch((err: unknown) =>
+    // The inbox item is already saved, so a failed push isn't retried.
+    logger.warn('status push failed', {
+      uid: notice.uid,
+      bookingId,
+      type: notice.type,
+      errorCode: (err as { code?: unknown })?.code ?? null,
+    }),
+  );
+  return true;
+}
+
 /** Returns how many notices were newly delivered (retries count 0). */
 export async function handleBookingChange(
   eventId: string,
@@ -61,40 +98,9 @@ export async function handleBookingChange(
 ): Promise<number> {
   const notices = noticesFor(before, after);
   let delivered = 0;
-
   for (const notice of notices) {
-    const ref = db().doc(`inbox/${notice.uid}/items/${inboxItemId(eventId, notice)}`);
-    try {
-      await ref.create({
-        type: notice.type,
-        titleKey: notice.titleKey,
-        bodyKey: notice.bodyKey,
-        args: notice.args,
-        bookingId,
-        read: false,
-        schemaVersion: SCHEMA_VERSION,
-        createdAt: FieldValue.serverTimestamp(),
-        updatedAt: FieldValue.serverTimestamp(),
-      });
-    } catch (err) {
-      if ((err as { code?: number }).code === 6 /* ALREADY_EXISTS */) continue; // retry
-      throw err;
-    }
-
-    delivered++;
-    const token = await tokenOf(notice);
-    if (!token) continue; // inbox only; the app shows it next time it opens
-    await deps.push(token, notice, bookingId).catch((err: unknown) =>
-      // The inbox item is already saved, so a failed push isn't retried.
-      logger.warn('status push failed', {
-        uid: notice.uid,
-        bookingId,
-        type: notice.type,
-        errorCode: (err as { code?: unknown })?.code ?? null,
-      }),
-    );
+    if (await deliverNotice(eventId, bookingId, notice)) delivered++;
   }
-
   if (notices.length > 0) logger.info('onBookingStatusChange', { bookingId, notices: notices.length, delivered });
   return delivered;
 }
