@@ -8,6 +8,7 @@ import 'package:roadside_core/roadside_core.dart';
 import '../../auth/application/auth.dart';
 import '../../dashboard/application/online.dart';
 import '../../dashboard/data/location_service.dart';
+import '../../permissions/application/permission_service.dart';
 import '../data/job_repository.dart';
 
 /// PLAN §11, during an active job.
@@ -53,13 +54,25 @@ final jobProvider = StreamProvider.family<Booking?, String>(
   (ref, bookingId) => ref.watch(jobRepositoryProvider).watch(bookingId),
 );
 
+/// Why the location isn't being shared, for the banner on M5.
+enum JobLocationProblem {
+  /// No location permission (never given, or taken back in Settings).
+  permission,
+
+  /// The phone's location is switched off.
+  gpsOff,
+}
+
 @immutable
 class JobTrackingState {
-  const JobTrackingState({this.bookingId, this.lastFix});
+  const JobTrackingState({this.bookingId, this.lastFix, this.problem});
 
   /// The job being tracked, or null.
   final String? bookingId;
   final LocationFix? lastFix;
+
+  /// Set while the job is on but its location can't be shared.
+  final JobLocationProblem? problem;
 
   bool get isTracking => bookingId != null;
 }
@@ -73,6 +86,8 @@ final jobTrackingProvider = NotifierProvider<JobTrackingController, JobTrackingS
 class JobTrackingController extends Notifier<JobTrackingState> {
   StreamSubscription<LocationFix>? _fixes;
   GeoPoint? _pickup;
+  ForegroundTracking? _notification;
+  bool _starting = false;
 
   @override
   JobTrackingState build() {
@@ -81,24 +96,59 @@ class JobTrackingController extends Notifier<JobTrackingState> {
   }
 
   /// Starts (or keeps) tracking [bookingId]. [notification] is the foreground-service
-  /// notification text, in the app's language.
-  void start({
+  /// notification text, in the app's language. Without location permission, or with the
+  /// phone's location off, it doesn't start and says why in [JobTrackingState.problem].
+  Future<void> start({
     required String bookingId,
     required GeoPoint pickup,
     required ForegroundTracking notification,
-  }) {
+  }) async {
     _pickup = pickup;
-    if (state.bookingId == bookingId) return;
+    _notification = notification;
+    if (state.bookingId == bookingId && (_fixes != null || _starting)) return;
     _cancel();
-    state = JobTrackingState(bookingId: bookingId);
-    _fixes = ref
-        .read(locationServiceProvider)
-        .fixes(
-          distanceFilterMeters: JobTiming.moveMeters,
-          interval: JobTiming.interval,
-          foreground: notification,
-        )
-        .listen((fix) => unawaited(_write(bookingId, fix)), onError: (Object _) {});
+    // Keep showing a known problem while checking again, so the banner doesn't flicker.
+    state = JobTrackingState(
+      bookingId: bookingId,
+      problem: state.bookingId == bookingId ? state.problem : null,
+    );
+    _starting = true;
+    try {
+      final problem = await _check();
+      // Stopped or moved to another job while checking.
+      if (state.bookingId != bookingId) return;
+      if (problem != null) {
+        state = JobTrackingState(bookingId: bookingId, problem: problem);
+        return;
+      }
+      _fixes = ref
+          .read(locationServiceProvider)
+          .fixes(
+            distanceFilterMeters: JobTiming.moveMeters,
+            interval: JobTiming.interval,
+            foreground: notification,
+          )
+          .listen((fix) => unawaited(_write(bookingId, fix)), onError: (Object _) {});
+      state = JobTrackingState(bookingId: bookingId, lastFix: state.lastFix);
+    } finally {
+      _starting = false;
+    }
+  }
+
+  /// After the mechanic allowed location or switched it on: try again.
+  Future<void> retry() async {
+    final bookingId = state.bookingId;
+    final pickup = _pickup;
+    final notification = _notification;
+    if (bookingId == null || pickup == null || notification == null || _fixes != null) return;
+    await start(bookingId: bookingId, pickup: pickup, notification: notification);
+  }
+
+  Future<JobLocationProblem?> _check() async {
+    final access = await ref.read(permissionServiceProvider).status(AppPermission.location);
+    if (access != PermissionAccess.granted) return JobLocationProblem.permission;
+    if (!await ref.read(locationServiceProvider).serviceEnabled()) return JobLocationProblem.gpsOff;
+    return null;
   }
 
   /// The job ended (completed or cancelled): stop sharing.

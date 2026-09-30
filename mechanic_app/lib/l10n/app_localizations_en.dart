@@ -750,4 +750,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get login_error_failed => 'Something went wrong. Try again.';
+
+  @override
+  String get job_location_needed =>
+      'The customer can\'t see you coming. Allow location so they can follow you.';
+
+  @override
+  String get job_allow_location => 'Allow location';
+
+  @override
+  String get job_gps_off =>
+      'Your phone\'s location is switched off. Turn it on so the customer can see you coming.';
+
+  @override
+  String get job_turn_on_location => 'Turn on location';
 }

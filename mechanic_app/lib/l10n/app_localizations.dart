@@ -1502,6 +1502,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Something went wrong. Try again.'**
   String get login_error_failed;
+
+  /// M5 banner: no location permission.
+  ///
+  /// In en, this message translates to:
+  /// **'The customer can\'t see you coming. Allow location so they can follow you.'**
+  String get job_location_needed;
+
+  /// M5 banner button: opens the C7 explainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow location'**
+  String get job_allow_location;
+
+  /// M5 banner: GPS off.
+  ///
+  /// In en, this message translates to:
+  /// **'Your phone\'s location is switched off. Turn it on so the customer can see you coming.'**
+  String get job_gps_off;
+
+  /// M5 banner button: opens the phone's location settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on location'**
+  String get job_turn_on_location;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
