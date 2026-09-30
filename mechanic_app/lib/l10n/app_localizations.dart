@@ -110,6 +110,216 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'We\'re getting everything ready. Registration and going online arrive in the next update.'**
   String get home_placeholder_body;
+
+  /// Progress label on multi-step flows.
+  ///
+  /// In en, this message translates to:
+  /// **'Step {step} of {total}'**
+  String flow_step_label(int step, int total);
+
+  /// C1 Splash: brand line for mechanics.
+  ///
+  /// In en, this message translates to:
+  /// **'Jobs near you, paid straight to you'**
+  String get splash_tagline;
+
+  /// C1 Splash: shown while the app starts.
+  ///
+  /// In en, this message translates to:
+  /// **'Getting things ready'**
+  String get splash_loading;
+
+  /// C2 Language: title.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your language'**
+  String get language_title;
+
+  /// C2 Language: note under the title.
+  ///
+  /// In en, this message translates to:
+  /// **'You can change it later in Settings.'**
+  String get language_body;
+
+  /// C2 Language: primary button.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get language_continue;
+
+  /// C3 Onboarding slide 1 title (mechanic).
+  ///
+  /// In en, this message translates to:
+  /// **'Jobs near you'**
+  String get onboarding_slide1_title;
+
+  /// C3 Onboarding slide 1 body.
+  ///
+  /// In en, this message translates to:
+  /// **'Go online and we send you breakdowns close by. Slide to accept the ones you want.'**
+  String get onboarding_slide1_body;
+
+  /// C3 Onboarding slide 2 title.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach them, start with their code'**
+  String get onboarding_slide2_title;
+
+  /// C3 Onboarding slide 2 body.
+  ///
+  /// In en, this message translates to:
+  /// **'Navigate to the customer. When you arrive, they read you a start code to begin the job.'**
+  String get onboarding_slide2_body;
+
+  /// C3 Onboarding slide 3 title.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid straight to your UPI'**
+  String get onboarding_slide3_title;
+
+  /// C3 Onboarding slide 3 body.
+  ///
+  /// In en, this message translates to:
+  /// **'Customers pay you directly. The app never holds your money.'**
+  String get onboarding_slide3_body;
+
+  /// C3 Onboarding: next slide.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get onboarding_next;
+
+  /// C3 Onboarding: skip to consent.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get onboarding_skip;
+
+  /// C3 Onboarding: last slide button.
+  ///
+  /// In en, this message translates to:
+  /// **'Get started'**
+  String get onboarding_start;
+
+  /// C4 Consent: title.
+  ///
+  /// In en, this message translates to:
+  /// **'Your privacy'**
+  String get consent_title;
+
+  /// C4 Consent: first line (mechanic).
+  ///
+  /// In en, this message translates to:
+  /// **'We only collect what we need to send you jobs and keep customers safe.'**
+  String get consent_intro;
+
+  /// C4 Consent: what is collected (mechanic).
+  ///
+  /// In en, this message translates to:
+  /// **'Your phone number, name, photos, ID documents for verification and your UPI details.'**
+  String get consent_point_collect;
+
+  /// C4 Consent: location use (mechanic).
+  ///
+  /// In en, this message translates to:
+  /// **'Your location, only while you\'re online or on a job. Never when you\'re offline.'**
+  String get consent_point_location;
+
+  /// C4 Consent: rights line.
+  ///
+  /// In en, this message translates to:
+  /// **'You can see, correct or delete your data at any time.'**
+  String get consent_point_delete;
+
+  /// C4 Consent: age checkbox.
+  ///
+  /// In en, this message translates to:
+  /// **'I am 18 or older'**
+  String get consent_age;
+
+  /// C4 Consent: agreement checkbox.
+  ///
+  /// In en, this message translates to:
+  /// **'I agree to the privacy notice'**
+  String get consent_notice;
+
+  /// C4 Consent: primary button, enabled when both boxes are ticked.
+  ///
+  /// In en, this message translates to:
+  /// **'Agree and continue'**
+  String get consent_agree;
+
+  /// C4 Consent: opens the full notice.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the full notice'**
+  String get consent_read_notice;
+
+  /// Full privacy notice: title.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy notice'**
+  String get privacy_title;
+
+  /// Privacy notice section title.
+  ///
+  /// In en, this message translates to:
+  /// **'What we collect'**
+  String get privacy_collect_title;
+
+  /// Privacy notice: what we collect (mechanic).
+  ///
+  /// In en, this message translates to:
+  /// **'Your phone number, name and language; your profile and shop or toolkit photos; your ID proof (and, if you work without a shop, a selfie with it and an address proof) to verify you; your UPI ID and name; and your location while you\'re online or on a job.'**
+  String get privacy_collect_body;
+
+  /// Privacy notice section title.
+  ///
+  /// In en, this message translates to:
+  /// **'Why we use it'**
+  String get privacy_use_title;
+
+  /// Privacy notice: why (mechanic).
+  ///
+  /// In en, this message translates to:
+  /// **'To verify you, send you nearby jobs, show customers who is coming and where you are on the way, and let them pay you. We don\'t show ads or sell your data.'**
+  String get privacy_use_body;
+
+  /// Privacy notice section title.
+  ///
+  /// In en, this message translates to:
+  /// **'How long we keep it'**
+  String get privacy_keep_title;
+
+  /// Privacy notice: retention (mechanic, PLAN §12.10).
+  ///
+  /// In en, this message translates to:
+  /// **'Your online location is replaced as you move and cleared when you go offline. Live location during a job: 24 hours after it ends. Chat: 90 days. ID documents: until 180 days after you leave. Job records: 3 years for tax.'**
+  String get privacy_keep_body;
+
+  /// Privacy notice section title.
+  ///
+  /// In en, this message translates to:
+  /// **'Your rights'**
+  String get privacy_rights_title;
+
+  /// Privacy notice: rights.
+  ///
+  /// In en, this message translates to:
+  /// **'See and correct your details in the app, withdraw your consent, or delete your account from Settings.'**
+  String get privacy_rights_body;
+
+  /// Privacy notice section title.
+  ///
+  /// In en, this message translates to:
+  /// **'Questions or complaints'**
+  String get privacy_contact_title;
+
+  /// Privacy notice: grievance contact.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact our grievance officer from Help & FAQ.'**
+  String get privacy_contact_body;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

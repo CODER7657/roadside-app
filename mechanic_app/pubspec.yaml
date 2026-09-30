@@ -20,6 +20,8 @@ dependencies:
     path: ../packages/lane_ui
   roadside_core:
     path: ../packages/roadside_core
+  # First-run state (language, onboarding, consent) on the device, as in customer_app.
+  shared_preferences: ^2.5.5
 
 dev_dependencies:
   flutter_test:
@@ -29,3 +31,7 @@ dev_dependencies:
 flutter:
   generate: true
   uses-material-design: true
+
+  assets:
+    # ThreeUI horizon still (MIT, PLAN §6.17) for the splash, same as customer_app.
+    - assets/images/
