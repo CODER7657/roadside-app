@@ -5,7 +5,7 @@
 //   firebase emulators:exec --project demo-roadside --only firestore "npm --prefix seed run seed"
 //
 //   # a real project (Application Default Credentials: `gcloud auth application-default login`)
-//   npm --prefix seed run seed -- --project roadside-dev --support-phone +91XXXXXXXXXX
+//   npm --prefix seed run seed -- --project roadside-33282 --support-phone +91XXXXXXXXXX
 //
 // Existing documents are left alone, so admin changes (a city switched off, a new price) survive a
 // re-run. Pass --overwrite to replace them. roadside-prod also needs --allow-prod.
@@ -28,7 +28,7 @@ const { values: args } = parseArgs({
 
 const emulator = process.env.FIRESTORE_EMULATOR_HOST;
 const projectId = args.project ?? process.env.GCLOUD_PROJECT ?? (emulator ? 'demo-roadside' : undefined);
-if (!projectId) fail('No project. Run inside `firebase emulators:exec` or pass --project roadside-dev.');
+if (!projectId) fail('No project. Run inside `firebase emulators:exec` or pass --project roadside-33282.');
 if (!emulator && projectId.includes('prod') && !args['allow-prod']) {
   fail(`Refusing to seed ${projectId} without --allow-prod.`);
 }

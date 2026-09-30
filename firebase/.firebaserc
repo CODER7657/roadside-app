@@ -1,19 +1,9 @@
 {
   "projects": {
-    "dev": "roadside-dev",
+    "dev": "roadside-33282",
     "prod": "roadside-prod"
   },
   "targets": {
-    "roadside-dev": {
-      "hosting": {
-        "admin": [
-          "roadside-dev-admin"
-        ],
-        "share": [
-          "roadside-dev"
-        ]
-      }
-    },
     "roadside-prod": {
       "hosting": {
         "admin": [
@@ -31,6 +21,16 @@
         ],
         "share": [
           "demo-roadside"
+        ]
+      }
+    },
+    "roadside-33282": {
+      "hosting": {
+        "admin": [
+          "roadside-33282-admin"
+        ],
+        "share": [
+          "roadside-33282"
         ]
       }
     }
