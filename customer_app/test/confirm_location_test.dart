@@ -208,6 +208,40 @@ void main() {
       expect(state().addressLoading, isFalse);
     });
 
+    test('closing U6 while locating switches GPS off at once', () async {
+      unawaited(notifier().locate(permitted: true, languageCode: 'en'));
+      await pumpEventQueue();
+      expect(location.active, 1);
+      container.dispose();
+      await pumpEventQueue();
+      expect(location.active, 0);
+    });
+
+    test('a second locate replaces the first: one GPS subscription, latest wins', () async {
+      final first = notifier().locate(permitted: true, languageCode: 'en');
+      await pumpEventQueue();
+      final second = notifier().locate(permitted: true, languageCode: 'en');
+      await pumpEventQueue();
+      expect(location.active, 1);
+      await first;
+      expect(state().status, PickupStatus.locating, reason: 'the old run did not finish the new one');
+      location.add(home.lat, home.lng, 9);
+      await second;
+      expect(state().status, PickupStatus.ready);
+      expect(state().fix!.accuracyMeters, 9);
+      await pumpEventQueue();
+      expect(location.active, 0);
+    });
+
+    test('GPS stops once a good reading arrives', () async {
+      final locating = notifier().locate(permitted: true, languageCode: 'en');
+      await pumpEventQueue();
+      location.add(home.lat, home.lng, 5);
+      await locating;
+      await pumpEventQueue();
+      expect(location.active, 0);
+    });
+
     test('an address for an old pin position is ignored', () async {
       final slow = _SlowGeocoder();
       container = ProviderContainer(
@@ -352,18 +386,83 @@ void main() {
       location.enabled = false;
       await openU6(tester);
       expect(find.text("Your phone's location is switched off.", skipOffstage: false), findsOneWidget);
-      location.enabled = true;
       await tester.ensureVisible(find.text('TURN ON LOCATION', skipOffstage: false));
       await tester.pumpAndSettle();
       await tester.tap(find.text('TURN ON LOCATION'));
       await tester.pump();
       expect(location.settingsOpened, 1);
+      // Settings is open: nothing is re-checked until the customer comes back.
+      expect(location.active, 0);
+
+      // Back without switching it on: still off, no GPS.
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pumpAndSettle();
+      expect(find.text("Your phone's location is switched off.", skipOffstage: false), findsOneWidget);
+      expect(location.active, 0);
+
+      // Switched on in Settings, then back: locating starts by itself.
+      location.enabled = true;
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pump();
+      await tester.pump();
+      expect(location.active, 1);
       location.add(home.lat, home.lng, 15);
       await tester.pumpAndSettle();
       expect(find.text('±15 m'), findsOneWidget);
+      expect(location.active, 0, reason: 'GPS off again once a good reading arrived');
     });
 
-    testWidgets('no reading in 15 s: drag the map to your spot', (tester) async {
+    testWidgets('permission granted in Settings is picked up on return, without asking again', (
+      tester,
+    ) async {
+      tall(tester);
+      permissions.access = PermissionAccess.askable;
+      await openU6(tester);
+      await tester.tap(find.text('Not now'));
+      await tester.pumpAndSettle();
+      expect(find.textContaining('Location is off for this app', skipOffstage: false), findsOneWidget);
+
+      // Still not granted: coming back shows no prompt and starts no GPS.
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pumpAndSettle();
+      expect(find.byType(PermissionExplainerScreen), findsNothing);
+      expect(location.active, 0);
+
+      permissions.access = PermissionAccess.granted;
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pump();
+      await tester.pump();
+      expect(location.active, 1);
+      location.add(home.lat, home.lng, 11);
+      await tester.pumpAndSettle();
+      expect(find.text('±11 m'), findsOneWidget);
+    });
+
+    testWidgets('resuming while already located does not start GPS again', (tester) async {
+      tall(tester);
+      await openU6(tester);
+      location.add(home.lat, home.lng, 8);
+      await tester.pumpAndSettle();
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pumpAndSettle();
+      expect(location.active, 0);
+      expect(find.text('±8 m'), findsOneWidget);
+    });
+
+    testWidgets('leaving U6 while it locates stops GPS', (tester) async {
+      tall(tester);
+      await openU6(tester);
+      expect(location.active, 1);
+      await tester.pageBack();
+      await tester.pumpAndSettle();
+      expect(find.byType(ConfirmLocationScreen), findsNothing);
+      expect(location.active, 0);
+    });
+
+    testWidgets('no reading in 15 s: drag the map to your spot, or try again', (tester) async {
       tall(tester);
       await openU6(tester);
       await tester.pump(const Duration(seconds: 16));
@@ -372,6 +471,21 @@ void main() {
         find.text("We couldn't find you. Drag the map to your spot.", skipOffstage: false),
         findsOneWidget,
       );
+      expect(location.active, 0);
+      expect(
+        tester.widget<LaneButton>(find.widgetWithText(LaneButton, 'Confirm pickup')).onPressed,
+        isNotNull,
+      );
+
+      await tester.ensureVisible(find.text('TRY AGAIN', skipOffstage: false));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('TRY AGAIN'));
+      await tester.pump();
+      await tester.pump();
+      expect(location.active, 1);
+      location.add(home.lat, home.lng, 14);
+      await tester.pumpAndSettle();
+      expect(find.text('±14 m'), findsOneWidget);
     });
 
     testWidgets('fits at 320 px, 200% text, Hindi', (tester) async {

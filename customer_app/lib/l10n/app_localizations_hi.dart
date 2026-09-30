@@ -497,4 +497,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get location_recenter => 'मेरी लोकेशन पर जाएँ';
+
+  @override
+  String get location_retry => 'फिर से कोशिश करें';
 }

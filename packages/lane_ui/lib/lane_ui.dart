@@ -37,7 +37,7 @@ export 'src/components/lane_numbers.dart'
     show BreathingPulse, CountdownRing, LaneBrightness, LaneOtpDisplay, LaneOtpInput, LaneRollingNumber;
 export 'src/components/trust_pass.dart' show TrustPass;
 export 'src/templates/lane_action_bar.dart' show LaneActionBar, LaneBackButton;
-export 'src/templates/lane_map_scaffold.dart' show LaneDock, LaneDockSnap, LaneMapScaffold;
+export 'src/templates/lane_map_scaffold.dart' show LaneDock, LaneDockSnap, LaneMapButton, LaneMapScaffold;
 export 'src/templates/lane_page_scaffolds.dart'
     show LaneFlowScaffold, LaneFormScaffold, LaneListScaffold, LaneStatusScaffold, LaneStepLane;
 export 'src/l10n/lane_localizations.dart' show LaneLocalizations;

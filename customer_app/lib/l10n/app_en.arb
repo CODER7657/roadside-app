@@ -652,5 +652,9 @@
   "location_recenter": "Go to my location",
   "@location_recenter": {
     "description": "U6: map button that moves the pin back to the GPS reading."
+  },
+  "location_retry": "Try again",
+  "@location_retry": {
+    "description": "U6: look for the phone's location again after no reading."
   }
 }

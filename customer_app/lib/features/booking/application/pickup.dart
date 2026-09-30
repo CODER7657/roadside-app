@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roadside_core/roadside_core.dart';
@@ -97,8 +99,23 @@ class PickupNotifier extends Notifier<PickupState> {
   int _lookup = 0;
   String _languageCode = 'en';
 
+  /// Each [locate] call is a run; only the latest one may change the state.
+  int _run = 0;
+
+  /// Completed to stop the GPS of the current run.
+  Completer<void>? _stop;
+
   @override
-  PickupState build() => const PickupState();
+  PickupState build() {
+    // Leaving U6 switches GPS off at once, not after the 15 s wait.
+    ref.onDispose(_stopLocating);
+    return const PickupState();
+  }
+
+  void _stopLocating() {
+    final stop = _stop;
+    if (stop != null && !stop.isCompleted) stop.complete();
+  }
 
   LocationService get _location => ref.read(locationServiceProvider);
 
@@ -106,17 +123,23 @@ class PickupNotifier extends Notifier<PickupState> {
   /// starts at [fallbackCenter] and the customer drags it.
   Future<void> locate({required bool permitted, required String languageCode}) async {
     _languageCode = languageCode;
+    // A newer call replaces an older one (e.g. back from Settings twice): one GPS at a time.
+    _stopLocating();
+    final run = ++_run;
     if (!permitted) return _manual(PickupStatus.noPermission);
-    if (!await _location.serviceEnabled()) return _manual(PickupStatus.gpsOff);
-    if (!ref.mounted) return;
+    final enabled = await _location.serviceEnabled();
+    if (!ref.mounted || run != _run) return;
+    if (!enabled) return _manual(PickupStatus.gpsOff);
     state = state.copyWith(status: PickupStatus.locating);
+    final stop = _stop = Completer<void>();
     LocationFix? fix;
     try {
       fix = await bestFix(
         _location.fixes(),
+        stop: stop.future,
         onFix: (f) {
           // Follow improving readings while the customer hasn't touched the pin.
-          if (ref.mounted && state.status == PickupStatus.locating && !state.dragging) {
+          if (ref.mounted && run == _run && state.status == PickupStatus.locating && !state.dragging) {
             state = state.copyWith(fix: f, pin: f.position);
           }
         },
@@ -124,7 +147,7 @@ class PickupNotifier extends Notifier<PickupState> {
     } catch (e, s) {
       LaneLog.w('pickup location failed', error: e, stackTrace: s);
     }
-    if (!ref.mounted) return;
+    if (!ref.mounted || run != _run) return;
     if (fix == null) return _manual(PickupStatus.noFix);
     final keepPin = state.pin != null && state.status != PickupStatus.locating;
     state = state.copyWith(status: PickupStatus.ready, fix: fix, pin: keepPin ? state.pin : fix.position);

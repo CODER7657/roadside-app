@@ -1,6 +1,7 @@
 // LaneMapScaffold + LaneDock: the one-thumb map layout (PLAN.md §6.5 ④, §6.13).
 import 'package:flutter/material.dart';
 
+import '../components/lane_icons.dart';
 import '../theme/lane_theme.dart';
 
 /// The dock's three snap heights, as a fraction of the screen height.
@@ -137,6 +138,7 @@ class LaneMapScaffold extends StatefulWidget {
     this.overlay,
     this.actions = const [],
     this.onDockExtentChanged,
+    this.showBack = true,
   });
 
   final Widget map;
@@ -147,6 +149,10 @@ class LaneMapScaffold extends StatefulWidget {
   final List<Widget> actions;
 
   final ValueChanged<double>? onDockExtentChanged;
+
+  /// A floating back button, top left, whenever this route can go back (never on a root
+  /// screen such as Home). The system back gesture works either way.
+  final bool showBack;
 
   @override
   State<LaneMapScaffold> createState() => _LaneMapScaffoldState();
@@ -166,6 +172,7 @@ class _LaneMapScaffoldState extends State<LaneMapScaffold> {
   @override
   Widget build(BuildContext context) {
     final lane = context.lane;
+    final canPop = widget.showBack && (ModalRoute.of(context)?.canPop ?? false);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: LayoutBuilder(
@@ -181,6 +188,21 @@ class _LaneMapScaffoldState extends State<LaneMapScaffold> {
                   top: 0,
                   height: visibleMapHeight,
                   child: IgnorePointer(child: Center(child: widget.overlay)),
+                ),
+              if (canPop)
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  child: SafeArea(
+                    child: Padding(
+                      padding: EdgeInsets.all(lane.space.s16),
+                      child: LaneMapButton(
+                        icon: LaneIcons.arrowLeft,
+                        tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+                        onPressed: () => Navigator.maybePop(context),
+                      ),
+                    ),
+                  ),
                 ),
               if (widget.actions.isNotEmpty)
                 Positioned(
@@ -208,6 +230,36 @@ class _LaneMapScaffoldState extends State<LaneMapScaffold> {
             ],
           );
         },
+      ),
+    );
+  }
+}
+
+/// A round floating button on a map (back, recenter, ☀ Glare): `surface` fill, `shadow.float`,
+/// 48 dp, with a tooltip that is also its screen-reader label.
+class LaneMapButton extends StatelessWidget {
+  const LaneMapButton({super.key, required this.icon, required this.tooltip, required this.onPressed});
+
+  final LaneIcons icon;
+  final String tooltip;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final lane = context.lane;
+    final size = lane.touch.min;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: lane.color.surface,
+        shape: BoxShape.circle,
+        border: Border.all(color: lane.color.line, width: lane.stroke.hairline),
+        boxShadow: lane.shadow.float,
+      ),
+      child: IconButton(
+        tooltip: tooltip,
+        onPressed: onPressed,
+        constraints: BoxConstraints.tightFor(width: size, height: size),
+        icon: LaneIcon(icon, color: lane.color.ink, size: lane.space.s24),
       ),
     );
   }

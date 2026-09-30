@@ -23,13 +23,41 @@ class ConfirmLocationScreen extends ConsumerStatefulWidget {
   ConsumerState<ConfirmLocationScreen> createState() => _ConfirmLocationScreenState();
 }
 
-class _ConfirmLocationScreenState extends ConsumerState<ConfirmLocationScreen> {
+class _ConfirmLocationScreenState extends ConsumerState<ConfirmLocationScreen> with WidgetsBindingObserver {
   PickupNotifier get _notifier => ref.read(pickupProvider.notifier);
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) => _locate());
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  /// Back from the phone's Settings: GPS or permission may have been switched on there.
+  /// (`openSettings` returns as soon as Settings opens, not when the customer comes back.)
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState lifecycle) {
+    if (lifecycle != AppLifecycleState.resumed || !mounted) return;
+    switch (ref.read(pickupProvider).status) {
+      case PickupStatus.gpsOff:
+        _locate();
+      case PickupStatus.noPermission:
+        _recheckPermission();
+      case PickupStatus.locating || PickupStatus.ready || PickupStatus.noFix:
+        break;
+    }
+  }
+
+  /// Without asking again: only locates if permission was granted in Settings meanwhile.
+  Future<void> _recheckPermission() async {
+    final access = await ref.read(permissionServiceProvider).status(AppPermission.location);
+    if (access == PermissionAccess.granted && mounted) await _locate();
   }
 
   Future<void> _locate() async {
@@ -40,10 +68,8 @@ class _ConfirmLocationScreenState extends ConsumerState<ConfirmLocationScreen> {
     await _notifier.locate(permitted: permitted, languageCode: languageCode);
   }
 
-  Future<void> _turnOnGps() async {
-    await ref.read(locationServiceProvider).openSettings();
-    await _locate();
-  }
+  /// Locating starts again when the customer comes back ([didChangeAppLifecycleState]).
+  Future<void> _turnOnGps() => ref.read(locationServiceProvider).openSettings();
 
   void _confirm() {
     if (_notifier.confirm()) context.push(AppRoutes.bookPrice);
@@ -61,7 +87,7 @@ class _ConfirmLocationScreenState extends ConsumerState<ConfirmLocationScreen> {
     final (String? problem, String? actionLabel, VoidCallback? action) = switch (pickup.status) {
       PickupStatus.noPermission => (l10n.location_no_permission, l10n.location_allow, _locate),
       PickupStatus.gpsOff => (l10n.location_gps_off, l10n.location_turn_on, _turnOnGps),
-      PickupStatus.noFix => (l10n.location_no_fix, null, null),
+      PickupStatus.noFix => (l10n.location_no_fix, l10n.location_retry, _locate),
       _ => (null, null, null),
     };
     final showBadge = pickup.status == PickupStatus.locating || fix != null;
@@ -76,11 +102,10 @@ class _ConfirmLocationScreenState extends ConsumerState<ConfirmLocationScreen> {
       overlay: CenterPin(lifted: pickup.dragging),
       actions: [
         if (fix != null)
-          IconButton.filledTonal(
+          LaneMapButton(
+            icon: LaneIcons.navigation,
             tooltip: l10n.location_recenter,
-            constraints: BoxConstraints.tightFor(width: lane.touch.min, height: lane.touch.min),
             onPressed: _notifier.recenter,
-            icon: LaneIcon(LaneIcons.navigation, size: lane.space.s24),
           ),
       ],
       dock: LaneDock(

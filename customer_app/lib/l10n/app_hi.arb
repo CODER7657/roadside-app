@@ -150,5 +150,6 @@
   "location_far_warning": "पिन आपके फ़ोन की जगह से 2 किमी से ज़्यादा दूर है।",
   "location_someone_else": "मैं किसी और के लिए बुक कर रहा/रही हूँ",
   "location_confirm": "पिकअप पक्का करें",
-  "location_recenter": "मेरी लोकेशन पर जाएँ"
+  "location_recenter": "मेरी लोकेशन पर जाएँ",
+  "location_retry": "फिर से कोशिश करें"
 }

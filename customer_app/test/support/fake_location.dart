@@ -20,8 +20,25 @@ class FakeLocationService implements LocationService {
     return true;
   }
 
+  /// GPS subscriptions currently open (should be 0 once a reading is chosen or U6 closes).
+  int active = 0;
+
   @override
-  Stream<LocationFix> fixes() => readings.stream;
+  Stream<LocationFix> fixes() {
+    StreamSubscription<LocationFix>? source;
+    late final StreamController<LocationFix> c;
+    c = StreamController<LocationFix>(
+      onListen: () {
+        active++;
+        source = readings.stream.listen(c.add);
+      },
+      onCancel: () {
+        active--;
+        return source?.cancel();
+      },
+    );
+    return c.stream;
+  }
 }
 
 /// Addresses the test sets; null means "no street address".

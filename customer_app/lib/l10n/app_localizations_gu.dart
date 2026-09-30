@@ -496,4 +496,7 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get location_recenter => 'મારા લોકેશન પર જાઓ';
+
+  @override
+  String get location_retry => 'ફરી પ્રયાસ કરો';
 }

@@ -998,6 +998,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Go to my location'**
   String get location_recenter;
+
+  /// U6: look for the phone's location again after no reading.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get location_retry;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

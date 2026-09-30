@@ -45,18 +45,22 @@ class GeolocatorLocationService implements LocationService {
 
 /// PLAN §11: wait for a reading within [target] metres, or [timeout], whichever comes
 /// first; then the best reading so far (null if none came). [onFix] sees every reading, so
-/// the accuracy badge can update while waiting.
+/// the accuracy badge can update while waiting. Completing [stop] ends it early (the screen
+/// closed), so GPS never runs longer than it's needed.
 Future<LocationFix?> bestFix(
   Stream<LocationFix> fixes, {
   Duration timeout = const Duration(seconds: 15),
   double target = 20,
   ValueChanged<LocationFix>? onFix,
+  Future<void>? stop,
 }) async {
   LocationFix? best;
   final done = Completer<LocationFix?>();
   void finish() {
     if (!done.isCompleted) done.complete(best);
   }
+
+  unawaited(stop?.then((_) => finish()));
 
   final timer = Timer(timeout, finish);
   final sub = fixes.listen(
