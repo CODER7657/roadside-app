@@ -11,16 +11,21 @@
 #     running in the given GitHub environment, and from the right ref: `production` only from a
 #     v* tag (admins-only tag ruleset), anything else only from main. Without the ref check, anyone
 #     with write access could dispatch deploy-firebase.yml from their own branch with target=prod.
-#   - roles for the service account: Firebase Admin + Service Usage Consumer; --blaze adds what
-#     Functions deploys need
+#   - roles for the service account: Firebase Rules Admin, Cloud Datastore Index Admin, Firebase
+#     Hosting Admin and Service Usage Consumer (no access to data); --blaze adds what Functions and
+#     Storage deploys need. Firebase Admin, granted by earlier versions, is removed.
 # Prints the repo variables to set (needs repo admin: Settings → Secrets and variables → Actions).
 #
 # Needs: gcloud signed in (`gcloud auth login`) as a project Owner, and gh signed in.
-# Windows (Git Bash), where the gcloud installer isn't on PATH yet:
-#   export PATH="$PATH:$(cygpath "$LOCALAPPDATA")/Google/Cloud SDK/google-cloud-sdk/bin" GCLOUD=gcloud.cmd
+# Windows (Git Bash):
+#   nothing to set: in Git Bash the script uses tool/gcp/gcloud-win.sh, which runs gcloud through its
+#   bundled Python (gcloud.cmd breaks on arguments with spaces when the SDK is under "Cloud SDK").
 set -euo pipefail
 
-GCLOUD=${GCLOUD:-gcloud}
+case "$(uname -s)" in
+  MINGW*|MSYS*|CYGWIN*) GCLOUD=${GCLOUD:-"$(dirname "$0")/gcloud-win.sh"} ;;
+  *) GCLOUD=${GCLOUD:-gcloud} ;;
+esac
 REPO=${REPO:-CODER7657/roadside-app}
 project=${1:?usage: setup_deploy.sh <project-id> <github-environment> [--blaze]}
 environment=${2:?usage: setup_deploy.sh <project-id> <github-environment> [--blaze]}
@@ -49,15 +54,27 @@ if ! "$GCLOUD" iam service-accounts describe "$sa" --project "$project" >/dev/nu
     --description "deploy-firebase.yml via Workload Identity, no keys"
 fi
 
-roles=(roles/firebase.admin roles/serviceusage.serviceUsageConsumer)
+# Least privilege: only what `firebase deploy` needs for rules, indexes (and TTL) and hosting. None of
+# these can read customer data, unlike Firebase Admin, which a leaked workflow token would expose.
+roles=(roles/firebaserules.admin roles/datastore.indexAdmin roles/firebasehosting.admin
+       roles/serviceusage.serviceUsageConsumer)
 if [ "$blaze" = "--blaze" ]; then
   roles+=(roles/cloudfunctions.admin roles/run.admin roles/iam.serviceAccountUser
-          roles/artifactregistry.admin roles/cloudscheduler.admin roles/secretmanager.viewer)
+          roles/artifactregistry.admin roles/cloudscheduler.admin roles/secretmanager.viewer
+          roles/firebasestorage.viewer)
 fi
 for role in "${roles[@]}"; do
   "$GCLOUD" projects add-iam-policy-binding "$project" --member "serviceAccount:$sa" --role "$role" \
     --condition=None --quiet >/dev/null
   echo "  $role"
+done
+
+# Roles earlier versions of this script granted: removed on re-run.
+for role in roles/firebase.admin; do
+  if "$GCLOUD" projects remove-iam-policy-binding "$project" --member "serviceAccount:$sa" --role "$role" \
+       --condition=None --quiet >/dev/null 2>&1; then
+    echo "  removed $role"
+  fi
 done
 
 if ! "$GCLOUD" iam workload-identity-pools describe "$pool" --project "$project" --location global >/dev/null 2>&1; then
