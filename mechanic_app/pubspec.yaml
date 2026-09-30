@@ -18,6 +18,7 @@ dependencies:
   intl: ^0.20.3
   lane_ui:
     path: ../packages/lane_ui
+    version: 0.1.0-dev.15
   roadside_core:
     path: ../packages/roadside_core
   # First-run state (language, onboarding, consent) on the device, as in customer_app.
