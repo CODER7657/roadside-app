@@ -1310,6 +1310,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Someone tried your start code 5 times. Only read it out to your mechanic in person.'**
   String get notif_start_code_locked_body;
+
+  /// U10: arriving.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is on the way'**
+  String tracking_on_the_way(String name);
+
+  /// U10: arrived.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} has arrived'**
+  String tracking_arrived(String name);
+
+  /// U10: ETA, rolls as it changes.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min'**
+  String tracking_eta(int minutes);
+
+  /// U10: after the ETA ("6 min away").
+  ///
+  /// In en, this message translates to:
+  /// **'away'**
+  String get tracking_away;
+
+  /// U10: no reading yet.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for {name}\'s location…'**
+  String tracking_waiting(String name);
+
+  /// U10: reading older than 30 s.
+  ///
+  /// In en, this message translates to:
+  /// **'Location last updated {minutes} min ago. It may be out of signal.'**
+  String tracking_stale(int minutes);
+
+  /// U10: opens the phone dialer.
+  ///
+  /// In en, this message translates to:
+  /// **'Call {name}'**
+  String tracking_call(String name);
+
+  /// U10: dialer failed to open.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t open the phone app.'**
+  String get tracking_call_failed;
+
+  /// U10: label above the code.
+  ///
+  /// In en, this message translates to:
+  /// **'Start code'**
+  String get tracking_start_code;
+
+  /// U10: under the code.
+  ///
+  /// In en, this message translates to:
+  /// **'Share this code only when the mechanic is standing with you.'**
+  String get tracking_start_code_hint;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

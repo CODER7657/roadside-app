@@ -202,5 +202,15 @@
   "stop_working": "કામ ચાલુ",
   "stop_done": "પૂર્ણ",
   "notif_start_code_locked_title": "કોઈએ તમારો સ્ટાર્ટ કોડ અજમાવ્યો",
-  "notif_start_code_locked_body": "કોઈએ તમારો સ્ટાર્ટ કોડ 5 વાર અજમાવ્યો. તે ફક્ત તમારા મિકેનિકને રૂબરૂ જ જણાવો."
+  "notif_start_code_locked_body": "કોઈએ તમારો સ્ટાર્ટ કોડ 5 વાર અજમાવ્યો. તે ફક્ત તમારા મિકેનિકને રૂબરૂ જ જણાવો.",
+  "tracking_on_the_way": "{name} રસ્તામાં છે",
+  "tracking_arrived": "{name} પહોંચી ગયા છે",
+  "tracking_eta": "{minutes} મિનિટ",
+  "tracking_away": "દૂર",
+  "tracking_waiting": "{name}ના લોકેશનની રાહ…",
+  "tracking_stale": "લોકેશન {minutes} મિનિટ પહેલાં અપડેટ થયું. કદાચ નેટવર્ક નથી.",
+  "tracking_call": "{name}ને કૉલ કરો",
+  "tracking_call_failed": "ફોન એપ ખૂલી નહીં.",
+  "tracking_start_code": "શરૂ કરવાનો કોડ",
+  "tracking_start_code_hint": "મિકેનિક તમારી સાથે ઊભો હોય ત્યારે જ આ કોડ જણાવો."
 }

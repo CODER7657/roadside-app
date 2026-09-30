@@ -659,4 +659,46 @@ class AppLocalizationsGu extends AppLocalizations {
   @override
   String get notif_start_code_locked_body =>
       'કોઈએ તમારો સ્ટાર્ટ કોડ 5 વાર અજમાવ્યો. તે ફક્ત તમારા મિકેનિકને રૂબરૂ જ જણાવો.';
+
+  @override
+  String tracking_on_the_way(String name) {
+    return '$name રસ્તામાં છે';
+  }
+
+  @override
+  String tracking_arrived(String name) {
+    return '$name પહોંચી ગયા છે';
+  }
+
+  @override
+  String tracking_eta(int minutes) {
+    return '$minutes મિનિટ';
+  }
+
+  @override
+  String get tracking_away => 'દૂર';
+
+  @override
+  String tracking_waiting(String name) {
+    return '$nameના લોકેશનની રાહ…';
+  }
+
+  @override
+  String tracking_stale(int minutes) {
+    return 'લોકેશન $minutes મિનિટ પહેલાં અપડેટ થયું. કદાચ નેટવર્ક નથી.';
+  }
+
+  @override
+  String tracking_call(String name) {
+    return '$nameને કૉલ કરો';
+  }
+
+  @override
+  String get tracking_call_failed => 'ફોન એપ ખૂલી નહીં.';
+
+  @override
+  String get tracking_start_code => 'શરૂ કરવાનો કોડ';
+
+  @override
+  String get tracking_start_code_hint => 'મિકેનિક તમારી સાથે ઊભો હોય ત્યારે જ આ કોડ જણાવો.';
 }

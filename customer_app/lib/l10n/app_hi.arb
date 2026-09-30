@@ -202,5 +202,15 @@
   "stop_working": "काम जारी",
   "stop_done": "पूरा",
   "notif_start_code_locked_title": "किसी ने आपका स्टार्ट कोड आज़माया",
-  "notif_start_code_locked_body": "किसी ने आपका स्टार्ट कोड 5 बार आज़माया। इसे केवल अपने मैकेनिक को सामने से बताएँ।"
+  "notif_start_code_locked_body": "किसी ने आपका स्टार्ट कोड 5 बार आज़माया। इसे केवल अपने मैकेनिक को सामने से बताएँ।",
+  "tracking_on_the_way": "{name} रास्ते में हैं",
+  "tracking_arrived": "{name} पहुँच गए हैं",
+  "tracking_eta": "{minutes} मिनट",
+  "tracking_away": "दूर",
+  "tracking_waiting": "{name} की लोकेशन का इंतज़ार…",
+  "tracking_stale": "लोकेशन {minutes} मिनट पहले अपडेट हुई। शायद नेटवर्क नहीं है।",
+  "tracking_call": "{name} को कॉल करें",
+  "tracking_call_failed": "फ़ोन ऐप नहीं खुल सका।",
+  "tracking_start_code": "शुरू करने का कोड",
+  "tracking_start_code_hint": "यह कोड केवल तब बताएँ जब मैकेनिक आपके पास खड़ा हो।"
 }
