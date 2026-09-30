@@ -11,12 +11,14 @@ const base = `https://www.gstatic.com/firebasejs/${FIREBASE_JS_SDK}`;
 
 // firebase-app.js first: the component bundles import it (see FlutterFire issue #18436).
 window.firebase_core = await import(`${base}/firebase-app.js`);
-const [auth, firestore] = await Promise.all([
+const [auth, firestore, functions] = await Promise.all([
   import(`${base}/firebase-auth.js`),
   import(`${base}/firebase-firestore-pipelines.js`),
+  import(`${base}/firebase-functions.js`),
 ]);
 window.firebase_auth = auth;
 window.firebase_firestore = firestore;
+window.firebase_functions = functions;
 
 const bootstrap = document.createElement('script');
 bootstrap.src = 'flutter_bootstrap.js';

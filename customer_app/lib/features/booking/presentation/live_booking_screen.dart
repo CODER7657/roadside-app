@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lane_ui/lane_ui.dart' hide PriceRange;
-import 'package:roadside_core/roadside_core.dart' as core show JourneyStop;
 import 'package:roadside_core/roadside_core.dart' hide JourneyStop;
 
 import '../../../app/router.dart';
@@ -13,6 +12,9 @@ import '../application/booking_draft.dart';
 import '../application/estimate.dart';
 import '../application/live_booking.dart';
 import '../data/booking_service.dart';
+import 'booking_rail.dart';
+import 'finish_views.dart';
+import 'tracking_view.dart';
 
 /// The customer's live booking, one screen that follows `bookings/{id}`:
 /// U8 Searching (`requested`), U9 Assigned (`accepted` … `arrived`, until U10 #126 takes
@@ -139,9 +141,14 @@ class _LiveBookingScreenState extends ConsumerState<LiveBookingScreen> {
         message: l10n.searching_radius(b.searchRadiusKm),
         primary: cancel,
       ),
-      BookingStatus.accepted ||
-      BookingStatus.arriving ||
-      BookingStatus.arrived => _Assigned(booking: b, bookingId: widget.bookingId, cancel: cancel),
+      BookingStatus.accepted => _Assigned(booking: b, bookingId: widget.bookingId, cancel: cancel),
+      // U10 (#126): the trip on the map.
+      BookingStatus.arriving || BookingStatus.arrived => TrackingView(
+        bookingId: widget.bookingId,
+        booking: b,
+        rail: bookingRail(l10n, b),
+        cancel: cancel,
+      ),
       BookingStatus.noMechanicFound => LaneStatusScaffold(
         visual: LaneIcon(LaneIcons.road, size: lane.space.s64 + lane.space.s32),
         title: l10n.no_mechanic_title,
@@ -162,12 +169,9 @@ class _LiveBookingScreenState extends ConsumerState<LiveBookingScreen> {
         },
         primary: home,
       ),
-      // U12 Job in progress and after (#17).
-      _ => LaneStatusScaffold(
-        visual: LaneIcon(LaneIcons.wrench, size: lane.space.s64),
-        title: l10n.live_working_title,
-        primary: home,
-      ),
+      // U12 and U13 (#133).
+      BookingStatus.inProgress => WorkingView(booking: b),
+      BookingStatus.completed => PaymentView(bookingId: widget.bookingId, booking: b),
     };
   }
 }
@@ -186,27 +190,6 @@ class _Assigned extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final card = booking.mechanicCard;
     final code = ref.watch(startCodeProvider(bookingId)).value;
-    // PLAN §9's six stops, in roadside_core's order; the booking says where it is.
-    final stops = [
-      for (final stop in core.JourneyStop.values)
-        JourneyStop(
-          label: switch (stop) {
-            core.JourneyStop.requested => l10n.stop_requested,
-            core.JourneyStop.accepted => l10n.stop_accepted,
-            core.JourneyStop.onTheWay => l10n.stop_on_the_way,
-            core.JourneyStop.arrived => l10n.stop_arrived,
-            core.JourneyStop.working => l10n.stop_working,
-            core.JourneyStop.done => l10n.stop_done,
-          },
-          signal: switch (stop) {
-            core.JourneyStop.requested => LaneSignal.wait,
-            core.JourneyStop.accepted || core.JourneyStop.onTheWay => LaneSignal.route,
-            core.JourneyStop.arrived || core.JourneyStop.done => LaneSignal.go,
-            core.JourneyStop.working => LaneSignal.work,
-          },
-        ),
-    ];
-    final current = booking.status.journeyStop?.index ?? 0;
     final title = switch (booking.status) {
       BookingStatus.accepted => l10n.assigned_title,
       BookingStatus.arriving => l10n.assigned_on_the_way,
@@ -243,7 +226,7 @@ class _Assigned extends ConsumerWidget {
                 children: [
                   Semantics(header: true, liveRegion: true, child: Text(title, style: lane.text.headline)),
                   SizedBox(height: lane.space.s16),
-                  JourneyRail(stops: stops, current: current),
+                  bookingRail(l10n, booking),
                   SizedBox(height: lane.space.s24),
                   _SlideUp(child: pass),
                 ],

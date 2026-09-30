@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lane_ui/lane_ui.dart' show ambientControllerProvider;
 import 'package:roadside_core/roadside_core.dart';
 
 import '../data/location.dart';
@@ -149,6 +150,8 @@ class PickupNotifier extends Notifier<PickupState> {
     }
     if (!ref.mounted || run != _run) return;
     if (fix == null) return _manual(PickupStatus.noFix);
+    // Night follows the local sunset, computed on the phone from this position (PLAN §6.5 ③).
+    ref.read(ambientControllerProvider.notifier).updatePosition(fix.position.lat, fix.position.lng);
     final keepPin = state.pin != null && state.status != PickupStatus.locating;
     state = state.copyWith(status: PickupStatus.ready, fix: fix, pin: keepPin ? state.pin : fix.position);
     await _lookupAddress();

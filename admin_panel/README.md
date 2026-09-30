@@ -69,9 +69,15 @@ lib/
 ├── app/            bootstrap, env, flavour, router (A0 outside, A1–A6 inside ConsoleShell)
 ├── features/
 │   ├── auth/       AdminAuth (Google), session gate, A0 sign-in
-│   └── console/    sections A1–A6, city filter
+│   ├── approvals/  A2 mechanic approvals (per-type checklist, admin callables #130, signed URLs)
+│   ├── bookings/   bookings / presence / live-location reads, admin cancel
+│   ├── complaints/ A5 complaints (resolve + audit) and reviews
+│   ├── console/    sections A1–A6, city filter, enum labels
+│   ├── dashboard/  A1 stat cards (IST day) and the day's bookings
+│   ├── live/       A3 live bookings: schematic map, list, vertical rail, admin cancel
+│   └── prices/     A4 price editor (defaults + per-city overrides, audited batch save)
 ├── l10n/           en / hi / gu
-└── _local_ui/      ConsoleShell, until it moves into lane_ui
+└── _local_ui/      ConsoleShell, PriceRangeField, StatCard, SchematicMap: until lane_ui has them
 ```
 
 Before every PR: `dart format .`, `flutter analyze`, `flutter test`, `flutter build web`,

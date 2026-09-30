@@ -1,89 +1,15 @@
 // #49 "Done when: only admin-claim users can open the panel" (PLAN §12.11).
 
-import 'dart:async';
-
-import 'package:admin_panel/app/app.dart';
-import 'package:admin_panel/app/flavor.dart';
 import 'package:admin_panel/app/router.dart';
 import 'package:admin_panel/features/auth/application/admin_session.dart';
-import 'package:admin_panel/features/auth/data/admin_auth.dart';
 import 'package:admin_panel/features/console/application/city_filter.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lane_ui/lane_ui.dart';
 import 'package:roadside_core/roadside_core.dart';
 
-class FakeAdminAuth implements AdminAuth {
-  final _users = StreamController<AdminUser?>.broadcast();
-  AdminUser? nextSignIn;
-  bool failSignIn = false;
-  int signOuts = 0;
-
-  void emit(AdminUser? user) => _users.add(user);
-
-  @override
-  Stream<AdminUser?> userChanges() => _users.stream;
-
-  @override
-  Future<void> signInWithGoogle() async {
-    if (failSignIn) throw Exception('popup-closed-by-user');
-    emit(nextSignIn);
-  }
-
-  @override
-  Future<void> signOut() async {
-    signOuts++;
-    emit(null);
-  }
-}
-
-AdminUser user({String? role, String provider = 'google.com', String email = 'someone@example.com'}) =>
-    AdminUser(
-      uid: 'u1',
-      email: email,
-      claims: RoleClaims.fromTokenClaims({'role': ?role}),
-      signInProvider: provider,
-    );
-
-final admin = user(role: 'admin', email: 'ops@example.com');
+import 'support.dart';
 
 void main() {
-  late FakeAdminAuth auth;
-  late ProviderContainer container;
-
-  Future<void> pumpPanel(WidgetTester tester, {AdminAuth? withAuth, bool configured = true}) async {
-    tester.view.physicalSize = const Size(1440, 900);
-    tester.view.devicePixelRatio = 1;
-    addTearDown(tester.view.reset);
-    container = createAdminContainer(
-      overrides: [
-        flavorProvider.overrideWithValue(AppFlavor.dev),
-        adminAuthProvider.overrideWithValue(configured ? (withAuth ?? auth) : null),
-        laneBatterySourceProvider.overrideWithValue(const _NoBattery()),
-      ],
-    );
-    await tester.pumpWidget(UncontrolledProviderScope(container: container, child: const AdminApp()));
-    await tester.pump();
-  }
-
-  Future<void> settle(WidgetTester tester) async {
-    await tester.pump();
-    await tester.pump(const Duration(seconds: 1));
-  }
-
-  setUp(() => auth = FakeAdminAuth());
-
-  /// Disposes the container inside the test, so Lane's ambient timer is gone before
-  /// flutter_test checks for pending timers.
-  void testPanel(String description, Future<void> Function(WidgetTester tester) body) {
-    testWidgets(description, (tester) async {
-      await body(tester);
-      await tester.pumpWidget(const SizedBox.shrink());
-      container.dispose();
-    });
-  }
-
   testPanel('signed out: only A0 with Google sign-in, no phone login', (tester) async {
     await pumpPanel(tester);
     auth.emit(null);
@@ -210,21 +136,13 @@ void main() {
     await settle(tester);
     expect(container.read(cityFilterProvider), CityId.bharuch);
 
-    await tester.tap(find.text('Approvals').first);
+    await tester.tap(find.text('Complaints & reviews').first);
     await settle(tester);
-    expect(container.read(routerProvider).state.matchedLocation, '/approvals');
-    expect(find.textContaining('#50'), findsOneWidget);
+    expect(container.read(routerProvider).state.matchedLocation, '/complaints');
     expect(container.read(cityFilterProvider), CityId.bharuch);
 
     await tester.tap(find.text('All cities'));
     await settle(tester);
     expect(container.read(cityFilterProvider), isNull);
   });
-}
-
-class _NoBattery implements LaneBatterySource {
-  const _NoBattery();
-
-  @override
-  Stream<LaneBatteryStatus> watch() => const Stream.empty();
 }

@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.1.0-dev.14
+
+U14 Rate & review (#134).
+
+- `StarRating`: five 48 dp stars (0 = not rated), the chosen ones spring up (still with
+  reduced motion); one TalkBack slider ("3 of 5 stars", adjustable, kept within 1–5);
+  disabled without `onChanged`. Strings in en / hi / gu.
+
+## 0.1.0-dev.13
+
+U13 Payment (#133).
+
+- `LaneQrCode`: a QR code for UPI apps, drawn with the maintained `qr` package (4.0.0,
+  May 2026; `qr_flutter` was last published in 2023). Always black on white with a
+  4-module quiet zone in every mode, medium error correction, one image node for TalkBack
+  with the app's label.
+- The component exports in `lane_ui.dart` are sorted again.
+
+## 0.1.0-dev.12
+
+Ambient polish (#20), PLAN §6.5 ③.
+
+- `LaneGlareButton`: the ☀ map button (a `LaneMapButton`). A tap is the user's **manual
+  choice**, which ranks above everything, so it works in Saver too (a low battery in bright
+  sun must not leave a dark screen); tapping again hands back to the automatic modes.
+  TalkBack hears a toggle; tooltips in en / hi / gu.
+- `LaneIcons.sun` (Phosphor `sun` duotone).
+
 ## 0.1.0-dev.11
 
 Sheets for U8 cancel (#125), PLAN §6.12, §6.5 ⑤.

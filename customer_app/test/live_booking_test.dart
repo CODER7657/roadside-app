@@ -11,6 +11,7 @@ import 'package:customer_app/features/booking/data/booking_service.dart';
 import 'package:customer_app/features/booking/presentation/live_booking_screen.dart';
 import 'package:customer_app/features/booking/presentation/price_screen.dart';
 import 'package:customer_app/features/booking/presentation/problem_screen.dart';
+import 'package:customer_app/features/booking/presentation/tracking_view.dart';
 import 'package:customer_app/features/first_run/application/first_run.dart';
 import 'package:customer_app/features/help/presentation/help_screen.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,12 @@ class CancelRecorder implements BookingService {
 
   @override
   Future<CreatedBooking> createBooking(BookingDraft draft) => throw UnimplementedError();
+
+  @override
+  Future<void> markPaid(String bookingId) => throw UnimplementedError();
+
+  @override
+  Future<void> disputePayment(String bookingId, String text) => throw UnimplementedError();
 
   @override
   Future<void> cancelBooking(String bookingId, CancelReason reason) async {
@@ -235,12 +242,20 @@ void main() {
       expect(find.text('Your mechanic is told straight away. Please pick a reason.'), findsOneWidget);
     });
 
-    testWidgets('a workshop mechanic gets the workshop pass; arrived moves the rail', (tester) async {
+    testWidgets('a workshop mechanic gets the workshop pass', (tester) async {
       tall(tester);
-      store.put(id, bookingAt(BookingStatus.arrived, independent: false), otp: RoadsideFakes.otp);
+      store.put(id, bookingAt(BookingStatus.accepted, independent: false), otp: RoadsideFakes.otp);
       await open(tester);
-      expect(find.text('Your mechanic has arrived'), findsOneWidget);
       expect(find.text('Verified workshop'), findsOneWidget);
+      expect(find.byType(PlateChip), findsNothing, reason: 'no travel vehicle for a workshop');
+    });
+
+    testWidgets('arriving and arrived hand over to U10 tracking', (tester) async {
+      tall(tester);
+      store.put(id, bookingAt(BookingStatus.arrived), otp: RoadsideFakes.otp);
+      await open(tester);
+      expect(find.byType(TrackingView), findsOneWidget);
+      expect(find.text('Kiran Patel has arrived'), findsOneWidget);
       expect(find.bySemanticsLabel('Step 4 of 6: Arrived'), findsOneWidget);
     });
 
@@ -256,7 +271,7 @@ void main() {
       await tester.tap(find.widgetWithText(LaneButton, 'Cancel booking').last);
       await pumpAWhile(tester);
       expect(find.text("It can't be cancelled now: the work has started."), findsOneWidget);
-      expect(find.text('Your mechanic has arrived'), findsOneWidget);
+      expect(find.text('Kiran Patel has arrived'), findsOneWidget);
       await tester.pump(LaneToast.visibleFor);
     });
 
@@ -264,7 +279,7 @@ void main() {
       tall(tester);
       store.put(id, bookingAt(BookingStatus.inProgress));
       await open(tester);
-      expect(find.text('Your mechanic is on the job'), findsOneWidget);
+      expect(find.text('Kiran Patel is working on it'), findsOneWidget);
       expect(find.text('Cancel booking'), findsNothing);
     });
 

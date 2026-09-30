@@ -14,6 +14,7 @@ export { createBooking } from './callables/createBooking.js';
 export { respondToOffer } from './callables/respondToOffer.js';
 export { confirmPayment, disputePayment, markPaid } from './callables/payments.js';
 export { markArrived, startTrip } from './callables/tripSteps.js';
+export { verifyStartOtp } from './callables/verifyStartOtp.js';
 export { dispatchOnBookingCreated, dispatchSweep, offerTimeout } from './dispatch/functions.js';
 export { onBookingStatusChange } from './notifications/onBookingStatusChange.js';
 export { onMechanicRegistered } from './triggers/onMechanicRegistered.js';
