@@ -113,5 +113,147 @@
         "type": "String"
       }
     }
+  },
+  "vehicle_type_car": "Car",
+  "@vehicle_type_car": {
+    "description": "Vehicle type."
+  },
+  "vehicle_type_bike": "Bike",
+  "@vehicle_type_bike": {
+    "description": "Vehicle type (motorcycle)."
+  },
+  "vehicle_type_scooter": "Scooter",
+  "@vehicle_type_scooter": {
+    "description": "Vehicle type."
+  },
+  "vehicle_type_ev": "EV",
+  "@vehicle_type_ev": {
+    "description": "Vehicle type (electric vehicle)."
+  },
+  "problem_type_flat_tyre": "Flat tyre",
+  "@problem_type_flat_tyre": {
+    "description": "Problem type flat_tyre."
+  },
+  "problem_type_battery": "Battery",
+  "@problem_type_battery": {
+    "description": "Problem type battery."
+  },
+  "problem_type_wont_start": "Won't start",
+  "@problem_type_wont_start": {
+    "description": "Problem type wont_start."
+  },
+  "problem_type_overheating": "Overheating",
+  "@problem_type_overheating": {
+    "description": "Problem type overheating."
+  },
+  "problem_type_accident": "Accident",
+  "@problem_type_accident": {
+    "description": "Problem type accident."
+  },
+  "problem_type_fuel": "Out of fuel",
+  "@problem_type_fuel": {
+    "description": "Problem type fuel."
+  },
+  "problem_type_other": "Something else",
+  "@problem_type_other": {
+    "description": "Problem type other."
+  },
+  "prices_scope_default": "Default prices, all cities",
+  "@prices_scope_default": {
+    "description": "A4: heading when the city filter is All."
+  },
+  "prices_scope_default_help": "Customers see these ranges unless their city has its own.",
+  "@prices_scope_default_help": {
+    "description": "A4: under the default heading."
+  },
+  "prices_scope_city": "{city} prices",
+  "@prices_scope_city": {
+    "description": "A4: heading when a city is picked. {city} is the city name.",
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "prices_scope_city_help": "Only for this city. Leave a cell blank to use the default shown in grey.",
+  "@prices_scope_city_help": {
+    "description": "A4: under the city heading."
+  },
+  "prices_column_problem": "Problem",
+  "@prices_column_problem": {
+    "description": "A4: first column header."
+  },
+  "prices_min_label": "{vehicle}, {problem}: minimum",
+  "@prices_min_label": {
+    "description": "A4: screen-reader label of a min field.",
+    "placeholders": {
+      "vehicle": {
+        "type": "String"
+      },
+      "problem": {
+        "type": "String"
+      }
+    }
+  },
+  "prices_max_label": "{vehicle}, {problem}: maximum",
+  "@prices_max_label": {
+    "description": "A4: screen-reader label of a max field.",
+    "placeholders": {
+      "vehicle": {
+        "type": "String"
+      },
+      "problem": {
+        "type": "String"
+      }
+    }
+  },
+  "prices_unsaved": "{count, plural, =0{No unsaved changes} =1{1 unsaved change} other{{count} unsaved changes}}",
+  "@prices_unsaved": {
+    "description": "A4: count of edited cells.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "prices_discard": "Discard",
+  "@prices_discard": {
+    "description": "A4: drops unsaved edits."
+  },
+  "prices_save": "Save changes",
+  "@prices_save": {
+    "description": "A4: saves all edits at once."
+  },
+  "prices_saved_toast": "Prices saved. New bookings use them now.",
+  "@prices_saved_toast": {
+    "description": "A4: after a successful save."
+  },
+  "prices_save_failed": "Couldn't save. Nothing was changed. Try again.",
+  "@prices_save_failed": {
+    "description": "A4: the save failed as a whole."
+  },
+  "prices_missing_default": "Set the price for All cities first, then the city's own.",
+  "@prices_missing_default": {
+    "description": "A4: a city override for a price that has no default yet."
+  },
+  "prices_load_failed": "Couldn't load the prices.",
+  "@prices_load_failed": {
+    "description": "A4: loading failed."
+  },
+  "prices_error_required": "Enter both amounts",
+  "@prices_error_required": {
+    "description": "A4 cell error."
+  },
+  "prices_error_number": "Whole rupees only",
+  "@prices_error_number": {
+    "description": "A4 cell error."
+  },
+  "prices_error_range": "Between ₹1 and ₹1,00,000",
+  "@prices_error_range": {
+    "description": "A4 cell error."
+  },
+  "prices_error_order": "Minimum must be less than maximum",
+  "@prices_error_order": {
+    "description": "A4 cell error."
   }
 }

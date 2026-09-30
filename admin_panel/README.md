@@ -69,9 +69,10 @@ lib/
 ├── app/            bootstrap, env, flavour, router (A0 outside, A1–A6 inside ConsoleShell)
 ├── features/
 │   ├── auth/       AdminAuth (Google), session gate, A0 sign-in
-│   └── console/    sections A1–A6, city filter
+│   ├── console/    sections A1–A6, city filter, enum labels
+│   └── prices/     A4 price editor (defaults + per-city overrides, audited batch save)
 ├── l10n/           en / hi / gu
-└── _local_ui/      ConsoleShell, until it moves into lane_ui
+└── _local_ui/      ConsoleShell, PriceRangeField: until they move into lane_ui
 ```
 
 Before every PR: `dart format .`, `flutter analyze`, `flutter test`, `flutter build web`,

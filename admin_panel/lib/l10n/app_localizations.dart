@@ -248,6 +248,180 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This screen arrives with issue #{issue}.'**
   String console_section_coming_body(String issue);
+
+  /// Vehicle type.
+  ///
+  /// In en, this message translates to:
+  /// **'Car'**
+  String get vehicle_type_car;
+
+  /// Vehicle type (motorcycle).
+  ///
+  /// In en, this message translates to:
+  /// **'Bike'**
+  String get vehicle_type_bike;
+
+  /// Vehicle type.
+  ///
+  /// In en, this message translates to:
+  /// **'Scooter'**
+  String get vehicle_type_scooter;
+
+  /// Vehicle type (electric vehicle).
+  ///
+  /// In en, this message translates to:
+  /// **'EV'**
+  String get vehicle_type_ev;
+
+  /// Problem type flat_tyre.
+  ///
+  /// In en, this message translates to:
+  /// **'Flat tyre'**
+  String get problem_type_flat_tyre;
+
+  /// Problem type battery.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery'**
+  String get problem_type_battery;
+
+  /// Problem type wont_start.
+  ///
+  /// In en, this message translates to:
+  /// **'Won\'t start'**
+  String get problem_type_wont_start;
+
+  /// Problem type overheating.
+  ///
+  /// In en, this message translates to:
+  /// **'Overheating'**
+  String get problem_type_overheating;
+
+  /// Problem type accident.
+  ///
+  /// In en, this message translates to:
+  /// **'Accident'**
+  String get problem_type_accident;
+
+  /// Problem type fuel.
+  ///
+  /// In en, this message translates to:
+  /// **'Out of fuel'**
+  String get problem_type_fuel;
+
+  /// Problem type other.
+  ///
+  /// In en, this message translates to:
+  /// **'Something else'**
+  String get problem_type_other;
+
+  /// A4: heading when the city filter is All.
+  ///
+  /// In en, this message translates to:
+  /// **'Default prices, all cities'**
+  String get prices_scope_default;
+
+  /// A4: under the default heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Customers see these ranges unless their city has its own.'**
+  String get prices_scope_default_help;
+
+  /// A4: heading when a city is picked. {city} is the city name.
+  ///
+  /// In en, this message translates to:
+  /// **'{city} prices'**
+  String prices_scope_city(String city);
+
+  /// A4: under the city heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Only for this city. Leave a cell blank to use the default shown in grey.'**
+  String get prices_scope_city_help;
+
+  /// A4: first column header.
+  ///
+  /// In en, this message translates to:
+  /// **'Problem'**
+  String get prices_column_problem;
+
+  /// A4: screen-reader label of a min field.
+  ///
+  /// In en, this message translates to:
+  /// **'{vehicle}, {problem}: minimum'**
+  String prices_min_label(String vehicle, String problem);
+
+  /// A4: screen-reader label of a max field.
+  ///
+  /// In en, this message translates to:
+  /// **'{vehicle}, {problem}: maximum'**
+  String prices_max_label(String vehicle, String problem);
+
+  /// A4: count of edited cells.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No unsaved changes} =1{1 unsaved change} other{{count} unsaved changes}}'**
+  String prices_unsaved(int count);
+
+  /// A4: drops unsaved edits.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard'**
+  String get prices_discard;
+
+  /// A4: saves all edits at once.
+  ///
+  /// In en, this message translates to:
+  /// **'Save changes'**
+  String get prices_save;
+
+  /// A4: after a successful save.
+  ///
+  /// In en, this message translates to:
+  /// **'Prices saved. New bookings use them now.'**
+  String get prices_saved_toast;
+
+  /// A4: the save failed as a whole.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save. Nothing was changed. Try again.'**
+  String get prices_save_failed;
+
+  /// A4: a city override for a price that has no default yet.
+  ///
+  /// In en, this message translates to:
+  /// **'Set the price for All cities first, then the city\'s own.'**
+  String get prices_missing_default;
+
+  /// A4: loading failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load the prices.'**
+  String get prices_load_failed;
+
+  /// A4 cell error.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter both amounts'**
+  String get prices_error_required;
+
+  /// A4 cell error.
+  ///
+  /// In en, this message translates to:
+  /// **'Whole rupees only'**
+  String get prices_error_number;
+
+  /// A4 cell error.
+  ///
+  /// In en, this message translates to:
+  /// **'Between ₹1 and ₹1,00,000'**
+  String get prices_error_range;
+
+  /// A4 cell error.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum must be less than maximum'**
+  String get prices_error_order;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
