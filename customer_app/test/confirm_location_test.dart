@@ -304,15 +304,19 @@ void main() {
       );
     }
 
-    Future<void> openU6(WidgetTester tester, {String language = 'en'}) async {
+    /// Opens U6 on its own (`go`), so Home's own GPS isn't running underneath; [overHome]
+    /// pushes it on top of Home instead.
+    Future<void> openU6(WidgetTester tester, {String language = 'en', bool overHome = false}) async {
       await tester.pumpWidget(await app(language: language));
       await tester.pump(const Duration(seconds: 1));
       await tester.pumpAndSettle();
-      unawaited(
-        ProviderScope.containerOf(tester.element(find.byType(Scaffold).first))
-            .read(routerProvider)
-            .push(AppRoutes.bookLocation),
-      );
+      final router = ProviderScope.containerOf(tester.element(find.byType(Scaffold).first))
+          .read(routerProvider);
+      if (overHome) {
+        unawaited(router.push(AppRoutes.bookLocation));
+      } else {
+        router.go(AppRoutes.bookLocation);
+      }
       await tester.pumpAndSettle();
     }
 
@@ -452,13 +456,16 @@ void main() {
       expect(find.text('±8 m'), findsOneWidget);
     });
 
-    testWidgets('leaving U6 while it locates stops GPS', (tester) async {
+    testWidgets('leaving U6 while it locates stops its GPS (Home keeps its own)', (tester) async {
       tall(tester);
-      await openU6(tester);
-      expect(location.active, 1);
+      await openU6(tester, overHome: true);
+      // Home is locating underneath too.
+      expect(location.active, 2);
       await tester.pageBack();
       await tester.pumpAndSettle();
       expect(find.byType(ConfirmLocationScreen), findsNothing);
+      expect(location.active, 1, reason: "only Home's subscription is left");
+      await tester.pump(const Duration(seconds: 16)); // Home's wait runs out
       expect(location.active, 0);
     });
 

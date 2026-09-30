@@ -4,14 +4,6 @@
   "@app_title": {
     "description": "App name in the task switcher. Placeholder until the client names the app (HANDOFF §4.9)."
   },
-  "home_placeholder_title": "Help on the road, in minutes",
-  "@home_placeholder_title": {
-    "description": "Temporary home screen until U1 Home (#12) lands."
-  },
-  "home_placeholder_body": "We're getting everything ready. Booking a mechanic arrives in the next update.",
-  "@home_placeholder_body": {
-    "description": "Temporary home screen body until U1 Home (#12) lands."
-  },
   "flow_step_label": "Step {step} of {total}",
   "@flow_step_label": {
     "description": "Progress label on multi-step flows.",
@@ -1201,5 +1193,61 @@
   "review_already": "You have rated this booking. Thank you!",
   "@review_already": {
     "description": "U14: already reviewed."
+  },
+  "home_city_outside": "Outside our area",
+  "@home_city_outside": {
+    "description": "U1 chip when no service area covers the customer."
+  },
+  "home_locating": "Finding your location…",
+  "@home_locating": {
+    "description": "U1 while locating."
+  },
+  "home_no_location": "Share your location to see help near you. You can still get help without it.",
+  "@home_no_location": {
+    "description": "U1 before location is allowed."
+  },
+  "home_show_location": "Show my location",
+  "@home_show_location": {
+    "description": "U1: opens the C7 explainer for location."
+  },
+  "home_no_fix": "We couldn't find your location. You can still get help and place the pin yourself.",
+  "@home_no_fix": {
+    "description": "U1: no GPS reading in 15 s."
+  },
+  "home_outside_title": "We're not in your area yet",
+  "@home_outside_title": {
+    "description": "U1·Area: title."
+  },
+  "home_outside_body": "We serve Ahmedabad, Ankleshwar and Bharuch. Send us your location by SMS and our team will help you find someone.",
+  "@home_outside_body": {
+    "description": "U1·Area: message."
+  },
+  "home_sms_location": "Send my location by SMS",
+  "@home_sms_location": {
+    "description": "U1·Area: primary; opens the SMS app to the helpline."
+  },
+  "home_sms_body": "I need roadside help. My location: {link} (Plus Code {code})",
+  "@home_sms_body": {
+    "description": "SMS body to the helpline.",
+    "placeholders": {
+      "link": {
+        "type": "String"
+      },
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "home_sms_failed": "Couldn't open the SMS app.",
+  "@home_sms_failed": {
+    "description": "U1·Area: SMS app failed to open."
+  },
+  "home_booking_active": "Your booking is in progress",
+  "@home_booking_active": {
+    "description": "U1: card for a booking still active."
+  },
+  "home_booking_open": "Tap to open it",
+  "@home_booking_open": {
+    "description": "U1: under home_booking_active."
   }
 }

@@ -55,7 +55,7 @@ void main() {
       await pastSplash(tester);
       expect(find.byType(LaneApp), findsOneWidget);
       expect(find.byType(HomeScreen), findsOneWidget);
-      expect(find.text('Help on the road, in minutes'), findsOneWidget);
+      expect(find.widgetWithText(LaneButton, 'Get help'), findsOneWidget);
       expect(tester.takeException(), isNull);
     });
   }
@@ -64,13 +64,13 @@ void main() {
     await finishedFirstRun(language: 'hi');
     await tester.pumpWidget(app(AppFlavor.dev));
     await pastSplash(tester);
-    expect(find.text('सड़क पर मदद, मिनटों में'), findsOneWidget);
+    expect(find.widgetWithText(LaneButton, 'मदद लें'), findsOneWidget);
     expect(tester.element(find.byType(HomeScreen)).lane.script, LaneScript.devanagari);
 
     await finishedFirstRun(language: 'gu');
     await tester.pumpWidget(app(AppFlavor.prod));
     await pastSplash(tester);
-    expect(find.text('રસ્તા પર મદદ, મિનિટોમાં'), findsOneWidget);
+    expect(find.widgetWithText(LaneButton, 'મદદ મેળવો'), findsOneWidget);
   });
 
   testWidgets('fits at 320 px and 200% text in Hindi', (tester) async {
