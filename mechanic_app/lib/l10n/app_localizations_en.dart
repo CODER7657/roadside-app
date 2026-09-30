@@ -692,4 +692,62 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get job_missing_body => 'It may have been cancelled.';
+
+  @override
+  String get login_phone_title => 'Your mobile number';
+
+  @override
+  String get login_country_code => '+91';
+
+  @override
+  String get login_phone_label => 'Mobile number';
+
+  @override
+  String get login_phone_hint => '98765 43210';
+
+  @override
+  String get login_phone_helper => 'We\'ll send a 6-digit code by SMS.';
+
+  @override
+  String get login_send_code => 'Send code';
+
+  @override
+  String get login_code_title => 'Enter the code';
+
+  @override
+  String login_code_sent_to(String phone) {
+    return 'Sent to $phone';
+  }
+
+  @override
+  String get login_change_number => 'Change number';
+
+  @override
+  String login_resend_in(String time) {
+    return 'Resend in $time';
+  }
+
+  @override
+  String get login_resend => 'Resend code';
+
+  @override
+  String get login_verify => 'Verify';
+
+  @override
+  String get login_error_invalid_number => 'Enter a 10-digit Indian mobile number.';
+
+  @override
+  String get login_error_invalid_code => 'That code isn\'t right. Check the SMS and try again.';
+
+  @override
+  String get login_error_code_expired => 'This code has expired. Send a new one.';
+
+  @override
+  String get login_error_too_many => 'Too many tries. Wait a while, then try again.';
+
+  @override
+  String get login_error_network => 'No connection. Check your internet and try again.';
+
+  @override
+  String get login_error_failed => 'Something went wrong. Try again.';
 }

@@ -890,5 +890,89 @@
   "job_missing_body": "It may have been cancelled.",
   "@job_missing_body": {
     "description": "M5: booking not readable."
+  },
+  "login_phone_title": "Your mobile number",
+  "@login_phone_title": {
+    "description": "C5 title."
+  },
+  "login_country_code": "+91",
+  "@login_country_code": {
+    "description": "C5: India's calling code, before the number field."
+  },
+  "login_phone_label": "Mobile number",
+  "@login_phone_label": {
+    "description": "C5 field label."
+  },
+  "login_phone_hint": "98765 43210",
+  "@login_phone_hint": {
+    "description": "C5 field hint: an example 10-digit number."
+  },
+  "login_phone_helper": "We'll send a 6-digit code by SMS.",
+  "@login_phone_helper": {
+    "description": "C5 under the field."
+  },
+  "login_send_code": "Send code",
+  "@login_send_code": {
+    "description": "C5 primary."
+  },
+  "login_code_title": "Enter the code",
+  "@login_code_title": {
+    "description": "C6 title."
+  },
+  "login_code_sent_to": "Sent to {phone}",
+  "@login_code_sent_to": {
+    "description": "C6: where the SMS went.",
+    "placeholders": {
+      "phone": {
+        "type": "String",
+        "example": "+91 98765 43210"
+      }
+    }
+  },
+  "login_change_number": "Change number",
+  "@login_change_number": {
+    "description": "C6: back to C5 to fix the number."
+  },
+  "login_resend_in": "Resend in {time}",
+  "@login_resend_in": {
+    "description": "C6 countdown before a new code can be sent.",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "0:24"
+      }
+    }
+  },
+  "login_resend": "Resend code",
+  "@login_resend": {
+    "description": "C6: ask for a new SMS."
+  },
+  "login_verify": "Verify",
+  "@login_verify": {
+    "description": "C6 primary."
+  },
+  "login_error_invalid_number": "Enter a 10-digit Indian mobile number.",
+  "@login_error_invalid_number": {
+    "description": "C5 error."
+  },
+  "login_error_invalid_code": "That code isn't right. Check the SMS and try again.",
+  "@login_error_invalid_code": {
+    "description": "C6 error: wrong code."
+  },
+  "login_error_code_expired": "This code has expired. Send a new one.",
+  "@login_error_code_expired": {
+    "description": "C6 error: code or session expired."
+  },
+  "login_error_too_many": "Too many tries. Wait a while, then try again.",
+  "@login_error_too_many": {
+    "description": "C5/C6 error: rate limited."
+  },
+  "login_error_network": "No connection. Check your internet and try again.",
+  "@login_error_network": {
+    "description": "C5/C6 error: offline."
+  },
+  "login_error_failed": "Something went wrong. Try again.",
+  "@login_error_failed": {
+    "description": "C5/C6 error: anything else."
   }
 }

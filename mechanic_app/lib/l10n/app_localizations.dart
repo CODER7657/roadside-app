@@ -1394,6 +1394,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'It may have been cancelled.'**
   String get job_missing_body;
+
+  /// C5 title.
+  ///
+  /// In en, this message translates to:
+  /// **'Your mobile number'**
+  String get login_phone_title;
+
+  /// C5: India's calling code, before the number field.
+  ///
+  /// In en, this message translates to:
+  /// **'+91'**
+  String get login_country_code;
+
+  /// C5 field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Mobile number'**
+  String get login_phone_label;
+
+  /// C5 field hint: an example 10-digit number.
+  ///
+  /// In en, this message translates to:
+  /// **'98765 43210'**
+  String get login_phone_hint;
+
+  /// C5 under the field.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll send a 6-digit code by SMS.'**
+  String get login_phone_helper;
+
+  /// C5 primary.
+  ///
+  /// In en, this message translates to:
+  /// **'Send code'**
+  String get login_send_code;
+
+  /// C6 title.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the code'**
+  String get login_code_title;
+
+  /// C6: where the SMS went.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent to {phone}'**
+  String login_code_sent_to(String phone);
+
+  /// C6: back to C5 to fix the number.
+  ///
+  /// In en, this message translates to:
+  /// **'Change number'**
+  String get login_change_number;
+
+  /// C6 countdown before a new code can be sent.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend in {time}'**
+  String login_resend_in(String time);
+
+  /// C6: ask for a new SMS.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend code'**
+  String get login_resend;
+
+  /// C6 primary.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify'**
+  String get login_verify;
+
+  /// C5 error.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a 10-digit Indian mobile number.'**
+  String get login_error_invalid_number;
+
+  /// C6 error: wrong code.
+  ///
+  /// In en, this message translates to:
+  /// **'That code isn\'t right. Check the SMS and try again.'**
+  String get login_error_invalid_code;
+
+  /// C6 error: code or session expired.
+  ///
+  /// In en, this message translates to:
+  /// **'This code has expired. Send a new one.'**
+  String get login_error_code_expired;
+
+  /// C5/C6 error: rate limited.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many tries. Wait a while, then try again.'**
+  String get login_error_too_many;
+
+  /// C5/C6 error: offline.
+  ///
+  /// In en, this message translates to:
+  /// **'No connection. Check your internet and try again.'**
+  String get login_error_network;
+
+  /// C5/C6 error: anything else.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Try again.'**
+  String get login_error_failed;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

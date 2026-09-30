@@ -692,4 +692,62 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get job_missing_body => 'કદાચ તે રદ થયું છે.';
+
+  @override
+  String get login_phone_title => 'તમારો મોબાઇલ નંબર';
+
+  @override
+  String get login_country_code => '+91';
+
+  @override
+  String get login_phone_label => 'મોબાઇલ નંબર';
+
+  @override
+  String get login_phone_hint => '98765 43210';
+
+  @override
+  String get login_phone_helper => 'અમે SMS દ્વારા 6 અંકનો કોડ મોકલીશું.';
+
+  @override
+  String get login_send_code => 'કોડ મોકલો';
+
+  @override
+  String get login_code_title => 'કોડ દાખલ કરો';
+
+  @override
+  String login_code_sent_to(String phone) {
+    return '$phone પર મોકલ્યો';
+  }
+
+  @override
+  String get login_change_number => 'નંબર બદલો';
+
+  @override
+  String login_resend_in(String time) {
+    return '$time માં ફરી મોકલો';
+  }
+
+  @override
+  String get login_resend => 'કોડ ફરી મોકલો';
+
+  @override
+  String get login_verify => 'ચકાસો';
+
+  @override
+  String get login_error_invalid_number => '10 અંકનો ભારતીય મોબાઇલ નંબર દાખલ કરો.';
+
+  @override
+  String get login_error_invalid_code => 'આ કોડ સાચો નથી. SMS જોઈને ફરી પ્રયાસ કરો.';
+
+  @override
+  String get login_error_code_expired => 'આ કોડની મુદત પૂરી થઈ ગઈ. નવો કોડ મોકલો.';
+
+  @override
+  String get login_error_too_many => 'ઘણા બધા પ્રયાસ થયા. થોડી વાર પછી ફરી પ્રયાસ કરો.';
+
+  @override
+  String get login_error_network => 'ઇન્ટરનેટ નથી. કનેક્શન તપાસીને ફરી પ્રયાસ કરો.';
+
+  @override
+  String get login_error_failed => 'કંઈક ખોટું થયું. ફરી પ્રયાસ કરો.';
 }

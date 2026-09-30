@@ -3,6 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roadside_core/roadside_core.dart';
 
+import '../../auth/application/auth.dart';
+import '../../auth/data/auth_repository.dart';
 import '../data/mechanic_photos.dart';
 import '../data/registration_repository.dart';
 
@@ -246,14 +248,25 @@ class RegistrationState {
   );
 }
 
-// Data seams. The fakes are the defaults until Firebase is wired (#120 storage, #123 auth);
-// swap in FirestoreRegistrationRepository and a Storage uploader there.
+// Data seams: Firestore and Storage for a signed-in mechanic, the fakes otherwise (tests, no
+// Firebase config).
 final photoPickerProvider = Provider<PhotoPicker>((ref) => ImagePickerPhotoPicker());
 final photoCompressorProvider = Provider<PhotoCompressor>((ref) => PhotoCompressor());
-final mechanicPhotoUploaderProvider = Provider<MechanicPhotoUploader>((ref) => FakeMechanicPhotoUploader());
-final registrationRepositoryProvider = Provider<RegistrationRepository>(
-  (ref) => InMemoryRegistrationRepository(),
-);
+final mechanicPhotoUploaderProvider = Provider<MechanicPhotoUploader>((ref) {
+  final signedIn = ref.watch(signedInFirebaseProvider);
+  if (signedIn == null) return FakeMechanicPhotoUploader();
+  final (firebase, user) = signedIn;
+  return FirebaseMechanicPhotoUploader(firebase.storage, user.uid);
+});
+final registrationRepositoryProvider = Provider<RegistrationRepository>((ref) {
+  final signedIn = ref.watch(signedInFirebaseProvider);
+  if (signedIn == null) return InMemoryRegistrationRepository();
+  final (firebase, user) = signedIn;
+  return FirestoreRegistrationRepository(
+    firebase.firestore,
+    AuthRepositorySession(user, ref.watch(authRepositoryProvider)),
+  );
+});
 
 /// The saved profile: null until M1 is submitted.
 final mechanicProfileProvider = StreamProvider<Mechanic?>(

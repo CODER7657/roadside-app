@@ -7,6 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roadside_core/roadside_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../features/auth/application/auth.dart';
+import '../features/auth/data/auth_repository.dart';
 import '../features/first_run/application/first_run.dart';
 import 'app.dart';
 import 'crash_reporting.dart';
@@ -60,6 +62,7 @@ Future<void> bootstrap(AppFlavor flavor) async {
         flavorProvider.overrideWithValue(flavor),
         sharedPreferencesProvider.overrideWithValue(prefs),
         firebaseServicesProvider.overrideWithValue(firebase),
+        if (firebase != null) authRepositoryProvider.overrideWithValue(FirebaseAuthRepository(firebase.auth)),
         if (remoteFlags != null) remoteFlagsProvider.overrideWith((ref) => remoteFlags!()),
       ],
       child: const MechanicApp(),

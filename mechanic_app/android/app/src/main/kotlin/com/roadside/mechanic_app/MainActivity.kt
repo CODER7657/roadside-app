@@ -37,6 +37,19 @@ class MainActivity : FlutterActivity() {
                     else -> result.notImplemented()
                 }
             }
+        // PLAN §12.7: FLAG_SECURE (no screenshots or recents preview) on the OTP login and other
+        // screens with codes or ID on them, only while they're open (lib/app/secure_window.dart).
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "roadside/secure")
+            .setMethodCallHandler { call, result ->
+                when (call.method) {
+                    "setSecure" -> {
+                        val flag = WindowManager.LayoutParams.FLAG_SECURE
+                        if (call.arguments as? Boolean == true) window.addFlags(flag) else window.clearFlags(flag)
+                        result.success(null)
+                    }
+                    else -> result.notImplemented()
+                }
+            }
     }
 
     private fun showOverLockScreen(show: Boolean) {

@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roadside_core/roadside_core.dart';
 
+import '../../auth/application/auth.dart';
 import '../../registration/application/registration.dart';
 import '../data/jobs_repository.dart';
 import '../data/location_service.dart';
@@ -52,10 +53,20 @@ class OnlineState {
   bool get isOnline => phase != OnlinePhase.offline;
 }
 
-// Seams: fakes until Firebase and a device are wired (#120, #123).
+// Seams: Firestore for a signed-in mechanic, the fakes otherwise (tests, no Firebase config).
 final locationServiceProvider = Provider<LocationService>((ref) => const GeolocatorLocationService());
-final presenceRepositoryProvider = Provider<PresenceRepository>((ref) => InMemoryPresenceRepository());
-final jobsRepositoryProvider = Provider<JobsRepository>((ref) => InMemoryJobsRepository());
+final presenceRepositoryProvider = Provider<PresenceRepository>((ref) {
+  final signedIn = ref.watch(signedInFirebaseProvider);
+  if (signedIn == null) return InMemoryPresenceRepository();
+  final (firebase, user) = signedIn;
+  return FirestorePresenceRepository(firebase.firestore, user.uid);
+});
+final jobsRepositoryProvider = Provider<JobsRepository>((ref) {
+  final signedIn = ref.watch(signedInFirebaseProvider);
+  if (signedIn == null) return InMemoryJobsRepository();
+  final (firebase, user) = signedIn;
+  return FirestoreJobsRepository(firebase.firestore, user.uid);
+});
 
 /// The clock presence and "today" use. Tests override it.
 final dashboardClockProvider = Provider<DateTime Function()>((ref) => DateTime.now);
