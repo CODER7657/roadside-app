@@ -320,6 +320,210 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Contact our grievance officer from Help & FAQ.'**
   String get privacy_contact_body;
+
+  /// Home: opens C9 Help & FAQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Help & FAQ'**
+  String get home_help;
+
+  /// C7: location explainer title.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow location'**
+  String get permission_location_title;
+
+  /// C7: why the mechanic app needs location (no background location).
+  ///
+  /// In en, this message translates to:
+  /// **'So we can send you jobs nearby and show customers you\'re on the way. Only while you\'re online or on a job; during a job a notification shows it\'s on.'**
+  String get permission_location_body;
+
+  /// C7: camera explainer title.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow camera'**
+  String get permission_camera_title;
+
+  /// C7: why the mechanic app needs the camera.
+  ///
+  /// In en, this message translates to:
+  /// **'To add your profile, shop or toolkit photos, your ID documents, and before and after photos of each job.'**
+  String get permission_camera_body;
+
+  /// C7: notifications explainer title.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow notifications'**
+  String get permission_notifications_title;
+
+  /// C7: why the mechanic app needs notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'So you hear new job offers straight away, and get updates on your jobs even when the app is closed.'**
+  String get permission_notifications_body;
+
+  /// C7: full-screen offers explainer title (Android 14+ special access).
+  ///
+  /// In en, this message translates to:
+  /// **'Show job offers on the lock screen'**
+  String get permission_full_screen_title;
+
+  /// C7: why full-screen offers; the next screen is the phone's settings page.
+  ///
+  /// In en, this message translates to:
+  /// **'A new job fills the screen like an incoming call, so you never miss one. On the next screen, turn on full-screen notifications for this app.'**
+  String get permission_full_screen_body;
+
+  /// C7: shown when the permission was denied for good.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s turned off in your phone\'s settings. Open Settings, tap Permissions and allow it.'**
+  String get permission_blocked_body;
+
+  /// C7: primary button.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow'**
+  String get permission_allow;
+
+  /// C7: primary button when blocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Open settings'**
+  String get permission_open_settings;
+
+  /// C7: secondary button.
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get permission_not_now;
+
+  /// C9: title.
+  ///
+  /// In en, this message translates to:
+  /// **'Help'**
+  String get help_title;
+
+  /// C9: search field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Search questions'**
+  String get help_search_label;
+
+  /// C9: search field hint (mechanic).
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. offers, start code, payment'**
+  String get help_search_hint;
+
+  /// C9: empty search title.
+  ///
+  /// In en, this message translates to:
+  /// **'No matching questions'**
+  String get help_no_results_title;
+
+  /// C9: empty search body.
+  ///
+  /// In en, this message translates to:
+  /// **'Try other words, or call us.'**
+  String get help_no_results_body;
+
+  /// C9: call button.
+  ///
+  /// In en, this message translates to:
+  /// **'Call support'**
+  String get help_call_support;
+
+  /// C9: WhatsApp button (brand name, not translated).
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp'**
+  String get help_whatsapp;
+
+  /// C9: DPDP grievance section title.
+  ///
+  /// In en, this message translates to:
+  /// **'Grievance officer'**
+  String get help_grievance_title;
+
+  /// C9: DPDP grievance section body.
+  ///
+  /// In en, this message translates to:
+  /// **'For complaints about your data or privacy, write to our grievance officer. We reply within 7 days.'**
+  String get help_grievance_body;
+
+  /// C9 FAQ (mechanic).
+  ///
+  /// In en, this message translates to:
+  /// **'How do I get jobs?'**
+  String get help_faq_jobs_q;
+
+  /// C9 FAQ answer.
+  ///
+  /// In en, this message translates to:
+  /// **'Once you\'re approved, go online on the home screen. Nearby breakdowns come to you as offers; slide to accept within 30 seconds.'**
+  String get help_faq_jobs_a;
+
+  /// C9 FAQ (mechanic).
+  ///
+  /// In en, this message translates to:
+  /// **'Why am I not getting offers?'**
+  String get help_faq_no_offers_q;
+
+  /// C9 FAQ answer.
+  ///
+  /// In en, this message translates to:
+  /// **'Check that you\'re online, approved, and in your city, and that your vehicle types and services are set. Keep the app open with location on; offers only go to mechanics close by.'**
+  String get help_faq_no_offers_a;
+
+  /// C9 FAQ (mechanic).
+  ///
+  /// In en, this message translates to:
+  /// **'How does verification work?'**
+  String get help_faq_verify_q;
+
+  /// C9 FAQ answer.
+  ///
+  /// In en, this message translates to:
+  /// **'We check your ID and photos before you get jobs. If you work without a workshop, we also call you for a short verification.'**
+  String get help_faq_verify_a;
+
+  /// C9 FAQ (mechanic).
+  ///
+  /// In en, this message translates to:
+  /// **'What is the start code?'**
+  String get help_faq_code_q;
+
+  /// C9 FAQ answer.
+  ///
+  /// In en, this message translates to:
+  /// **'When you arrive, the customer reads you a 4-digit code. Enter it to start the job. After 5 wrong tries it locks for 10 minutes.'**
+  String get help_faq_code_a;
+
+  /// C9 FAQ (mechanic).
+  ///
+  /// In en, this message translates to:
+  /// **'How do I get paid?'**
+  String get help_faq_pay_q;
+
+  /// C9 FAQ answer.
+  ///
+  /// In en, this message translates to:
+  /// **'The customer pays you directly by UPI. Check your UPI app, then tap Confirm. If the money hasn\'t arrived, tap Not received and we\'ll look into it.'**
+  String get help_faq_pay_a;
+
+  /// C9 FAQ (mechanic).
+  ///
+  /// In en, this message translates to:
+  /// **'Can I cancel a job?'**
+  String get help_faq_cancel_q;
+
+  /// C9 FAQ answer.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, but it counts against your reliability. Before you arrive, the job goes to another mechanic; after you arrive, tell us why.'**
+  String get help_faq_cancel_a;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

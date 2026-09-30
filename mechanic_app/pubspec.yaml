@@ -22,6 +22,11 @@ dependencies:
     path: ../packages/roadside_core
   # First-run state (language, onboarding, consent) on the device, as in customer_app.
   shared_preferences: ^2.5.5
+  # 12.x: 13.x needs permission_handler_android 14 (compileSdk 37), which AGP 9.1 can't build.
+  # Same pin as customer_app; move both up together.
+  permission_handler: ^12.0.3
+  # C9 Help: call / WhatsApp support, email the grievance officer.
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:

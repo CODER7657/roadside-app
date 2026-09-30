@@ -134,4 +134,118 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get privacy_contact_body => 'मदद और FAQ से हमारे शिकायत अधिकारी से संपर्क करें।';
+
+  @override
+  String get home_help => 'मदद और FAQ';
+
+  @override
+  String get permission_location_title => 'लोकेशन की अनुमति दें';
+
+  @override
+  String get permission_location_body =>
+      'ताकि हम आपको पास के काम भेज सकें और ग्राहकों को दिखा सकें कि आप रास्ते में हैं। सिर्फ़ जब आप ऑनलाइन हों या काम पर हों; काम के दौरान एक सूचना दिखती है कि यह चालू है।';
+
+  @override
+  String get permission_camera_title => 'कैमरा की अनुमति दें';
+
+  @override
+  String get permission_camera_body =>
+      'अपनी प्रोफ़ाइल, दुकान या औज़ारों की फ़ोटो, अपने ID दस्तावेज़, और हर काम से पहले और बाद की फ़ोटो जोड़ने के लिए।';
+
+  @override
+  String get permission_notifications_title => 'सूचनाओं की अनुमति दें';
+
+  @override
+  String get permission_notifications_body =>
+      'ताकि आपको नए काम के ऑफ़र तुरंत मिलें, और ऐप बंद होने पर भी अपने कामों की जानकारी मिले।';
+
+  @override
+  String get permission_full_screen_title => 'लॉक स्क्रीन पर काम के ऑफ़र दिखाएँ';
+
+  @override
+  String get permission_full_screen_body =>
+      'नया काम आने वाली कॉल की तरह पूरी स्क्रीन पर दिखता है, ताकि कोई छूटे नहीं। अगली स्क्रीन पर इस ऐप के लिए फ़ुल-स्क्रीन सूचनाएँ चालू करें।';
+
+  @override
+  String get permission_blocked_body =>
+      'यह आपके फ़ोन की सेटिंग्स में बंद है। सेटिंग्स खोलें, अनुमतियाँ पर टैप करें और इसे चालू करें।';
+
+  @override
+  String get permission_allow => 'अनुमति दें';
+
+  @override
+  String get permission_open_settings => 'सेटिंग्स खोलें';
+
+  @override
+  String get permission_not_now => 'अभी नहीं';
+
+  @override
+  String get help_title => 'मदद';
+
+  @override
+  String get help_search_label => 'प्रश्न खोजें';
+
+  @override
+  String get help_search_hint => 'जैसे ऑफ़र, शुरू करने का कोड, भुगतान';
+
+  @override
+  String get help_no_results_title => 'कोई मेल खाता प्रश्न नहीं';
+
+  @override
+  String get help_no_results_body => 'दूसरे शब्द आज़माएँ, या हमें कॉल करें।';
+
+  @override
+  String get help_call_support => 'सहायता को कॉल करें';
+
+  @override
+  String get help_whatsapp => 'WhatsApp';
+
+  @override
+  String get help_grievance_title => 'शिकायत अधिकारी';
+
+  @override
+  String get help_grievance_body =>
+      'अपने डेटा या गोपनीयता से जुड़ी शिकायतों के लिए हमारे शिकायत अधिकारी को लिखें। हम 7 दिनों में जवाब देते हैं।';
+
+  @override
+  String get help_faq_jobs_q => 'मुझे काम कैसे मिलेंगे?';
+
+  @override
+  String get help_faq_jobs_a =>
+      'मंज़ूरी मिलने के बाद होम स्क्रीन पर ऑनलाइन हों। पास की खराब गाड़ियाँ आपको ऑफ़र के रूप में आएँगी; 30 सेकंड में स्लाइड करके स्वीकार करें।';
+
+  @override
+  String get help_faq_no_offers_q => 'मुझे ऑफ़र क्यों नहीं मिल रहे?';
+
+  @override
+  String get help_faq_no_offers_a =>
+      'देखें कि आप ऑनलाइन हैं, मंज़ूर हैं, अपने शहर में हैं, और आपकी गाड़ियों के प्रकार और सेवाएँ भरी हैं। लोकेशन चालू रखकर ऐप खुला रखें; ऑफ़र सिर्फ़ पास के मैकेनिकों को जाते हैं।';
+
+  @override
+  String get help_faq_verify_q => 'जाँच कैसे होती है?';
+
+  @override
+  String get help_faq_verify_a =>
+      'काम मिलने से पहले हम आपकी ID और फ़ोटो जाँचते हैं। अगर आप बिना वर्कशॉप के काम करते हैं, तो हम एक छोटी जाँच के लिए कॉल भी करते हैं।';
+
+  @override
+  String get help_faq_code_q => 'शुरू करने का कोड क्या है?';
+
+  @override
+  String get help_faq_code_a =>
+      'पहुँचने पर ग्राहक आपको 4 अंकों का कोड बताएँगे। काम शुरू करने के लिए इसे डालें। 5 बार गलत होने पर यह 10 मिनट के लिए बंद हो जाता है।';
+
+  @override
+  String get help_faq_pay_q => 'मुझे पैसा कैसे मिलेगा?';
+
+  @override
+  String get help_faq_pay_a =>
+      'ग्राहक आपको सीधे UPI से भुगतान करते हैं। अपना UPI ऐप देखें, फिर पुष्टि करें पर टैप करें। अगर पैसा नहीं आया, तो नहीं मिला पर टैप करें और हम जाँच करेंगे।';
+
+  @override
+  String get help_faq_cancel_q => 'क्या मैं काम रद्द कर सकता हूँ?';
+
+  @override
+  String get help_faq_cancel_a =>
+      'हाँ, लेकिन इससे आपकी विश्वसनीयता पर असर पड़ता है। पहुँचने से पहले काम दूसरे मैकेनिक को जाता है; पहुँचने के बाद कारण बताएँ।';
 }
