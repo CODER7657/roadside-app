@@ -1106,5 +1106,100 @@
   "cancel_keep_open": "Go back",
   "@cancel_keep_open": {
     "description": "Sheet: close without doing anything."
+  },
+  "review_rate": "Rate {name}",
+  "@review_rate": {
+    "description": "Payment confirmed: opens U14.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "review_step": "Your review",
+  "@review_step": {
+    "description": "U14: step label."
+  },
+  "review_title": "How was {name}?",
+  "@review_title": {
+    "description": "U14: title.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "review_stars_label": "Rating for {name}",
+  "@review_stars_label": {
+    "description": "U14: StarRating label for TalkBack.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "review_tags_good": "What went well?",
+  "@review_tags_good": {
+    "description": "U14: tags for 4–5 stars."
+  },
+  "review_tags_bad": "What went wrong?",
+  "@review_tags_bad": {
+    "description": "U14: tags for 1–3 stars."
+  },
+  "review_tag_on_time": "On time",
+  "@review_tag_on_time": {
+    "description": "Tag on_time."
+  },
+  "review_tag_friendly": "Friendly",
+  "@review_tag_friendly": {
+    "description": "Tag friendly."
+  },
+  "review_tag_fixed_fast": "Fixed it fast",
+  "@review_tag_fixed_fast": {
+    "description": "Tag fixed_fast."
+  },
+  "review_tag_fair_price": "Fair price",
+  "@review_tag_fair_price": {
+    "description": "Tag fair_price."
+  },
+  "review_tag_late": "Came late",
+  "@review_tag_late": {
+    "description": "Tag late."
+  },
+  "review_tag_rude": "Rude",
+  "@review_tag_rude": {
+    "description": "Tag rude."
+  },
+  "review_tag_overcharged": "Charged too much",
+  "@review_tag_overcharged": {
+    "description": "Tag overcharged."
+  },
+  "review_tag_not_fixed": "Not fixed",
+  "@review_tag_not_fixed": {
+    "description": "Tag not_fixed."
+  },
+  "review_comment_label": "Anything else? (optional)",
+  "@review_comment_label": {
+    "description": "U14: comment field."
+  },
+  "review_submit": "Send review",
+  "@review_submit": {
+    "description": "U14: primary."
+  },
+  "review_thanks": "Thanks for your review!",
+  "@review_thanks": {
+    "description": "Toast after sending."
+  },
+  "review_error": "Couldn't send your review. Check your connection and try again.",
+  "@review_error": {
+    "description": "Toast: submit failed."
+  },
+  "review_not_allowed": "This booking can’t be reviewed.",
+  "@review_not_allowed": {
+    "description": "Not completed, not theirs, or already reviewed."
+  },
+  "review_already": "You have rated this booking. Thank you!",
+  "@review_already": {
+    "description": "U14: already reviewed."
   }
 }

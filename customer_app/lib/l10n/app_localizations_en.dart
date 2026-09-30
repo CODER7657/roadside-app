@@ -804,4 +804,70 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cancel_keep_open => 'Go back';
+
+  @override
+  String review_rate(String name) {
+    return 'Rate $name';
+  }
+
+  @override
+  String get review_step => 'Your review';
+
+  @override
+  String review_title(String name) {
+    return 'How was $name?';
+  }
+
+  @override
+  String review_stars_label(String name) {
+    return 'Rating for $name';
+  }
+
+  @override
+  String get review_tags_good => 'What went well?';
+
+  @override
+  String get review_tags_bad => 'What went wrong?';
+
+  @override
+  String get review_tag_on_time => 'On time';
+
+  @override
+  String get review_tag_friendly => 'Friendly';
+
+  @override
+  String get review_tag_fixed_fast => 'Fixed it fast';
+
+  @override
+  String get review_tag_fair_price => 'Fair price';
+
+  @override
+  String get review_tag_late => 'Came late';
+
+  @override
+  String get review_tag_rude => 'Rude';
+
+  @override
+  String get review_tag_overcharged => 'Charged too much';
+
+  @override
+  String get review_tag_not_fixed => 'Not fixed';
+
+  @override
+  String get review_comment_label => 'Anything else? (optional)';
+
+  @override
+  String get review_submit => 'Send review';
+
+  @override
+  String get review_thanks => 'Thanks for your review!';
+
+  @override
+  String get review_error => 'Couldn\'t send your review. Check your connection and try again.';
+
+  @override
+  String get review_not_allowed => 'This booking can’t be reviewed.';
+
+  @override
+  String get review_already => 'You have rated this booking. Thank you!';
 }

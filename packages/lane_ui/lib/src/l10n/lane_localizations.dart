@@ -230,6 +230,18 @@ abstract class LaneLocalizations {
   /// In en, this message translates to:
   /// **'Turn off sunlight mode'**
   String get glare_turn_off;
+
+  /// StarRating: TalkBack value.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} of 5 stars'**
+  String star_rating_value(int count);
+
+  /// StarRating: TalkBack value at 0.
+  ///
+  /// In en, this message translates to:
+  /// **'Not rated yet'**
+  String get star_rating_none;
 }
 
 class _LaneLocalizationsDelegate extends LocalizationsDelegate<LaneLocalizations> {

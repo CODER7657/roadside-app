@@ -1538,6 +1538,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Go back'**
   String get cancel_keep_open;
+
+  /// Payment confirmed: opens U14.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate {name}'**
+  String review_rate(String name);
+
+  /// U14: step label.
+  ///
+  /// In en, this message translates to:
+  /// **'Your review'**
+  String get review_step;
+
+  /// U14: title.
+  ///
+  /// In en, this message translates to:
+  /// **'How was {name}?'**
+  String review_title(String name);
+
+  /// U14: StarRating label for TalkBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Rating for {name}'**
+  String review_stars_label(String name);
+
+  /// U14: tags for 4–5 stars.
+  ///
+  /// In en, this message translates to:
+  /// **'What went well?'**
+  String get review_tags_good;
+
+  /// U14: tags for 1–3 stars.
+  ///
+  /// In en, this message translates to:
+  /// **'What went wrong?'**
+  String get review_tags_bad;
+
+  /// Tag on_time.
+  ///
+  /// In en, this message translates to:
+  /// **'On time'**
+  String get review_tag_on_time;
+
+  /// Tag friendly.
+  ///
+  /// In en, this message translates to:
+  /// **'Friendly'**
+  String get review_tag_friendly;
+
+  /// Tag fixed_fast.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed it fast'**
+  String get review_tag_fixed_fast;
+
+  /// Tag fair_price.
+  ///
+  /// In en, this message translates to:
+  /// **'Fair price'**
+  String get review_tag_fair_price;
+
+  /// Tag late.
+  ///
+  /// In en, this message translates to:
+  /// **'Came late'**
+  String get review_tag_late;
+
+  /// Tag rude.
+  ///
+  /// In en, this message translates to:
+  /// **'Rude'**
+  String get review_tag_rude;
+
+  /// Tag overcharged.
+  ///
+  /// In en, this message translates to:
+  /// **'Charged too much'**
+  String get review_tag_overcharged;
+
+  /// Tag not_fixed.
+  ///
+  /// In en, this message translates to:
+  /// **'Not fixed'**
+  String get review_tag_not_fixed;
+
+  /// U14: comment field.
+  ///
+  /// In en, this message translates to:
+  /// **'Anything else? (optional)'**
+  String get review_comment_label;
+
+  /// U14: primary.
+  ///
+  /// In en, this message translates to:
+  /// **'Send review'**
+  String get review_submit;
+
+  /// Toast after sending.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks for your review!'**
+  String get review_thanks;
+
+  /// Toast: submit failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t send your review. Check your connection and try again.'**
+  String get review_error;
+
+  /// Not completed, not theirs, or already reviewed.
+  ///
+  /// In en, this message translates to:
+  /// **'This booking can’t be reviewed.'**
+  String get review_not_allowed;
+
+  /// U14: already reviewed.
+  ///
+  /// In en, this message translates to:
+  /// **'You have rated this booking. Thank you!'**
+  String get review_already;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

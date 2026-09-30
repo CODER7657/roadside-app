@@ -95,4 +95,12 @@ class LaneLocalizationsHi extends LaneLocalizations {
 
   @override
   String get glare_turn_off => 'धूप मोड बंद करें';
+
+  @override
+  String star_rating_value(int count) {
+    return '5 में से $count स्टार';
+  }
+
+  @override
+  String get star_rating_none => 'अभी रेटिंग नहीं दी';
 }

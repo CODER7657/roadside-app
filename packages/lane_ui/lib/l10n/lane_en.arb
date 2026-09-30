@@ -145,5 +145,18 @@
   "glare_turn_off": "Turn off sunlight mode",
   "@glare_turn_off": {
     "description": "LaneGlareButton tooltip / TalkBack when on."
+  },
+  "star_rating_value": "{count} of 5 stars",
+  "@star_rating_value": {
+    "description": "StarRating: TalkBack value.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "star_rating_none": "Not rated yet",
+  "@star_rating_none": {
+    "description": "StarRating: TalkBack value at 0."
   }
 }

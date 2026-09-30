@@ -806,4 +806,70 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get cancel_keep_open => 'वापस जाएँ';
+
+  @override
+  String review_rate(String name) {
+    return '$name को रेटिंग दें';
+  }
+
+  @override
+  String get review_step => 'आपकी समीक्षा';
+
+  @override
+  String review_title(String name) {
+    return '$name कैसे रहे?';
+  }
+
+  @override
+  String review_stars_label(String name) {
+    return '$name के लिए रेटिंग';
+  }
+
+  @override
+  String get review_tags_good => 'क्या अच्छा रहा?';
+
+  @override
+  String get review_tags_bad => 'क्या गलत हुआ?';
+
+  @override
+  String get review_tag_on_time => 'समय पर';
+
+  @override
+  String get review_tag_friendly => 'विनम्र';
+
+  @override
+  String get review_tag_fixed_fast => 'जल्दी ठीक किया';
+
+  @override
+  String get review_tag_fair_price => 'सही कीमत';
+
+  @override
+  String get review_tag_late => 'देर से आए';
+
+  @override
+  String get review_tag_rude => 'बदतमीज़';
+
+  @override
+  String get review_tag_overcharged => 'ज़्यादा पैसे लिए';
+
+  @override
+  String get review_tag_not_fixed => 'ठीक नहीं हुआ';
+
+  @override
+  String get review_comment_label => 'और कुछ? (वैकल्पिक)';
+
+  @override
+  String get review_submit => 'समीक्षा भेजें';
+
+  @override
+  String get review_thanks => 'आपकी समीक्षा के लिए धन्यवाद!';
+
+  @override
+  String get review_error => 'समीक्षा नहीं भेजी जा सकी। अपना कनेक्शन जाँचें और फिर कोशिश करें।';
+
+  @override
+  String get review_not_allowed => 'इस बुकिंग की समीक्षा नहीं की जा सकती।';
+
+  @override
+  String get review_already => 'आपने इस बुकिंग को रेटिंग दे दी है। धन्यवाद!';
 }
