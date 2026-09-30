@@ -209,7 +209,11 @@ class FirebaseJobRepository implements JobRepository {
   @override
   Future<StartCodeResult> verifyStartCode(String bookingId, String code) async {
     try {
-      await _functions.httpsCallable('verifyStartOtp').call<Object?>({'bookingId': bookingId, 'code': code});
+      // verifyStartOtp consumes its App Check token (replay protection), so each call needs a
+      // fresh limited-use one; the normal cached token would be refused from the second try on.
+      await _functions
+          .httpsCallable('verifyStartOtp', options: HttpsCallableOptions(limitedUseAppCheckToken: true))
+          .call<Object?>({'bookingId': bookingId, 'code': code});
       return const StartCodeAccepted();
     } on FirebaseFunctionsException catch (e) {
       return startCodeResultForError(e.message, e.details);
