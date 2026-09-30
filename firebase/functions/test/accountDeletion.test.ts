@@ -4,6 +4,7 @@ import { getAuth } from 'firebase-admin/auth';
 import { GeoPoint, Timestamp } from 'firebase-admin/firestore';
 import { authEmulatorRunning, emulatorRunning, fakeRequest, rejection } from './helpers.js';
 import { purgePending, setPurgeDeps } from '../src/account/purgeAccounts.js';
+import { createBooking } from '../src/callables/createBooking.js';
 import { requestAccountDeletion } from '../src/callables/requestAccountDeletion.js';
 import { db } from '../src/lib/admin.js';
 import { AHMEDABAD, bookingOf, north, resetEmulators, seedBooking, seedMechanic } from './dispatchFixtures.js';
@@ -84,6 +85,45 @@ describe(
       assert.equal(second.requestedAt, first.requestedAt);
     });
 
+    it('the token that asked can do nothing else in the hour before it expires', async () => {
+      const { customerId } = await customerWithHistory();
+      await call(customerId, 'customer');
+      const err = await rejection(
+        createBooking.run(
+          fakeRequest({
+            uid: customerId,
+            claims: { role: 'customer', auth_time: freshAuthTime() },
+            data: {
+              idempotencyKey: `idem-${Date.now()}-xxxxxxxxxxxx`,
+              vehicleId: 'v-1',
+              problemType: 'flat_tyre',
+              pickup: { lat: AHMEDABAD.lat, lng: AHMEDABAD.lng, address: 'Test road', accuracyMeters: 15 },
+            },
+          }),
+        ),
+      );
+      assert.deepEqual(err, { code: 'permission-denied', message: 'error_account_deleted' });
+    });
+
+    it('refused while a finished job still has its payment open; fine once confirmed', async () => {
+      const mechanicId = await seedMechanic({ at: north(AHMEDABAD, 1) });
+      const bookingId = await seedBooking(AHMEDABAD, 'ahmedabad', {
+        status: 'completed',
+        mechanicId,
+        paymentStatus: 'disputed',
+      });
+      const customerId = (await bookingOf(bookingId)).customerId as string;
+      for (const [uid, role] of [
+        [customerId, 'customer'],
+        [mechanicId, 'mechanic'],
+      ] as const) {
+        const err = await rejection(call(uid, role));
+        assert.deepEqual(err, { code: 'failed-precondition', message: 'error_payment_open' }, role);
+      }
+      await db().doc(`bookings/${bookingId}`).update({ paymentStatus: 'confirmed' });
+      await call(customerId, 'customer');
+    });
+
     it('a stale sign-in must sign in again first', async () => {
       const { customerId } = await customerWithHistory();
       const err = await rejection(call(customerId, 'customer', { authTime: freshAuthTime() - 10 * 60 }));
@@ -128,7 +168,11 @@ describe(
       const fs = db();
       assert.equal((await fs.doc(`users/${customerId}`).get()).exists, false);
       assert.equal((await fs.doc(`users/${customerId}/vehicles/v-1`).get()).exists, false);
-      assert.deepEqual(deletedPrefixes, [`users/${customerId}/`]);
+      assert.deepEqual(deletedPrefixes, [
+        `bookings/${bookingId}/chat/`,
+        `bookings/${bookingId}/work/`,
+        `users/${customerId}/`,
+      ]);
       await assert.rejects(getAuth().getUser(customerId), /user-not-found|no user record/i);
 
       const b = await bookingOf(bookingId);
@@ -137,6 +181,7 @@ describe(
       assert.deepEqual(b.photoUrls, []);
       assert.equal(b.pickup.address, '');
       assert.equal(b.pickup.landmark, '');
+      assert.deepEqual(b.vehicle, { type: 'car', brand: '', model: '', regNo: '' }, 'the plate identifies the owner');
       assert.equal((b.pickup.geopoint as GeoPoint).latitude, Math.round(AHMEDABAD.lat * 100) / 100);
       assert.equal(b.status, 'completed', 'the record itself is kept (tax, disputes)');
       assert.equal((await fs.doc(`bookings/${bookingId}/private/otp`).get()).exists, false);

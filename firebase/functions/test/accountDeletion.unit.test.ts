@@ -49,6 +49,12 @@ describe('purge helpers', () => {
     assert.equal(update['pickup.address'], '');
     assert.equal(update['pickup.landmark'], '');
     assert.equal(update['pickup.plusCode'], '');
+    assert.equal(update['vehicle.regNo'], '');
+    assert.equal(update['vehicle.brand'], '');
+    assert.equal(update['vehicle.model'], '');
+    assert.equal(update['vehicle.type'], undefined, 'the type stays');
+    assert.deepEqual(update.beforePhotoUrls, []);
+    assert.deepEqual(update.afterPhotoUrls, []);
     assert.equal((update['pickup.geohash'] as string).length, 5);
     assert.equal((update['pickup.geopoint'] as GeoPoint).latitude, 23.02);
   });

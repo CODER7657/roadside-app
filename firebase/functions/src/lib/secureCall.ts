@@ -5,7 +5,9 @@
 //   3. role claim (and optionally mechanicStatus) checked
 //   4. input parsed with a strict zod schema: unknown fields are rejected
 //   5. per-uid sliding-window rate limit
-//   6. anything that isn't an HttpsError becomes `internal` with a safe message key;
+//   6. a customer or mechanic who asked to delete their account is refused: their ID token
+//      stays valid up to an hour after requestAccountDeletion revokes it (#167)
+//   7. anything that isn't an HttpsError becomes `internal` with a safe message key;
 //      no stack traces or internal data reach the client
 
 import * as logger from 'firebase-functions/logger';
@@ -18,7 +20,7 @@ import {
 import { z } from 'zod';
 import type { MechanicStatus, Role } from '../models/enums.js';
 import type { RoleClaims } from '../models/documents.js';
-import { REGION } from './admin.js';
+import { REGION, db } from './admin.js';
 import { enforceRateLimit, type RateLimit } from './rateLimit.js';
 
 export interface SecureCallOptions<S extends z.ZodObject> {
@@ -33,6 +35,8 @@ export interface SecureCallOptions<S extends z.ZodObject> {
   rateLimit?: RateLimit;
   /** Replay protection. Only for verifyStartOtp, confirmPayment, requestAccountDeletion. */
   consumeAppCheckToken?: boolean;
+  /** Only requestAccountDeletion: a repeat request after the first one still answers. */
+  allowPendingDeletion?: boolean;
   timeoutSeconds?: number;
 }
 
@@ -42,6 +46,21 @@ export interface SecureContext<T> {
   claims: RoleClaims;
   data: T;
   request: CallableRequest<unknown>;
+}
+
+/** True if [uid]'s profile has `deletionRequestedAt` (users/{uid} or mechanics/{uid}). */
+export type DeletionCheck = (role: 'customer' | 'mechanic', uid: string) => Promise<boolean>;
+
+const firestoreDeletionCheck: DeletionCheck = async (role, uid) => {
+  const profile = await db().doc(role === 'mechanic' ? `mechanics/${uid}` : `users/${uid}`).get();
+  return Boolean(profile.get('deletionRequestedAt'));
+};
+
+let deletionCheck: DeletionCheck = firestoreDeletionCheck;
+
+/** Tests without Firestore only. */
+export function setDeletionCheck(next: DeletionCheck | null): void {
+  deletionCheck = next ?? firestoreDeletionCheck;
 }
 
 export function secureCall<S extends z.ZodObject, R>(
@@ -90,6 +109,9 @@ export function secureCall<S extends z.ZodObject, R>(
 
       try {
         if (opts.rateLimit) await enforceRateLimit(uid, opts.name, opts.rateLimit);
+        if ((role === 'customer' || role === 'mechanic') && !opts.allowPendingDeletion) {
+          if (await deletionCheck(role, uid)) throw new HttpsError('permission-denied', 'error_account_deleted');
+        }
         // .strict() only rejects unknown keys; the output shape is still z.infer<S>.
         const data = parsed.data as z.infer<S>;
         return await handler({ uid, role, claims, data, request });

@@ -1,7 +1,9 @@
 // requestAccountDeletion (#167; PLAN §12.2, §12.6, §12.12). C10 in both apps calls it.
 //
 //   - Needs a fresh sign-in: the ID token's `auth_time` within the last 5 minutes (§12.2).
-//   - Refused while the caller has an active booking (they cancel or finish it first).
+//   - Refused while the caller has an active booking (they cancel or finish it first), or a
+//     finished one whose payment isn't settled (pending, marked paid, disputed): the other side
+//     still needs the contact details the purge would blank.
 //   - Marks the profile with `deletionRequestedAt` (users/{uid} for customers, mechanics/{uid}
 //     for mechanics), takes a mechanic offline, then disables the Auth user and revokes their
 //     refresh tokens, so the account stops working at once: they can't sign in again, and
@@ -29,6 +31,9 @@ const input = z.object({
     text: z.string().trim().max(300).optional(),
   }),
 });
+
+/** Payment states that still need both sides' details (§12.9): only `confirmed` is settled. */
+export const OPEN_PAYMENT_STATUSES = ['pending', 'customer_marked_paid', 'disputed'] as const;
 
 /** §12.2: deletion needs a sign-in within the last 5 minutes. */
 export const REAUTH_WINDOW_SECONDS = 5 * 60;
@@ -59,6 +64,7 @@ export const requestAccountDeletion = secureCall(
     input,
     // §12.6: replay protection on this one.
     consumeAppCheckToken: true,
+    allowPendingDeletion: true,
     rateLimit: { max: 5, windowSeconds: 3600 },
   },
   async ({ uid, role, claims, data }): Promise<RequestAccountDeletionResult> => {
@@ -73,10 +79,18 @@ export const requestAccountDeletion = secureCall(
       .where(role === 'mechanic' ? 'mechanicId' : 'customerId', '==', uid)
       .where('status', 'in', [...ACTIVE_STATUSES])
       .limit(1);
+    const unsettledQuery = fs
+      .collection('bookings')
+      .where(role === 'mechanic' ? 'mechanicId' : 'customerId', '==', uid)
+      .where('status', '==', 'completed')
+      .where('paymentStatus', 'in', [...OPEN_PAYMENT_STATUSES])
+      .limit(1);
 
     const requestedAt = await fs.runTransaction(async (tx) => {
       const active = await tx.get(activeQuery);
       if (!active.empty) throw new HttpsError('failed-precondition', 'error_active_booking');
+      const unsettled = await tx.get(unsettledQuery);
+      if (!unsettled.empty) throw new HttpsError('failed-precondition', 'error_payment_open');
 
       const profile = await tx.get(profileRef);
       const presenceRef = fs.doc(`presence/${uid}`);

@@ -6,8 +6,10 @@
 // Customer (users/{uid}):
 //   - the profile with its vehicles (recursive), draft photos in Storage (users/{uid}/…)
 //   - their bookings are kept for 3 years (tax, disputes) but anonymised: no name, phone,
-//     address, landmark, plus code, description or photos; the pickup point is rounded to
-//     ~1 km; the start-code doc, chat, live location and share links are deleted
+//     address, landmark, plus code, description, number plate, brand or model; the pickup point
+//     is rounded to ~1 km; problem, chat and before/after photos are deleted (from Storage
+//     too: the work photos can show the plate); the start-code doc, chat, live location and
+//     share links are deleted
 //   - their review comments are cleared (stars and tags stay: they're the mechanic's rating)
 // Mechanic (mechanics/{uid}):
 //   - the profile is reduced to a tombstone (`deletionRequestedAt`, `status: blocked`), so the
@@ -58,6 +60,12 @@ export function anonymisedForCustomer(b: Pick<BookingDoc, 'pickup'>): Record<str
     customerCard: null,
     description: '',
     photoUrls: [],
+    beforePhotoUrls: [],
+    afterPhotoUrls: [],
+    // A number plate identifies the owner; the vehicle type stays for statistics.
+    'vehicle.regNo': '',
+    'vehicle.brand': '',
+    'vehicle.model': '',
     'pickup.geopoint': point,
     'pickup.geohash': geohash({ lat: point.latitude, lng: point.longitude }, 5),
     'pickup.address': '',
@@ -106,6 +114,8 @@ async function purgeCustomer(uid: string): Promise<void> {
     await doc.ref.update(anonymisedForCustomer(doc.data() as BookingDoc));
     await fs.recursiveDelete(fs.doc(`bookings/${id}/private/otp`));
     await fs.recursiveDelete(fs.collection(`bookings/${id}/messages`));
+    await deps.deleteFiles(`bookings/${id}/chat/`);
+    await deps.deleteFiles(`bookings/${id}/work/`);
     await fs.doc(`liveLocations/${id}`).delete();
     const review = fs.doc(`reviews/${id}`);
     if ((await review.get()).exists) await review.update({ comment: '' });
