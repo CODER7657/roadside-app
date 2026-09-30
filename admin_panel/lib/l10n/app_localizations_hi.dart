@@ -392,4 +392,153 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get approvals_error_unknown => 'कुछ गड़बड़ हुई। कुछ नहीं बदला।';
+
+  @override
+  String get booking_status_requested => 'खोज रहे हैं';
+
+  @override
+  String get booking_status_accepted => 'स्वीकार';
+
+  @override
+  String get booking_status_arriving => 'रास्ते में';
+
+  @override
+  String get booking_status_arrived => 'पहुँच गए';
+
+  @override
+  String get booking_status_in_progress => 'काम चल रहा है';
+
+  @override
+  String get booking_status_completed => 'पूरा';
+
+  @override
+  String get booking_status_cancelled => 'रद्द';
+
+  @override
+  String get booking_status_no_mechanic => 'कोई मैकेनिक नहीं';
+
+  @override
+  String dashboard_today(String date) {
+    return 'आज, $date';
+  }
+
+  @override
+  String get dashboard_previous_day => 'पिछला दिन';
+
+  @override
+  String get dashboard_next_day => 'अगला दिन';
+
+  @override
+  String get dashboard_load_failed => 'डैशबोर्ड लोड नहीं हो सका।';
+
+  @override
+  String get dashboard_stat_bookings => 'बुकिंग';
+
+  @override
+  String get dashboard_stat_active_mechanics => 'ऑनलाइन मैकेनिक';
+
+  @override
+  String get dashboard_stat_active_mechanics_note => 'अभी';
+
+  @override
+  String get dashboard_stat_completion => 'पूरा होने की दर';
+
+  @override
+  String get dashboard_stat_median_arrival => 'औसत पहुँच समय';
+
+  @override
+  String get dashboard_stat_median_arrival_note => 'स्वीकार से पहुँचने तक';
+
+  @override
+  String dashboard_minutes(int minutes) {
+    return '$minutes मिनट';
+  }
+
+  @override
+  String get dashboard_stat_sms => 'SMS सफलता';
+
+  @override
+  String get dashboard_stat_sms_note => 'मॉनिटरिंग से (#62)';
+
+  @override
+  String get dashboard_bookings_title => 'इस दिन की बुकिंग';
+
+  @override
+  String get dashboard_bookings_empty => 'इस दिन कोई बुकिंग नहीं।';
+
+  @override
+  String get dashboard_column_booking => 'बुकिंग';
+
+  @override
+  String get dashboard_column_customer => 'ग्राहक';
+
+  @override
+  String get dashboard_column_mechanic => 'मैकेनिक';
+
+  @override
+  String get dashboard_column_status => 'स्थिति';
+
+  @override
+  String get dashboard_column_amount => 'रकम';
+
+  @override
+  String get live_load_failed => 'लाइव बुकिंग लोड नहीं हो सकीं।';
+
+  @override
+  String get live_empty => 'अभी कोई चालू बुकिंग नहीं।';
+
+  @override
+  String get live_status_all => 'सभी चालू';
+
+  @override
+  String get live_vehicle_all => 'सभी वाहन';
+
+  @override
+  String live_map_label(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'नक्शा, $count चालू बुकिंग',
+      one: 'नक्शा, 1 चालू बुकिंग',
+      zero: 'नक्शा, कोई चालू बुकिंग नहीं',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String live_customer(String details) {
+    return 'ग्राहक: $details';
+  }
+
+  @override
+  String live_mechanic(String details) {
+    return 'मैकेनिक: $details';
+  }
+
+  @override
+  String live_searching(int km) {
+    return '$km किमी के अंदर खोज रहे हैं';
+  }
+
+  @override
+  String get live_cancel => 'एडमिन के रूप में रद्द करें';
+
+  @override
+  String get live_cancel_reason_label => 'आप क्यों रद्द कर रहे हैं?';
+
+  @override
+  String get live_cancel_reason_hint => 'जैसे: ग्राहक ने फ़ोन पर कहा';
+
+  @override
+  String get live_cancel_confirm => 'बुकिंग रद्द करें';
+
+  @override
+  String get live_cancel_note =>
+      'ग्राहक और मैकेनिक को सूचना जाती है। रद्द करना आपके खाते के साथ दर्ज होता है।';
+
+  @override
+  String get live_cancelled => 'बुकिंग रद्द हो गई।';
+
+  @override
+  String get live_cancel_refused => 'यह बुकिंग अब रद्द नहीं हो सकती।';
 }

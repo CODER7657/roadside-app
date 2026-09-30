@@ -532,5 +532,207 @@
   "approvals_error_unknown": "Something went wrong. Nothing was changed.",
   "@approvals_error_unknown": {
     "description": "Other errors."
+  },
+  "booking_status_requested": "Searching",
+  "@booking_status_requested": {
+    "description": "Booking status: requested (rail: Requested)."
+  },
+  "booking_status_accepted": "Accepted",
+  "@booking_status_accepted": {
+    "description": "Booking status."
+  },
+  "booking_status_arriving": "On the way",
+  "@booking_status_arriving": {
+    "description": "Booking status: arriving."
+  },
+  "booking_status_arrived": "Arrived",
+  "@booking_status_arrived": {
+    "description": "Booking status."
+  },
+  "booking_status_in_progress": "Working",
+  "@booking_status_in_progress": {
+    "description": "Booking status: in progress."
+  },
+  "booking_status_completed": "Done",
+  "@booking_status_completed": {
+    "description": "Booking status: completed."
+  },
+  "booking_status_cancelled": "Cancelled",
+  "@booking_status_cancelled": {
+    "description": "Booking status."
+  },
+  "booking_status_no_mechanic": "No mechanic",
+  "@booking_status_no_mechanic": {
+    "description": "Booking status: no mechanic found."
+  },
+  "dashboard_today": "Today, {date}",
+  "@dashboard_today": {
+    "description": "A1 heading for today.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "dashboard_previous_day": "Previous day",
+  "@dashboard_previous_day": {
+    "description": "A1 day stepper."
+  },
+  "dashboard_next_day": "Next day",
+  "@dashboard_next_day": {
+    "description": "A1 day stepper."
+  },
+  "dashboard_load_failed": "Couldn't load the dashboard.",
+  "@dashboard_load_failed": {
+    "description": "A1 error."
+  },
+  "dashboard_stat_bookings": "Bookings",
+  "@dashboard_stat_bookings": {
+    "description": "Stat card."
+  },
+  "dashboard_stat_active_mechanics": "Mechanics online",
+  "@dashboard_stat_active_mechanics": {
+    "description": "Stat card."
+  },
+  "dashboard_stat_active_mechanics_note": "Right now",
+  "@dashboard_stat_active_mechanics_note": {
+    "description": "Under the online count."
+  },
+  "dashboard_stat_completion": "Completion",
+  "@dashboard_stat_completion": {
+    "description": "Stat card: completed / ended bookings."
+  },
+  "dashboard_stat_median_arrival": "Median arrival",
+  "@dashboard_stat_median_arrival": {
+    "description": "Stat card: accept to arrive."
+  },
+  "dashboard_stat_median_arrival_note": "Accepted to arrived",
+  "@dashboard_stat_median_arrival_note": {
+    "description": "Under the arrival stat."
+  },
+  "dashboard_minutes": "{minutes} min",
+  "@dashboard_minutes": {
+    "description": "Duration in minutes.",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "dashboard_stat_sms": "SMS success",
+  "@dashboard_stat_sms": {
+    "description": "Stat card: OTP SMS success rate."
+  },
+  "dashboard_stat_sms_note": "From monitoring (#62)",
+  "@dashboard_stat_sms_note": {
+    "description": "SMS rate comes from Cloud Monitoring, not Firestore."
+  },
+  "dashboard_bookings_title": "Bookings this day",
+  "@dashboard_bookings_title": {
+    "description": "A1 table title."
+  },
+  "dashboard_bookings_empty": "No bookings this day.",
+  "@dashboard_bookings_empty": {
+    "description": "A1 empty table."
+  },
+  "dashboard_column_booking": "Booking",
+  "@dashboard_column_booking": {
+    "description": "Table column."
+  },
+  "dashboard_column_customer": "Customer",
+  "@dashboard_column_customer": {
+    "description": "Table column."
+  },
+  "dashboard_column_mechanic": "Mechanic",
+  "@dashboard_column_mechanic": {
+    "description": "Table column."
+  },
+  "dashboard_column_status": "Status",
+  "@dashboard_column_status": {
+    "description": "Table column."
+  },
+  "dashboard_column_amount": "Amount",
+  "@dashboard_column_amount": {
+    "description": "Table column."
+  },
+  "live_load_failed": "Couldn't load live bookings.",
+  "@live_load_failed": {
+    "description": "A3 error."
+  },
+  "live_empty": "No active bookings right now.",
+  "@live_empty": {
+    "description": "A3 empty."
+  },
+  "live_status_all": "All active",
+  "@live_status_all": {
+    "description": "A3 status filter."
+  },
+  "live_vehicle_all": "All vehicles",
+  "@live_vehicle_all": {
+    "description": "A3 vehicle filter."
+  },
+  "live_map_label": "{count, plural, =0{Map with no active bookings} =1{Map with 1 active booking} other{Map with {count} active bookings}}",
+  "@live_map_label": {
+    "description": "Screen-reader label of the map.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "live_customer": "Customer: {details}",
+  "@live_customer": {
+    "description": "A3 detail. {details} is name and phone.",
+    "placeholders": {
+      "details": {
+        "type": "String"
+      }
+    }
+  },
+  "live_mechanic": "Mechanic: {details}",
+  "@live_mechanic": {
+    "description": "A3 detail. {details} is name and phone.",
+    "placeholders": {
+      "details": {
+        "type": "String"
+      }
+    }
+  },
+  "live_searching": "Searching within {km} km",
+  "@live_searching": {
+    "description": "A3 detail before accept.",
+    "placeholders": {
+      "km": {
+        "type": "int"
+      }
+    }
+  },
+  "live_cancel": "Cancel as admin",
+  "@live_cancel": {
+    "description": "A3 action."
+  },
+  "live_cancel_reason_label": "Why are you cancelling?",
+  "@live_cancel_reason_label": {
+    "description": "Reason, required (PLAN §9)."
+  },
+  "live_cancel_reason_hint": "For example: customer asked by phone",
+  "@live_cancel_reason_hint": {
+    "description": "Reason hint."
+  },
+  "live_cancel_confirm": "Cancel booking",
+  "@live_cancel_confirm": {
+    "description": "Confirms the admin cancel."
+  },
+  "live_cancel_note": "Customer and mechanic are notified. The cancel is recorded with your account.",
+  "@live_cancel_note": {
+    "description": "A3 footer."
+  },
+  "live_cancelled": "Booking cancelled.",
+  "@live_cancelled": {
+    "description": "Toast."
+  },
+  "live_cancel_refused": "This booking can't be cancelled any more.",
+  "@live_cancel_refused": {
+    "description": "failed-precondition on cancel."
   }
 }

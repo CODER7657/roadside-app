@@ -788,6 +788,264 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Something went wrong. Nothing was changed.'**
   String get approvals_error_unknown;
+
+  /// Booking status: requested (rail: Requested).
+  ///
+  /// In en, this message translates to:
+  /// **'Searching'**
+  String get booking_status_requested;
+
+  /// Booking status.
+  ///
+  /// In en, this message translates to:
+  /// **'Accepted'**
+  String get booking_status_accepted;
+
+  /// Booking status: arriving.
+  ///
+  /// In en, this message translates to:
+  /// **'On the way'**
+  String get booking_status_arriving;
+
+  /// Booking status.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrived'**
+  String get booking_status_arrived;
+
+  /// Booking status: in progress.
+  ///
+  /// In en, this message translates to:
+  /// **'Working'**
+  String get booking_status_in_progress;
+
+  /// Booking status: completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get booking_status_completed;
+
+  /// Booking status.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get booking_status_cancelled;
+
+  /// Booking status: no mechanic found.
+  ///
+  /// In en, this message translates to:
+  /// **'No mechanic'**
+  String get booking_status_no_mechanic;
+
+  /// A1 heading for today.
+  ///
+  /// In en, this message translates to:
+  /// **'Today, {date}'**
+  String dashboard_today(String date);
+
+  /// A1 day stepper.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous day'**
+  String get dashboard_previous_day;
+
+  /// A1 day stepper.
+  ///
+  /// In en, this message translates to:
+  /// **'Next day'**
+  String get dashboard_next_day;
+
+  /// A1 error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load the dashboard.'**
+  String get dashboard_load_failed;
+
+  /// Stat card.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings'**
+  String get dashboard_stat_bookings;
+
+  /// Stat card.
+  ///
+  /// In en, this message translates to:
+  /// **'Mechanics online'**
+  String get dashboard_stat_active_mechanics;
+
+  /// Under the online count.
+  ///
+  /// In en, this message translates to:
+  /// **'Right now'**
+  String get dashboard_stat_active_mechanics_note;
+
+  /// Stat card: completed / ended bookings.
+  ///
+  /// In en, this message translates to:
+  /// **'Completion'**
+  String get dashboard_stat_completion;
+
+  /// Stat card: accept to arrive.
+  ///
+  /// In en, this message translates to:
+  /// **'Median arrival'**
+  String get dashboard_stat_median_arrival;
+
+  /// Under the arrival stat.
+  ///
+  /// In en, this message translates to:
+  /// **'Accepted to arrived'**
+  String get dashboard_stat_median_arrival_note;
+
+  /// Duration in minutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min'**
+  String dashboard_minutes(int minutes);
+
+  /// Stat card: OTP SMS success rate.
+  ///
+  /// In en, this message translates to:
+  /// **'SMS success'**
+  String get dashboard_stat_sms;
+
+  /// SMS rate comes from Cloud Monitoring, not Firestore.
+  ///
+  /// In en, this message translates to:
+  /// **'From monitoring (#62)'**
+  String get dashboard_stat_sms_note;
+
+  /// A1 table title.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings this day'**
+  String get dashboard_bookings_title;
+
+  /// A1 empty table.
+  ///
+  /// In en, this message translates to:
+  /// **'No bookings this day.'**
+  String get dashboard_bookings_empty;
+
+  /// Table column.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking'**
+  String get dashboard_column_booking;
+
+  /// Table column.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer'**
+  String get dashboard_column_customer;
+
+  /// Table column.
+  ///
+  /// In en, this message translates to:
+  /// **'Mechanic'**
+  String get dashboard_column_mechanic;
+
+  /// Table column.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get dashboard_column_status;
+
+  /// Table column.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get dashboard_column_amount;
+
+  /// A3 error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load live bookings.'**
+  String get live_load_failed;
+
+  /// A3 empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No active bookings right now.'**
+  String get live_empty;
+
+  /// A3 status filter.
+  ///
+  /// In en, this message translates to:
+  /// **'All active'**
+  String get live_status_all;
+
+  /// A3 vehicle filter.
+  ///
+  /// In en, this message translates to:
+  /// **'All vehicles'**
+  String get live_vehicle_all;
+
+  /// Screen-reader label of the map.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{Map with no active bookings} =1{Map with 1 active booking} other{Map with {count} active bookings}}'**
+  String live_map_label(int count);
+
+  /// A3 detail. {details} is name and phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer: {details}'**
+  String live_customer(String details);
+
+  /// A3 detail. {details} is name and phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Mechanic: {details}'**
+  String live_mechanic(String details);
+
+  /// A3 detail before accept.
+  ///
+  /// In en, this message translates to:
+  /// **'Searching within {km} km'**
+  String live_searching(int km);
+
+  /// A3 action.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel as admin'**
+  String get live_cancel;
+
+  /// Reason, required (PLAN §9).
+  ///
+  /// In en, this message translates to:
+  /// **'Why are you cancelling?'**
+  String get live_cancel_reason_label;
+
+  /// Reason hint.
+  ///
+  /// In en, this message translates to:
+  /// **'For example: customer asked by phone'**
+  String get live_cancel_reason_hint;
+
+  /// Confirms the admin cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel booking'**
+  String get live_cancel_confirm;
+
+  /// A3 footer.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer and mechanic are notified. The cancel is recorded with your account.'**
+  String get live_cancel_note;
+
+  /// Toast.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking cancelled.'**
+  String get live_cancelled;
+
+  /// failed-precondition on cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'This booking can\'t be cancelled any more.'**
+  String get live_cancel_refused;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

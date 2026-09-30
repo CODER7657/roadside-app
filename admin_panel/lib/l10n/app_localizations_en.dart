@@ -392,4 +392,153 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get approvals_error_unknown => 'Something went wrong. Nothing was changed.';
+
+  @override
+  String get booking_status_requested => 'Searching';
+
+  @override
+  String get booking_status_accepted => 'Accepted';
+
+  @override
+  String get booking_status_arriving => 'On the way';
+
+  @override
+  String get booking_status_arrived => 'Arrived';
+
+  @override
+  String get booking_status_in_progress => 'Working';
+
+  @override
+  String get booking_status_completed => 'Done';
+
+  @override
+  String get booking_status_cancelled => 'Cancelled';
+
+  @override
+  String get booking_status_no_mechanic => 'No mechanic';
+
+  @override
+  String dashboard_today(String date) {
+    return 'Today, $date';
+  }
+
+  @override
+  String get dashboard_previous_day => 'Previous day';
+
+  @override
+  String get dashboard_next_day => 'Next day';
+
+  @override
+  String get dashboard_load_failed => 'Couldn\'t load the dashboard.';
+
+  @override
+  String get dashboard_stat_bookings => 'Bookings';
+
+  @override
+  String get dashboard_stat_active_mechanics => 'Mechanics online';
+
+  @override
+  String get dashboard_stat_active_mechanics_note => 'Right now';
+
+  @override
+  String get dashboard_stat_completion => 'Completion';
+
+  @override
+  String get dashboard_stat_median_arrival => 'Median arrival';
+
+  @override
+  String get dashboard_stat_median_arrival_note => 'Accepted to arrived';
+
+  @override
+  String dashboard_minutes(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String get dashboard_stat_sms => 'SMS success';
+
+  @override
+  String get dashboard_stat_sms_note => 'From monitoring (#62)';
+
+  @override
+  String get dashboard_bookings_title => 'Bookings this day';
+
+  @override
+  String get dashboard_bookings_empty => 'No bookings this day.';
+
+  @override
+  String get dashboard_column_booking => 'Booking';
+
+  @override
+  String get dashboard_column_customer => 'Customer';
+
+  @override
+  String get dashboard_column_mechanic => 'Mechanic';
+
+  @override
+  String get dashboard_column_status => 'Status';
+
+  @override
+  String get dashboard_column_amount => 'Amount';
+
+  @override
+  String get live_load_failed => 'Couldn\'t load live bookings.';
+
+  @override
+  String get live_empty => 'No active bookings right now.';
+
+  @override
+  String get live_status_all => 'All active';
+
+  @override
+  String get live_vehicle_all => 'All vehicles';
+
+  @override
+  String live_map_label(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Map with $count active bookings',
+      one: 'Map with 1 active booking',
+      zero: 'Map with no active bookings',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String live_customer(String details) {
+    return 'Customer: $details';
+  }
+
+  @override
+  String live_mechanic(String details) {
+    return 'Mechanic: $details';
+  }
+
+  @override
+  String live_searching(int km) {
+    return 'Searching within $km km';
+  }
+
+  @override
+  String get live_cancel => 'Cancel as admin';
+
+  @override
+  String get live_cancel_reason_label => 'Why are you cancelling?';
+
+  @override
+  String get live_cancel_reason_hint => 'For example: customer asked by phone';
+
+  @override
+  String get live_cancel_confirm => 'Cancel booking';
+
+  @override
+  String get live_cancel_note =>
+      'Customer and mechanic are notified. The cancel is recorded with your account.';
+
+  @override
+  String get live_cancelled => 'Booking cancelled.';
+
+  @override
+  String get live_cancel_refused => 'This booking can\'t be cancelled any more.';
 }
