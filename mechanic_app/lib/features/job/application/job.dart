@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roadside_core/roadside_core.dart';
 
+import '../../auth/application/auth.dart';
 import '../../dashboard/application/online.dart';
 import '../../dashboard/data/location_service.dart';
 import '../data/job_repository.dart';
@@ -34,11 +35,19 @@ int etaMinutes(LocationFix at, GeoPoint pickup) {
   return (km / JobTiming.kmPerHour * 60).ceil().clamp(1, 600);
 }
 
-// Seams: fakes until Firebase is wired (#120, #123).
-final jobRepositoryProvider = Provider<JobRepository>((ref) => InMemoryJobRepository());
-final liveLocationRepositoryProvider = Provider<LiveLocationRepository>(
-  (ref) => InMemoryLiveLocationRepository(),
-);
+// Seams: Firebase for a signed-in mechanic, the fakes otherwise (tests, no Firebase config).
+final jobRepositoryProvider = Provider<JobRepository>((ref) {
+  final signedIn = ref.watch(signedInFirebaseProvider);
+  if (signedIn == null) return InMemoryJobRepository();
+  final (firebase, _) = signedIn;
+  return FirebaseJobRepository(firebase.firestore, firebase.functions);
+});
+final liveLocationRepositoryProvider = Provider<LiveLocationRepository>((ref) {
+  final signedIn = ref.watch(signedInFirebaseProvider);
+  if (signedIn == null) return InMemoryLiveLocationRepository();
+  final (firebase, _) = signedIn;
+  return FirestoreLiveLocationRepository(firebase.firestore);
+});
 
 final jobProvider = StreamProvider.family<Booking?, String>(
   (ref, bookingId) => ref.watch(jobRepositoryProvider).watch(bookingId),

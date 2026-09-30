@@ -694,4 +694,62 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get job_missing_body => 'शायद यह रद्द हो गया है।';
+
+  @override
+  String get login_phone_title => 'आपका मोबाइल नंबर';
+
+  @override
+  String get login_country_code => '+91';
+
+  @override
+  String get login_phone_label => 'मोबाइल नंबर';
+
+  @override
+  String get login_phone_hint => '98765 43210';
+
+  @override
+  String get login_phone_helper => 'हम SMS से 6 अंकों का कोड भेजेंगे।';
+
+  @override
+  String get login_send_code => 'कोड भेजें';
+
+  @override
+  String get login_code_title => 'कोड डालें';
+
+  @override
+  String login_code_sent_to(String phone) {
+    return '$phone पर भेजा गया';
+  }
+
+  @override
+  String get login_change_number => 'नंबर बदलें';
+
+  @override
+  String login_resend_in(String time) {
+    return '$time में फिर से भेजें';
+  }
+
+  @override
+  String get login_resend => 'कोड फिर से भेजें';
+
+  @override
+  String get login_verify => 'पुष्टि करें';
+
+  @override
+  String get login_error_invalid_number => '10 अंकों का भारतीय मोबाइल नंबर डालें।';
+
+  @override
+  String get login_error_invalid_code => 'यह कोड सही नहीं है। SMS देखकर फिर से कोशिश करें।';
+
+  @override
+  String get login_error_code_expired => 'इस कोड का समय खत्म हो गया। नया कोड भेजें।';
+
+  @override
+  String get login_error_too_many => 'बहुत ज़्यादा कोशिशें हो गईं। थोड़ी देर बाद फिर से कोशिश करें।';
+
+  @override
+  String get login_error_network => 'इंटरनेट नहीं है। कनेक्शन देखकर फिर से कोशिश करें।';
+
+  @override
+  String get login_error_failed => 'कुछ गड़बड़ हो गई। फिर से कोशिश करें।';
 }

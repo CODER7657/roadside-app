@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:roadside_core/roadside_core.dart';
 
+import '../../auth/application/auth.dart';
 import '../data/offer_alerts.dart';
 import '../data/offer_repository.dart';
 
@@ -12,7 +13,12 @@ String offerRoute(String offerId) => '/offer/$offerId';
 String jobRoute(String bookingId) => '/job/$bookingId';
 
 // Seams: fakes until Firebase is wired (#120 FCM + notifications, #123 auth).
-final offerRepositoryProvider = Provider<OfferRepository>((ref) => InMemoryOfferRepository());
+final offerRepositoryProvider = Provider<OfferRepository>((ref) {
+  final signedIn = ref.watch(signedInFirebaseProvider);
+  if (signedIn == null) return InMemoryOfferRepository();
+  final (firebase, _) = signedIn;
+  return FirebaseOfferRepository(firebase.firestore, firebase.functions);
+});
 final offerAlertsProvider = Provider<OfferAlerts>((ref) => SilentOfferAlerts());
 
 /// The phone's clock, used only to draw the countdown ring. Tests override it.

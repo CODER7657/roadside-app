@@ -38,6 +38,16 @@ Without Firebase config the app still starts and runs on its in-memory fakes (as
 4. **Remote Config** defaults live in `lib/app/remote_flags.dart` (`min_supported_build`,
    `live_update_enabled`); the app works with them if Remote Config is unreachable.
 
+## Login (#123)
+
+C5–C6 use Firebase phone auth (India only). In dev, use the project's **test phone numbers**
+(Authentication → Sign-in method → Phone): no SMS is sent and the fixed code works. Android
+fills a real code in by itself (SMS Retriever, no SMS permission). Without Firebase config the
+app starts signed in on its fakes; signed out, the fake takes `123456`.
+
+Once signed in, registration, presence, offers, the job and live location use Firestore,
+Storage and the callables; without Firebase they stay on the in-memory fakes.
+
 ## Emulators
 
 The dev project is on the free plan, so Functions and Storage only run on the emulators

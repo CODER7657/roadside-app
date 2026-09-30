@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
@@ -23,17 +24,21 @@ enum FirebaseMode {
 
 /// The Firebase services the data layer uses, all on one app (the default app, or the
 /// emulators' demo app). The repositories switch from their fakes to these once a mechanic is
-/// signed in (#123).
+/// signed in (see `signedInFirebaseProvider`).
 @immutable
 class FirebaseServices {
   const FirebaseServices({
     required this.mode,
+    required this.auth,
     required this.firestore,
     required this.functions,
     required this.storage,
   });
 
   final FirebaseMode mode;
+
+  /// Phone login (C5–C6).
+  final FirebaseAuth auth;
   final FirebaseFirestore firestore;
 
   /// Callables in `asia-south1` (PLAN §3).
@@ -68,6 +73,8 @@ Future<FirebaseServices?> connectFirebase(AppFlavor flavor) async {
       ),
     );
     const host = AppEnv.emulatorHost;
+    final auth = FirebaseAuth.instanceFor(app: app);
+    await auth.useAuthEmulator(host, 9099);
     final firestore = FirebaseFirestore.instanceFor(app: app)..useFirestoreEmulator(host, 8080);
     final functions = FirebaseFunctions.instanceFor(app: app, region: kFirebaseRegion)
       ..useFunctionsEmulator(host, 5001);
@@ -75,6 +82,7 @@ Future<FirebaseServices?> connectFirebase(AppFlavor flavor) async {
     await storage.useStorageEmulator(host, 9199);
     return FirebaseServices(
       mode: FirebaseMode.emulators,
+      auth: auth,
       firestore: firestore,
       functions: functions,
       storage: storage,
@@ -90,6 +98,7 @@ Future<FirebaseServices?> connectFirebase(AppFlavor flavor) async {
   }
   return FirebaseServices(
     mode: FirebaseMode.project,
+    auth: FirebaseAuth.instanceFor(app: app),
     firestore: FirebaseFirestore.instanceFor(app: app),
     functions: FirebaseFunctions.instanceFor(app: app, region: kFirebaseRegion),
     storage: FirebaseStorage.instanceFor(app: app),

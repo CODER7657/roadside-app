@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:roadside_core/roadside_core.dart';
 
+import '../features/auth/application/auth.dart';
+import '../features/auth/data/auth_repository.dart';
+import '../features/auth/presentation/login_screen.dart';
 import '../features/first_run/application/first_run.dart';
 import '../features/first_run/presentation/consent_screen.dart';
 import '../features/first_run/presentation/language_screen.dart';
@@ -19,7 +22,7 @@ import '../features/registration/application/registration.dart';
 import '../features/registration/presentation/pending_screen.dart';
 import '../features/registration/presentation/registration_screen.dart';
 
-/// Route paths. Screens are added per issue (login #123, M6 #31, …). Home is M3 Dashboard;
+/// Route paths. Screens are added per issue (M6 #31, …). Home is M3 Dashboard;
 /// M4 is `/offer/:offerId` (offerRoute) and M5, the accepted job, `/job/:bookingId` (jobRoute).
 abstract final class AppRoutes {
   static const splash = '/splash';
@@ -28,6 +31,10 @@ abstract final class AppRoutes {
   static const help = '/help';
   static const register = '/register';
   static const pending = '/pending';
+
+  /// C5 Phone login, then C6 Enter OTP.
+  static const login = '/login';
+  static const loginCode = '/login/code';
 }
 
 /// Keeps first run in order: home (and later everything else) waits until language,
@@ -44,7 +51,19 @@ String? firstRunRedirect(FirstRunState firstRun, String location) {
   return at != -1 && at <= steps.indexOf(next) ? null : next;
 }
 
-/// After first run: M1 until registered, M2 while pending or blocked, home once approved.
+/// After first run, before registration: C5–C6 until signed in (PLAN §10 Common: consent comes
+/// before sign-up). Help, the privacy notice and permission explainers stay reachable. While
+/// Auth is restoring the session ([user] not yet known), nothing moves.
+String? authRedirect(AsyncValue<AuthUser?> user, String location) {
+  const open = [AppRoutes.splash, AppRoutes.privacy, AppRoutes.help];
+  if (open.contains(location) || location.startsWith('/permission/')) return null;
+  if (!user.hasValue) return null;
+  final onLogin = location == AppRoutes.login || location == AppRoutes.loginCode;
+  if (user.value == null) return onLogin ? null : AppRoutes.login;
+  return onLogin ? AppRoutes.home : null;
+}
+
+/// After first run and login: M1 until registered, M2 while pending or blocked, home once approved.
 /// Help, the privacy notice and permission explainers stay reachable from M1 and M2.
 /// While the profile is still loading ([status] not yet known), nothing moves.
 String? registrationRedirect(AsyncValue<MechanicStatus?> status, String location) {
@@ -63,8 +82,10 @@ String? registrationRedirect(AsyncValue<MechanicStatus?> status, String location
 }
 
 final routerProvider = Provider<GoRouter>((ref) {
-  // Re-run the redirects when the profile changes (submitted, approved, blocked).
+  // Re-run the redirects on sign-in / sign-out and when the profile changes (submitted,
+  // approved, blocked).
   final refresh = ValueNotifier<int>(0);
+  ref.listen(authUserProvider, (_, _) => refresh.value++);
   ref.listen(registrationStatusProvider, (_, _) => refresh.value++);
 
   final router = GoRouter(
@@ -72,10 +93,11 @@ final routerProvider = Provider<GoRouter>((ref) {
     refreshListenable: refresh,
     redirect: (context, state) {
       final location = state.matchedLocation;
-      return firstRunRedirect(ref.read(firstRunProvider), location) ??
-          (ref.read(firstRunProvider).nextStep == null
-              ? registrationRedirect(ref.read(registrationStatusProvider), location)
-              : null);
+      final firstRun = firstRunRedirect(ref.read(firstRunProvider), location);
+      if (firstRun != null || ref.read(firstRunProvider).nextStep != null) return firstRun;
+      final user = ref.read(authUserProvider);
+      return authRedirect(user, location) ??
+          (user.value != null ? registrationRedirect(ref.read(registrationStatusProvider), location) : null);
     },
     routes: [
       GoRoute(path: AppRoutes.splash, builder: (context, state) => const SplashScreen()),
@@ -83,6 +105,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: FirstRunStep.onboarding, builder: (context, state) => const OnboardingScreen()),
       GoRoute(path: FirstRunStep.consent, builder: (context, state) => const ConsentScreen()),
       GoRoute(path: AppRoutes.privacy, builder: (context, state) => const PrivacyNoticeScreen()),
+      GoRoute(path: AppRoutes.login, builder: (context, state) => const LoginScreen()),
+      GoRoute(path: AppRoutes.loginCode, builder: (context, state) => const OtpScreen()),
       GoRoute(path: AppRoutes.home, builder: (context, state) => const DashboardScreen()),
       GoRoute(path: AppRoutes.help, builder: (context, state) => const HelpScreen()),
       GoRoute(path: AppRoutes.register, builder: (context, state) => const RegistrationScreen()),
