@@ -903,4 +903,52 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get home_booking_open => 'ખોલવા ટેપ કરો';
+
+  @override
+  String get chat_open => 'ચેટ';
+
+  @override
+  String get chat_title => 'ચેટ';
+
+  @override
+  String get chat_empty_title => 'હજી કોઈ સંદેશ નથી';
+
+  @override
+  String chat_empty_body(String name) {
+    return '$nameને એવું કંઈ પણ કહો જેનાથી તેઓ તમને કે તમારા વાહનને શોધી શકે.';
+  }
+
+  @override
+  String get chat_closed => 'આ ચેટ બંધ થઈ ગઈ છે. તમે તેને 30 દિવસ સુધી વાંચી શકો છો.';
+
+  @override
+  String chat_you(String text) {
+    return 'તમે: $text';
+  }
+
+  @override
+  String chat_from(String name, String text) {
+    return '$name: $text';
+  }
+
+  @override
+  String get chat_photo_title => 'ફોટો મોકલો';
+
+  @override
+  String get chat_photo_take => 'ફોટો પાડો';
+
+  @override
+  String get chat_photo_gallery => 'ગેલેરીમાંથી પસંદ કરો';
+
+  @override
+  String get chat_photo_too_large => 'આ ફોટો બહુ મોટો છે. બીજો પસંદ કરો.';
+
+  @override
+  String get chat_photo_failed => 'ફોટો ઉમેરી શકાયો નહીં. ફરી પ્રયાસ કરો.';
+
+  @override
+  String get chat_error => 'ચેટ લોડ થઈ શકી નહીં. તમારું કનેક્શન તપાસો.';
+
+  @override
+  String get chat_error_retry => 'ફરી પ્રયાસ કરો';
 }

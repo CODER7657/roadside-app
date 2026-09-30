@@ -702,3 +702,72 @@ class LaneSheetSample extends StatelessWidget {
     );
   }
 }
+
+/// Chat parts (U11): their message, mine (sent, sending, failed), a photo, and the composer.
+class LaneChatSample extends StatefulWidget {
+  const LaneChatSample({
+    super.key,
+    this.theirs = "I'm near the petrol pump.",
+    this.mine = "I'm by the white Swift.",
+    this.draft = 'Coming in 2 min',
+  });
+
+  final String theirs;
+  final String mine;
+  final String draft;
+
+  @override
+  State<LaneChatSample> createState() => _LaneChatSampleState();
+}
+
+class _LaneChatSampleState extends State<LaneChatSample> {
+  late final _controller = TextEditingController(text: widget.draft);
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final lane = context.lane;
+    final gap = SizedBox(height: lane.space.s8);
+    final photo = ColoredBox(
+      color: lane.color.signal.routeTint,
+      child: SizedBox(
+        width: 400,
+        height: 300,
+        child: Center(child: LaneIcon(LaneIcons.car, size: lane.space.s64)),
+      ),
+    );
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.all(lane.space.s16),
+                children: [
+                  ChatBubble(mine: false, text: widget.theirs, time: '10:02'),
+                  gap,
+                  ChatBubble(mine: true, text: widget.mine, time: '10:03'),
+                  gap,
+                  ChatBubble(mine: true, image: photo, time: '10:03'),
+                  gap,
+                  ChatBubble(mine: true, text: widget.draft, delivery: ChatDelivery.sending),
+                  gap,
+                  ChatBubble(mine: true, text: widget.mine, delivery: ChatDelivery.failed, onRetry: () {}),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(lane.space.s16),
+              child: ChatComposer(controller: _controller, onSend: (_) {}, onAttach: () {}),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

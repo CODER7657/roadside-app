@@ -270,5 +270,19 @@
   "home_sms_body": "मुझे सड़क पर मदद चाहिए। मेरी लोकेशन: {link} (प्लस कोड {code})",
   "home_sms_failed": "SMS ऐप नहीं खुल सका।",
   "home_booking_active": "आपकी बुकिंग चल रही है",
-  "home_booking_open": "खोलने के लिए टैप करें"
+  "home_booking_open": "खोलने के लिए टैप करें",
+  "chat_open": "चैट",
+  "chat_title": "चैट",
+  "chat_empty_title": "अभी कोई संदेश नहीं",
+  "chat_empty_body": "{name} को कुछ भी बताएँ जिससे वे आपको या आपकी गाड़ी को ढूँढ सकें।",
+  "chat_closed": "यह चैट बंद हो गई है। आप इसे 30 दिन तक पढ़ सकते हैं।",
+  "chat_you": "आप: {text}",
+  "chat_from": "{name}: {text}",
+  "chat_photo_title": "फ़ोटो भेजें",
+  "chat_photo_take": "फ़ोटो खींचें",
+  "chat_photo_gallery": "गैलरी से चुनें",
+  "chat_photo_too_large": "यह फ़ोटो बहुत बड़ी है। कोई दूसरी चुनें।",
+  "chat_photo_failed": "फ़ोटो नहीं जुड़ सकी। दोबारा कोशिश करें।",
+  "chat_error": "चैट लोड नहीं हो सकी। अपना कनेक्शन जाँचें।",
+  "chat_error_retry": "दोबारा कोशिश करें"
 }

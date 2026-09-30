@@ -103,4 +103,27 @@ class LaneLocalizationsGu extends LaneLocalizations {
 
   @override
   String get star_rating_none => 'હજી રેટિંગ નથી આપ્યું';
+
+  @override
+  String get chat_hint => 'સંદેશ';
+
+  @override
+  String get chat_send => 'મોકલો';
+
+  @override
+  String get chat_add_photo => 'ફોટો ઉમેરો';
+
+  @override
+  String chat_chars_left(int count) {
+    return '$count અક્ષર બાકી';
+  }
+
+  @override
+  String get chat_sending => 'મોકલાઈ રહ્યું છે…';
+
+  @override
+  String get chat_failed => 'મોકલાયું નથી. ફરી પ્રયાસ કરવા ટેપ કરો.';
+
+  @override
+  String get chat_photo => 'ફોટો';
 }

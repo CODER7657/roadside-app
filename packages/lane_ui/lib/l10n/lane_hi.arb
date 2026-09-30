@@ -24,5 +24,12 @@
   "glare_turn_on": "धूप मोड: तेज़ रोशनी के लिए गहरा कंट्रास्ट",
   "glare_turn_off": "धूप मोड बंद करें",
   "star_rating_value": "5 में से {count} स्टार",
-  "star_rating_none": "अभी रेटिंग नहीं दी"
+  "star_rating_none": "अभी रेटिंग नहीं दी",
+  "chat_hint": "संदेश",
+  "chat_send": "भेजें",
+  "chat_add_photo": "फ़ोटो जोड़ें",
+  "chat_chars_left": "{count} अक्षर बाकी",
+  "chat_sending": "भेजा जा रहा है…",
+  "chat_failed": "नहीं भेजा गया। दोबारा कोशिश करने के लिए टैप करें।",
+  "chat_photo": "फ़ोटो"
 }

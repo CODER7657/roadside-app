@@ -90,6 +90,20 @@ void main() {
   );
 
   goldenTest(
+    'chat bubbles and composer in every mode',
+    fileName: 'components_chat',
+    builder: () => _group(
+      (locale) => locale.languageCode == 'hi'
+          ? const LaneChatSample(
+              theirs: 'मैं पेट्रोल पंप के पास हूँ।',
+              mine: 'मैं सफ़ेद स्विफ़्ट के पास हूँ।',
+              draft: '2 मिनट में आ रहा हूँ',
+            )
+          : const LaneChatSample(),
+    ),
+  );
+
+  goldenTest(
     'confirm sheet in every mode',
     fileName: 'components_sheet',
     builder: () => _group(

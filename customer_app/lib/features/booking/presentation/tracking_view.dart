@@ -5,10 +5,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lane_ui/lane_ui.dart' hide PriceRange;
 import 'package:roadside_core/roadside_core.dart' hide JourneyStop;
 
-import '../../help/presentation/help_screen.dart' show launchLinkProvider;
 import '../../../l10n/app_localizations.dart';
 import '../application/live_booking.dart';
 import '../application/marker_glide.dart';
+import 'contact_actions.dart';
 import 'tracking_map.dart';
 
 /// A reading older than this is shown as stale (the app sends every 5 s; PLAN §11).
@@ -82,12 +82,6 @@ class _TrackingViewState extends ConsumerState<TrackingView> with SingleTickerPr
     super.dispose();
   }
 
-  Future<void> _call(String phone) async {
-    final l10n = AppLocalizations.of(context);
-    final ok = await ref.read(launchLinkProvider)(Uri(scheme: 'tel', path: phone));
-    if (!ok && mounted) LaneToast.show(context, l10n.tracking_call_failed);
-  }
-
   @override
   Widget build(BuildContext context) {
     final lane = context.lane;
@@ -159,9 +153,9 @@ class _TrackingViewState extends ConsumerState<TrackingView> with SingleTickerPr
               child: PlateChip(regNo: plate),
             ),
           ],
-          if (card != null && card.phone.isNotEmpty) ...[
+          if (card != null) ...[
             SizedBox(height: lane.space.s16),
-            LaneButton.secondary(label: l10n.tracking_call(name), onPressed: () => _call(card.phone)),
+            ContactActions(bookingId: widget.bookingId, booking: b),
           ],
           if (code != null) ...[
             SizedBox(height: lane.space.s24),

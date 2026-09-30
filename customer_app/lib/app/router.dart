@@ -7,6 +7,7 @@ import '../features/booking/presentation/photos_screen.dart';
 import '../features/booking/presentation/price_screen.dart';
 import '../features/booking/presentation/problem_screen.dart';
 import '../features/booking/presentation/review_screen.dart';
+import '../features/chat/presentation/chat_screen.dart';
 import '../features/first_run/application/first_run.dart';
 import '../features/first_run/presentation/consent_screen.dart';
 import '../features/first_run/presentation/language_screen.dart';
@@ -40,6 +41,9 @@ abstract final class AppRoutes {
 
   /// U14 Rate & review.
   static String review(String bookingId) => '/booking/$bookingId/review';
+
+  /// U11 Chat with the assigned mechanic.
+  static String chat(String bookingId) => '/booking/$bookingId/chat';
 }
 
 /// Keeps first run in order: home (and later everything else) waits until language,
@@ -81,6 +85,10 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: 'review',
             builder: (context, state) => ReviewScreen(bookingId: state.pathParameters['id']!),
+          ),
+          GoRoute(
+            path: 'chat',
+            builder: (context, state) => ChatScreen(bookingId: state.pathParameters['id']!),
           ),
         ],
       ),

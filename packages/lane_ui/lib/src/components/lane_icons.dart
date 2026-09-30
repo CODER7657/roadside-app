@@ -3,6 +3,8 @@
 // Rendered from SVGs in assets/icons/ with flutter_svg rather than phosphor_flutter: that
 // package hasn't been updated since May 2024, which fails the PLAN §3 "maintained in the
 // last 12 months" rule. The shapes are identical: each file is a Phosphor core icon.
+// glyph_camera and glyph_paper_plane_right were converted from the duotone font in
+// phosphor_flutter 2.1.0 (same icons, MIT), with quadratic instead of cubic curves.
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -90,12 +92,18 @@ enum LaneIcons {
   arrowLeft('glyph_arrow_left'),
   caretDoubleRight('glyph_caret_double_right'),
   caretRight('glyph_caret_right'),
+
+  /// camera
+  camera('glyph_camera'),
   check('glyph_check'),
   checkCircle('glyph_check_circle'),
   cloudSlash('glyph_cloud_slash'),
   hourglass('glyph_hourglass_medium'),
   minusCircle('glyph_minus_circle'),
   navigation('glyph_navigation_arrow'),
+
+  /// paper-plane-right
+  send('glyph_paper_plane_right'),
   tray('glyph_tray'),
   warning('glyph_warning'),
   wifiSlash('glyph_wifi_slash'),

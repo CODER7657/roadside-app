@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.1.0-dev.15
+
+U11 Chat (#127).
+
+- `ChatBubble`: mine on the right in ink, theirs on the left on the sunken surface; text, a photo
+  (cropped 4:3), or both; the time underneath. My messages show **Sending…** or **Not sent. Tap to
+  try again.** (a 48 dp target that calls `onRetry`). One TalkBack node per message with who said
+  it, the photo and the state.
+- `ChatComposer`: optional camera button, a field that grows to four lines, capped at 500
+  characters (PLAN §8) with a count in the last 10 %, and a round Beacon send button that stays
+  off until there is non-blank text. Sends the trimmed text, then clears.
+- `LaneListScaffold`: optional `subtitle` under the title and a `controller` for lists that
+  follow their newest item.
+- `LaneIcons.camera` and `LaneIcons.send` (Phosphor `camera` and `paper-plane-right` duotone,
+  converted from the phosphor_flutter 2.1.0 font). Strings in en / hi / gu.
+
 ## 0.1.0-dev.14
 
 U14 Rate & review (#134).
