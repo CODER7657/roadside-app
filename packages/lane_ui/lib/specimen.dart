@@ -165,6 +165,7 @@ class LaneTemplateSample extends StatelessWidget {
             icon: const LaneIcon(LaneIcons.close),
             style: IconButton.styleFrom(backgroundColor: lane.color.surface, foregroundColor: lane.color.ink),
           ),
+          LaneSosButton(tooltip: 'Emergency SOS', onPressed: () {}),
         ],
         dock: LaneDock(
           header: Text('PICKUP', style: lane.text.caps),

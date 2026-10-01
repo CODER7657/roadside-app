@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:lane_ui/lane_ui.dart';
 
+import '../features/connectivity/connectivity.dart';
 import '../features/first_run/application/first_run.dart';
 import '../features/profile/application/settings.dart';
 import '../l10n/app_localizations.dart';
@@ -18,6 +19,8 @@ class RoadsideApp extends ConsumerWidget {
     routerConfig: ref.watch(routerProvider),
     // The language chosen on C2; null follows the phone.
     locale: ref.watch(firstRunProvider.select((s) => s.locale)),
+    // The OfflineStrip above every screen (PLAN §6.5 ⑩).
+    offline: ref.watch(isOfflineProvider),
     onGenerateTitle: (context) => AppLocalizations.of(context).app_title,
     localizationsDelegates: AppLocalizations.localizationsDelegates,
     supportedLocales: AppLocalizations.supportedLocales,

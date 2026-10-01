@@ -1200,4 +1200,85 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get detail_nothing_to_pay => 'कुछ भुगतान नहीं';
+
+  @override
+  String get sos_button => 'आपातकालीन SOS';
+
+  @override
+  String get sos_title => 'आपातकाल';
+
+  @override
+  String sos_body(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'अपने $count आपातकालीन संपर्कों को अपनी लोकेशन भेजने के लिए दबाकर रखें।',
+      one: 'अपने आपातकालीन संपर्क को अपनी लोकेशन भेजने के लिए दबाकर रखें।',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sos_body_loading => 'अपने आपातकालीन संपर्कों को अपनी लोकेशन भेजने के लिए दबाकर रखें।';
+
+  @override
+  String get sos_body_no_contacts =>
+      'कोई आपातकालीन संपर्क सेव नहीं है। दबाकर रखने पर मैसेज ऐप खुलेगा, जहाँ आप चुन सकते हैं कि किसे भेजना है।';
+
+  @override
+  String get sos_hold_hint => 'SOS भेजने के लिए 1.5 सेकंड दबाकर रखें';
+
+  @override
+  String get sos_hold_caption => '1.5 सेकंड दबाकर रखें। पहले छोड़ने पर कुछ नहीं जाएगा।';
+
+  @override
+  String get sos_opening => 'आपका मैसेज ऐप खुल रहा है…';
+
+  @override
+  String get sos_opened => 'आपके मैसेज ऐप में SOS तैयार है। भेजें दबाएँ।';
+
+  @override
+  String get sos_failed => 'मैसेज ऐप नहीं खुल सका। 112 पर कॉल करें।';
+
+  @override
+  String get sos_call_112 => '112 पर कॉल करें';
+
+  @override
+  String get sos_call_failed => 'कॉल शुरू नहीं हो सकी। 112 डायल करें।';
+
+  @override
+  String get sos_share_trip => 'ट्रिप शेयर करें';
+
+  @override
+  String get sos_add_contacts => 'आपातकालीन संपर्क जोड़ें';
+
+  @override
+  String sos_sms_body(String link, String code) {
+    return 'SOS: मुझे मदद चाहिए। मेरी लोकेशन: $link (प्लस कोड $code)।';
+  }
+
+  @override
+  String get sos_sms_body_no_location => 'SOS: मुझे मदद चाहिए। मेरी लोकेशन अभी उपलब्ध नहीं है।';
+
+  @override
+  String sos_sms_trip(String link) {
+    return 'मेरी लाइव ट्रिप देखें: $link';
+  }
+
+  @override
+  String sos_share_trip_text(String link) {
+    return 'मेरी रोडसाइड मदद की ट्रिप लाइव देखें: $link';
+  }
+
+  @override
+  String sos_share_location_text(String link) {
+    return 'मैं यहाँ रोडसाइड मदद का इंतज़ार कर रहा/रही हूँ: $link';
+  }
+
+  @override
+  String get home_offline => 'आप ऑफ़लाइन हैं। मदद लेने के लिए इंटरनेट चाहिए।';
+
+  @override
+  String get home_offline_sms =>
+      'आप ऑफ़लाइन हैं। आप फिर भी SMS से अपनी लोकेशन हमारी हेल्पलाइन पर भेज सकते हैं।';
 }

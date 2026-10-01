@@ -1659,5 +1659,117 @@
   "detail_nothing_to_pay": "Nothing to pay",
   "@detail_nothing_to_pay": {
     "description": "U16: amount for a cancelled booking."
+  },
+  "sos_button": "Emergency SOS",
+  "@sos_button": {
+    "description": "Map: tooltip and screen-reader label of the red SOS button."
+  },
+  "sos_title": "Emergency",
+  "@sos_title": {
+    "description": "U1·SOS: sheet title."
+  },
+  "sos_body": "{count, plural, =1{Hold to alert your emergency contact with your location.} other{Hold to alert your {count} emergency contacts with your location.}}",
+  "@sos_body": {
+    "description": "U1·SOS: body with the number of saved contacts.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sos_body_loading": "Hold to alert your emergency contacts with your location.",
+  "@sos_body_loading": {
+    "description": "U1·SOS: body while the contacts load."
+  },
+  "sos_body_no_contacts": "No emergency contacts saved. Holding opens your messages so you can choose who to alert.",
+  "@sos_body_no_contacts": {
+    "description": "U1·SOS: body when no contacts are saved."
+  },
+  "sos_hold_hint": "Hold for 1.5 seconds to send SOS",
+  "@sos_hold_hint": {
+    "description": "U1·SOS: screen-reader hint on the hold ring."
+  },
+  "sos_hold_caption": "Hold for 1.5 seconds. Letting go early sends nothing.",
+  "@sos_hold_caption": {
+    "description": "U1·SOS: under the hold ring."
+  },
+  "sos_opening": "Opening your messages…",
+  "@sos_opening": {
+    "description": "U1·SOS: while the trip link is made and the SMS app opens."
+  },
+  "sos_opened": "Your messages app has the SOS ready. Press send.",
+  "@sos_opened": {
+    "description": "U1·SOS: toast after the SMS app opened (the customer still presses send)."
+  },
+  "sos_failed": "Couldn't open your messages. Call 112.",
+  "@sos_failed": {
+    "description": "U1·SOS: toast when no SMS app opened."
+  },
+  "sos_call_112": "Call 112",
+  "@sos_call_112": {
+    "description": "U1·SOS: India emergency number."
+  },
+  "sos_call_failed": "Couldn't start the call. Dial 112.",
+  "@sos_call_failed": {
+    "description": "U1·SOS: toast when the dialer did not open."
+  },
+  "sos_share_trip": "Share trip",
+  "@sos_share_trip": {
+    "description": "U1·SOS: share the live trip link (during a booking)."
+  },
+  "sos_add_contacts": "Add emergency contacts",
+  "@sos_add_contacts": {
+    "description": "U1·SOS: opens U17 when none are saved."
+  },
+  "sos_sms_body": "SOS: I need help. My location: {link} (Plus Code {code}).",
+  "@sos_sms_body": {
+    "description": "SOS SMS body.",
+    "placeholders": {
+      "link": {
+        "type": "String"
+      },
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "sos_sms_body_no_location": "SOS: I need help. My location isn't available right now.",
+  "@sos_sms_body_no_location": {
+    "description": "SOS SMS body without a location fix."
+  },
+  "sos_sms_trip": "Follow my live trip: {link}",
+  "@sos_sms_trip": {
+    "description": "SOS SMS: the live-trip link (expires when the job ends).",
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "sos_share_trip_text": "Follow my roadside help trip live: {link}",
+  "@sos_share_trip_text": {
+    "description": "Share trip text.",
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "sos_share_location_text": "I'm waiting for roadside help here: {link}",
+  "@sos_share_location_text": {
+    "description": "Share trip text when no live link can be made.",
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "home_offline": "You're offline. Getting help needs the internet.",
+  "@home_offline": {
+    "description": "U1: when offline and no SMS fallback is possible."
+  },
+  "home_offline_sms": "You're offline. You can still send your location to our helpline by SMS.",
+  "@home_offline_sms": {
+    "description": "U1: when offline, above \"Send my location by SMS\"."
   }
 }

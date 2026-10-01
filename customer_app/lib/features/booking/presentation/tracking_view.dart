@@ -6,6 +6,7 @@ import 'package:lane_ui/lane_ui.dart' hide PriceRange;
 import 'package:roadside_core/roadside_core.dart' hide JourneyStop;
 
 import '../../../l10n/app_localizations.dart';
+import '../../sos/presentation/sos_sheet.dart';
 import '../application/live_booking.dart';
 import '../application/marker_glide.dart';
 import 'contact_actions.dart';
@@ -111,6 +112,10 @@ class _TrackingViewState extends ConsumerState<TrackingView> with SingleTickerPr
           );
         },
       ),
+      actions: [
+        const LaneGlareButton(),
+        LaneSosButton(tooltip: l10n.sos_button, onPressed: () => showSosSheet(context)),
+      ],
       dock: LaneDock(
         header: widget.rail,
         children: [

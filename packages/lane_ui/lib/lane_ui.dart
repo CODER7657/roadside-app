@@ -44,7 +44,8 @@ export 'src/components/price_range.dart' show PriceRange;
 export 'src/components/star_rating.dart' show StarRating;
 export 'src/components/trust_pass.dart' show TrustPass;
 export 'src/templates/lane_action_bar.dart' show LaneActionBar, LaneBackButton;
-export 'src/templates/lane_map_scaffold.dart' show LaneDock, LaneDockSnap, LaneMapButton, LaneMapScaffold;
+export 'src/templates/lane_map_scaffold.dart'
+    show LaneDock, LaneDockSnap, LaneMapButton, LaneMapScaffold, LaneSosButton;
 export 'src/templates/lane_page_scaffolds.dart'
     show LaneFlowScaffold, LaneFormScaffold, LaneListScaffold, LaneStatusScaffold, LaneStepLane;
 export 'src/l10n/lane_localizations.dart' show LaneLocalizations;
