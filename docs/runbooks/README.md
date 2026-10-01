@@ -10,6 +10,7 @@ then the follow-up. Keep them short enough to follow on a phone.
 | [dispatch-outage.md](dispatch-outage.md) | Bookings aren't reaching mechanics, or the apps can't book |
 | [rollback.md](rollback.md) | A release (app, functions or rules) is causing harm |
 | [hotfix.md](hotfix.md) | A fix must reach production without the unreleased work on `main` |
+| [staged-rollout.md](staged-rollout.md) | Releasing to production: order, gates, 10% → 50% → 100% (#61) |
 | [app-check-and-monitoring.md](app-check-and-monitoring.md) | Setting up or enforcing App Check, Crashlytics, Performance (#48) |
 | [launch-monitoring.md](launch-monitoring.md) | Setting up alerts and budgets, and the launch-week daily check-in (#62) |
 
