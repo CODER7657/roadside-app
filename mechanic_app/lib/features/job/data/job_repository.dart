@@ -404,13 +404,20 @@ class FirebaseJobRepository implements JobRepository {
   @override
   Future<TripOutcome> startTrip(String bookingId) => _call('startTrip', bookingId);
 
+  /// `verifyStartOtp` and `confirmPayment` consume their App Check token (replay protection,
+  /// PLAN §12.6), so they need a limited-use token.
+  static final _limitedUse = HttpsCallableOptions(limitedUseAppCheckToken: true);
+
   @override
   Future<TripOutcome> markArrived(String bookingId) => _call('markArrived', bookingId);
 
   @override
   Future<StartCodeResult> verifyStartCode(String bookingId, String code) async {
     try {
-      await _functions.httpsCallable('verifyStartOtp').call<Object?>({'bookingId': bookingId, 'code': code});
+      await _functions.httpsCallable('verifyStartOtp', options: _limitedUse).call<Object?>({
+        'bookingId': bookingId,
+        'code': code,
+      });
       return const StartCodeAccepted();
     } on FirebaseFunctionsException catch (e) {
       return startCodeResultForError(e.message, e.details);
@@ -443,9 +450,13 @@ class FirebaseJobRepository implements JobRepository {
     }
   }
 
-  Future<PaymentOutcome> _payment(String name, Map<String, Object?> data) async {
+  Future<PaymentOutcome> _payment(
+    String name,
+    Map<String, Object?> data, {
+    HttpsCallableOptions? options,
+  }) async {
     try {
-      await _functions.httpsCallable(name).call<Object?>(data);
+      await _functions.httpsCallable(name, options: options).call<Object?>(data);
       return PaymentOutcome.ok;
     } on FirebaseFunctionsException catch (e) {
       return paymentOutcomeForError(e.message);
@@ -456,7 +467,7 @@ class FirebaseJobRepository implements JobRepository {
 
   @override
   Future<PaymentOutcome> confirmPayment(String bookingId) =>
-      _payment('confirmPayment', {'bookingId': bookingId});
+      _payment('confirmPayment', {'bookingId': bookingId}, options: _limitedUse);
 
   @override
   Future<PaymentOutcome> disputePayment(String bookingId, String text) =>
