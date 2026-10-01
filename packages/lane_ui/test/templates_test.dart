@@ -226,6 +226,32 @@ void main() {
     expect(tester.getSemantics(find.byType(IconButton).last).flagsCollection.isEnabled, Tristate.isFalse);
   });
 
+  testWidgets('LaneSosButton: 64 dp, red, one button labelled by its tooltip', (tester) async {
+    setView(tester, const Size(360, 800));
+    var taps = 0;
+    await tester.pumpWidget(
+      host(
+        Scaffold(
+          body: Center(
+            child: LaneSosButton(tooltip: 'Emergency SOS', onPressed: () => taps++),
+          ),
+        ),
+        locale: const Locale('en'),
+      ),
+    );
+    final button = find.byType(LaneSosButton);
+    expect(tester.getSize(button), const Size.square(64));
+    final fill = tester.widget<DecoratedBox>(
+      find.descendant(of: button, matching: find.byType(DecoratedBox)).first,
+    );
+    final theme = Theme.of(tester.element(button)).extension<LaneTheme>()!;
+    expect((fill.decoration as BoxDecoration).color, theme.color.signal.stop);
+    expect(find.bySemanticsLabel('Emergency SOS'), findsOneWidget);
+    expect(find.text('SOS'), findsOneWidget);
+    await tester.tap(button);
+    expect(taps, 1);
+  });
+
   testWidgets('flow: step lane shows done / current / upcoming; back and step are labelled', (tester) async {
     await tester.pumpWidget(host(templates['flow']!, locale: const Locale('en')));
     final segments = tester

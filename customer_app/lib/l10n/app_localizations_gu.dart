@@ -1198,4 +1198,85 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get detail_nothing_to_pay => 'કંઈ ચૂકવવાનું નથી';
+
+  @override
+  String get sos_button => 'કટોકટી SOS';
+
+  @override
+  String get sos_title => 'કટોકટી';
+
+  @override
+  String sos_body(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'તમારા $count કટોકટી સંપર્કોને તમારું લોકેશન મોકલવા દબાવી રાખો.',
+      one: 'તમારા કટોકટી સંપર્કને તમારું લોકેશન મોકલવા દબાવી રાખો.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sos_body_loading => 'તમારા કટોકટી સંપર્કોને તમારું લોકેશન મોકલવા દબાવી રાખો.';
+
+  @override
+  String get sos_body_no_contacts =>
+      'કોઈ કટોકટી સંપર્ક સેવ નથી. દબાવી રાખતાં મેસેજ એપ ખુલશે, ત્યાં તમે કોને મોકલવું તે પસંદ કરી શકો.';
+
+  @override
+  String get sos_hold_hint => 'SOS મોકલવા 1.5 સેકન્ડ દબાવી રાખો';
+
+  @override
+  String get sos_hold_caption => '1.5 સેકન્ડ દબાવી રાખો. વહેલું છોડશો તો કંઈ નહીં જાય.';
+
+  @override
+  String get sos_opening => 'તમારી મેસેજ એપ ખુલી રહી છે…';
+
+  @override
+  String get sos_opened => 'તમારી મેસેજ એપમાં SOS તૈયાર છે. મોકલો દબાવો.';
+
+  @override
+  String get sos_failed => 'મેસેજ એપ ખુલી શકી નહીં. 112 પર કૉલ કરો.';
+
+  @override
+  String get sos_call_112 => '112 પર કૉલ કરો';
+
+  @override
+  String get sos_call_failed => 'કૉલ શરૂ થઈ શક્યો નહીં. 112 ડાયલ કરો.';
+
+  @override
+  String get sos_share_trip => 'ટ્રિપ શેર કરો';
+
+  @override
+  String get sos_add_contacts => 'કટોકટી સંપર્કો ઉમેરો';
+
+  @override
+  String sos_sms_body(String link, String code) {
+    return 'SOS: મને મદદ જોઈએ છે. મારું લોકેશન: $link (પ્લસ કોડ $code).';
+  }
+
+  @override
+  String get sos_sms_body_no_location => 'SOS: મને મદદ જોઈએ છે. મારું લોકેશન હાલ ઉપલબ્ધ નથી.';
+
+  @override
+  String sos_sms_trip(String link) {
+    return 'મારી લાઇવ ટ્રિપ જુઓ: $link';
+  }
+
+  @override
+  String sos_share_trip_text(String link) {
+    return 'મારી રોડસાઇડ મદદની ટ્રિપ લાઇવ જુઓ: $link';
+  }
+
+  @override
+  String sos_share_location_text(String link) {
+    return 'હું અહીં રોડસાઇડ મદદની રાહ જોઉં છું: $link';
+  }
+
+  @override
+  String get home_offline => 'તમે ઑફલાઇન છો. મદદ લેવા ઇન્ટરનેટ જોઈએ.';
+
+  @override
+  String get home_offline_sms =>
+      'તમે ઑફલાઇન છો. તમે હજુ પણ SMS થી તમારું લોકેશન અમારી હેલ્પલાઇન પર મોકલી શકો છો.';
 }

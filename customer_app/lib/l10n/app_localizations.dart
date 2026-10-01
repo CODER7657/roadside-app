@@ -2264,6 +2264,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Nothing to pay'**
   String get detail_nothing_to_pay;
+
+  /// Map: tooltip and screen-reader label of the red SOS button.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency SOS'**
+  String get sos_button;
+
+  /// U1·SOS: sheet title.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency'**
+  String get sos_title;
+
+  /// U1·SOS: body with the number of saved contacts.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Hold to alert your emergency contact with your location.} other{Hold to alert your {count} emergency contacts with your location.}}'**
+  String sos_body(int count);
+
+  /// U1·SOS: body while the contacts load.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold to alert your emergency contacts with your location.'**
+  String get sos_body_loading;
+
+  /// U1·SOS: body when no contacts are saved.
+  ///
+  /// In en, this message translates to:
+  /// **'No emergency contacts saved. Holding opens your messages so you can choose who to alert.'**
+  String get sos_body_no_contacts;
+
+  /// U1·SOS: screen-reader hint on the hold ring.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold for 1.5 seconds to send SOS'**
+  String get sos_hold_hint;
+
+  /// U1·SOS: under the hold ring.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold for 1.5 seconds. Letting go early sends nothing.'**
+  String get sos_hold_caption;
+
+  /// U1·SOS: while the trip link is made and the SMS app opens.
+  ///
+  /// In en, this message translates to:
+  /// **'Opening your messages…'**
+  String get sos_opening;
+
+  /// U1·SOS: toast after the SMS app opened (the customer still presses send).
+  ///
+  /// In en, this message translates to:
+  /// **'Your messages app has the SOS ready. Press send.'**
+  String get sos_opened;
+
+  /// U1·SOS: toast when no SMS app opened.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t open your messages. Call 112.'**
+  String get sos_failed;
+
+  /// U1·SOS: India emergency number.
+  ///
+  /// In en, this message translates to:
+  /// **'Call 112'**
+  String get sos_call_112;
+
+  /// U1·SOS: toast when the dialer did not open.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t start the call. Dial 112.'**
+  String get sos_call_failed;
+
+  /// U1·SOS: share the live trip link (during a booking).
+  ///
+  /// In en, this message translates to:
+  /// **'Share trip'**
+  String get sos_share_trip;
+
+  /// U1·SOS: opens U17 when none are saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Add emergency contacts'**
+  String get sos_add_contacts;
+
+  /// SOS SMS body.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS: I need help. My location: {link} (Plus Code {code}).'**
+  String sos_sms_body(String link, String code);
+
+  /// SOS SMS body without a location fix.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS: I need help. My location isn\'t available right now.'**
+  String get sos_sms_body_no_location;
+
+  /// SOS SMS: the live-trip link (expires when the job ends).
+  ///
+  /// In en, this message translates to:
+  /// **'Follow my live trip: {link}'**
+  String sos_sms_trip(String link);
+
+  /// Share trip text.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow my roadside help trip live: {link}'**
+  String sos_share_trip_text(String link);
+
+  /// Share trip text when no live link can be made.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m waiting for roadside help here: {link}'**
+  String sos_share_location_text(String link);
+
+  /// U1: when offline and no SMS fallback is possible.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re offline. Getting help needs the internet.'**
+  String get home_offline;
+
+  /// U1: when offline, above "Send my location by SMS".
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re offline. You can still send your location to our helpline by SMS.'**
+  String get home_offline_sms;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

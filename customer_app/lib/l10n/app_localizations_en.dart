@@ -1200,4 +1200,84 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get detail_nothing_to_pay => 'Nothing to pay';
+
+  @override
+  String get sos_button => 'Emergency SOS';
+
+  @override
+  String get sos_title => 'Emergency';
+
+  @override
+  String sos_body(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Hold to alert your $count emergency contacts with your location.',
+      one: 'Hold to alert your emergency contact with your location.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sos_body_loading => 'Hold to alert your emergency contacts with your location.';
+
+  @override
+  String get sos_body_no_contacts =>
+      'No emergency contacts saved. Holding opens your messages so you can choose who to alert.';
+
+  @override
+  String get sos_hold_hint => 'Hold for 1.5 seconds to send SOS';
+
+  @override
+  String get sos_hold_caption => 'Hold for 1.5 seconds. Letting go early sends nothing.';
+
+  @override
+  String get sos_opening => 'Opening your messages…';
+
+  @override
+  String get sos_opened => 'Your messages app has the SOS ready. Press send.';
+
+  @override
+  String get sos_failed => 'Couldn\'t open your messages. Call 112.';
+
+  @override
+  String get sos_call_112 => 'Call 112';
+
+  @override
+  String get sos_call_failed => 'Couldn\'t start the call. Dial 112.';
+
+  @override
+  String get sos_share_trip => 'Share trip';
+
+  @override
+  String get sos_add_contacts => 'Add emergency contacts';
+
+  @override
+  String sos_sms_body(String link, String code) {
+    return 'SOS: I need help. My location: $link (Plus Code $code).';
+  }
+
+  @override
+  String get sos_sms_body_no_location => 'SOS: I need help. My location isn\'t available right now.';
+
+  @override
+  String sos_sms_trip(String link) {
+    return 'Follow my live trip: $link';
+  }
+
+  @override
+  String sos_share_trip_text(String link) {
+    return 'Follow my roadside help trip live: $link';
+  }
+
+  @override
+  String sos_share_location_text(String link) {
+    return 'I\'m waiting for roadside help here: $link';
+  }
+
+  @override
+  String get home_offline => 'You\'re offline. Getting help needs the internet.';
+
+  @override
+  String get home_offline_sms => 'You\'re offline. You can still send your location to our helpline by SMS.';
 }
