@@ -51,3 +51,8 @@ app.*.map.json
 # covers the repo root, so repeat it for this app.
 /env/*.json
 !/env/example.json
+
+# Firebase app config per flavour (#92): shared privately, never committed (PLAN §12.8).
+android/app/google-services.json
+android/app/src/*/google-services.json
+lib/firebase_options*.dart
