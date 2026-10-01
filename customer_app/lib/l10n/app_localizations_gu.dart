@@ -1087,4 +1087,115 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get profile_licenses => 'ઓપન-સોર્સ લાઇસન્સ';
+
+  @override
+  String get home_history => 'તમારા બુકિંગ';
+
+  @override
+  String get history_title => 'બુકિંગ';
+
+  @override
+  String get history_filter_all => 'બધા';
+
+  @override
+  String get history_filter_active => 'ચાલુ';
+
+  @override
+  String get history_filter_past => 'પાછલા';
+
+  @override
+  String get history_status_searching => 'શોધી રહ્યા છીએ';
+
+  @override
+  String get history_status_cancelled => 'રદ';
+
+  @override
+  String get history_status_no_mechanic => 'મિકેનિક ન મળ્યો';
+
+  @override
+  String get history_today => 'આજે';
+
+  @override
+  String get history_yesterday => 'ગઈકાલે';
+
+  @override
+  String get history_empty_title => 'હજુ કોઈ બુકિંગ નથી';
+
+  @override
+  String get history_empty_body => 'મદદ લીધા પછી બુકિંગ અને તેની રસીદ અહીં દેખાશે.';
+
+  @override
+  String get history_empty_action => 'નકશા પર જાઓ';
+
+  @override
+  String get history_none_active => 'હાલ કોઈ બુકિંગ ચાલુ નથી';
+
+  @override
+  String get history_none_past => 'કોઈ પાછલા બુકિંગ નથી';
+
+  @override
+  String get history_show_all => 'બધા બતાવો';
+
+  @override
+  String get history_error => 'તમારા બુકિંગ લોડ થઈ શક્યા નહીં. કનેક્શન તપાસો.';
+
+  @override
+  String get detail_title => 'બુકિંગ';
+
+  @override
+  String get detail_missing => 'આ બુકિંગ ઉપલબ્ધ નથી.';
+
+  @override
+  String get detail_back_to_history => 'બુકિંગ પર પાછા';
+
+  @override
+  String get detail_report => 'સમસ્યા જણાવો';
+
+  @override
+  String get detail_no_mechanic => 'નજીકમાં કોઈ મિકેનિક ફ્રી નહોતો. કોઈ પૈસા લેવાયા નથી.';
+
+  @override
+  String detail_cancelled_by_you(String time) {
+    return 'તમે $time વાગ્યે રદ કર્યું.';
+  }
+
+  @override
+  String detail_cancelled_at(String time) {
+    return '$time વાગ્યે રદ થયું.';
+  }
+
+  @override
+  String get detail_mechanic => 'મિકેનિક';
+
+  @override
+  String get detail_amount => 'રકમ';
+
+  @override
+  String get detail_paid_by => 'ચુકવણી';
+
+  @override
+  String get detail_upi => 'UPI';
+
+  @override
+  String detail_upi_to(String name) {
+    return '$name ને UPI';
+  }
+
+  @override
+  String get detail_payment => 'ચુકવણીની સ્થિતિ';
+
+  @override
+  String get detail_payment_pending => 'હજુ ચુકવણી થઈ નથી';
+
+  @override
+  String get detail_payment_marked => 'મિકેનિકની પુષ્ટિની રાહ';
+
+  @override
+  String get detail_payment_confirmed => 'ચુકવણી થઈ ગઈ, મિકેનિકે પુષ્ટિ કરી';
+
+  @override
+  String get detail_payment_disputed => 'તપાસ ચાલુ છે';
+
+  @override
+  String get detail_nothing_to_pay => 'કંઈ ચૂકવવાનું નથી';
 }

@@ -1501,5 +1501,163 @@
   "profile_licenses": "Open-source licenses",
   "@profile_licenses": {
     "description": "U18: row that opens the licenses page."
+  },
+  "home_history": "Your bookings",
+  "@home_history": {
+    "description": "U1: opens U15 booking history."
+  },
+  "history_title": "Bookings",
+  "@history_title": {
+    "description": "U15: title."
+  },
+  "history_filter_all": "All",
+  "@history_filter_all": {
+    "description": "U15: filter chip."
+  },
+  "history_filter_active": "Active",
+  "@history_filter_active": {
+    "description": "U15: filter chip, bookings still going on."
+  },
+  "history_filter_past": "Past",
+  "@history_filter_past": {
+    "description": "U15: filter chip, finished or cancelled bookings."
+  },
+  "history_status_searching": "Searching",
+  "@history_status_searching": {
+    "description": "U15/U16: badge while a mechanic is being found."
+  },
+  "history_status_cancelled": "Cancelled",
+  "@history_status_cancelled": {
+    "description": "U15/U16: badge for a cancelled booking (grey, never red)."
+  },
+  "history_status_no_mechanic": "No mechanic",
+  "@history_status_no_mechanic": {
+    "description": "U15/U16: badge when no mechanic was found."
+  },
+  "history_today": "Today",
+  "@history_today": {
+    "description": "U15/U16: the day of a booking."
+  },
+  "history_yesterday": "Yesterday",
+  "@history_yesterday": {
+    "description": "U15/U16: the day of a booking."
+  },
+  "history_empty_title": "No bookings yet",
+  "@history_empty_title": {
+    "description": "U15: empty state title."
+  },
+  "history_empty_body": "When you get help, the booking and its receipt show up here.",
+  "@history_empty_body": {
+    "description": "U15: empty state body."
+  },
+  "history_empty_action": "Go to the map",
+  "@history_empty_action": {
+    "description": "U15: empty state action, back to Home."
+  },
+  "history_none_active": "Nothing going on right now",
+  "@history_none_active": {
+    "description": "U15: the Active filter has no bookings."
+  },
+  "history_none_past": "No past bookings",
+  "@history_none_past": {
+    "description": "U15: the Past filter has no bookings."
+  },
+  "history_show_all": "Show all",
+  "@history_show_all": {
+    "description": "U15: action on an empty filter."
+  },
+  "history_error": "Couldn't load your bookings. Check your connection.",
+  "@history_error": {
+    "description": "U15/U16: error state."
+  },
+  "detail_title": "Booking",
+  "@detail_title": {
+    "description": "U16: title while the booking loads."
+  },
+  "detail_missing": "This booking isn't available.",
+  "@detail_missing": {
+    "description": "U16: the booking does not exist or is not yours."
+  },
+  "detail_back_to_history": "Back to bookings",
+  "@detail_back_to_history": {
+    "description": "U16: action when the booking is missing."
+  },
+  "detail_report": "Report an issue",
+  "@detail_report": {
+    "description": "U16: opens Help & FAQ (support and grievance officer)."
+  },
+  "detail_no_mechanic": "No mechanic was free nearby. Nothing was charged.",
+  "@detail_no_mechanic": {
+    "description": "U16: under the rail when no mechanic was found."
+  },
+  "detail_cancelled_by_you": "You cancelled at {time}.",
+  "@detail_cancelled_by_you": {
+    "description": "U16: under the rail.",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "10:05"
+      }
+    }
+  },
+  "detail_cancelled_at": "Cancelled at {time}.",
+  "@detail_cancelled_at": {
+    "description": "U16: under the rail, cancelled by the mechanic or support.",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "10:05"
+      }
+    }
+  },
+  "detail_mechanic": "Mechanic",
+  "@detail_mechanic": {
+    "description": "U16: receipt row label."
+  },
+  "detail_amount": "Amount",
+  "@detail_amount": {
+    "description": "U16: receipt row label."
+  },
+  "detail_paid_by": "Paid by",
+  "@detail_paid_by": {
+    "description": "U16: receipt row label."
+  },
+  "detail_upi": "UPI",
+  "@detail_upi": {
+    "description": "U16: how it was paid."
+  },
+  "detail_upi_to": "UPI to {name}",
+  "@detail_upi_to": {
+    "description": "U16: how it was paid and to whom (the name on their UPI account).",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "IMRAN SHAIKH"
+      }
+    }
+  },
+  "detail_payment": "Payment",
+  "@detail_payment": {
+    "description": "U16: receipt row label."
+  },
+  "detail_payment_pending": "Not paid yet",
+  "@detail_payment_pending": {
+    "description": "U16: payment state."
+  },
+  "detail_payment_marked": "Waiting for the mechanic to confirm",
+  "@detail_payment_marked": {
+    "description": "U16: the customer marked it paid."
+  },
+  "detail_payment_confirmed": "Paid, confirmed by the mechanic",
+  "@detail_payment_confirmed": {
+    "description": "U16: payment state."
+  },
+  "detail_payment_disputed": "Under review",
+  "@detail_payment_disputed": {
+    "description": "U16: payment disputed; support is looking at it."
+  },
+  "detail_nothing_to_pay": "Nothing to pay",
+  "@detail_nothing_to_pay": {
+    "description": "U16: amount for a cancelled booking."
   }
 }

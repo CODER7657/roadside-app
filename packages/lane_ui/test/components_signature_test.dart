@@ -1,6 +1,7 @@
 // #15: JourneyRail, TrustPass, LaneOtpDisplay / LaneOtpInput, LaneRollingNumber,
 // BreathingPulse and CountdownRing.
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart' show RenderParagraph;
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lane_ui/lane_ui.dart';
@@ -146,6 +147,30 @@ void main() {
       expect(find.text('Requested', skipOffstage: false), findsOneWidget);
       expect(find.text('10:41'), findsOneWidget);
       expect(find.bySemanticsLabel('Step 2 of 3: Accepted'), findsOneWidget);
+    });
+
+    testWidgets('vertical at 200% text: the last label is not cut to 24 dp', (tester) async {
+      await pumpIn(
+        tester,
+        Scaffold(
+          body: Builder(
+            builder: (context) => MediaQuery(
+              data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(2)),
+              child: const JourneyRail(
+                stops: [
+                  JourneyStop(label: 'Requested', signal: LaneSignal.wait, time: '10:40'),
+                  JourneyStop(label: 'Done', signal: LaneSignal.go, time: '10:51'),
+                ],
+                current: 1,
+                direction: Axis.vertical,
+              ),
+            ),
+          ),
+        ),
+      );
+      expect(tester.takeException(), isNull);
+      final done = tester.renderObject<RenderParagraph>(find.text('Done'));
+      expect(done.size.height, greaterThan(24));
     });
 
     testWidgets('a single stop still paints', (tester) async {

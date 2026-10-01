@@ -1089,4 +1089,115 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile_licenses => 'Open-source licenses';
+
+  @override
+  String get home_history => 'Your bookings';
+
+  @override
+  String get history_title => 'Bookings';
+
+  @override
+  String get history_filter_all => 'All';
+
+  @override
+  String get history_filter_active => 'Active';
+
+  @override
+  String get history_filter_past => 'Past';
+
+  @override
+  String get history_status_searching => 'Searching';
+
+  @override
+  String get history_status_cancelled => 'Cancelled';
+
+  @override
+  String get history_status_no_mechanic => 'No mechanic';
+
+  @override
+  String get history_today => 'Today';
+
+  @override
+  String get history_yesterday => 'Yesterday';
+
+  @override
+  String get history_empty_title => 'No bookings yet';
+
+  @override
+  String get history_empty_body => 'When you get help, the booking and its receipt show up here.';
+
+  @override
+  String get history_empty_action => 'Go to the map';
+
+  @override
+  String get history_none_active => 'Nothing going on right now';
+
+  @override
+  String get history_none_past => 'No past bookings';
+
+  @override
+  String get history_show_all => 'Show all';
+
+  @override
+  String get history_error => 'Couldn\'t load your bookings. Check your connection.';
+
+  @override
+  String get detail_title => 'Booking';
+
+  @override
+  String get detail_missing => 'This booking isn\'t available.';
+
+  @override
+  String get detail_back_to_history => 'Back to bookings';
+
+  @override
+  String get detail_report => 'Report an issue';
+
+  @override
+  String get detail_no_mechanic => 'No mechanic was free nearby. Nothing was charged.';
+
+  @override
+  String detail_cancelled_by_you(String time) {
+    return 'You cancelled at $time.';
+  }
+
+  @override
+  String detail_cancelled_at(String time) {
+    return 'Cancelled at $time.';
+  }
+
+  @override
+  String get detail_mechanic => 'Mechanic';
+
+  @override
+  String get detail_amount => 'Amount';
+
+  @override
+  String get detail_paid_by => 'Paid by';
+
+  @override
+  String get detail_upi => 'UPI';
+
+  @override
+  String detail_upi_to(String name) {
+    return 'UPI to $name';
+  }
+
+  @override
+  String get detail_payment => 'Payment';
+
+  @override
+  String get detail_payment_pending => 'Not paid yet';
+
+  @override
+  String get detail_payment_marked => 'Waiting for the mechanic to confirm';
+
+  @override
+  String get detail_payment_confirmed => 'Paid, confirmed by the mechanic';
+
+  @override
+  String get detail_payment_disputed => 'Under review';
+
+  @override
+  String get detail_nothing_to_pay => 'Nothing to pay';
 }
