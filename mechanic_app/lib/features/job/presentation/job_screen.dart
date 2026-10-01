@@ -107,8 +107,16 @@ class _JobScreenState extends ConsumerState<JobScreen> {
     final l10n = AppLocalizations.of(context);
     final job = ref.watch(jobProvider(widget.bookingId));
     ref.listen(jobProvider(widget.bookingId), (_, next) => _syncTracking(next.value));
-    // The first value arrives before any listener change; start tracking for it too.
-    if (job.hasValue && !ref.read(jobTrackingProvider).isTracking) {
+    // The first value arrives before any listener change; start tracking for it too. And if the
+    // booking moved on while another screen (M6, M7) was open, stop sharing now.
+    final tracking = ref.read(jobTrackingProvider);
+    final current = job.value;
+    final needsStart = job.hasValue && !tracking.isTracking;
+    final needsStop =
+        current != null &&
+        tracking.bookingId == widget.bookingId &&
+        !kTrackedStatuses.contains(current.status);
+    if (needsStart || needsStop) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) _syncTracking(job.value);
       });

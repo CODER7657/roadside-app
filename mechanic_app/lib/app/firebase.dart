@@ -62,16 +62,20 @@ Future<FirebaseServices?> connectFirebase(AppFlavor flavor) async {
     assert(flavor == AppFlavor.dev, 'Emulators are for the dev flavour only');
     // A named app, so the demo project never mixes with a default app that
     // google-services.json may have started natively.
-    final app = await Firebase.initializeApp(
-      name: 'emulators',
-      options: const FirebaseOptions(
-        apiKey: 'demo-key',
-        appId: '1:0:android:0',
-        messagingSenderId: '0',
-        projectId: kEmulatorProjectId,
-        storageBucket: '$kEmulatorProjectId.appspot.com',
-      ),
-    );
+    // A hot restart keeps the native app: reuse it rather than fail with duplicate-app.
+    final existing = Firebase.apps.where((a) => a.name == 'emulators');
+    final app = existing.isNotEmpty
+        ? existing.first
+        : await Firebase.initializeApp(
+            name: 'emulators',
+            options: const FirebaseOptions(
+              apiKey: 'demo-key',
+              appId: '1:0:android:0',
+              messagingSenderId: '0',
+              projectId: kEmulatorProjectId,
+              storageBucket: '$kEmulatorProjectId.appspot.com',
+            ),
+          );
     const host = AppEnv.emulatorHost;
     final auth = FirebaseAuth.instanceFor(app: app);
     await auth.useAuthEmulator(host, 9099);

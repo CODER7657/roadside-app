@@ -144,6 +144,8 @@ void main() {
       await c().verify('123456');
       expect(s().error, isNull);
       expect(auth.currentUser?.phone, '+919876543210');
+      expect(s().awaitingCode, isFalse, reason: 'a later login starts from C5');
+      expect(s().phone, isNull);
     });
 
     test('change number goes back to C5 and keeps the number', () async {
@@ -231,6 +233,7 @@ void main() {
       expect(find.byType(OtpScreen), findsOneWidget);
       expect(find.text('Sent to +91 98765 43210'), findsOneWidget);
       expect(find.text('Resend in 0:30'), findsOneWidget);
+      expect(secure.calls, [true], reason: 'C5 -> C6 keeps the window secure (no off in between)');
 
       await enterCode(tester, '000000');
       expect(find.text("That code isn't right. Check the SMS and try again."), findsOneWidget);
