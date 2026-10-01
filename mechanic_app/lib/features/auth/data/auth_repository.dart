@@ -120,6 +120,9 @@ class FirebaseAuthRepository implements AuthRepository {
   /// before the mechanic types it.
   static const autoRetrievalTimeout = Duration(seconds: 60);
 
+  /// If Firebase never answers (no codeSent, no failure), C5 stops waiting after this.
+  static const sendTimeout = Duration(seconds: 90);
+
   static AuthUser? _toUser(User? user) =>
       user == null ? null : AuthUser(uid: user.uid, phone: user.phoneNumber ?? '');
 
@@ -163,8 +166,11 @@ class FirebaseAuthRepository implements AuthRepository {
       );
     } on FirebaseAuthException catch (e) {
       complete(SendCodeFailed(loginErrorFor(e.code)));
+    } catch (_) {
+      // A platform error (e.g. Play services missing) must not leave C5 spinning.
+      complete(const SendCodeFailed(LoginError.failed));
     }
-    return result.future;
+    return result.future.timeout(sendTimeout, onTimeout: () => const SendCodeFailed(LoginError.network));
   }
 
   @override
@@ -176,6 +182,8 @@ class FirebaseAuthRepository implements AuthRepository {
       return null;
     } on FirebaseAuthException catch (e) {
       return loginErrorFor(e.code);
+    } catch (_) {
+      return LoginError.failed;
     }
   }
 

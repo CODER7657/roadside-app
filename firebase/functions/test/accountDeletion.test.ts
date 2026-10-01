@@ -44,6 +44,7 @@ async function customerWithHistory() {
   await fs.doc(`liveLocations/${bookingId}`).set({ etaMinutes: 3 });
   await fs.doc(`reviews/${bookingId}`).set({ customerId, stars: 5, tags: ['on_time'], comment: 'Ask for Priya' });
   await fs.doc('shareLinks/tok-1').set({ bookingId, createdBy: customerId });
+  await fs.doc(`inbox/${customerId}/items/n-1`).set({ type: 'booking_completed', read: false });
   return { customerId, bookingId };
 }
 
@@ -188,6 +189,7 @@ describe(
       assert.equal((await fs.doc(`bookings/${bookingId}/messages/msg-1`).get()).exists, false);
       assert.equal((await fs.doc(`liveLocations/${bookingId}`).get()).exists, false);
       assert.equal((await fs.doc('shareLinks/tok-1').get()).exists, false);
+      assert.equal((await fs.doc(`inbox/${customerId}/items/n-1`).get()).exists, false, 'notifications go too');
       const review = (await fs.doc(`reviews/${bookingId}`).get()).data()!;
       assert.equal(review.comment, '');
       assert.equal(review.stars, 5, "the mechanic's rating stays");

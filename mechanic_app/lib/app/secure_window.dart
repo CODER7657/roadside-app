@@ -29,6 +29,10 @@ class PlatformSecureWindow implements SecureWindow {
 
 final secureWindowProvider = Provider<SecureWindow>((ref) => const PlatformSecureWindow());
 
+/// How many [SecureScreen]s are mounted. Going from one secure screen to another (C5 -> C6) mounts
+/// the new one before the old one is disposed, so the flag goes off only when the last one goes.
+int _secureScreens = 0;
+
 /// Keeps the window secure while [child] is on screen.
 class SecureScreen extends ConsumerStatefulWidget {
   const SecureScreen({super.key, required this.child});
@@ -47,12 +51,12 @@ class _SecureScreenState extends ConsumerState<SecureScreen> {
   void initState() {
     super.initState();
     _window = ref.read(secureWindowProvider);
-    unawaited(_window.setSecure(true));
+    if (_secureScreens++ == 0) unawaited(_window.setSecure(true));
   }
 
   @override
   void dispose() {
-    unawaited(_window.setSecure(false));
+    if (--_secureScreens == 0) unawaited(_window.setSecure(false));
     super.dispose();
   }
 

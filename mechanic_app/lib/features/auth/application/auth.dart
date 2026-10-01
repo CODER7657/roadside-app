@@ -115,7 +115,8 @@ class LoginController extends Notifier<LoginState> {
         );
         return true;
       case SignedInInstantly():
-        state = state.copyWith(busy: false, clearError: true);
+        // Signed in: the next login (after a sign-out) starts from C5 again.
+        state = const LoginState();
         return false;
       case SendCodeFailed(:final error):
         state = state.copyWith(busy: false, error: error);
@@ -129,7 +130,8 @@ class LoginController extends Notifier<LoginState> {
     if (state.busy || id == null) return;
     state = state.copyWith(busy: true, clearError: true);
     final error = await _auth.verifyCode(verificationId: id, code: code);
-    state = state.copyWith(busy: false, error: error);
+    // Signed in: the next login (after a sign-out) starts from C5 again.
+    state = error == null ? const LoginState() : state.copyWith(busy: false, error: error);
   }
 
   /// C6 "Change number": back to C5, keeping the number to edit.
