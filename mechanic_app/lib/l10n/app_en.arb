@@ -1225,5 +1225,9 @@
   "pay_error": "Couldn't update the payment. Try again.",
   "@pay_error": {
     "description": "M8 error."
+  },
+  "pay_not_paid": "Customer didn't pay",
+  "@pay_not_paid": {
+    "description": "M8 pending: report that the customer left without paying (disputePayment)."
   }
 }

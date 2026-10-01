@@ -1820,6 +1820,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Couldn\'t update the payment. Try again.'**
   String get pay_error;
+
+  /// M8 pending: report that the customer left without paying (disputePayment).
+  ///
+  /// In en, this message translates to:
+  /// **'Customer didn\'t pay'**
+  String get pay_not_paid;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -71,11 +71,14 @@ class _PaymentViewState extends ConsumerState<PaymentView> {
     );
 
     return switch (b.paymentStatus) {
+      // The customer may leave without paying: the mechanic can report it from here too
+      // (disputePayment accepts pending).
       PaymentStatus.pending => LaneStatusScaffold(
         visual: amountVisual(l10n.pay_waiting_caps),
         title: l10n.pay_waiting_title,
         message: l10n.pay_waiting_body,
         primary: back,
+        secondary: LaneButton.ghost(label: l10n.pay_not_paid, onPressed: _busy ? null : _notReceived),
       ),
       PaymentStatus.customerMarkedPaid => LaneStatusScaffold(
         visual: amountVisual(l10n.pay_claimed_caps),

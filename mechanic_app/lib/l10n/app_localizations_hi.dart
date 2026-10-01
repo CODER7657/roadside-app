@@ -939,4 +939,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get pay_error => 'पेमेंट अपडेट नहीं कर पाए। फिर से कोशिश करें।';
+
+  @override
+  String get pay_not_paid => 'ग्राहक ने पेमेंट नहीं किया';
 }

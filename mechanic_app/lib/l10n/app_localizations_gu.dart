@@ -937,4 +937,7 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get pay_error => 'પેમેન્ટ અપડેટ કરી શક્યા નહીં. ફરી પ્રયાસ કરો.';
+
+  @override
+  String get pay_not_paid => 'ગ્રાહકે પેમેન્ટ ન કર્યું';
 }

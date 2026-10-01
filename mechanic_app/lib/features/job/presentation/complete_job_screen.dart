@@ -43,6 +43,10 @@ class CompleteJobScreen extends ConsumerStatefulWidget {
 class _CompleteJobScreenState extends ConsumerState<CompleteJobScreen> {
   final _before = <Uint8List>[];
   final _after = <Uint8List>[];
+
+  /// Photos already uploaded (by identity), so a retry after a failed `completeJob` doesn't
+  /// upload them again on mobile data, or leave extra copies in `work/`.
+  final _uploaded = Map<Uint8List, String>.identity();
   final _amount = TextEditingController();
   AmountReason? _reason;
   bool _busy = false;
@@ -111,7 +115,12 @@ class _CompleteJobScreenState extends ConsumerState<CompleteJobScreen> {
     try {
       Future<List<String>> upload(List<Uint8List> photos, String base) => Future.wait([
         for (final bytes in photos)
-          uploader.upload(bookingId: widget.bookingId, fileName: uniquePhotoName(base), bytes: bytes),
+          if (_uploaded[bytes] case final url?)
+            Future.value(url)
+          else
+            uploader
+                .upload(bookingId: widget.bookingId, fileName: uniquePhotoName(base), bytes: bytes)
+                .then((url) => _uploaded[bytes] = url),
       ]);
       before = await upload(_before, 'before');
       after = await upload(_after, 'after');
@@ -133,6 +142,8 @@ class _CompleteJobScreenState extends ConsumerState<CompleteJobScreen> {
     switch (result) {
       case JobCompleted():
         unawaited(LaneHaptics.statusAdvance());
+        // The job is over: stop sharing the location now, not when M5 next sees the booking.
+        ref.read(jobTrackingProvider.notifier).stop();
         // M5 follows the booking to M8 (payment).
         context.go(jobRoute(widget.bookingId));
       case AmountNeedsReason(:final min, :final max):
@@ -197,7 +208,11 @@ class _CompleteJobScreenState extends ConsumerState<CompleteJobScreen> {
             addLabel: l10n.register_photo_add,
             bytes: bytes,
             removeLabel: l10n.register_photo_remove,
-            onRemove: _busy ? null : () => setState(() => list.removeAt(i)),
+            onRemove: _busy
+                ? null
+                : () => setState(() {
+                    _uploaded.remove(list.removeAt(i));
+                  }),
             onTap: () {},
           ),
         if (list.length < kMaxWorkPhotos)

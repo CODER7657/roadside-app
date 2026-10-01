@@ -298,6 +298,33 @@ void main() {
       await tester.pump(LaneToast.visibleFor);
     });
 
+    testWidgets('a retry after a failed finish does not upload the photos again', (tester) async {
+      await tester.pumpWidget(await app(booking(BookingStatus.inProgress)));
+      await go(tester, completeJobRoute('b-1'));
+      await addPhoto(tester, 0);
+      await typeAmount(tester, '450');
+      jobs.nextComplete = const CompleteRejected(CompleteProblem.failed);
+      await slide(tester);
+      expect(find.text("Couldn't finish the job. Try again."), findsOneWidget);
+      expect(uploader.uploaded, hasLength(1));
+      await tester.pump(LaneToast.visibleFor);
+      await slide(tester);
+      expect(jobs.calls, ['completeJob:b-1', 'completeJob:b-1']);
+      expect(uploader.uploaded, hasLength(1), reason: 'the same photo, not uploaded twice');
+      expect(find.text('Waiting for payment'), findsOneWidget);
+    });
+
+    testWidgets('M8 waiting: the customer left without paying → report it', (tester) async {
+      await tester.pumpWidget(await app(booking(BookingStatus.completed, finalAmount: 450)));
+      await go(tester, jobRoute('b-1'));
+      await tapText(tester, "Customer didn't pay");
+      await tester.enterText(find.byType(TextField).last, 'Left without paying');
+      await tester.pumpAndSettle();
+      await tapText(tester, 'Report it');
+      expect(jobs.disputes, ['Left without paying']);
+      expect(find.text("We're looking into it"), findsOneWidget);
+    });
+
     testWidgets('M8: the customer says they paid → Yes, received → confirmed', (tester) async {
       await tester.pumpWidget(
         await app(

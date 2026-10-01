@@ -312,6 +312,9 @@ class InMemoryJobRepository implements JobRepository {
 
   final disputes = <String>[];
 
+  /// What the next `completeJob` returns instead of the normal answer (tests).
+  CompleteResult? nextComplete;
+
   /// What the customer's app does (U13 "I have paid"); tests.
   void setPayment(String bookingId, PaymentStatus status) {
     _bookings[bookingId] = _bookings[bookingId]!.copyWith(paymentStatus: status);
@@ -327,6 +330,9 @@ class InMemoryJobRepository implements JobRepository {
     AmountReason? amountReason,
   }) async {
     calls.add('completeJob:$bookingId');
+    final forced = nextComplete;
+    nextComplete = null;
+    if (forced != null) return forced;
     final b = _bookings[bookingId];
     if (b == null || b.status != BookingStatus.inProgress) {
       return const CompleteRejected(CompleteProblem.invalidStatus);

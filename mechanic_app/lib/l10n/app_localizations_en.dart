@@ -938,4 +938,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pay_error => 'Couldn\'t update the payment. Try again.';
+
+  @override
+  String get pay_not_paid => 'Customer didn\'t pay';
 }
