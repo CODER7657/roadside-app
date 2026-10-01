@@ -127,8 +127,11 @@ class _JourneyRailState extends State<JourneyRail> with SingleTickerProviderStat
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       for (final (i, s) in widget.stops.indexed)
-                        SizedBox(
-                          height: i == widget.stops.length - 1 ? lane.space.s24 : lane.space.s64,
+                        // Rows keep the dots' 64 dp pitch; the last may grow with large text.
+                        ConstrainedBox(
+                          constraints: i == widget.stops.length - 1
+                              ? BoxConstraints(minHeight: lane.space.s24)
+                              : BoxConstraints.tightFor(height: lane.space.s64),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

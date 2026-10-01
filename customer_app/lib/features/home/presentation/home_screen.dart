@@ -14,9 +14,11 @@ import '../../booking/application/live_booking.dart';
 import '../../booking/application/pickup.dart';
 import '../../booking/data/plus_code.dart';
 import '../../booking/presentation/tracking_map.dart';
+import '../../connectivity/connectivity.dart';
 import '../../help/presentation/help_screen.dart' show launchLinkProvider, supportContactsProvider;
 import '../../permissions/application/permission_service.dart';
 import '../../permissions/presentation/permission_explainer_screen.dart';
+import '../../sos/presentation/sos_sheet.dart';
 import '../../vehicles/application/vehicles.dart';
 import '../application/home_location.dart';
 
@@ -103,17 +105,29 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     };
 
     final outside = here.outside && here.fix != null;
-    final Widget primary = outside && supportPhone.isNotEmpty
+    // Offline, a booking can't be made; an SMS to support still can (PLAN §10 SMS fallback).
+    // Only with a real fix: the fallback centre is never sent as someone's location.
+    final offline = ref.watch(isOfflineProvider);
+    final smsInstead = (outside || offline) && here.fix != null && supportPhone.isNotEmpty;
+    final Widget primary = smsInstead
         ? LaneButton.primary(
             label: l10n.home_sms_location,
             critical: true,
             onPressed: () => _smsLocation(position),
           )
-        : LaneButton.primary(label: l10n.home_get_help, critical: true, onPressed: _getHelp);
+        : LaneButton.primary(label: l10n.home_get_help, critical: true, onPressed: offline ? null : _getHelp);
 
     return LaneMapScaffold(
       map: mapBuilder(pickup: position),
-      actions: const [LaneGlareButton()],
+      actions: [
+        const LaneGlareButton(),
+        LaneMapButton(
+          icon: LaneIcons.userCircle,
+          tooltip: l10n.home_profile,
+          onPressed: () => context.push(AppRoutes.profile),
+        ),
+        LaneSosButton(tooltip: l10n.sos_button, onPressed: () => showSosSheet(context)),
+      ],
       dock: LaneDock(
         header: chip == null ? null : Align(alignment: Alignment.centerLeft, child: chip),
         primary: primary,
@@ -137,6 +151,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               container: true,
               liveRegion: true,
               child: Text(here.address!, style: lane.text.bodyLarge),
+            ),
+            SizedBox(height: lane.space.s16),
+          ],
+          if (offline) ...[
+            Semantics(
+              container: true,
+              liveRegion: true,
+              child: Text(
+                smsInstead ? l10n.home_offline_sms : l10n.home_offline,
+                style: lane.text.body.copyWith(color: lane.color.inkMuted),
+              ),
             ),
             SizedBox(height: lane.space.s16),
           ],
@@ -165,6 +190,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               onPressed: () => context.push(AppRoutes.addVehicle),
             ),
           SizedBox(height: lane.space.s8),
+          LaneButton.ghost(label: l10n.home_history, onPressed: () => context.push(AppRoutes.history)),
           LaneButton.ghost(label: l10n.home_help, onPressed: () => context.push(AppRoutes.help)),
         ],
       ),

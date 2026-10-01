@@ -1934,6 +1934,462 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Try again'**
   String get chat_error_retry;
+
+  /// U1: tooltip and screen-reader label of the map button that opens U18.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile & settings'**
+  String get home_profile;
+
+  /// U18: title.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile & settings'**
+  String get profile_title;
+
+  /// U18: error state for the name and number; the settings below are kept on the phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your profile. Your settings still work.'**
+  String get profile_error;
+
+  /// U18: row that opens the language choice.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get profile_language;
+
+  /// U18: title of the language sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your language'**
+  String get profile_language_title;
+
+  /// U18: row and sheet title for Auto / Day / Night / Glare.
+  ///
+  /// In en, this message translates to:
+  /// **'Display mode'**
+  String get profile_display_mode;
+
+  /// U18: display mode chosen by the app.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto'**
+  String get profile_display_auto;
+
+  /// U18: explains Auto.
+  ///
+  /// In en, this message translates to:
+  /// **'Day or Night by local sunset. Saver when the battery is low.'**
+  String get profile_display_auto_hint;
+
+  /// U18: display mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get profile_display_day;
+
+  /// U18: explains Day.
+  ///
+  /// In en, this message translates to:
+  /// **'A light screen, all the time.'**
+  String get profile_display_day_hint;
+
+  /// U18: display mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Night'**
+  String get profile_display_night;
+
+  /// U18: explains Night.
+  ///
+  /// In en, this message translates to:
+  /// **'A dark screen, all the time.'**
+  String get profile_display_night_hint;
+
+  /// U18: display mode for bright sunlight (the ☀ button on the map).
+  ///
+  /// In en, this message translates to:
+  /// **'Glare'**
+  String get profile_display_glare;
+
+  /// U18: explains Glare.
+  ///
+  /// In en, this message translates to:
+  /// **'Black on white with bigger text, for bright sun.'**
+  String get profile_display_glare_hint;
+
+  /// U18: switch for the one sound the app plays.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrival chime'**
+  String get profile_chime;
+
+  /// U18: explains the arrival chime.
+  ///
+  /// In en, this message translates to:
+  /// **'A short sound when your mechanic arrives.'**
+  String get profile_chime_hint;
+
+  /// U18: row that opens U17.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency contacts'**
+  String get profile_contacts;
+
+  /// U18: how many emergency contacts are saved.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{None saved yet} =1{1 saved} other{{count} saved}}'**
+  String profile_contacts_count(int count);
+
+  /// U18: row that opens the privacy notice.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy & data'**
+  String get profile_privacy;
+
+  /// U18: row that opens the licenses page.
+  ///
+  /// In en, this message translates to:
+  /// **'Open-source licenses'**
+  String get profile_licenses;
+
+  /// U1: opens U15 booking history.
+  ///
+  /// In en, this message translates to:
+  /// **'Your bookings'**
+  String get home_history;
+
+  /// U15: title.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings'**
+  String get history_title;
+
+  /// U15: filter chip.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get history_filter_all;
+
+  /// U15: filter chip, bookings still going on.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get history_filter_active;
+
+  /// U15: filter chip, finished or cancelled bookings.
+  ///
+  /// In en, this message translates to:
+  /// **'Past'**
+  String get history_filter_past;
+
+  /// U15/U16: badge while a mechanic is being found.
+  ///
+  /// In en, this message translates to:
+  /// **'Searching'**
+  String get history_status_searching;
+
+  /// U15/U16: badge for a cancelled booking (grey, never red).
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get history_status_cancelled;
+
+  /// U15/U16: badge when no mechanic was found.
+  ///
+  /// In en, this message translates to:
+  /// **'No mechanic'**
+  String get history_status_no_mechanic;
+
+  /// U15/U16: the day of a booking.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get history_today;
+
+  /// U15/U16: the day of a booking.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get history_yesterday;
+
+  /// U15: empty state title.
+  ///
+  /// In en, this message translates to:
+  /// **'No bookings yet'**
+  String get history_empty_title;
+
+  /// U15: empty state body.
+  ///
+  /// In en, this message translates to:
+  /// **'When you get help, the booking and its receipt show up here.'**
+  String get history_empty_body;
+
+  /// U15: empty state action, back to Home.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to the map'**
+  String get history_empty_action;
+
+  /// U15: the Active filter has no bookings.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing going on right now'**
+  String get history_none_active;
+
+  /// U15: the Past filter has no bookings.
+  ///
+  /// In en, this message translates to:
+  /// **'No past bookings'**
+  String get history_none_past;
+
+  /// U15: action on an empty filter.
+  ///
+  /// In en, this message translates to:
+  /// **'Show all'**
+  String get history_show_all;
+
+  /// U15/U16: error state.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your bookings. Check your connection.'**
+  String get history_error;
+
+  /// U16: title while the booking loads.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking'**
+  String get detail_title;
+
+  /// U16: the booking does not exist or is not yours.
+  ///
+  /// In en, this message translates to:
+  /// **'This booking isn\'t available.'**
+  String get detail_missing;
+
+  /// U16: action when the booking is missing.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to bookings'**
+  String get detail_back_to_history;
+
+  /// U16: opens Help & FAQ (support and grievance officer).
+  ///
+  /// In en, this message translates to:
+  /// **'Report an issue'**
+  String get detail_report;
+
+  /// U16: under the rail when no mechanic was found.
+  ///
+  /// In en, this message translates to:
+  /// **'No mechanic was free nearby. Nothing was charged.'**
+  String get detail_no_mechanic;
+
+  /// U16: under the rail.
+  ///
+  /// In en, this message translates to:
+  /// **'You cancelled at {time}.'**
+  String detail_cancelled_by_you(String time);
+
+  /// U16: under the rail, cancelled by the mechanic or support.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled at {time}.'**
+  String detail_cancelled_at(String time);
+
+  /// U16: receipt row label.
+  ///
+  /// In en, this message translates to:
+  /// **'Mechanic'**
+  String get detail_mechanic;
+
+  /// U16: receipt row label.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get detail_amount;
+
+  /// U16: receipt row label.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid by'**
+  String get detail_paid_by;
+
+  /// U16: how it was paid.
+  ///
+  /// In en, this message translates to:
+  /// **'UPI'**
+  String get detail_upi;
+
+  /// U16: how it was paid and to whom (the name on their UPI account).
+  ///
+  /// In en, this message translates to:
+  /// **'UPI to {name}'**
+  String detail_upi_to(String name);
+
+  /// U16: receipt row label.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment'**
+  String get detail_payment;
+
+  /// U16: payment state.
+  ///
+  /// In en, this message translates to:
+  /// **'Not paid yet'**
+  String get detail_payment_pending;
+
+  /// U16: the customer marked it paid.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for the mechanic to confirm'**
+  String get detail_payment_marked;
+
+  /// U16: payment state.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid, confirmed by the mechanic'**
+  String get detail_payment_confirmed;
+
+  /// U16: payment disputed; support is looking at it.
+  ///
+  /// In en, this message translates to:
+  /// **'Under review'**
+  String get detail_payment_disputed;
+
+  /// U16: amount for a cancelled booking.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing to pay'**
+  String get detail_nothing_to_pay;
+
+  /// Map: tooltip and screen-reader label of the red SOS button.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency SOS'**
+  String get sos_button;
+
+  /// U1·SOS: sheet title.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency'**
+  String get sos_title;
+
+  /// U1·SOS: body with the number of saved contacts.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Hold to alert your emergency contact with your location.} other{Hold to alert your {count} emergency contacts with your location.}}'**
+  String sos_body(int count);
+
+  /// U1·SOS: body while the contacts load.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold to alert your emergency contacts with your location.'**
+  String get sos_body_loading;
+
+  /// U1·SOS: body when no contacts are saved.
+  ///
+  /// In en, this message translates to:
+  /// **'No emergency contacts saved. Holding opens your messages so you can choose who to alert.'**
+  String get sos_body_no_contacts;
+
+  /// U1·SOS: screen-reader hint on the hold ring.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold for 1.5 seconds to send SOS'**
+  String get sos_hold_hint;
+
+  /// U1·SOS: under the hold ring.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold for 1.5 seconds. Letting go early sends nothing.'**
+  String get sos_hold_caption;
+
+  /// U1·SOS: while the trip link is made and the SMS app opens.
+  ///
+  /// In en, this message translates to:
+  /// **'Opening your messages…'**
+  String get sos_opening;
+
+  /// U1·SOS: toast after the SMS app opened (the customer still presses send).
+  ///
+  /// In en, this message translates to:
+  /// **'Your messages app has the SOS ready. Press send.'**
+  String get sos_opened;
+
+  /// U1·SOS: toast when no SMS app opened.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t open your messages. Call 112.'**
+  String get sos_failed;
+
+  /// U1·SOS: India emergency number.
+  ///
+  /// In en, this message translates to:
+  /// **'Call 112'**
+  String get sos_call_112;
+
+  /// U1·SOS: toast when the dialer did not open.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t start the call. Dial 112.'**
+  String get sos_call_failed;
+
+  /// U1·SOS: share the live trip link (during a booking).
+  ///
+  /// In en, this message translates to:
+  /// **'Share trip'**
+  String get sos_share_trip;
+
+  /// U1·SOS: opens U17 when none are saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Add emergency contacts'**
+  String get sos_add_contacts;
+
+  /// SOS SMS body.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS: I need help. My location: {link} (Plus Code {code}).'**
+  String sos_sms_body(String link, String code);
+
+  /// SOS SMS body without a location fix.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS: I need help. My location isn\'t available right now.'**
+  String get sos_sms_body_no_location;
+
+  /// SOS SMS: the live-trip link (expires when the job ends).
+  ///
+  /// In en, this message translates to:
+  /// **'Follow my live trip: {link}'**
+  String sos_sms_trip(String link);
+
+  /// Share trip text.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow my roadside help trip live: {link}'**
+  String sos_share_trip_text(String link);
+
+  /// Share trip text when no live link can be made.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m waiting for roadside help here: {link}'**
+  String sos_share_location_text(String link);
+
+  /// U1: when offline and no SMS fallback is possible.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re offline. Getting help needs the internet.'**
+  String get home_offline;
+
+  /// U1: when offline, above "Send my location by SMS".
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re offline. You can still send your location to our helpline by SMS.'**
+  String get home_offline_sms;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

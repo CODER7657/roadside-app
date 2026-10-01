@@ -12,4 +12,8 @@ abstract final class AppEnv {
 
   /// The DPDP grievance officer's address (PLAN §12.12), named in the policy (#55).
   static const grievanceEmail = String.fromEnvironment('GRIEVANCE_EMAIL');
+
+  /// The `share` Hosting site that serves trip links (`/t/<token>` → `sharePage`), e.g.
+  /// https://roadside-33282.web.app in dev. Empty: SOS and Share trip send the location only.
+  static const shareOrigin = String.fromEnvironment('SHARE_ORIGIN');
 }

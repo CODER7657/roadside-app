@@ -1416,5 +1416,360 @@
   "chat_error_retry": "Try again",
   "@chat_error_retry": {
     "description": "U11: error state action."
+  },
+  "home_profile": "Profile & settings",
+  "@home_profile": {
+    "description": "U1: tooltip and screen-reader label of the map button that opens U18."
+  },
+  "profile_title": "Profile & settings",
+  "@profile_title": {
+    "description": "U18: title."
+  },
+  "profile_error": "Couldn't load your profile. Your settings still work.",
+  "@profile_error": {
+    "description": "U18: error state for the name and number; the settings below are kept on the phone."
+  },
+  "profile_language": "Language",
+  "@profile_language": {
+    "description": "U18: row that opens the language choice."
+  },
+  "profile_language_title": "Choose your language",
+  "@profile_language_title": {
+    "description": "U18: title of the language sheet."
+  },
+  "profile_display_mode": "Display mode",
+  "@profile_display_mode": {
+    "description": "U18: row and sheet title for Auto / Day / Night / Glare."
+  },
+  "profile_display_auto": "Auto",
+  "@profile_display_auto": {
+    "description": "U18: display mode chosen by the app."
+  },
+  "profile_display_auto_hint": "Day or Night by local sunset. Saver when the battery is low.",
+  "@profile_display_auto_hint": {
+    "description": "U18: explains Auto."
+  },
+  "profile_display_day": "Day",
+  "@profile_display_day": {
+    "description": "U18: display mode."
+  },
+  "profile_display_day_hint": "A light screen, all the time.",
+  "@profile_display_day_hint": {
+    "description": "U18: explains Day."
+  },
+  "profile_display_night": "Night",
+  "@profile_display_night": {
+    "description": "U18: display mode."
+  },
+  "profile_display_night_hint": "A dark screen, all the time.",
+  "@profile_display_night_hint": {
+    "description": "U18: explains Night."
+  },
+  "profile_display_glare": "Glare",
+  "@profile_display_glare": {
+    "description": "U18: display mode for bright sunlight (the ☀ button on the map)."
+  },
+  "profile_display_glare_hint": "Black on white with bigger text, for bright sun.",
+  "@profile_display_glare_hint": {
+    "description": "U18: explains Glare."
+  },
+  "profile_chime": "Arrival chime",
+  "@profile_chime": {
+    "description": "U18: switch for the one sound the app plays."
+  },
+  "profile_chime_hint": "A short sound when your mechanic arrives.",
+  "@profile_chime_hint": {
+    "description": "U18: explains the arrival chime."
+  },
+  "profile_contacts": "Emergency contacts",
+  "@profile_contacts": {
+    "description": "U18: row that opens U17."
+  },
+  "profile_contacts_count": "{count, plural, =0{None saved yet} =1{1 saved} other{{count} saved}}",
+  "@profile_contacts_count": {
+    "description": "U18: how many emergency contacts are saved.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "profile_privacy": "Privacy & data",
+  "@profile_privacy": {
+    "description": "U18: row that opens the privacy notice."
+  },
+  "profile_licenses": "Open-source licenses",
+  "@profile_licenses": {
+    "description": "U18: row that opens the licenses page."
+  },
+  "home_history": "Your bookings",
+  "@home_history": {
+    "description": "U1: opens U15 booking history."
+  },
+  "history_title": "Bookings",
+  "@history_title": {
+    "description": "U15: title."
+  },
+  "history_filter_all": "All",
+  "@history_filter_all": {
+    "description": "U15: filter chip."
+  },
+  "history_filter_active": "Active",
+  "@history_filter_active": {
+    "description": "U15: filter chip, bookings still going on."
+  },
+  "history_filter_past": "Past",
+  "@history_filter_past": {
+    "description": "U15: filter chip, finished or cancelled bookings."
+  },
+  "history_status_searching": "Searching",
+  "@history_status_searching": {
+    "description": "U15/U16: badge while a mechanic is being found."
+  },
+  "history_status_cancelled": "Cancelled",
+  "@history_status_cancelled": {
+    "description": "U15/U16: badge for a cancelled booking (grey, never red)."
+  },
+  "history_status_no_mechanic": "No mechanic",
+  "@history_status_no_mechanic": {
+    "description": "U15/U16: badge when no mechanic was found."
+  },
+  "history_today": "Today",
+  "@history_today": {
+    "description": "U15/U16: the day of a booking."
+  },
+  "history_yesterday": "Yesterday",
+  "@history_yesterday": {
+    "description": "U15/U16: the day of a booking."
+  },
+  "history_empty_title": "No bookings yet",
+  "@history_empty_title": {
+    "description": "U15: empty state title."
+  },
+  "history_empty_body": "When you get help, the booking and its receipt show up here.",
+  "@history_empty_body": {
+    "description": "U15: empty state body."
+  },
+  "history_empty_action": "Go to the map",
+  "@history_empty_action": {
+    "description": "U15: empty state action, back to Home."
+  },
+  "history_none_active": "Nothing going on right now",
+  "@history_none_active": {
+    "description": "U15: the Active filter has no bookings."
+  },
+  "history_none_past": "No past bookings",
+  "@history_none_past": {
+    "description": "U15: the Past filter has no bookings."
+  },
+  "history_show_all": "Show all",
+  "@history_show_all": {
+    "description": "U15: action on an empty filter."
+  },
+  "history_error": "Couldn't load your bookings. Check your connection.",
+  "@history_error": {
+    "description": "U15/U16: error state."
+  },
+  "detail_title": "Booking",
+  "@detail_title": {
+    "description": "U16: title while the booking loads."
+  },
+  "detail_missing": "This booking isn't available.",
+  "@detail_missing": {
+    "description": "U16: the booking does not exist or is not yours."
+  },
+  "detail_back_to_history": "Back to bookings",
+  "@detail_back_to_history": {
+    "description": "U16: action when the booking is missing."
+  },
+  "detail_report": "Report an issue",
+  "@detail_report": {
+    "description": "U16: opens Help & FAQ (support and grievance officer)."
+  },
+  "detail_no_mechanic": "No mechanic was free nearby. Nothing was charged.",
+  "@detail_no_mechanic": {
+    "description": "U16: under the rail when no mechanic was found."
+  },
+  "detail_cancelled_by_you": "You cancelled at {time}.",
+  "@detail_cancelled_by_you": {
+    "description": "U16: under the rail.",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "10:05"
+      }
+    }
+  },
+  "detail_cancelled_at": "Cancelled at {time}.",
+  "@detail_cancelled_at": {
+    "description": "U16: under the rail, cancelled by the mechanic or support.",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "10:05"
+      }
+    }
+  },
+  "detail_mechanic": "Mechanic",
+  "@detail_mechanic": {
+    "description": "U16: receipt row label."
+  },
+  "detail_amount": "Amount",
+  "@detail_amount": {
+    "description": "U16: receipt row label."
+  },
+  "detail_paid_by": "Paid by",
+  "@detail_paid_by": {
+    "description": "U16: receipt row label."
+  },
+  "detail_upi": "UPI",
+  "@detail_upi": {
+    "description": "U16: how it was paid."
+  },
+  "detail_upi_to": "UPI to {name}",
+  "@detail_upi_to": {
+    "description": "U16: how it was paid and to whom (the name on their UPI account).",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "IMRAN SHAIKH"
+      }
+    }
+  },
+  "detail_payment": "Payment",
+  "@detail_payment": {
+    "description": "U16: receipt row label."
+  },
+  "detail_payment_pending": "Not paid yet",
+  "@detail_payment_pending": {
+    "description": "U16: payment state."
+  },
+  "detail_payment_marked": "Waiting for the mechanic to confirm",
+  "@detail_payment_marked": {
+    "description": "U16: the customer marked it paid."
+  },
+  "detail_payment_confirmed": "Paid, confirmed by the mechanic",
+  "@detail_payment_confirmed": {
+    "description": "U16: payment state."
+  },
+  "detail_payment_disputed": "Under review",
+  "@detail_payment_disputed": {
+    "description": "U16: payment disputed; support is looking at it."
+  },
+  "detail_nothing_to_pay": "Nothing to pay",
+  "@detail_nothing_to_pay": {
+    "description": "U16: amount for a cancelled booking."
+  },
+  "sos_button": "Emergency SOS",
+  "@sos_button": {
+    "description": "Map: tooltip and screen-reader label of the red SOS button."
+  },
+  "sos_title": "Emergency",
+  "@sos_title": {
+    "description": "U1·SOS: sheet title."
+  },
+  "sos_body": "{count, plural, =1{Hold to alert your emergency contact with your location.} other{Hold to alert your {count} emergency contacts with your location.}}",
+  "@sos_body": {
+    "description": "U1·SOS: body with the number of saved contacts.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sos_body_loading": "Hold to alert your emergency contacts with your location.",
+  "@sos_body_loading": {
+    "description": "U1·SOS: body while the contacts load."
+  },
+  "sos_body_no_contacts": "No emergency contacts saved. Holding opens your messages so you can choose who to alert.",
+  "@sos_body_no_contacts": {
+    "description": "U1·SOS: body when no contacts are saved."
+  },
+  "sos_hold_hint": "Hold for 1.5 seconds to send SOS",
+  "@sos_hold_hint": {
+    "description": "U1·SOS: screen-reader hint on the hold ring."
+  },
+  "sos_hold_caption": "Hold for 1.5 seconds. Letting go early sends nothing.",
+  "@sos_hold_caption": {
+    "description": "U1·SOS: under the hold ring."
+  },
+  "sos_opening": "Opening your messages…",
+  "@sos_opening": {
+    "description": "U1·SOS: while the trip link is made and the SMS app opens."
+  },
+  "sos_opened": "Your messages app has the SOS ready. Press send.",
+  "@sos_opened": {
+    "description": "U1·SOS: toast after the SMS app opened (the customer still presses send)."
+  },
+  "sos_failed": "Couldn't open your messages. Call 112.",
+  "@sos_failed": {
+    "description": "U1·SOS: toast when no SMS app opened."
+  },
+  "sos_call_112": "Call 112",
+  "@sos_call_112": {
+    "description": "U1·SOS: India emergency number."
+  },
+  "sos_call_failed": "Couldn't start the call. Dial 112.",
+  "@sos_call_failed": {
+    "description": "U1·SOS: toast when the dialer did not open."
+  },
+  "sos_share_trip": "Share trip",
+  "@sos_share_trip": {
+    "description": "U1·SOS: share the live trip link (during a booking)."
+  },
+  "sos_add_contacts": "Add emergency contacts",
+  "@sos_add_contacts": {
+    "description": "U1·SOS: opens U17 when none are saved."
+  },
+  "sos_sms_body": "SOS: I need help. My location: {link} (Plus Code {code}).",
+  "@sos_sms_body": {
+    "description": "SOS SMS body.",
+    "placeholders": {
+      "link": {
+        "type": "String"
+      },
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "sos_sms_body_no_location": "SOS: I need help. My location isn't available right now.",
+  "@sos_sms_body_no_location": {
+    "description": "SOS SMS body without a location fix."
+  },
+  "sos_sms_trip": "Follow my live trip: {link}",
+  "@sos_sms_trip": {
+    "description": "SOS SMS: the live-trip link (expires when the job ends).",
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "sos_share_trip_text": "Follow my roadside help trip live: {link}",
+  "@sos_share_trip_text": {
+    "description": "Share trip text.",
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "sos_share_location_text": "I'm waiting for roadside help here: {link}",
+  "@sos_share_location_text": {
+    "description": "Share trip text when no live link can be made.",
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "home_offline": "You're offline. Getting help needs the internet.",
+  "@home_offline": {
+    "description": "U1: when offline and no SMS fallback is possible."
+  },
+  "home_offline_sms": "You're offline. You can still send your location to our helpline by SMS.",
+  "@home_offline_sms": {
+    "description": "U1: when offline, above \"Send my location by SMS\"."
   }
 }

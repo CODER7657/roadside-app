@@ -16,9 +16,12 @@ import '../features/first_run/presentation/onboarding_screen.dart';
 import '../features/first_run/presentation/privacy_notice_screen.dart';
 import '../features/first_run/presentation/splash_screen.dart';
 import '../features/help/presentation/help_screen.dart';
+import '../features/history/presentation/booking_detail_screen.dart';
+import '../features/history/presentation/history_screen.dart';
 import '../features/home/presentation/home_screen.dart';
 import '../features/permissions/application/permission_service.dart';
 import '../features/permissions/presentation/permission_explainer_screen.dart';
+import '../features/profile/presentation/profile_screen.dart';
 import '../features/vehicles/presentation/add_vehicle_screen.dart';
 import '../features/vehicles/presentation/my_vehicles_screen.dart';
 
@@ -28,6 +31,13 @@ abstract final class AppRoutes {
   static const home = '/';
   static const privacy = '/privacy';
   static const help = '/help';
+
+  /// U15 Booking history, and U16 one finished booking.
+  static const history = '/bookings';
+  static String bookingDetail(String bookingId) => '/bookings/$bookingId';
+
+  /// U18 Profile & settings (from the map button on Home).
+  static const profile = '/profile';
 
   /// U17 Emergency contacts (linked from U18 and the SOS sheet).
   static const emergencyContacts = '/profile/contacts';
@@ -76,6 +86,17 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: AppRoutes.privacy, builder: (context, state) => const PrivacyNoticeScreen()),
       GoRoute(path: AppRoutes.home, builder: (context, state) => const HomeScreen()),
       GoRoute(path: AppRoutes.help, builder: (context, state) => const HelpScreen()),
+      GoRoute(path: AppRoutes.profile, builder: (context, state) => const ProfileScreen()),
+      GoRoute(
+        path: AppRoutes.history,
+        builder: (context, state) => const HistoryScreen(),
+        routes: [
+          GoRoute(
+            path: ':id',
+            builder: (context, state) => BookingDetailScreen(bookingId: state.pathParameters['id']!),
+          ),
+        ],
+      ),
       GoRoute(
         path: AppRoutes.emergencyContacts,
         builder: (context, state) => const EmergencyContactsScreen(),

@@ -9,7 +9,9 @@ import 'package:customer_app/features/booking/presentation/live_booking_screen.d
 import 'package:customer_app/features/booking/presentation/problem_screen.dart';
 import 'package:customer_app/features/first_run/application/first_run.dart';
 import 'package:customer_app/features/help/presentation/help_screen.dart';
+import 'package:customer_app/features/history/presentation/history_screen.dart';
 import 'package:customer_app/features/home/presentation/home_screen.dart';
+import 'package:customer_app/features/profile/presentation/profile_screen.dart';
 import 'package:customer_app/features/permissions/application/permission_service.dart';
 import 'package:customer_app/features/permissions/presentation/permission_explainer_screen.dart';
 import 'package:flutter/material.dart';
@@ -241,6 +243,22 @@ void main() {
         .set(const CreatedBooking(bookingId: id, cityId: CityId.ahmedabad, min: 350, max: 600));
     await tester.pumpAndSettle();
     expect(text('Your booking is in progress'), findsNothing);
+  });
+
+  testWidgets('"Your bookings" opens U15', (tester) async {
+    tall(tester);
+    await open(tester);
+    await tester.tap(find.text('Your bookings'));
+    await tester.pumpAndSettle();
+    expect(find.byType(HistoryScreen), findsOneWidget);
+  });
+
+  testWidgets('the map button opens Profile & settings (U18)', (tester) async {
+    tall(tester);
+    await open(tester);
+    await tester.tap(find.byTooltip('Profile & settings'));
+    await tester.pumpAndSettle();
+    expect(find.byType(ProfileScreen), findsOneWidget);
   });
 
   testWidgets('☀ Glare is on the map', (tester) async {

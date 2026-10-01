@@ -264,3 +264,53 @@ class LaneMapButton extends StatelessWidget {
     );
   }
 }
+
+/// The SOS button for map screens (PLAN §6.13: top right, with ☀ Glare). Red is kept for SOS
+/// (§6.5 ②) and it is a critical 64 dp target (§6.8). It only opens the SOS sheet; the 1.5 s
+/// hold in there sends, so a pocket tap never alerts anyone.
+class LaneSosButton extends StatelessWidget {
+  const LaneSosButton({super.key, required this.tooltip, required this.onPressed});
+
+  /// Also the screen-reader label, e.g. "Emergency SOS".
+  final String tooltip;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final lane = context.lane;
+    final s = lane.color.signal;
+    return Tooltip(
+      message: tooltip,
+      excludeFromSemantics: true,
+      child: Semantics(
+        button: true,
+        label: tooltip,
+        excludeSemantics: true,
+        onTap: onPressed,
+        child: DecoratedBox(
+          decoration: BoxDecoration(color: s.stop, shape: BoxShape.circle, boxShadow: lane.shadow.float),
+          child: Material(
+            type: MaterialType.transparency,
+            shape: const CircleBorder(),
+            clipBehavior: Clip.antiAlias,
+            child: InkWell(
+              onTap: onPressed,
+              child: SizedBox.square(
+                dimension: lane.touch.critical,
+                child: Padding(
+                  padding: EdgeInsets.all(lane.space.s12),
+                  // Large text shrinks to fit the circle instead of covering the red.
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    // "SOS" is understood in every language the app ships (PLAN §6.15).
+                    child: Text('SOS', style: lane.text.label.copyWith(color: lane.color.onSignal)),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

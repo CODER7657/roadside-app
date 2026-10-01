@@ -1019,4 +1019,264 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get chat_error_retry => 'ફરી પ્રયાસ કરો';
+
+  @override
+  String get home_profile => 'પ્રોફાઇલ અને સેટિંગ્સ';
+
+  @override
+  String get profile_title => 'પ્રોફાઇલ અને સેટિંગ્સ';
+
+  @override
+  String get profile_error => 'તમારી પ્રોફાઇલ લોડ થઈ શકી નહીં. તમારી સેટિંગ્સ તો પણ કામ કરે છે.';
+
+  @override
+  String get profile_language => 'ભાષા';
+
+  @override
+  String get profile_language_title => 'તમારી ભાષા પસંદ કરો';
+
+  @override
+  String get profile_display_mode => 'ડિસ્પ્લે મોડ';
+
+  @override
+  String get profile_display_auto => 'ઑટો';
+
+  @override
+  String get profile_display_auto_hint => 'સૂર્યાસ્ત મુજબ દિવસ કે રાત. બેટરી ઓછી હોય ત્યારે સેવર.';
+
+  @override
+  String get profile_display_day => 'દિવસ';
+
+  @override
+  String get profile_display_day_hint => 'હંમેશા આછી સ્ક્રીન.';
+
+  @override
+  String get profile_display_night => 'રાત';
+
+  @override
+  String get profile_display_night_hint => 'હંમેશા ઘેરી સ્ક્રીન.';
+
+  @override
+  String get profile_display_glare => 'તડકા મોડ';
+
+  @override
+  String get profile_display_glare_hint => 'તેજ તડકા માટે સફેદ પર કાળું, મોટા અક્ષર.';
+
+  @override
+  String get profile_chime => 'પહોંચવાની ઘંટડી';
+
+  @override
+  String get profile_chime_hint => 'મિકેનિક પહોંચે ત્યારે નાનો અવાજ.';
+
+  @override
+  String get profile_contacts => 'કટોકટી સંપર્કો';
+
+  @override
+  String profile_contacts_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count સેવ કરેલા',
+      zero: 'હજુ કોઈ સેવ નથી',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get profile_privacy => 'ગોપનીયતા અને ડેટા';
+
+  @override
+  String get profile_licenses => 'ઓપન-સોર્સ લાઇસન્સ';
+
+  @override
+  String get home_history => 'તમારા બુકિંગ';
+
+  @override
+  String get history_title => 'બુકિંગ';
+
+  @override
+  String get history_filter_all => 'બધા';
+
+  @override
+  String get history_filter_active => 'ચાલુ';
+
+  @override
+  String get history_filter_past => 'પાછલા';
+
+  @override
+  String get history_status_searching => 'શોધી રહ્યા છીએ';
+
+  @override
+  String get history_status_cancelled => 'રદ';
+
+  @override
+  String get history_status_no_mechanic => 'મિકેનિક ન મળ્યો';
+
+  @override
+  String get history_today => 'આજે';
+
+  @override
+  String get history_yesterday => 'ગઈકાલે';
+
+  @override
+  String get history_empty_title => 'હજુ કોઈ બુકિંગ નથી';
+
+  @override
+  String get history_empty_body => 'મદદ લીધા પછી બુકિંગ અને તેની રસીદ અહીં દેખાશે.';
+
+  @override
+  String get history_empty_action => 'નકશા પર જાઓ';
+
+  @override
+  String get history_none_active => 'હાલ કોઈ બુકિંગ ચાલુ નથી';
+
+  @override
+  String get history_none_past => 'કોઈ પાછલા બુકિંગ નથી';
+
+  @override
+  String get history_show_all => 'બધા બતાવો';
+
+  @override
+  String get history_error => 'તમારા બુકિંગ લોડ થઈ શક્યા નહીં. કનેક્શન તપાસો.';
+
+  @override
+  String get detail_title => 'બુકિંગ';
+
+  @override
+  String get detail_missing => 'આ બુકિંગ ઉપલબ્ધ નથી.';
+
+  @override
+  String get detail_back_to_history => 'બુકિંગ પર પાછા';
+
+  @override
+  String get detail_report => 'સમસ્યા જણાવો';
+
+  @override
+  String get detail_no_mechanic => 'નજીકમાં કોઈ મિકેનિક ફ્રી નહોતો. કોઈ પૈસા લેવાયા નથી.';
+
+  @override
+  String detail_cancelled_by_you(String time) {
+    return 'તમે $time વાગ્યે રદ કર્યું.';
+  }
+
+  @override
+  String detail_cancelled_at(String time) {
+    return '$time વાગ્યે રદ થયું.';
+  }
+
+  @override
+  String get detail_mechanic => 'મિકેનિક';
+
+  @override
+  String get detail_amount => 'રકમ';
+
+  @override
+  String get detail_paid_by => 'ચુકવણી';
+
+  @override
+  String get detail_upi => 'UPI';
+
+  @override
+  String detail_upi_to(String name) {
+    return '$name ને UPI';
+  }
+
+  @override
+  String get detail_payment => 'ચુકવણીની સ્થિતિ';
+
+  @override
+  String get detail_payment_pending => 'હજુ ચુકવણી થઈ નથી';
+
+  @override
+  String get detail_payment_marked => 'મિકેનિકની પુષ્ટિની રાહ';
+
+  @override
+  String get detail_payment_confirmed => 'ચુકવણી થઈ ગઈ, મિકેનિકે પુષ્ટિ કરી';
+
+  @override
+  String get detail_payment_disputed => 'તપાસ ચાલુ છે';
+
+  @override
+  String get detail_nothing_to_pay => 'કંઈ ચૂકવવાનું નથી';
+
+  @override
+  String get sos_button => 'કટોકટી SOS';
+
+  @override
+  String get sos_title => 'કટોકટી';
+
+  @override
+  String sos_body(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'તમારા $count કટોકટી સંપર્કોને તમારું લોકેશન મોકલવા દબાવી રાખો.',
+      one: 'તમારા કટોકટી સંપર્કને તમારું લોકેશન મોકલવા દબાવી રાખો.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sos_body_loading => 'તમારા કટોકટી સંપર્કોને તમારું લોકેશન મોકલવા દબાવી રાખો.';
+
+  @override
+  String get sos_body_no_contacts =>
+      'કોઈ કટોકટી સંપર્ક સેવ નથી. દબાવી રાખતાં મેસેજ એપ ખુલશે, ત્યાં તમે કોને મોકલવું તે પસંદ કરી શકો.';
+
+  @override
+  String get sos_hold_hint => 'SOS મોકલવા 1.5 સેકન્ડ દબાવી રાખો';
+
+  @override
+  String get sos_hold_caption => '1.5 સેકન્ડ દબાવી રાખો. વહેલું છોડશો તો કંઈ નહીં જાય.';
+
+  @override
+  String get sos_opening => 'તમારી મેસેજ એપ ખુલી રહી છે…';
+
+  @override
+  String get sos_opened => 'તમારી મેસેજ એપમાં SOS તૈયાર છે. મોકલો દબાવો.';
+
+  @override
+  String get sos_failed => 'મેસેજ એપ ખુલી શકી નહીં. 112 પર કૉલ કરો.';
+
+  @override
+  String get sos_call_112 => '112 પર કૉલ કરો';
+
+  @override
+  String get sos_call_failed => 'કૉલ શરૂ થઈ શક્યો નહીં. 112 ડાયલ કરો.';
+
+  @override
+  String get sos_share_trip => 'ટ્રિપ શેર કરો';
+
+  @override
+  String get sos_add_contacts => 'કટોકટી સંપર્કો ઉમેરો';
+
+  @override
+  String sos_sms_body(String link, String code) {
+    return 'SOS: મને મદદ જોઈએ છે. મારું લોકેશન: $link (પ્લસ કોડ $code).';
+  }
+
+  @override
+  String get sos_sms_body_no_location => 'SOS: મને મદદ જોઈએ છે. મારું લોકેશન હાલ ઉપલબ્ધ નથી.';
+
+  @override
+  String sos_sms_trip(String link) {
+    return 'મારી લાઇવ ટ્રિપ જુઓ: $link';
+  }
+
+  @override
+  String sos_share_trip_text(String link) {
+    return 'મારી રોડસાઇડ મદદની ટ્રિપ લાઇવ જુઓ: $link';
+  }
+
+  @override
+  String sos_share_location_text(String link) {
+    return 'હું અહીં રોડસાઇડ મદદની રાહ જોઉં છું: $link';
+  }
+
+  @override
+  String get home_offline => 'તમે ઑફલાઇન છો. મદદ લેવા ઇન્ટરનેટ જોઈએ.';
+
+  @override
+  String get home_offline_sms =>
+      'તમે ઑફલાઇન છો. તમે હજુ પણ SMS થી તમારું લોકેશન અમારી હેલ્પલાઇન પર મોકલી શકો છો.';
 }

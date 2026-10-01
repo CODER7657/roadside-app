@@ -1020,4 +1020,264 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get chat_error_retry => 'Try again';
+
+  @override
+  String get home_profile => 'Profile & settings';
+
+  @override
+  String get profile_title => 'Profile & settings';
+
+  @override
+  String get profile_error => 'Couldn\'t load your profile. Your settings still work.';
+
+  @override
+  String get profile_language => 'Language';
+
+  @override
+  String get profile_language_title => 'Choose your language';
+
+  @override
+  String get profile_display_mode => 'Display mode';
+
+  @override
+  String get profile_display_auto => 'Auto';
+
+  @override
+  String get profile_display_auto_hint => 'Day or Night by local sunset. Saver when the battery is low.';
+
+  @override
+  String get profile_display_day => 'Day';
+
+  @override
+  String get profile_display_day_hint => 'A light screen, all the time.';
+
+  @override
+  String get profile_display_night => 'Night';
+
+  @override
+  String get profile_display_night_hint => 'A dark screen, all the time.';
+
+  @override
+  String get profile_display_glare => 'Glare';
+
+  @override
+  String get profile_display_glare_hint => 'Black on white with bigger text, for bright sun.';
+
+  @override
+  String get profile_chime => 'Arrival chime';
+
+  @override
+  String get profile_chime_hint => 'A short sound when your mechanic arrives.';
+
+  @override
+  String get profile_contacts => 'Emergency contacts';
+
+  @override
+  String profile_contacts_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count saved',
+      one: '1 saved',
+      zero: 'None saved yet',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get profile_privacy => 'Privacy & data';
+
+  @override
+  String get profile_licenses => 'Open-source licenses';
+
+  @override
+  String get home_history => 'Your bookings';
+
+  @override
+  String get history_title => 'Bookings';
+
+  @override
+  String get history_filter_all => 'All';
+
+  @override
+  String get history_filter_active => 'Active';
+
+  @override
+  String get history_filter_past => 'Past';
+
+  @override
+  String get history_status_searching => 'Searching';
+
+  @override
+  String get history_status_cancelled => 'Cancelled';
+
+  @override
+  String get history_status_no_mechanic => 'No mechanic';
+
+  @override
+  String get history_today => 'Today';
+
+  @override
+  String get history_yesterday => 'Yesterday';
+
+  @override
+  String get history_empty_title => 'No bookings yet';
+
+  @override
+  String get history_empty_body => 'When you get help, the booking and its receipt show up here.';
+
+  @override
+  String get history_empty_action => 'Go to the map';
+
+  @override
+  String get history_none_active => 'Nothing going on right now';
+
+  @override
+  String get history_none_past => 'No past bookings';
+
+  @override
+  String get history_show_all => 'Show all';
+
+  @override
+  String get history_error => 'Couldn\'t load your bookings. Check your connection.';
+
+  @override
+  String get detail_title => 'Booking';
+
+  @override
+  String get detail_missing => 'This booking isn\'t available.';
+
+  @override
+  String get detail_back_to_history => 'Back to bookings';
+
+  @override
+  String get detail_report => 'Report an issue';
+
+  @override
+  String get detail_no_mechanic => 'No mechanic was free nearby. Nothing was charged.';
+
+  @override
+  String detail_cancelled_by_you(String time) {
+    return 'You cancelled at $time.';
+  }
+
+  @override
+  String detail_cancelled_at(String time) {
+    return 'Cancelled at $time.';
+  }
+
+  @override
+  String get detail_mechanic => 'Mechanic';
+
+  @override
+  String get detail_amount => 'Amount';
+
+  @override
+  String get detail_paid_by => 'Paid by';
+
+  @override
+  String get detail_upi => 'UPI';
+
+  @override
+  String detail_upi_to(String name) {
+    return 'UPI to $name';
+  }
+
+  @override
+  String get detail_payment => 'Payment';
+
+  @override
+  String get detail_payment_pending => 'Not paid yet';
+
+  @override
+  String get detail_payment_marked => 'Waiting for the mechanic to confirm';
+
+  @override
+  String get detail_payment_confirmed => 'Paid, confirmed by the mechanic';
+
+  @override
+  String get detail_payment_disputed => 'Under review';
+
+  @override
+  String get detail_nothing_to_pay => 'Nothing to pay';
+
+  @override
+  String get sos_button => 'Emergency SOS';
+
+  @override
+  String get sos_title => 'Emergency';
+
+  @override
+  String sos_body(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Hold to alert your $count emergency contacts with your location.',
+      one: 'Hold to alert your emergency contact with your location.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sos_body_loading => 'Hold to alert your emergency contacts with your location.';
+
+  @override
+  String get sos_body_no_contacts =>
+      'No emergency contacts saved. Holding opens your messages so you can choose who to alert.';
+
+  @override
+  String get sos_hold_hint => 'Hold for 1.5 seconds to send SOS';
+
+  @override
+  String get sos_hold_caption => 'Hold for 1.5 seconds. Letting go early sends nothing.';
+
+  @override
+  String get sos_opening => 'Opening your messages…';
+
+  @override
+  String get sos_opened => 'Your messages app has the SOS ready. Press send.';
+
+  @override
+  String get sos_failed => 'Couldn\'t open your messages. Call 112.';
+
+  @override
+  String get sos_call_112 => 'Call 112';
+
+  @override
+  String get sos_call_failed => 'Couldn\'t start the call. Dial 112.';
+
+  @override
+  String get sos_share_trip => 'Share trip';
+
+  @override
+  String get sos_add_contacts => 'Add emergency contacts';
+
+  @override
+  String sos_sms_body(String link, String code) {
+    return 'SOS: I need help. My location: $link (Plus Code $code).';
+  }
+
+  @override
+  String get sos_sms_body_no_location => 'SOS: I need help. My location isn\'t available right now.';
+
+  @override
+  String sos_sms_trip(String link) {
+    return 'Follow my live trip: $link';
+  }
+
+  @override
+  String sos_share_trip_text(String link) {
+    return 'Follow my roadside help trip live: $link';
+  }
+
+  @override
+  String sos_share_location_text(String link) {
+    return 'I\'m waiting for roadside help here: $link';
+  }
+
+  @override
+  String get home_offline => 'You\'re offline. Getting help needs the internet.';
+
+  @override
+  String get home_offline_sms => 'You\'re offline. You can still send your location to our helpline by SMS.';
 }
