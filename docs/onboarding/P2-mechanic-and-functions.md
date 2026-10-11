@@ -43,13 +43,13 @@ Then:
 5. **Two real Android phones** if you can: one as customer, one as mechanic. Background location and full-screen offers can only be tested on real devices.
 
 ## 2. Accounts & access (day 1)
-- Accept the GitHub invite to `CODER7657/roadside-app` (sent to @Hem60) and turn on 2FA. Once you accept, the repo owner runs `tool/assign_issues.sh` and your issues get assigned to you.
+- Accept the GitHub invite to `Hash-Hawks/roadside-app` (sent to @Hem60) and turn on 2FA. Once you accept, the repo owner runs `tool/assign_issues.sh` and your issues get assigned to you.
 - Ayush adds you to the Firebase **dev** project. Register your App Check debug token (dev only, never commit it).
 - Functions secrets go in Secret Manager via `defineSecret()`, never in `.env` files in git.
 
 ## 3. Get the repo and first look
 ```bash
-git clone https://github.com/CODER7657/roadside-app.git
+git clone https://github.com/Hash-Hawks/roadside-app.git
 cd roadside-app
 code .
 ```

@@ -26,7 +26,7 @@ case "$(uname -s)" in
   MINGW*|MSYS*|CYGWIN*) GCLOUD=${GCLOUD:-"$(dirname "$0")/gcloud-win.sh"} ;;
   *) GCLOUD=${GCLOUD:-gcloud} ;;
 esac
-REPO=${REPO:-CODER7657/roadside-app}
+REPO=${REPO:-Hash-Hawks/roadside-app}
 project=${1:?usage: setup_deploy.sh <project-id> <github-environment> [--blaze]}
 environment=${2:?usage: setup_deploy.sh <project-id> <github-environment> [--blaze]}
 blaze=${3:-}
