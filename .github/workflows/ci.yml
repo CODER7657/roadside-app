@@ -210,7 +210,6 @@ jobs:
     timeout-minutes: 10
     permissions:
       contents: read
-      pull-requests: read   # gitleaks-action lists the PR's commits to scan them
     steps:
       - uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
@@ -219,10 +218,31 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
+      # gitleaks CLI, not gitleaks-action: the action needs a paid licence for org repos (#214).
+      # Scans the same commits the action did; --redact because the logs are public.
+      - name: gitleaks
+        shell: bash
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITLEAKS_ENABLE_COMMENTS: false
+          GITLEAKS_VERSION: 8.30.1
+          GITLEAKS_SHA256: 551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD: ${{ github.event.pull_request.head.sha }}
+          PUSH_BEFORE: ${{ github.event.before }}
+          PUSH_AFTER: ${{ github.event.after }}
+        run: |
+          tarball="gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          curl -sSfL -o "$RUNNER_TEMP/$tarball" \
+            "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/$tarball"
+          echo "$GITLEAKS_SHA256  $RUNNER_TEMP/$tarball" | sha256sum -c -
+          tar -xzf "$RUNNER_TEMP/$tarball" -C "$RUNNER_TEMP" gitleaks
+
+          range=()
+          if [ -n "$PR_BASE" ]; then
+            range=(--log-opts="$PR_BASE..$PR_HEAD")
+          elif [ -n "$PUSH_BEFORE" ] && [ "$PUSH_BEFORE" != 0000000000000000000000000000000000000000 ]; then
+            range=(--log-opts="$PUSH_BEFORE..$PUSH_AFTER")
+          fi
+          "$RUNNER_TEMP/gitleaks" git . --redact --no-banner --verbose "${range[@]}"
 
   actionlint:
     name: Workflow lint (actionlint)
