@@ -28,11 +28,11 @@ Redeploy the last good tag, `v1.2.2` in this example. Anyone with write access c
 with the incident lead first:
 
 ```bash
-gh workflow run deploy-firebase.yml --repo CODER7657/roadside-app --ref v1.2.2 -f target=prod
+gh workflow run deploy-firebase.yml --repo Hash-Hawks/roadside-app --ref v1.2.2 -f target=prod
 ```
 
 ```bash
-gh run watch --repo CODER7657/roadside-app
+gh run watch --repo Hash-Hawks/roadside-app
 ```
 
 That deploys that tag's functions, rules, indexes and both hosting sites.

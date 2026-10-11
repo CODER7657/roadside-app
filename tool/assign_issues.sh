@@ -3,7 +3,7 @@
 # GitHub only accepts assignees who have access, so run this after Hem and Ayush accept their invites.
 # Safe to re-run. Usage: bash tool/assign_issues.sh
 set -euo pipefail
-REPO="CODER7657/roadside-app"
+REPO="Hash-Hawks/roadside-app"
 declare -A OWNER=( [P1]=CODER7657 [P2]=Hem60 [P3]=Ayush3422 )
 
 for label in P1 P2 P3; do

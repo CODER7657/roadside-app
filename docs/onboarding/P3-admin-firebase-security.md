@@ -75,7 +75,7 @@ Then:
 
 ## 3. Get the repo and first look
 ```bash
-git clone https://github.com/CODER7657/roadside-app.git
+git clone https://github.com/Hash-Hawks/roadside-app.git
 cd roadside-app
 code .
 ```

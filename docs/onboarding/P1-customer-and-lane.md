@@ -47,7 +47,7 @@ Then:
 ## 2. Accounts & access (day 1)
 - Add Hem and Ayush as collaborators:
   ```bash
-  gh api -X PUT repos/CODER7657/roadside-app/collaborators/<their-username> -f permission=push
+  gh api -X PUT repos/Hash-Hawks/roadside-app/collaborators/<their-username> -f permission=push
   ```
   Or use Settings → Collaborators.
 - Turn on 2FA on GitHub.
@@ -56,7 +56,7 @@ Then:
 
 ## 3. Get the repo and first look
 ```bash
-git clone https://github.com/CODER7657/roadside-app.git
+git clone https://github.com/Hash-Hawks/roadside-app.git
 cd roadside-app
 code .
 ```
