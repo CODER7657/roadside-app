@@ -43,19 +43,19 @@ dependencies:
     path: ../packages/roadside_core
   flutter_localizations:
     sdk: flutter
-  shared_preferences: ^2.5.5
+  shared_preferences: ^2.5.6
   # 12.x: 13.x needs permission_handler_android 14 (compileSdk 37), which AGP 9.1 can't build.
   # Move up when the Flutter template's AGP supports API 37.
   permission_handler: ^12.0.3
-  url_launcher: ^6.3.2
+  url_launcher: ^6.3.3
   cloud_firestore: ^6.10.0
   cloud_functions: ^6.5.0
-  image_picker: ^1.2.3
+  image_picker: ^1.2.4
   flutter_image_compress: ^2.5.1
   geolocator: ^14.1.1
   geocoding: ^5.0.0
   connectivity_plus: ^7.3.1
-  share_plus: ^13.3.0
+  share_plus: ^13.3.1
 
 dev_dependencies:
   flutter_test:
