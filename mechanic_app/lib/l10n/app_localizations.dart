@@ -1586,6 +1586,246 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Couldn\'t check the code. Check your connection and try again.'**
   String get start_code_failed;
+
+  /// M5 primary while in progress: opens M7.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish the job'**
+  String get job_finish;
+
+  /// M7 header above the step lane.
+  ///
+  /// In en, this message translates to:
+  /// **'Job done'**
+  String get complete_step;
+
+  /// M7 title.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish the job'**
+  String get complete_title;
+
+  /// M7: photos of the finished work (at least one).
+  ///
+  /// In en, this message translates to:
+  /// **'After photos'**
+  String get complete_after;
+
+  /// M7: photos before the work.
+  ///
+  /// In en, this message translates to:
+  /// **'Before photos (optional)'**
+  String get complete_before;
+
+  /// M7 photo tile label.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo {n}'**
+  String complete_photo_label(int n);
+
+  /// M7 error.
+  ///
+  /// In en, this message translates to:
+  /// **'Add at least one photo of the finished work.'**
+  String get complete_after_required;
+
+  /// M7 amount field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Final amount (₹)'**
+  String get complete_amount_label;
+
+  /// M7 amount hint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. 450'**
+  String get complete_amount_hint;
+
+  /// M7 under the amount: the booking's estimate.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimate was {range}'**
+  String complete_estimate(String range);
+
+  /// M7 error.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the amount you\'re charging.'**
+  String get complete_amount_required;
+
+  /// M7: the amount needs a reason (completeJob rule).
+  ///
+  /// In en, this message translates to:
+  /// **'This is outside the usual range ({range}). Why?'**
+  String complete_reason_title(String range);
+
+  /// M7 reason chip.
+  ///
+  /// In en, this message translates to:
+  /// **'Extra work'**
+  String get complete_reason_extra_work;
+
+  /// M7 reason chip.
+  ///
+  /// In en, this message translates to:
+  /// **'Parts'**
+  String get complete_reason_parts;
+
+  /// M7 reason chip.
+  ///
+  /// In en, this message translates to:
+  /// **'Discount'**
+  String get complete_reason_discount;
+
+  /// M7 reason chip.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get complete_reason_other;
+
+  /// M7 error.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a reason.'**
+  String get complete_reason_required;
+
+  /// M7 slider.
+  ///
+  /// In en, this message translates to:
+  /// **'Slide to finish'**
+  String get complete_slide;
+
+  /// M7 error.
+  ///
+  /// In en, this message translates to:
+  /// **'A photo didn\'t upload. Check your connection and try again.'**
+  String get complete_error_upload;
+
+  /// M7 error: the server rejected a photo.
+  ///
+  /// In en, this message translates to:
+  /// **'A photo couldn\'t be used. Take it again.'**
+  String get complete_error_photo;
+
+  /// M7 error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t finish the job. Try again.'**
+  String get complete_error_failed;
+
+  /// M8 pending: above the amount.
+  ///
+  /// In en, this message translates to:
+  /// **'To your UPI'**
+  String get pay_waiting_caps;
+
+  /// M8 pending title.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for payment'**
+  String get pay_waiting_title;
+
+  /// M8 pending body.
+  ///
+  /// In en, this message translates to:
+  /// **'The customer pays your UPI directly. When they say they\'ve paid, you\'ll confirm it here.'**
+  String get pay_waiting_body;
+
+  /// M8 above the amount.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer says they paid'**
+  String get pay_claimed_caps;
+
+  /// M8 title.
+  ///
+  /// In en, this message translates to:
+  /// **'Did the money come in?'**
+  String get pay_claimed_title;
+
+  /// M8 body with the customer's first name.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your UPI app for a payment from {name}.'**
+  String pay_claimed_body(String name);
+
+  /// M8 body without a name.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your UPI app for the customer\'s payment.'**
+  String get pay_claimed_body_anon;
+
+  /// M8 primary: confirmPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, received'**
+  String get pay_received;
+
+  /// M8 secondary: disputePayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Not received'**
+  String get pay_not_received;
+
+  /// M8 dispute sheet title.
+  ///
+  /// In en, this message translates to:
+  /// **'What went wrong?'**
+  String get pay_dispute_title;
+
+  /// M8 dispute field label.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell our team'**
+  String get pay_dispute_label;
+
+  /// M8 dispute hint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Nothing came in my UPI app'**
+  String get pay_dispute_hint;
+
+  /// M8 dispute send.
+  ///
+  /// In en, this message translates to:
+  /// **'Report it'**
+  String get pay_dispute_send;
+
+  /// M8 confirmed title.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment received'**
+  String get pay_confirmed_title;
+
+  /// M8 confirmed body.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount}. Nice work, you\'re free for the next job.'**
+  String pay_confirmed_body(String amount);
+
+  /// M8 disputed title.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'re looking into it'**
+  String get pay_disputed_title;
+
+  /// M8 disputed body.
+  ///
+  /// In en, this message translates to:
+  /// **'Our team will call you and the customer to sort it out.'**
+  String get pay_disputed_body;
+
+  /// M8 error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t update the payment. Try again.'**
+  String get pay_error;
+
+  /// M8 pending: report that the customer left without paying (disputePayment).
+  ///
+  /// In en, this message translates to:
+  /// **'Customer didn\'t pay'**
+  String get pay_not_paid;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

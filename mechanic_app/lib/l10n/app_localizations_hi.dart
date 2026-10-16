@@ -811,4 +811,135 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get start_code_failed => 'कोड जाँच नहीं पाए। कनेक्शन देखकर फिर से कोशिश करें।';
+
+  @override
+  String get job_finish => 'काम पूरा करें';
+
+  @override
+  String get complete_step => 'काम पूरा';
+
+  @override
+  String get complete_title => 'काम पूरा करें';
+
+  @override
+  String get complete_after => 'काम के बाद की फ़ोटो';
+
+  @override
+  String get complete_before => 'काम से पहले की फ़ोटो (ज़रूरी नहीं)';
+
+  @override
+  String complete_photo_label(int n) {
+    return 'फ़ोटो $n';
+  }
+
+  @override
+  String get complete_after_required => 'पूरे हुए काम की कम से कम एक फ़ोटो जोड़ें।';
+
+  @override
+  String get complete_amount_label => 'कुल रकम (₹)';
+
+  @override
+  String get complete_amount_hint => 'जैसे 450';
+
+  @override
+  String complete_estimate(String range) {
+    return 'अनुमान $range था';
+  }
+
+  @override
+  String get complete_amount_required => 'आप जो रकम ले रहे हैं वह डालें।';
+
+  @override
+  String complete_reason_title(String range) {
+    return 'यह सामान्य सीमा ($range) से बाहर है। क्यों?';
+  }
+
+  @override
+  String get complete_reason_extra_work => 'अतिरिक्त काम';
+
+  @override
+  String get complete_reason_parts => 'पुर्ज़े';
+
+  @override
+  String get complete_reason_discount => 'छूट';
+
+  @override
+  String get complete_reason_other => 'अन्य';
+
+  @override
+  String get complete_reason_required => 'कारण चुनें।';
+
+  @override
+  String get complete_slide => 'पूरा करने के लिए स्लाइड करें';
+
+  @override
+  String get complete_error_upload => 'एक फ़ोटो अपलोड नहीं हुई। कनेक्शन देखकर फिर से कोशिश करें।';
+
+  @override
+  String get complete_error_photo => 'एक फ़ोटो इस्तेमाल नहीं हो सकी। फिर से लें।';
+
+  @override
+  String get complete_error_failed => 'काम पूरा नहीं कर पाए। फिर से कोशिश करें।';
+
+  @override
+  String get pay_waiting_caps => 'आपके UPI में';
+
+  @override
+  String get pay_waiting_title => 'पेमेंट का इंतज़ार';
+
+  @override
+  String get pay_waiting_body =>
+      'ग्राहक सीधे आपके UPI में पेमेंट करते हैं। जब वे बताएँगे कि पेमेंट हो गया, आप यहाँ पुष्टि करेंगे।';
+
+  @override
+  String get pay_claimed_caps => 'ग्राहक कहते हैं कि पेमेंट हो गया';
+
+  @override
+  String get pay_claimed_title => 'क्या पैसे आ गए?';
+
+  @override
+  String pay_claimed_body(String name) {
+    return 'अपने UPI ऐप में $name का पेमेंट देखें।';
+  }
+
+  @override
+  String get pay_claimed_body_anon => 'अपने UPI ऐप में ग्राहक का पेमेंट देखें।';
+
+  @override
+  String get pay_received => 'हाँ, मिल गया';
+
+  @override
+  String get pay_not_received => 'नहीं मिला';
+
+  @override
+  String get pay_dispute_title => 'क्या गड़बड़ हुई?';
+
+  @override
+  String get pay_dispute_label => 'हमारी टीम को बताएँ';
+
+  @override
+  String get pay_dispute_hint => 'जैसे मेरे UPI ऐप में कुछ नहीं आया';
+
+  @override
+  String get pay_dispute_send => 'रिपोर्ट करें';
+
+  @override
+  String get pay_confirmed_title => 'पेमेंट मिल गया';
+
+  @override
+  String pay_confirmed_body(String amount) {
+    return '$amount। बढ़िया काम, आप अगले काम के लिए तैयार हैं।';
+  }
+
+  @override
+  String get pay_disputed_title => 'हम इसे देख रहे हैं';
+
+  @override
+  String get pay_disputed_body => 'हमारी टीम इसे सुलझाने के लिए आपको और ग्राहक को कॉल करेगी।';
+
+  @override
+  String get pay_error => 'पेमेंट अपडेट नहीं कर पाए। फिर से कोशिश करें।';
+
+  @override
+  String get pay_not_paid => 'ग्राहक ने पेमेंट नहीं किया';
 }

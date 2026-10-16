@@ -1040,5 +1040,194 @@
   "start_code_failed": "Couldn't check the code. Check your connection and try again.",
   "@start_code_failed": {
     "description": "M6 network or unexpected error."
+  },
+  "job_finish": "Finish the job",
+  "@job_finish": {
+    "description": "M5 primary while in progress: opens M7."
+  },
+  "complete_step": "Job done",
+  "@complete_step": {
+    "description": "M7 header above the step lane."
+  },
+  "complete_title": "Finish the job",
+  "@complete_title": {
+    "description": "M7 title."
+  },
+  "complete_after": "After photos",
+  "@complete_after": {
+    "description": "M7: photos of the finished work (at least one)."
+  },
+  "complete_before": "Before photos (optional)",
+  "@complete_before": {
+    "description": "M7: photos before the work."
+  },
+  "complete_photo_label": "Photo {n}",
+  "@complete_photo_label": {
+    "description": "M7 photo tile label.",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "complete_after_required": "Add at least one photo of the finished work.",
+  "@complete_after_required": {
+    "description": "M7 error."
+  },
+  "complete_amount_label": "Final amount (₹)",
+  "@complete_amount_label": {
+    "description": "M7 amount field label."
+  },
+  "complete_amount_hint": "e.g. 450",
+  "@complete_amount_hint": {
+    "description": "M7 amount hint."
+  },
+  "complete_estimate": "Estimate was {range}",
+  "@complete_estimate": {
+    "description": "M7 under the amount: the booking's estimate.",
+    "placeholders": {
+      "range": {
+        "type": "String",
+        "example": "₹350–₹600"
+      }
+    }
+  },
+  "complete_amount_required": "Enter the amount you're charging.",
+  "@complete_amount_required": {
+    "description": "M7 error."
+  },
+  "complete_reason_title": "This is outside the usual range ({range}). Why?",
+  "@complete_reason_title": {
+    "description": "M7: the amount needs a reason (completeJob rule).",
+    "placeholders": {
+      "range": {
+        "type": "String",
+        "example": "₹175–₹1,800"
+      }
+    }
+  },
+  "complete_reason_extra_work": "Extra work",
+  "@complete_reason_extra_work": {
+    "description": "M7 reason chip."
+  },
+  "complete_reason_parts": "Parts",
+  "@complete_reason_parts": {
+    "description": "M7 reason chip."
+  },
+  "complete_reason_discount": "Discount",
+  "@complete_reason_discount": {
+    "description": "M7 reason chip."
+  },
+  "complete_reason_other": "Other",
+  "@complete_reason_other": {
+    "description": "M7 reason chip."
+  },
+  "complete_reason_required": "Pick a reason.",
+  "@complete_reason_required": {
+    "description": "M7 error."
+  },
+  "complete_slide": "Slide to finish",
+  "@complete_slide": {
+    "description": "M7 slider."
+  },
+  "complete_error_upload": "A photo didn't upload. Check your connection and try again.",
+  "@complete_error_upload": {
+    "description": "M7 error."
+  },
+  "complete_error_photo": "A photo couldn't be used. Take it again.",
+  "@complete_error_photo": {
+    "description": "M7 error: the server rejected a photo."
+  },
+  "complete_error_failed": "Couldn't finish the job. Try again.",
+  "@complete_error_failed": {
+    "description": "M7 error."
+  },
+  "pay_waiting_caps": "To your UPI",
+  "@pay_waiting_caps": {
+    "description": "M8 pending: above the amount."
+  },
+  "pay_waiting_title": "Waiting for payment",
+  "@pay_waiting_title": {
+    "description": "M8 pending title."
+  },
+  "pay_waiting_body": "The customer pays your UPI directly. When they say they've paid, you'll confirm it here.",
+  "@pay_waiting_body": {
+    "description": "M8 pending body."
+  },
+  "pay_claimed_caps": "Customer says they paid",
+  "@pay_claimed_caps": {
+    "description": "M8 above the amount."
+  },
+  "pay_claimed_title": "Did the money come in?",
+  "@pay_claimed_title": {
+    "description": "M8 title."
+  },
+  "pay_claimed_body": "Check your UPI app for a payment from {name}.",
+  "@pay_claimed_body": {
+    "description": "M8 body with the customer's first name.",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Priya"
+      }
+    }
+  },
+  "pay_claimed_body_anon": "Check your UPI app for the customer's payment.",
+  "@pay_claimed_body_anon": {
+    "description": "M8 body without a name."
+  },
+  "pay_received": "Yes, received",
+  "@pay_received": {
+    "description": "M8 primary: confirmPayment."
+  },
+  "pay_not_received": "Not received",
+  "@pay_not_received": {
+    "description": "M8 secondary: disputePayment."
+  },
+  "pay_dispute_title": "What went wrong?",
+  "@pay_dispute_title": {
+    "description": "M8 dispute sheet title."
+  },
+  "pay_dispute_label": "Tell our team",
+  "@pay_dispute_label": {
+    "description": "M8 dispute field label."
+  },
+  "pay_dispute_hint": "e.g. Nothing came in my UPI app",
+  "@pay_dispute_hint": {
+    "description": "M8 dispute hint."
+  },
+  "pay_dispute_send": "Report it",
+  "@pay_dispute_send": {
+    "description": "M8 dispute send."
+  },
+  "pay_confirmed_title": "Payment received",
+  "@pay_confirmed_title": {
+    "description": "M8 confirmed title."
+  },
+  "pay_confirmed_body": "{amount}. Nice work, you're free for the next job.",
+  "@pay_confirmed_body": {
+    "description": "M8 confirmed body.",
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "₹450"
+      }
+    }
+  },
+  "pay_disputed_title": "We're looking into it",
+  "@pay_disputed_title": {
+    "description": "M8 disputed title."
+  },
+  "pay_disputed_body": "Our team will call you and the customer to sort it out.",
+  "@pay_disputed_body": {
+    "description": "M8 disputed body."
+  },
+  "pay_error": "Couldn't update the payment. Try again.",
+  "@pay_error": {
+    "description": "M8 error."
+  },
+  "pay_not_paid": "Customer didn't pay",
+  "@pay_not_paid": {
+    "description": "M8 pending: report that the customer left without paying (disputePayment)."
   }
 }
