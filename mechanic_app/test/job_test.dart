@@ -18,6 +18,7 @@ import 'package:mechanic_app/features/help/presentation/help_screen.dart';
 import 'package:mechanic_app/features/job/application/job.dart';
 import 'package:mechanic_app/features/job/data/job_repository.dart';
 import 'package:mechanic_app/features/job/presentation/job_screen.dart';
+import 'package:mechanic_app/features/job/presentation/start_code_screen.dart';
 import 'package:mechanic_app/features/offers/application/offers.dart';
 import 'package:mechanic_app/features/permissions/application/permission_service.dart';
 import 'package:mechanic_app/features/permissions/presentation/permission_explainer_screen.dart';
@@ -386,6 +387,20 @@ void main() {
       await tester.pumpAndSettle();
       await tapText(tester, 'CALL');
       expect(launched, [directionsTo(pickup), Uri(scheme: 'tel', path: '+919812345678')]);
+    });
+
+    testWidgets('cancelled while M6 was open: back on M5, sharing stops', (tester) async {
+      await tester.pumpWidget(await app(BookingStatus.arrived));
+      await openJob(tester);
+      expect(location.listening, isTrue);
+      GoRouter.of(tester.element(find.byType(JobScreen))).go(startCodeRoute('b-1'));
+      await tester.pumpAndSettle();
+      jobs.setStatus('b-1', BookingStatus.cancelled);
+      await tester.pumpAndSettle();
+      GoRouter.of(tester.element(find.byType(StartCodeScreen))).go(jobRoute('b-1'));
+      await tester.pumpAndSettle();
+      expect(find.text('This job was cancelled'), findsOneWidget);
+      expect(location.listening, isFalse);
     });
 
     testWidgets('the customer cancels: says so, and location sharing stops', (tester) async {

@@ -33,23 +33,30 @@ Future<void> bootstrap(AppFlavor flavor) async {
   final firebase = await connectFirebase(flavor);
   RemoteFlags Function()? remoteFlags;
   if (firebase?.mode == FirebaseMode.project) {
-    // PLAN §12.3: Play Integrity in prod; the debug provider in dev.
-    await FirebaseAppCheck.instance.activate(
-      providerAndroid: flavor == AppFlavor.prod
-          ? const AndroidPlayIntegrityProvider()
-          : AndroidDebugProvider(
-              debugToken: AppEnv.appCheckDebugToken.isEmpty ? null : AppEnv.appCheckDebugToken,
-            ),
-    );
+    // Each of these is optional for the app to work: a failure is logged, never fatal at launch.
+    await _guarded('app check', () async {
+      // PLAN §12.3: Play Integrity in prod; the debug provider in dev.
+      await FirebaseAppCheck.instance.activate(
+        providerAndroid: flavor == AppFlavor.prod
+            ? const AndroidPlayIntegrityProvider()
+            : AndroidDebugProvider(
+                debugToken: AppEnv.appCheckDebugToken.isEmpty ? null : AppEnv.appCheckDebugToken,
+              ),
+      );
+    });
 
-    // Reports only from release builds; LaneLog records reach Crashlytics redacted.
-    final crashlytics = FirebaseCrashlytics.instance;
-    await crashlytics.setCrashlyticsCollectionEnabled(kReleaseMode);
-    await crashlytics.setCustomKey('flavor', flavor.name);
-    LaneLog.sink = crashReportingSink(CrashlyticsReporter(crashlytics), next: LaneLog.sink);
+    await _guarded('crashlytics', () async {
+      // Reports only from release builds; LaneLog records reach Crashlytics redacted.
+      final crashlytics = FirebaseCrashlytics.instance;
+      await crashlytics.setCrashlyticsCollectionEnabled(kReleaseMode);
+      await crashlytics.setCustomKey('flavor', flavor.name);
+      LaneLog.sink = crashReportingSink(CrashlyticsReporter(crashlytics), next: LaneLog.sink);
+    });
 
-    final config = await setUpRemoteConfig(FirebaseRemoteConfig.instance, flavor);
-    remoteFlags = () => RemoteFlags.fromConfig(config);
+    await _guarded('remote config', () async {
+      final config = await setUpRemoteConfig(FirebaseRemoteConfig.instance, flavor);
+      remoteFlags = () => RemoteFlags.fromConfig(config);
+    });
   }
   LaneLog.i('firebase', {'mode': (firebase?.mode ?? FirebaseMode.none).name, 'flavor': flavor.name});
 
@@ -71,5 +78,13 @@ Future<void> bootstrap(AppFlavor flavor) async {
 
   if (flavor == AppFlavor.dev && AppEnv.crashlyticsTest) {
     LaneLog.e('crashlytics test report', error: StateError('Test report from the dev build (#120)'));
+  }
+}
+
+Future<void> _guarded(String what, Future<void> Function() setUp) async {
+  try {
+    await setUp();
+  } catch (e) {
+    LaneLog.w('$what setup failed', error: e);
   }
 }

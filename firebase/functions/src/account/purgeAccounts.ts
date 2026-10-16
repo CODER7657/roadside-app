@@ -16,7 +16,8 @@
 //     KYC retention job can delete `private/kyc` and the KYC files 180 days after they left
 //     (PLAN §12.10); shop, profile and toolkit photos go now
 //   - presence and offers are deleted; the mechanic card on their bookings is anonymised
-// Both: rateLimits/{uid} and the Firebase Auth user are deleted.
+// Both: their notifications (inbox/{uid}/items), rateLimits/{uid} and the Firebase Auth user are
+// deleted.
 
 import { getAuth } from 'firebase-admin/auth';
 import { FieldValue, GeoPoint, type DocumentReference, type Timestamp } from 'firebase-admin/firestore';
@@ -152,6 +153,7 @@ async function purgeMechanic(uid: string, requestedAt: Timestamp): Promise<void>
 export async function purgeAccount(kind: AccountKind, uid: string, requestedAt: Timestamp): Promise<void> {
   if (kind === 'customer') await purgeCustomer(uid);
   else await purgeMechanic(uid, requestedAt);
+  await db().recursiveDelete(db().collection(`inbox/${uid}/items`));
   await db().doc(`rateLimits/${uid}`).delete();
   await deleteAuthUser(uid);
 }
