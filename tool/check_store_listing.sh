@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Checks the Play listing text in docs/play/listing/<app>/<locale>/ against Play Console's limits (#58):
-# title ≤ 30, short description ≤ 80, full description ≤ 4000 characters.
+# title ≤ 30, short description ≤ 80, full description ≤ 4000 characters; release notes in
+# docs/play/release-notes/<app>/<locale>.txt ≤ 500.
 #
 #   bash tool/check_store_listing.sh [listing dir]
 #
@@ -37,6 +38,15 @@ for locale_dir in "$dir"/*/*/; do
       echo "✗ $file is empty"; fail=1
     fi
   done
+done
+
+# Release notes ("What's new"): docs/play/release-notes/<app>/<locale>.txt, at most 500 characters.
+notes_dir=${NOTES_DIR:-$(dirname "$dir")/release-notes}
+for file in "$notes_dir"/*/*.txt; do
+  [ -f "$file" ] || continue
+  n=$(count "$file")
+  checked=$((checked + 1))
+  if [ "$n" -gt 500 ]; then echo "✗ $file: $n characters (max 500)"; fail=1; fi
 done
 
 if [ "$checked" -eq 0 ]; then echo "✗ no listings under $dir"; exit 1; fi
